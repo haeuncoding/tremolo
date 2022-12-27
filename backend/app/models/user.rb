@@ -15,9 +15,10 @@ class User < ApplicationRecord
 
 # validations
   has_secure_password
+  before_validation :ensure_session_token
   validates :username,
     uniqueness: true, 
-    length: { in: 7..30 }, 
+    length: { in: 3..30 }, 
     format: { without: URI::MailTo::EMAIL_REGEXP, 
       message: "Your username cannot be your email." 
     }
@@ -25,10 +26,8 @@ class User < ApplicationRecord
     uniqueness: true, 
     length: { in: 3..255 }, 
     format: { with: URI::MailTo::EMAIL_REGEXP }
-  validates :session_token, 
-    presence: true, 
-    uniqueness: true
-  validates :password, length: { in: 8..255 }, allow_nil: true
+
+  validates :password, length: { in: 6..255 }, allow_nil: true
 
 # authorization methods 
   def self.find_by_credentials(username, password)
@@ -56,7 +55,7 @@ class User < ApplicationRecord
     self.session_token
   end
 
-  def self.ensure_session_token
+  def ensure_session_token
     self.session_token ||= generate_unique_session_token
   end
 
@@ -64,7 +63,7 @@ class User < ApplicationRecord
 
   def generate_unique_session_token
     token = SecureRandom::urlsafe_base64
-    while User.exists(session_token: token)
+    while User.exists?(session_token: token)
       token = SecureRandom::urlsafe_base64
     end
     token
