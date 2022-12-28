@@ -10,11 +10,33 @@ ul {
   align-items: center;
 }
 
-input {
+.search-bar {
   width: 40vw;
-  height: 2.5vw;
+  height: 1.9vw;
   margin-left: 1vw;
   margin-right: 1vw;
+  font-family: 'Open Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-decoration: none;
+  font-weight: 400;
+  border: #000000;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: .3vw;
+  margin-right: 1vw;
+}
+
+.search-bar:focus {
+  /* border: #0F749A; */
+  outline: #0F749A;
+  /* border-style: solid;
+  border-width: 1.5px;
+  border-radius: 12px; */
+
 }
 
 ::placeholder {
@@ -24,10 +46,14 @@ input {
   font-size: 1.15vw;
 }
 
-img {
+#tremolo_logo {
   margin-left: -1.5vw;
   width: 10vw;
   height: auto;
+}
+
+#tremolo_logo:hover {
+  src: local("../../assets/TremoloLogo_Color.png");
 }
 
 li {

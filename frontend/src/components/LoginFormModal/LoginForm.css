@@ -1,5 +1,28 @@
-form, body, h1, h2, h3, p {
+label, body, h1, h2, h3, p {
   font-family: 'Roboto', sans-serif;
+}
+
+h1, label {
+  font-weight: 700;
+}
+
+#login-screen {
+  padding-left: 10vw;
+  padding-right: 10vw;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.input-field {
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+}
+.input-box {
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+  height: 3vw;
+  width: 20vw;
 }
 
 /* ul {

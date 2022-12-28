@@ -4,6 +4,9 @@ import { useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import './Navigation.css'
 import LoginFormModal from '../LoginFormModal';
+import logo from '../../assets/TremoloLogo.png'
+import logoColor from '../../assets/TremoloLogo_Color.png'
+import SearchButton from './SearchButton';
 
 function Navigation() {
   const sessionUser = useSelector(state => state.session.user);
@@ -31,10 +34,17 @@ function Navigation() {
   return (
     <ul>
       <li>
-        <NavLink to="/"><img src={require("../../assets/TremoloLogo.png")} /></NavLink>
+        <NavLink to="/">
+          <img id="tremolo_logo" 
+            src={logo}
+            onMouseOver={e => (e.currentTarget.src = logoColor)} 
+            onMouseOut={e => (e.currentTarget.src = logo)} 
+            />
+        </NavLink>
       </li>
       <li>
-        <input type="text" class="search_bar" placeholder="Look for used and new gear here..." />
+        <input type="text" class="search-bar" placeholder="Look for used and new gear here..." />
+        <SearchButton />
       </li>
       <li>
         <button>
