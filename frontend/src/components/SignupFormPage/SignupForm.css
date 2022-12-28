@@ -1,6 +1,5 @@
-form, body, text {
-  font-family: 'Courier New', Courier, monospace;
-  color: #000000;
+form, body, h1, h2, h3, p {
+  font-family: 'Roboto', sans-serif;
 }
 
 ul {

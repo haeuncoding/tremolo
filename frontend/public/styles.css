@@ -1,0 +1,9 @@
+body, h1, h2, h3, p, a {
+  font-family: 'Open Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+body {
+  background-color: rgb(252, 252, 252)
+}

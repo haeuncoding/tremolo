@@ -72,8 +72,6 @@ export const restoreSession = () => async dispatch => {
   return response;
 };
 
-// ...
-
 const initialState = { 
   user: JSON.parse(sessionStorage.getItem("currentUser"))
 };
