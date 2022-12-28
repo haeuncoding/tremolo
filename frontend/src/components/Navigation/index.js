@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import './Navigation.css'
 import LoginFormModal from '../LoginFormModal';
+import SignupFormModal from '../SignupFormPageModal';
 import logo from '../../assets/TremoloLogo.png'
 import logoColor from '../../assets/TremoloLogo_Color.png'
 import SearchButton from './SearchButton';
@@ -25,7 +26,8 @@ function Navigation() {
           <LoginFormModal />
         </li>
         <li>
-          <NavLink to="/signup">Sign Up</NavLink>
+          <SignupFormModal />
+          {/* <NavLink to="/signup">Sign Up</NavLink> */}
         </li>
       </>
     );

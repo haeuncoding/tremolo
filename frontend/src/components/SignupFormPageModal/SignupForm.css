@@ -6,23 +6,15 @@ h1, label {
   font-weight: 700;
 }
 
-#login-screen {
+#signup-screen {
   padding-left: 10vw;
   padding-right: 10vw;
-  /* align-items: center;
-  align-content: center;
-  text-align: center; */
+  padding-bottom: 3vw;
+
 }
 
-#login-screen > .title {
-  padding-left: 10vw;
-  padding-right: 10vw;
-  align-items: center;
-  align-content: center;
-  text-align: center;
-}
-
-#login-screen > .input-field {
+#signup-screen > .input-field {
+  margin-top: -2vw;
   padding-left: 10vw;
   padding-right: 10vw;
   align-items: left;
@@ -30,9 +22,15 @@ h1, label {
   text-align: left;
 }
 
-#login-screen > .input-box {
+#signup-screen > .input-box {
   padding-left: 10vw;
   padding-right: 10vw;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+#signup-screen > .sign-up-button {
   align-items: center;
   align-content: center;
   text-align: center;
@@ -42,6 +40,7 @@ h1, label {
   margin-top: 2vw;
   margin-bottom: 2vw;
 }
+
 .input-box {
   margin-top: 1vw;
   margin-bottom: 1vw;
