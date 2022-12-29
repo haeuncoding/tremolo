@@ -10,4 +10,5 @@
 #  updated_at :datetime         not null
 #
 class Shop < ApplicationRecord
+  validates :shop_name
 end

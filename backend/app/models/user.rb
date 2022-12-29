@@ -29,6 +29,29 @@ class User < ApplicationRecord
 
   validates :password, length: { in: 6..255 }, allow_nil: true
 
+# relations
+  # has_many :shop_reviews,
+
+  has_many :listing_reviews,
+    primary_key: :id,
+    foreign_key: :listing_reviewer_id,
+    class_name: :ListingReview
+  
+  has_many :listings, 
+    through: :shop,
+    source: :shop
+
+
+  has_one :shop,
+    primary_key: :id,
+    foreign_key: :shop_id,
+    class_name: :Shop,
+    dependent: :destroy
+    
+
+  
+
+
 # authorization methods 
   def self.find_by_credentials(username, password)
     @user = User.find_by(username: username)

@@ -11,4 +11,15 @@
 #  updated_at          :datetime         not null
 #
 class ListingReview < ApplicationRecord
+# validations
+  validates :rating, numericality: { in: 1..5 }
+
+# relations
+  belongs_to :shop_reviewer,
+    foreign_key: :shop_reviewer_id,
+    class_name: :User
+
+  belongs_to :shop_reviewed,
+    foreign_key: :shop_reviewed_id,
+    class_name: :Shop
 end

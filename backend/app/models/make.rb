@@ -8,4 +8,5 @@
 #  updated_at :datetime         not null
 #
 class Make < ApplicationRecord
+  validates :brand_name, presence; true, uniqueness: true
 end

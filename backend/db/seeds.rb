@@ -31,5 +31,12 @@ ApplicationRecord.transaction do
     }) 
   end
 
+  puts "Creating listings..."
+  Listing.create!(
+    lister_id: 1,
+     
+    email: 'demoness@ofthe.deep', 
+    password: 'demoofthedeep'
+  )
   puts "Done!"
 end
