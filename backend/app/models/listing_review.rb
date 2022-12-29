@@ -15,11 +15,11 @@ class ListingReview < ApplicationRecord
   validates :rating, numericality: { in: 1..5 }
 
 # relations
-  belongs_to :shop_reviewer,
-    foreign_key: :shop_reviewer_id,
+  belongs_to :listing_reviewer,
+    foreign_key: :listing_reviewer_id,
     class_name: :User
 
-  belongs_to :shop_reviewed,
-    foreign_key: :shop_reviewed_id,
-    class_name: :Shop
+  belongs_to :listing_reviewed,
+    foreign_key: :listing_reviewed_id,
+    class_name: :Listing
 end
