@@ -6,7 +6,9 @@ import SearchIcon from '../../assets/search-line-icon.svg'
 const SearchButton = () => {
 return (
   <div>
-    <img style={{ width: "2vw", height: "auto" }} src={SearchIcon} />
+    <button type="" id="search-button">
+      <img id="search-icon" style={{ width: "1.25vw", height: "auto" }} src={SearchIcon} />
+    </button>
   </div>
 )}
 

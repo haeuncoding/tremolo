@@ -19,18 +19,18 @@ function Navigation() {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <li>
+      <li class="session-link">
         <ProfileButton user={sessionUser} />
       </li>
     );
   } else {
     sessionLinks = (
       <>
-        <li>
-          <LoginFormModal />
+        <li class="session-link">
+          <LoginFormModal class="session-link"/>
         </li>
-        <li>
-          <SignupFormModal />
+        <li class="session-link">
+          <SignupFormModal class="session-link"/>
           {/* <NavLink to="/signup">Sign Up</NavLink> */}
         </li>
       </>
@@ -38,62 +38,65 @@ function Navigation() {
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink to="/">
-          <img id="tremolo_logo" 
-            src={logo}
-            onMouseOver={e => (e.currentTarget.src = logoColor)} 
-            onMouseOut={e => (e.currentTarget.src = logo)} 
+    <div id="main-nav-container">
+      <ul>
+        <li>
+          <NavLink to="/">
+            <img id="tremolo_logo" 
+              src={logo}
+              onMouseOver={e => (e.currentTarget.src = logoColor)} 
+              onMouseOut={e => (e.currentTarget.src = logo)} 
+              />
+          </NavLink>
+        </li>
+        <li class="search-container">
+          <input type="text" class="search-bar" placeholder="Look for used and new gear here..." />
+          <div class="vl" />
+          <SearchButton class="search-bar"/>
+        </li>
+        <li>
+          <button id="new-listing-button">
+            Create a New Listing
+          </button>
+        </li>
+        <li>
+          <img class="nav-icon"
+            id="watchlist" 
+            src={WatchList}
+            // onMouseOver={e => (e.currentTarget.src = logoColor)} 
+            // onMouseOut={e => (e.currentTarget.src = logo)} 
             />
-        </NavLink>
-      </li>
-      <li class="search-container">
-        <input type="text" class="search-bar" placeholder="Look for used and new gear here..." />
-        <SearchButton class="search-bar" id="search-button" />
-      </li>
-      <li>
-        <button>
-          Create a New Listing
-        </button>
-      </li>
-      <li>
-        <img class="nav-icon"
-          id="watchlist" 
-          src={WatchList}
-          // onMouseOver={e => (e.currentTarget.src = logoColor)} 
-          // onMouseOut={e => (e.currentTarget.src = logo)} 
-          />
-      </li>
-      <li>
-        <img class="nav-icon"
-          id="feed-grid" 
-          src={FeedGrid}
-          // onMouseOver={e => (e.currentTarget.src = logoColor)} 
-          // onMouseOut={e => (e.currentTarget.src = logo)} 
-          />
-      </li>
-      <li>
-        <img class="nav-icon"
-          id="cart-icon" 
-          src={CartIcon}
-          // onMouseOver={e => (e.currentTarget.src = logoColor)} 
-          // onMouseOut={e => (e.currentTarget.src = logo)} 
-          />
-      </li>
-      <li>
-        <img class="nav-icon"
-          id="notif-bell" 
-          src={NotifBell}
-          // onMouseOver={e => (e.currentTarget.src = logoColor)} 
-          // onMouseOut={e => (e.currentTarget.src = logo)} 
-          />
-      </li>
-      <li>
-        {/* <WatchList class="nav-icon" /> */}
-      </li>
-      {sessionLinks}
-    </ul>
+        </li>
+        <li>
+          <img class="nav-icon"
+            id="feed-grid" 
+            src={FeedGrid}
+            // onMouseOver={e => (e.currentTarget.src = logoColor)} 
+            // onMouseOut={e => (e.currentTarget.src = logo)} 
+            />
+        </li>
+        <li>
+          <img class="nav-icon"
+            id="cart-icon" 
+            src={CartIcon}
+            // onMouseOver={e => (e.currentTarget.src = logoColor)} 
+            // onMouseOut={e => (e.currentTarget.src = logo)} 
+            />
+        </li>
+        <li>
+          <img class="nav-icon"
+            id="notif-bell" 
+            src={NotifBell}
+            // onMouseOver={e => (e.currentTarget.src = logoColor)} 
+            // onMouseOut={e => (e.currentTarget.src = logo)} 
+            />
+        </li>
+        <li>
+          {/* <WatchList class="nav-icon" /> */}
+        </li>
+        {sessionLinks}
+      </ul>
+    </div>
   );
 }
 
