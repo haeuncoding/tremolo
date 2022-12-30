@@ -52,6 +52,7 @@ button#search-button {
 }
 
 button#search-button:hover {
+  cursor: pointer;
   width: 3vw;
   height: 3vw;
   border: none;
