@@ -93,40 +93,130 @@ function ListingFormPage() {
 
   return (
     <>
+      <div id="form-container">
       <h1>{isEdit ? "Update Listing" : "Create Listing"}</h1>
+      <br/>
       <form onSubmit={handleSubmit}>
-        <label>Listing Title
-          <input type="text" value={listingTitle} onChange={e => setListingTitle(e.target.value)} />
+        <label class="input-field" 
+          for="listing-title">
+          Listing Title
+            <br/>
+              <input type="text" 
+                class="input-box"
+                name="listing-title" 
+                value={listingTitle} 
+                onChange={e => 
+                setListingTitle(e.target.value)}/>
         </label>
-         <label>Category:
-          <select value={category} onChange={e => setCategory(e.target.value)}>
-            <option value="" disabled selected>Select a Category</option>
-            {categories.map((category) => <option value={category}>{category}</option>)}
+          <br/>
+        <label class="input-field" 
+          for="category">
+          Category:
+          <br/>
+          <select name="category"
+            class="input-box" 
+            value={category} 
+            onChange={e => 
+            setCategory(e.target.value)}>
+              <option value="" 
+                disabled 
+                selected>
+                Select a Category
+              </option>
+              {categories.map((category) => 
+                <option value={category}>
+                  {category}
+                </option>
+              )}
           </select>
         </label>
-        <label>Make:
-          <select value={make} onChange={e => setMake(e.target.value)}>
-            <option value="" disabled selected>Select a Make</option>
-            {makes.map((make) => <option value={make}>{make}</option>)}
+          <br/>
+        <label class="input-field" 
+          for="make">
+          Make:
+          <br/>
+          <select name="make" 
+            class="input-box"
+            value={make} 
+            onChange={e => 
+            setMake(e.target.value)}>
+            <option value="" 
+              disabled 
+              selected>
+              Select a Make
+            </option>
+            {makes.map((make) => 
+              <option value={make}>
+                {make}
+              </option>
+            )}
           </select>
         </label>
-        <label>Price:
-          <input type="number" name="price" value={price} step="0.01" min="0" onChange={e => setPrice(e.target.value)}/>
+          <br/>
+        <label class="input-field" 
+          for="price">
+          Price:
+            <br/>
+          <input type="number" 
+            class="input-box"
+            name="price" 
+            value={price} 
+            step="0.01" 
+            min="0" onChange={e => 
+            setPrice(e.target.value)}/>
         </label>
-        <label for="location">Location:
-          <input type="text" name="location" value={location} onChange={e => setLocation(e.target.value)}/>
+          <br/>
+        <label class="input-field" 
+          for="location">
+          Location:
+            <br/>
+          <input type="text" 
+            class="input-box"
+            name="location" 
+            value={location} 
+            onChange={e => 
+            setLocation(e.target.value)}/>
         </label>
-        <label>Color:
-          <input type="text" name="color" value={color} onChange={e => setColor(e.target.value)}/>
+          <br/>
+        <label class="input-field" 
+          for="color">
+          Color:
+            <br/>
+          <input type="text" 
+            class="input-box"
+            name="color" 
+            value={color} 
+            onChange={e => 
+            setColor(e.target.value)}/>
         </label>
-        <label>Year Made:
-          <input type="text" name="year-made" value={yearMade} onChange={e => setYearMade(e.target.value)}/>
+          <br/>
+        <label class="input-field" 
+          for="year-made">
+          Year Made:
+            <br/>
+          <input type="text" 
+            class="input-box"
+            name="year-made" 
+            value={yearMade} 
+            onChange={e => 
+            setYearMade(e.target.value)}/>
         </label>
-        <label for="Description">Description:
-          <textarea name="description" onChange={e => setDescription(e.target.value)} />
+          <br/>
+        <label class="input-field" 
+          for="description">
+          Description:
+            <br/>
+          <textarea name="description" 
+            class="input-box"
+            onChange={e => 
+            setDescription(e.target.value)}/>
         </label>
-        <input type="submit" value={isEdit ? "Update Listing" : "Create Listing"} />
+          <br/>
+        <input type="submit" 
+          value={isEdit ? "Update Listing" : "Create Listing"} 
+        />
       </form>
+      </div>
     </>
   );
 }
