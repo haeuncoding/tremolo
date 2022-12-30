@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignupFormPage';
+import ListingFormPage from './components/ListingFormPage';
 import ListingGrid from './components/ListingGrid';
 import ListingTile from './components/ListingGrid/ListingTile';
 import ListingComponent from './components/ListingComponent';
@@ -41,6 +42,9 @@ function App() {
           </Route>
           <Route path="/feed_tile">
             <ListingTile />
+          </Route>
+          <Route path="/new_listing">
+            <ListingFormPage />
           </Route>
         </Switch>
     </>
