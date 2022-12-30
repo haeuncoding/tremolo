@@ -76,7 +76,7 @@ ApplicationRecord.transaction do
     "BEE-VH",
     "Greta",
     "Goldtone",
-    "Dangroundo",
+    "Danelectrical",
     "See More Duncan",
     "D'evilico",
     "Holograph",

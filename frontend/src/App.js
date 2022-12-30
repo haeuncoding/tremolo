@@ -2,6 +2,8 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignupFormPage';
+import ListingGrid from './components/ListingGrid';
+import ListingTile from './components/ListingGrid/ListingTile';
 import ListingComponent from './components/ListingComponent';
 import Navigation from "./components/Navigation";
 import SecondaryNavigation from './components/SecondaryNavigation';
@@ -33,6 +35,12 @@ function App() {
           </Route>
           <Route path="/listing">
             <ListingComponent />
+          </Route>
+          <Route path="/feed">
+            <ListingGrid />
+          </Route>
+          <Route path="/feed_tile">
+            <ListingTile />
           </Route>
         </Switch>
     </>
