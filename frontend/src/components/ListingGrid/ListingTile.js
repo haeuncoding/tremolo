@@ -7,8 +7,11 @@ function ListingTile({ listing }) {
   // listing = demoListing
 
   return (
+    <li class="ind-tile">
     <div class="tile-container">
-      <img src={listing.image} class="child-ele listing-image" id="preview-image"/>
+      <div id="image-container">
+        <img src={listing.image} class="child-ele listing-image" id="preview-image"/>      
+      </div>
       <br />
       <div id="title-div">
         <h1 class="child-ele" id="listing-title">{listing.listingTitle}</h1>
@@ -17,8 +20,9 @@ function ListingTile({ listing }) {
       <br />
       <h3 class="child-ele" id="price">${listing.price}</h3>
       <br />
-      <h5 class="child-ele" id="condition">Condition: {listing.condition}</h5>
+      <h5 class="child-ele" id="condition">Condition - {listing.condition}</h5>
     </div>
+    </li>
   )
 }
 

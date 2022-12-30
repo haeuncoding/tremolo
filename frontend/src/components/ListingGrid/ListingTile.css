@@ -1,19 +1,32 @@
 .listing-image {
-  width: 30vw;
-  height: 30vw;
+  padding-top: 1.5vw;
+  margin-bottom: -2.5vw;
+  width: 20vw;
+  height: 20vw;
   object-fit: cover;
 }
 
+
 div.tile-container {
+  align-items: center;
+  align-content: center;
+  text-align: center;
   display: flexbox;
-  background-color: #efefef;
-  padding: 2vw;
-  width: 30vw;
-  height: 45vw;
+  /* background-color: #efefef; */
+  /* padding: 2vw; */
+  width: 20vw;
+  height: 38vw;
   font-size: 2vw;
   justify-content: center;
-  border-radius: 12px;
-  margin: .5vw;
+  padding-left: 1.25vw;
+  padding-right: 1.25vw;
+}
+
+div.tile-container:hover {
+  /* background-color: #00A5D1; */
+  box-shadow: 0 0 5px #0F749A;
+  transition: .5s;
+  cursor: pointer;
 }
 
 /* .child-ele#preview-image {
@@ -24,11 +37,12 @@ div.tile-container {
 #title-div {
   max-width: inherit;
   max-height: 20vw;
-  margin-bottom: -3.5vw;
+  margin-bottom: -4.5vw;
+  text-align: left;
 }
 
 #listing-title {
-  font-size: 2.5vw;
+  font-size: 2vw;
   font-weight: 400;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -39,29 +53,20 @@ div.tile-container {
   -webkit-box-orient: vertical
 }
 
-#listing-title::-webkit-scrollbar {
-  width: 1vw;
-  height: .5vw;
-  background-color: rgb(212, 212, 212);
-  /* or add it to the track */
-}
-
-#listing-title::-webkit-scrollbar:hover {
-  transition: .75s;
-  background-color: rgb(157, 157, 157);
-}
-
 h3#price {
-  font-size: 2vw;
+  font-size: 3vw;
+  text-align: left;
   font-weight: 500;
-  margin-bottom: -4vw;
+  margin-bottom: -5.75vw;
 }
 
 .child-ele#condition {
+  color: #7b7b7b;
+  background: none;
   align-self: left;
   align-content: left;
   text-align: left;
   margin-left: -.45vw;
-  font-size: 1.25vw;
+  font-size: 2vw;
   font-weight: normal;
 }

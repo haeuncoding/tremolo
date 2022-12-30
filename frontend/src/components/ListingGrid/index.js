@@ -41,8 +41,8 @@ function ListingGrid () {
   ]
 
   return (
-      <ul>
-        {listings?.map((listing) => <ListingTile listing={(listing)}/>)}
+      <ul class="listing-grid">
+        {listings?.map((listing) => <ListingTile listing={(listing)} class="ind-tile"/>)}
       </ul>
   )
 }

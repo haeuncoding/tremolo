@@ -56,7 +56,7 @@ function ListingComponent({ listing }) {
               {/* listing.listerId */}
               <h5 id="location">{listing.location}</h5>
               <h1 id="listing-title">{listing.listingTitle}</h1>
-                <h5 id="condition">Condition: {listing.condition}</h5>
+                <h5 id="condition">Condition - {listing.condition}</h5>
               <h3 id="price">${listing.price}</h3>
               <div class="user-options" id="div1">
                 <button class="user-options" id="cart-button">Add to Cart</button>
