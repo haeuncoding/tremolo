@@ -13,4 +13,14 @@ class Shop < ApplicationRecord
   validates :shop_name, presence: true
   validates :owner_id, presence: true, uniqueness: true
   validates :location, presence: true
+
+  has_many :listings,
+    primary_key: :id,
+    foreign_key: :shop_id,
+    class_name: :Listing
+
+  belongs_to :owner,
+    primary_key: :id,
+    foreign_key: :owner_id,
+    class_name: :User
 end

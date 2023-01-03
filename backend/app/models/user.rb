@@ -32,10 +32,10 @@ class User < ApplicationRecord
 # relations
   # has_many :shop_reviews,
 
-  has_many :listing_reviews,
+  has_many :model_reviews,
     primary_key: :id,
-    foreign_key: :listing_reviewer_id,
-    class_name: :ListingReview
+    foreign_key: :model_reviewer_id,
+    class_name: :ModelReview
   
   has_many :listings, 
     through: :shop,

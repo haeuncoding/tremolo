@@ -15,6 +15,7 @@
 #  description   :text             not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  model_id      :string
 #
 class Listing < ApplicationRecord
 
@@ -30,9 +31,10 @@ class Listing < ApplicationRecord
   ]
 
 # validations
-  # validates :lister_id, presence: true
-  # validates :make_id, presence: true
-  # validates :category_id, presence: true
+  validates :lister_id, presence: true
+  validates :make_id, presence: true
+  validates :model_id, presence: true
+  validates :category_id, presence: true
   validates :listing_title, presence: true
   validates :condition, inclusion: { in: CONDITIONS }
   validates :price, numericality: { minimum: 0 }, presence: true
@@ -40,10 +42,6 @@ class Listing < ApplicationRecord
   validates :description, presence: true
 
 # relations
-  has_many :listing_reviews,
-    primary_key: :id,
-    foreign_key: :listing_review_id,
-    class_name: :ListingReview
 
   has_many :watchers,
     primary_key: :id,

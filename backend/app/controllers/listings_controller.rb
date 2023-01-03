@@ -1,10 +1,11 @@
 class Api::ListingsController < ApplicationController
+
   before_action :require_logged_in, only: [:create, :destroy, :edit, :update]
 
   def create
     @listing = Listing.new(listing_params)
       if @listing.save
-        render 'api/listings/show'
+        render :show
         # could also do render: show
       else
         render json: [errors: @listing.errors.full_messages]
@@ -44,7 +45,7 @@ class Api::ListingsController < ApplicationController
   private
 
   def listing_params
-    params.require(:listing).permit(:lister_id, :make_id, :category_id, :listing_title, :condition, :price, :location, :color, :year_made, :description)
+    params.require(:listing).permit(:lister_id, :make_id, :model_id, :category_id, :listing_title, :condition, :price, :location, :color, :year_made, :description)
   end
 
 end
