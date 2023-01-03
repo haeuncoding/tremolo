@@ -5,6 +5,7 @@ import { NavLink, Link } from "react-router-dom";
 import './Navigation.css'
 import LoginFormModal from '../../SESSIONS/LoginFormModal';
 import SignupFormModal from '../../SESSIONS/SignupFormPageModal';
+import GenDropdown from '../../SESSIONS/GenDropdown';
 import logo from '../../../assets/TremoloLogo.png'
 import logoColor from '../../../assets/TremoloLogo_Color.png'
 import SearchButton from './SearchButton';
@@ -28,12 +29,9 @@ function Navigation() {
     sessionLinks = (
       <>
         <li class="session-link">
-          <LoginFormModal class="session-link"/>
+          <GenDropdown class="session-link"/>
         </li>
-        <li class="session-link">
-          <SignupFormModal class="session-link"/>
-          {/* <NavLink to="/signup">Sign Up</NavLink> */}
-        </li>
+
       </>
     );
   }

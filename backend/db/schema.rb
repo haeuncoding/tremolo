@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_23_062259) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_03_183446) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,17 +19,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_062259) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category"], name: "index_categories_on_category", unique: true
-  end
-
-  create_table "listing_reviews", force: :cascade do |t|
-    t.bigint "listing_reviewer_id", null: false
-    t.bigint "listing_reviewed_id", null: false
-    t.integer "rating", null: false
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["listing_reviewed_id"], name: "index_listing_reviews_on_listing_reviewed_id"
-    t.index ["listing_reviewer_id"], name: "index_listing_reviews_on_listing_reviewer_id"
   end
 
   create_table "listings", force: :cascade do |t|
@@ -45,6 +34,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_062259) do
     t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "model_id"
     t.index ["category_id"], name: "index_listings_on_category_id"
     t.index ["lister_id"], name: "index_listings_on_lister_id"
     t.index ["make_id"], name: "index_listings_on_make_id"
@@ -55,6 +45,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_062259) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["brand_name"], name: "index_makes_on_brand_name", unique: true
+  end
+
+  create_table "model_reviews", force: :cascade do |t|
+    t.bigint "model_reviewer_id", null: false
+    t.bigint "model_reviewed_id", null: false
+    t.integer "rating", null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["model_reviewed_id"], name: "index_model_reviews_on_model_reviewed_id"
+    t.index ["model_reviewer_id"], name: "index_model_reviews_on_model_reviewer_id"
+  end
+
+  create_table "models", force: :cascade do |t|
+    t.bigint "make_id", null: false
+    t.string "model", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["make_id"], name: "index_models_on_make_id"
   end
 
   create_table "shop_reviews", force: :cascade do |t|
@@ -91,4 +100,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_062259) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "listings", "categories"
+  add_foreign_key "listings", "makes"
+  add_foreign_key "listings", "shops", column: "lister_id"
+  add_foreign_key "models", "makes"
+  add_foreign_key "shop_reviews", "shops", column: "shop_reviewed_id"
+  add_foreign_key "shop_reviews", "users", column: "shop_reviewer_id"
+  add_foreign_key "shops", "users", column: "owner_id"
 end

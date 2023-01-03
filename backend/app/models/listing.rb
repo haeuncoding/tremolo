@@ -52,8 +52,8 @@ class Listing < ApplicationRecord
     dependent: :destroy
   
   belongs_to :lister,
-    foreign_key: :user_id,
-    class_name: :User
+    foreign_key: :lister_id,
+    class_name: :Shop
 
   def self.find_by_id(id)
     @listing = Listing.find_by(id)

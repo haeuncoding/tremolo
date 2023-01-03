@@ -10,5 +10,7 @@
 #  updated_at :datetime         not null
 #
 class Shop < ApplicationRecord
-  validates :shop_name
+  validates :shop_name, presence: true
+  validates :owner_id, presence: true, uniqueness: true
+  validates :location, presence: true
 end

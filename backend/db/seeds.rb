@@ -17,9 +17,9 @@ ApplicationRecord.transaction do
   puts "Creating users..."
   # Create one user with an easy to remember username, email, and password:
   demo_user = User.create!(
-    username: 'Demo-ness-of-the-deep', 
-    email: 'demoness@ofthe.deep', 
-    password: 'demoofthedeep'
+    username: 'Demo-n-User', 
+    email: 'daemon@user', 
+    password: 'daemon'
   )
 
   # More users
@@ -30,6 +30,20 @@ ApplicationRecord.transaction do
       password: 'password'
     }) 
   end
+
+  # Shops
+
+  demo_shop = Shop.create!(
+    shop_name: "Khajit Has Wares",
+    owner_id: demo_user[:id],
+    location: "Who can say?"
+  )
+
+  demo_shop_2 = Shop.create!(
+    shop_name: "Bluth's Original Frozen Banana Stand",
+    owner_id: 3,
+    location: "Newport Beach, CA"
+  )
 
   puts "Seeding makes and categories..."
   
@@ -159,10 +173,11 @@ ApplicationRecord.transaction do
   puts 'demo user id:'
   puts demo_user[:id]
   puts '---------------'
+  # demo_user[:id]
 
   puts "Creating listings..."
   Listing.create!({
-    lister_id: demo_user[:id],
+    lister_id: demo_shop[:id],
     make_id: 4,
     category_id: 1,
     listing_title: "Demo Model Stratocaster Placid Lake Blue",
