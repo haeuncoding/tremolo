@@ -1,0 +1,64 @@
+form, body, h1, h2, h3, p {
+  font-family: 'Roboto', sans-serif;
+}
+
+.review-form-container {
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #efefef;
+  width: 30vw;
+}
+
+.star-container, img.star {
+  text-align: center;
+  width: 4vw;
+  height: auto;
+  margin-left: .1vw;
+  margin-right: .1vw;
+}
+
+button.star-container {
+  background: none;
+  border: none;
+  color: none;
+}
+
+ul {
+  text-decoration: none;
+}
+
+button#submit-review {
+  margin-top: 3vw;
+  margin-bottom: 3vw;
+  background-color: rgb(252, 252, 252);
+  font-family: 'Open Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-decoration: none;
+  font-size: max(1vw);
+  height: max-content;
+  font-weight: 700;
+  text-emphasis-style: bold;
+  border: #000000;
+  border-style: solid;
+  border-width: 1.25px;
+  border-radius: 30px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: .5vw;
+  margin-right: .5vw;
+}
+
+button#submit-review:hover {
+  transition: .25s;
+  cursor: pointer;
+  background-color: #0F749A;
+  color: rgb(252, 252, 252);
+  border: #0F749A;
+  border-style: solid;
+  border-radius: 30px;
+
+}

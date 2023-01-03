@@ -162,7 +162,7 @@ ApplicationRecord.transaction do
 
   puts "Creating listings..."
   Listing.create!({
-    lister_id: demo_user,
+    lister_id: demo_user[:id],
     make_id: 4,
     category_id: 1,
     listing_title: "Demo Model Stratocaster Placid Lake Blue",

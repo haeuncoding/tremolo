@@ -1,0 +1,205 @@
+form, body, h1, h2, h3, p {
+  font-family: 'Roboto', sans-serif;
+  text-decoration: none;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.nav-icon {
+  width: 5vw;
+  height: auto;
+  margin-left: .1vw;
+  margin-right: .1vw;
+  align-items: center;
+  text-align: center;
+}
+
+input.search-bar {
+  padding: 5px;
+}
+
+.search-container {
+  z-index: 0;
+  width: 40vw;
+  height: .75vw;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  background-color: #30303000;
+  font-family: 'Open Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-decoration: none;
+  font-weight: 400;
+  border: #c3c3c3;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 75px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.vl {
+  border-right: 1.5px solid #a5a5a5;
+  height: 4vw;
+  margin-right: 1vw;
+  margin-left: 1vw;
+}
+
+#search-vl {
+  margin-right: 0;
+  margin-left: 0;
+  height: 1.25vw;
+}
+
+button#search-button {
+  width: 4vw;
+  height: 2.5vw;
+  border: none;
+  border-top-right-radius: 2vw;
+  border-bottom-right-radius: 2vw;
+  background-color: rgba(252, 252, 252, 0);
+  align-items: center;
+  margin-right: 0;
+  /* height: auto; */
+}
+
+button#search-button:hover {
+  cursor: pointer;
+  background-color: #0F749A;
+  border: solid;
+  border-width: 1px;
+  z-index: 10;
+  border-color: #0F749A;
+  align-items: center;
+  transition:.25s;
+  /* height: auto; */
+}
+
+button#search-button:hover > #search-icon {
+  filter: invert(100%);
+  transition: .25s;
+}
+
+.search-bar {
+  width: 40vw;
+  height: .75vw;
+  /* margin-left: 1vw; */
+  /* margin-right: 1vw; */
+  background-color: #00000000;
+  font-family: 'Open Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-decoration: none;
+  border-style: none;
+  /* padding: 10px; */
+  font-size: 1.1vw;
+  /* display: inline-block; */
+  /* margin-left: .3vw; */
+  /* margin-right: 1vw; */
+}
+
+.search-bar:focus {
+  outline: #0F749A;
+}
+
+::placeholder {
+  font-family: 'Roboto', sans-serif;
+  vertical-align: baseline;
+  font-size: 1.1vw;
+  /* padding-bottom: 5vw; */
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+#tremolo_logo {
+  margin-left: 4.5vw;
+  width: 10vw;
+  height: auto;
+}
+
+#tremolo_logo:hover {
+  src: local("../../assets/TremoloLogo_Color.png");
+}
+
+li {
+  font-style: none;
+  color: none;
+  display: flex;
+  align-content: space-around;
+  text-decoration: none;
+  border: none;
+  font-size: 1.5vw;
+}
+
+li.session-link {
+  font-style: none;
+  color: none;
+  display: block;
+  align-content: space-around;
+  text-decoration: none;
+  border: none;
+  font-size: 1.5vw;
+}
+
+button#new-listing-button {
+  background-color: rgb(252, 252, 252);
+  font-family: 'Open Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-decoration: none;
+  font-size: max(1vw);
+  height: max-content;
+  font-weight: 700;
+  text-emphasis-style: bold;
+  border: #000000;
+  border-style: solid;
+  border-width: 1.25px;
+  border-radius: 30px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin-left: .5vw;
+  margin-right: .5vw;
+}
+
+li.session-link {
+  font-size: max(1.25vw);
+}
+
+a {
+  display: block;
+  min-width: max-content;
+  background-color: rgb(252, 252, 252);
+  font-size: 1vw;
+  color: #000000;
+  margin-left: .5vw;
+  margin-right: .5vw;
+}
+
+a:hover {
+  display: block;
+  transition: .5s;
+  cursor: pointer;
+  color: #0F749A;
+  text-shadow: 0 0.015em #0F749A,
+    0 -0.015em #0F749A,
+    0.01em 0 #0F749A,
+    -0.01em 0 #0F749A;
+}
+
+button#new-listing-button:hover {
+  transition: .25s;
+  cursor: pointer;
+  background-color: #0F749A;
+  color: rgb(252, 252, 252);
+  border: #0F749A;
+  border-style: solid;
+  border-radius: 30px;
+
+}
+
+/* needs a logo, searchbar, search button, new listing, watch list, profile button
+then under, another nav bar with all the categories */

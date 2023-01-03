@@ -1,19 +1,26 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import LoginFormPage from './components/LoginFormPage';
-import SignupFormPage from './components/SignupFormPage';
-import ListingFormPage from './components/ListingFormPage';
-import ListingGrid from './components/ListingGrid';
-import ListingTile from './components/ListingGrid/ListingTile';
-import ListingComponent from './components/ListingComponent';
-import Navigation from "./components/Navigation";
-import SecondaryNavigation from './components/SecondaryNavigation';
+
+import LoginFormPage from './components/SESSIONS/LoginFormPage';
+import SignupFormPage from './components/SESSIONS/SignupFormPage';
+
+import ListingFormPage from './components/LISTINGS/ListingFormPage';
+import ListingGrid from './components/LISTINGS/ListingGrid';
+import ListingTile from './components/LISTINGS/ListingGrid/ListingTile';
+import ListingComponent from './components/LISTINGS/ListingComponent';
+
+import ReviewFormTest from './components/REVIEWS/ReviewForm';
+
+import Navigation from "./components/MAINNAV/Navigation";
+import SecondaryNavigation from './components/MAINNAV/SecondaryNavigation';
+
 import './App.css'
 
 function App() {
   return (
     <>
     <div id="nav-container">
+      {/* debugger */}
       <div>
         <Navigation 
           class="nav"
@@ -45,6 +52,9 @@ function App() {
           </Route>
           <Route path="/new_listing">
             <ListingFormPage />
+          </Route>
+          <Route path="/new_review">
+            <ReviewFormTest />
           </Route>
         </Switch>
     </>

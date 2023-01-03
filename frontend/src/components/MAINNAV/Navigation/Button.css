@@ -1,0 +1,38 @@
+.nav-icon-container {
+  width: 5.5vw;
+  height: 5.5vw;
+  margin-top: 1.5vw;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  vertical-align: baseline;
+}
+
+.nav-link-container {
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  align-content: center;
+  vertical-align: baseline;
+}
+
+button.nav-icon {
+  border: none;
+  background: none;
+}
+
+img.nav-icon {
+  width: 2vw;
+  height: auto;
+}
+
+label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1vw;
+  font-weight: 500;
+}
+
+button:hover {
+  color: #0F749A
+}
