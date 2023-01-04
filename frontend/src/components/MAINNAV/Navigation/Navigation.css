@@ -3,17 +3,34 @@ form, body, h1, h2, h3, p {
   text-decoration: none;
 }
 
-ul {
+#main-nav-container {
+  width: auto;
+  align-items: left;
+  justify-content: space-between;
+  align-self: flex-start;
+  text-align: justify;
+
+  margin-bottom: -1vw;
+}
+
+div.nav-icon-container ~ label {
+  text-align: center;
+}
+
+ul#main-nav {
+  padding: 0;
   display: flex;
   flex-direction: row;
   align-items: center;
+  vertical-align: center;
+  margin: auto;
 }
 
 .nav-icon {
   width: 5vw;
   height: auto;
-  margin-left: .1vw;
-  margin-right: .1vw;
+  /* margin-left: .1vw;
+  margin-right: .1vw; */
   align-items: center;
   text-align: center;
 }
@@ -24,10 +41,10 @@ input.search-bar {
 
 .search-container {
   z-index: 0;
-  width: 40vw;
-  height: .75vw;
-  margin-left: 1vw;
-  margin-right: 1vw;
+  width: 35vw;
+  height: 1.75vw;
+  margin-left: .5vw;
+  margin-right: .5vw;
   align-items: center;
   justify-content: center;
   justify-items: center;
@@ -44,11 +61,11 @@ input.search-bar {
   padding-bottom: 10px;
 }
 
-.vl {
+.vl#search-vl {
   border-right: 1.5px solid #a5a5a5;
-  height: 4vw;
-  margin-right: 1vw;
-  margin-left: 1vw;
+  height: 2vw;
+  margin-right: 0vw;
+  margin-left: 0vw;
 }
 
 #search-vl {
@@ -59,7 +76,7 @@ input.search-bar {
 
 button#search-button {
   width: 4vw;
-  height: 2.5vw;
+  height: 3.4vw;
   border: none;
   border-top-right-radius: 2vw;
   border-bottom-right-radius: 2vw;
@@ -81,14 +98,22 @@ button#search-button:hover {
   /* height: auto; */
 }
 
+#search-icon {
+  margin-left: -.25vw;
+}
+
 button#search-button:hover > #search-icon {
   filter: invert(100%);
   transition: .25s;
 }
 
+.nav-link-container {
+  text-align: center;
+}
+
 .search-bar {
   width: 40vw;
-  height: .75vw;
+  height: 1.5vw;
   /* margin-left: 1vw; */
   /* margin-right: 1vw; */
   background-color: #00000000;
@@ -116,7 +141,6 @@ button#search-button:hover > #search-icon {
 }
 
 #tremolo_logo {
-  margin-left: 4.5vw;
   width: 10vw;
   height: auto;
 }
@@ -129,17 +153,8 @@ li {
   font-style: none;
   color: none;
   display: flex;
-  align-content: space-around;
-  text-decoration: none;
-  border: none;
-  font-size: 1.5vw;
-}
-
-li.session-link {
-  font-style: none;
-  color: none;
-  display: block;
-  align-content: space-around;
+  text-align: center;
+  /* align-content: space-around; */
   text-decoration: none;
   border: none;
   font-size: 1.5vw;
@@ -163,10 +178,6 @@ button#new-listing-button {
   display: inline-block;
   margin-left: .5vw;
   margin-right: .5vw;
-}
-
-li.session-link {
-  font-size: max(1.25vw);
 }
 
 a {

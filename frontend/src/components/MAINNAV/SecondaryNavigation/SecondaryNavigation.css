@@ -13,14 +13,14 @@ ul#sec-nav-container {
   border-style: none;
   border-radius: 20px;
   width:90vw;
-  height: 4vw;
+  height: 2.5vw;
   flex-direction: row;
   align-items: center;
 }
 
-.vl {
+div.vl {
   border-right: 1.5px solid #a5a5a5;
-  height: 2vw;
+  height: 1vw;
 }
 
 ul#sec-nav-container > li {
@@ -30,7 +30,7 @@ ul#sec-nav-container > li {
   margin-left: 1vw;
   margin-right: 1vw;
   /* text-decoration: none; */
-  font-size: 1vw;
+  font-size: .5vw;
 
 }
 
@@ -42,7 +42,7 @@ a.category-link {
   margin-left: .25vw;
   margin-right: .25vw;
   /* text-decoration: none; */
-  font-size: 1.25vw;
+  font-size: 1vw;
 }
 
 #sec-nav-container > button {

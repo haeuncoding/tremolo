@@ -5,15 +5,6 @@ import './SecondaryNavigation.css'
 
 function SecondaryNavigation() {
 
-  const CATEGORIES = [
-    "Electric Guitars",
-    "Basses",
-    "Pedals and Amplifiers",
-    "Pro Audio Equipment", 
-    "Drums & Percussion",
-    "Keyboards & Synths"
-  ]
-
   return (
     <ul id="sec-nav-container">
       <li>
@@ -55,6 +46,13 @@ function SecondaryNavigation() {
         <Link to="#"
           class="category-link">
             Keyboards & Synths
+        </Link>
+      </li>
+      <div class="vl" />
+      <li>
+        <Link to="#"
+          class="category-link">
+            View All
         </Link>
       </li>
     </ul>

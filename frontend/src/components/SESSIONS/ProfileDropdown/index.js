@@ -1,8 +1,4 @@
 import React, { useState } from 'react';
-import { Modal } from '../../../context/Modal';
-import { Link } from 'react-router-dom';
-import LoginFormPage from '../LoginFormPage';
-import SignupFormPage from '../SignupFormPage';
 import * as sessionActions from '../../../store/session';
 import UserIconInactive from '../../../assets/UserIconNoHover.png'
 import UserIconActive from '../../../assets/UserIconHover.png'
@@ -14,6 +10,7 @@ function ProfileDropdown({ user }) {
   // const [showModal, setShowModal] = useState(false);
 
   const dispatch = useDispatch()
+  const [isHover, setIsHover] = useState(false)
 
   const logout = (e) => {
     e.preventDefault();
@@ -21,16 +18,20 @@ function ProfileDropdown({ user }) {
   };
 
   return (
- <div class="logged-in-dropdown">
-      <button class="logged-in-drop-button">
-        <img id="logged-in-profile-icon"
-        alt=""
-        src={UserIconInactive} 
-        onMouseOver={((e) => e.target.src=UserIconActive)}
-        onMouseOut={(e) => e.target.src=UserIconInactive}
-        onClick={((e) => e.target.src=UserIconActive)}
+  <div class="logged-in-dropdown">
+      <button 
+        // class="logged-in-drop-button"
+        class="nav-icon"
+        onMouseOver={e => (setIsHover(true))} 
+        onMouseOut={e => (setIsHover(false))}
+        onClick={e => (setIsHover(true))}
+      >
+        <img class="nav-icon"
+          src={isHover ? UserIconActive : UserIconInactive}
         />  
-        Menu
+        <label for="logged-in-dropdown-content">
+          Profile
+        </label>
       </button>
       <div class="logged-in-dropdown-content" id="logged-in-dropdown-content">
           Welcome back, {user.username}

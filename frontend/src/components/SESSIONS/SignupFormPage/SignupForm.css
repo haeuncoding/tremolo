@@ -1,7 +1,80 @@
-form, body, h1, h2, h3, p {
+label, body, h1, h2, h3, p {
   font-family: 'Roboto', sans-serif;
 }
 
-ul {
+h1, label {
+  font-weight: 700;
+}
+
+.signup-form {
+  margin-top: -3vw;
+}
+
+div#signup-screen {
+  padding-left: 10vw;
+  padding-right: 10vw;
+  /* align-items: center; */
+  /* align-content: center; */
+  text-align: center;
+}
+
+#signup-screen>.title {
+  padding-left: 10vw;
+  padding-right: 10vw;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+label#signup-screen.input-field {
+  padding-left: 10vw;
+  padding-right: 10vw;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+  text-align: left;
+}
+
+#signup-screen.input-box {
+  margin-top: 1vw;
+  margin-bottom: 1vw;
+  height: 3vw;
+  width: 20vw;
+  padding-left: 10vw;
+  padding-right: 10vw;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+#signup-button {
+  background-color: rgb(252, 252, 252);
+  font-family: 'Open Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-decoration: none;
+  font-size: 1.5vw;
+  height: max-content;
+  font-weight: 700;
+  text-emphasis-style: bold;
+  width: 31vw;
+  margin-top: 2vw;
+  border: #000000;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 30px;
+  padding: 10px;
   text-decoration: none;
 }
+
+#signup-button:hover {
+  transition: .25s;
+  cursor: pointer;
+  background-color: #0F749A;
+  color: rgb(252, 252, 252);
+  border: #0F749A;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 30px;
+}
+
+/* ul {
+  text-decoration: none;
+} */

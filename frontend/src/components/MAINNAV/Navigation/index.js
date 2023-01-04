@@ -1,5 +1,4 @@
 import React from 'react'
-import ProfileButton from "./ProfileButton"
 import { useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import './Navigation.css'
@@ -42,7 +41,7 @@ function Navigation() {
 
   return (
     <div id="main-nav-container">
-      <ul>
+      <ul id="main-nav">
         <li>
           <NavLink to="/">
             <img id="tremolo_logo" 
@@ -76,7 +75,9 @@ function Navigation() {
         <li>
           <NotifBellButton />
         </li>
-        {sessionLinks}
+        <li>
+          {sessionLinks}
+        </li>
       </ul>
     </div>
   );

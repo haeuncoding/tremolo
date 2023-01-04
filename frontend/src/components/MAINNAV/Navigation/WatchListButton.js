@@ -17,8 +17,6 @@ const WatchListButton = () => {
         <img class="nav-icon"
           id="watchlist-button"
           src={isHover ? WatchListColor : WatchList}
-          // onMouseOver={e => (e.currentTarget.src = WatchListColor)} 
-          // onMouseOut={e => (e.currentTarget.src = WatchList)}
           />
         <div class="nav-link-container">
           <label for="watchlist-button">

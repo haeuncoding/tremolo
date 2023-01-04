@@ -37,58 +37,76 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map(error => <li key={error}>{error}</li>)}
-      </ul>
-      <br />
-      <label>
-        Email
-      <br />
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      <br />
-      </label>
-      <br />
-      <label>
-        Username
-      <br />
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        Password
-      <br />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <label>
-        Confirm Password
-      <br />
-        <input
-          type="password"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <button type="submit">Sign Up</button>
-    </form>
+    <div id="signup-screen">
+      <h1 class="title">Start your Tremolo journey here.</h1>
+      <form class="signup-form" onSubmit={handleSubmit}>
+        <ul id="signup-errors">
+          {errors.map(error => <li key={error}>{error}</li>)}
+        </ul>
+        <br />
+        <label class="input-field"
+          for="email">
+          Email:
+        </label>
+        <br />
+          <input
+            type="text"
+            class="input-box"
+            name="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        <br />
+        <label class="input-field"
+          for="username">
+          Username:
+        </label>
+        <br />
+          <input
+            type="text"
+            class="input-box"
+            name="username"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        <br />
+        <label class="input-field"
+          for="password">
+          Password:
+        </label>
+        <br />
+          <input
+            type="password"
+            class="input-box"
+            name="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        <br />
+        <label class="input-field"
+          for="password-confirm">
+          Confirm Password:
+        </label>
+        <br />
+          <input
+            type="password"
+            class="input-box"
+            name="password-confirm"
+            id="password-confirm"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+          />
+        <br />
+        <button type="submit" id="signup-button">Sign Up</button>
+      </form>
+    </div>
   );
 }
 

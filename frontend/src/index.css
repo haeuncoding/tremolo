@@ -2,6 +2,7 @@
 body {
   padding: 2vw;
   align-items: center;
+  align-content: center;
 }
 
 h1, h2, h3, p {
