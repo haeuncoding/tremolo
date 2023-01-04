@@ -1,31 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { Modal } from '../../../context/Modal';
+import { Link } from 'react-router-dom';
+import LoginFormPage from '../LoginFormPage';
+import SignupFormPage from '../SignupFormPage';
 import * as sessionActions from '../../../store/session';
 import UserIconInactive from '../../../assets/UserIconNoHover.png'
 import UserIconActive from '../../../assets/UserIconHover.png'
-import './ProfileButton.css'
+import { useDispatch } from 'react-redux';
+import './ProfileDropdown.css'
 
-function ProfileButton({ user }) {
-  const dispatch = useDispatch();
-  const [showMenu, setShowMenu] = useState(false);
-  
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
-  
-  useEffect(() => {
-    if (!showMenu) return;
 
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
+function ProfileDropdown({ user }) {
+  // const [showModal, setShowModal] = useState(false);
 
-    document.addEventListener('click', closeMenu);
-  
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  const dispatch = useDispatch()
 
   const logout = (e) => {
     e.preventDefault();
@@ -33,8 +21,7 @@ function ProfileButton({ user }) {
   };
 
   return (
-    <>
-      <div class="logged-in-dropdown">
+ <div class="logged-in-dropdown">
       <button class="logged-in-drop-button">
         <img id="logged-in-profile-icon"
         alt=""
@@ -47,12 +34,10 @@ function ProfileButton({ user }) {
       </button>
       <div class="logged-in-dropdown-content" id="logged-in-dropdown-content">
           Welcome back, {user.username}
-        <button onClick={logout}>Log Out</button>
+        <a onClick={logout}>Log Out</a>
       </div>
     </div>
-      
-    </>
-  );
+  )
 }
 
-export default ProfileButton;
+export default ProfileDropdown;

@@ -27,7 +27,7 @@ function GenDropdown() {
           <Link class="modal-link" to="/login">
               Login
           </Link>
-          <Link class="modal-link" to="signup">
+          <Link class="modal-link" to="/signup">
               Signup
           </Link>
       </div>

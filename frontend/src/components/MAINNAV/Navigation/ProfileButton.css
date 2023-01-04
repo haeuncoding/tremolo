@@ -1,0 +1,75 @@
+form,
+body,
+h1,
+h2,
+h3,
+p {
+  font-family: 'Roboto', sans-serif;
+}
+
+
+/* The container <div> - needed to position the dropdown content */
+.logged-in-drop-button {
+  background-color: none;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.profile-dropdown {
+
+  align-items: right;
+  align-content: right;
+  text-align: right;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: none;
+  position: relative;
+  display: inline-block;
+}
+
+.prof-dropdown-content {
+  align-items: right;
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  width: 100%;
+  border: solid;
+  border-width: 1.5px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content#profile-dropdown-content {
+  align-items: right;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+#profile-link {
+  width: 2vw;
+}
+
+img#logged-in-profile-icon {
+  width: 4vw;
+}
+
+ul {
+  text-decoration: none;
+}
+
+/* Change color of dropdown links on hover */
+.prof-dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.logged-in-dropdown:hover .prof-dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+/* .gen-dropdown:hover .gen-drop-button {
+  /* background-color: #0F749A; */

@@ -6,6 +6,8 @@ import './Navigation.css'
 import LoginFormModal from '../../SESSIONS/LoginFormModal';
 import SignupFormModal from '../../SESSIONS/SignupFormPageModal';
 import GenDropdown from '../../SESSIONS/GenDropdown';
+import ProfileDropdown from '../../SESSIONS/ProfileDropdown';
+
 import logo from '../../../assets/TremoloLogo.png'
 import logoColor from '../../../assets/TremoloLogo_Color.png'
 import SearchButton from './SearchButton';
@@ -22,14 +24,14 @@ function Navigation() {
   if (sessionUser) {
     sessionLinks = (
       <li class="session-link">
-        <ProfileButton user={sessionUser} />
+        <ProfileDropdown user={sessionUser} />
       </li>
     );
   } else {
     sessionLinks = (
       <>
         <li class="session-link">
-          <GenDropdown class="session-link"/>
+          <GenDropdown />
         </li>
 
       </>
