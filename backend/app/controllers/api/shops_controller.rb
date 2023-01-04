@@ -1,4 +1,7 @@
 class Api::ShopsController < ApplicationController
+  
+  wrap_parameters include: Shop.attribute_names
+
   before_action :require_logged_in, only: [:create, :update, :destroy]
   def create
     @shop = Shop.new(shop_params)

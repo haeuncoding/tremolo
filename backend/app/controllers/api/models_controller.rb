@@ -1,5 +1,7 @@
 class Api::ModelsController < ApplicationController
 
+wrap_parameters include: Model.attribute_names
+
 before_action :require_logged_in, only: [:create]
   def create
     @model = Model.new(model_params)

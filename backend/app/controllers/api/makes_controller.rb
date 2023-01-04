@@ -1,5 +1,7 @@
 class Api::MakesController < ApplicationController
 
+  wrap_parameters include: Make.attribute_names
+
   def show
     @make = Make.find_by(id: params[:id])
   end

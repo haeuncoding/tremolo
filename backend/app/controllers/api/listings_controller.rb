@@ -1,5 +1,7 @@
 class Api::ListingsController < ApplicationController
 
+  wrap_parameters include: Listing.attribute_names
+
   before_action :require_logged_in, only: [:create, :destroy, :edit, :update]
 
   def create

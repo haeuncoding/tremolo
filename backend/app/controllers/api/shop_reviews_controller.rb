@@ -1,5 +1,7 @@
 class Api::ShopReviewsController < ApplicationController
 
+wrap_parameters include: ShopReview.attribute_names
+
 before_action :require_logged_in, only: [:create, :update, :destroy]
   def create
     @shop_review = ShopReview.new(shop_review_params)
