@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: Tremolo_production
-  username: Tremolo
-  password: <%= ENV["TREMOLO_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'%>
