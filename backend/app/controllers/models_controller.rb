@@ -1,4 +1,4 @@
-Api::ModelsController < ApplicationController
+class Api::ModelsController < ApplicationController
 
 before_action :require_logged_in, only: [:create]
   def create

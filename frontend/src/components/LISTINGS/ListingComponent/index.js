@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import * as ListingActions from "../../../store/listings"
 import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
 import './ListingComponent.css'
 

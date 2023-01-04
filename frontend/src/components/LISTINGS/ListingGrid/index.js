@@ -1,4 +1,5 @@
 import ListingComponent from "../ListingComponent";
+import * as listingActions from "../../../store/listings"
 import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
 import lolPhoto2 from '../../../assets/temp_assets/dumb_photo_4.JPG'
 

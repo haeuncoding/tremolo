@@ -4,12 +4,12 @@ export const RECEIVE_MAKE = "makes/RECEIVE_MAKE"
 
 export const receiveMakes = (makes) => ({
   type: RECEIVE_MAKES,
-  listings
+  makes
 })
 
-export const receiveListing = (listing) => ({
+export const receiveMake = (make) => ({
   type: RECEIVE_MAKE,
-  listing
+  make
 })
 
 // getListings that grabs all the listings in the store

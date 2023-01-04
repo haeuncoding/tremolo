@@ -4,9 +4,11 @@ import thunk from 'redux-thunk';
 import listingsReducer from './listings';
 import makesReducer from './makes';
 import sessionReducer from './session';
+import categoriesReducer from './categories'
 import modelReviewsReducer from './modelReviews';
 import modelsReducer from './models'
 import shopReviewsReducer from './shopReviews'
+import shopsReducer from './shops'
 import session from './session'
 
 export const rootReducer = combineReducers({
@@ -15,8 +17,9 @@ export const rootReducer = combineReducers({
   makes: makesReducer,
   modelReviews: modelReviewsReducer,
   shopReviews: shopReviewsReducer,
+  categories: categoriesReducer,
   models: modelsReducer,
-  
+  shops: shopsReducer
 })
 
 let enhancer;

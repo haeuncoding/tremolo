@@ -1,4 +1,4 @@
-Api::ModelReviewsController < ApplicationController
+class Api::ModelReviewsController < ApplicationController
 
 before_action :require_logged_in, only: [:create, :update, :destroy]
   def create

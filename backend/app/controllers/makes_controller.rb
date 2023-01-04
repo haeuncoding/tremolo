@@ -1,4 +1,4 @@
-Api::MakesController < ApplicationController
+class Api::MakesController < ApplicationController
 
   def show
     @make = Make.find_by(id: params[:id])

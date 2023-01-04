@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createListing, updateListing, fetchListing, getListing } from "../../../store/listings";
-import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
+import * as listingActions from "../../../store/listings"
 import Makes from "../../../assets/BrandNames"
 import Categories from "../../../assets/Categories"
 
 import './ListingFormPage.css';
 
-function ListingFormPage() {
+const ListingFormPage = () => {
   const { listingId } = useParams();
   const dispatch = useDispatch();
   const [listingTitle, setListingTitle] = useState("");
   const [make, setMake] = useState("")
+  const [model, setModel] = useState("")
   const [category, setCategory] = useState("")
   const [condition, setCondition] = useState("")
   const [price, setPrice] = useState("");
@@ -21,65 +21,68 @@ function ListingFormPage() {
   const [yearMade, setYearMade] = useState("");
   const [description, setDescription] = useState("")
   const [isEdit, setIsEdit] = useState(false)
-  const [errors, setErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
   const makes = Makes
   const categories = Categories
+  const listing = useSelector(listingActions.getListing(listingId));
 
-  const demoListing = {
-    listerId: 1,
-    makeId: 4,
-    categoryId: 1,
-    image: lolPhoto,
-    listingTitle: "Demo Model Stratocaster Placid Lake Blue",
-    condition: "Good",
-    price: 650.20,
-    location: "Chicago, IL, USA",
-    year_made: "2010s",
-    description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers! Mauris finibus arcu tellus, non rutrum ante efficitur eget. Fusce dignissim lacinia elementum. Sed placerat mi a mauris porta, at efficitur elit tincidunt. Suspendisse vel sollicitudin neque. Sed facilisis elementum massa sit amet feugiat. Nullam lacinia est eros, a efficitur massa dictum eget. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam id massa nec purus pharetra hendrerit."
-}
+//   const demoListing = {
+//     listerId: 1,
+//     makeId: 4,
+//     categoryId: 1,
+//     image: lolPhoto,
+//     listingTitle: "Demo Model Stratocaster Placid Lake Blue",
+//     condition: "Good",
+//     price: 650.20,
+//     location: "Chicago, IL, USA",
+//     year_made: "2010s",
+//     description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers! Mauris finibus arcu tellus, non rutrum ante efficitur eget. Fusce dignissim lacinia elementum. Sed placerat mi a mauris porta, at efficitur elit tincidunt. Suspendisse vel sollicitudin neque. Sed facilisis elementum massa sit amet feugiat. Nullam lacinia est eros, a efficitur massa dictum eget. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam id massa nec purus pharetra hendrerit."
+// }
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
     if (listingId) {
       const data = {
         id: listingId,
-        listingTitle,
-        make,
-        category,
-        condition,
-        price,
-        location,
-        color,
-        yearMade,
-        description
+        listingTitle: listingTitle,
+        make: make,
+        model: model,
+        category: category,
+        condition: condition,
+        price: price,
+        location: location,
+        color: color,
+        yearMade: yearMade,
+        description: description
       }
-      dispatch(updateListing(data));
+      dispatch(listingActions.updateListing(data));
     } else {
       const data = {
-        listingTitle,
-        make,
-        category,
-        condition,
-        price,
-        location,
-        color,
-        yearMade,
-        description
+        listingTitle: listingTitle,
+        make: make,
+        model: model,
+        category: category,
+        condition: condition,
+        price: price,
+        location: location,
+        color: color,
+        yearMade: yearMade,
+        description: description
       }
-      dispatch(createListing(data));
+      dispatch(listingActions.createListing(data));
     }
+    return <Redirect to="/" />
   };
 
 
-
+  
   useEffect(() => {
     if (listingId) {
-      setIsEdit(true);
-      // const listing = useSelector(getListing(listingId));
-      const listing = demoListing
+      setIsEdit(true)
       setListingTitle(listing.listingTitle);
       setMake(listing.make);
+      setModel(listing.model)
       setCategory(listing.category);
       setCondition(listing.condition)
       setPrice(listing.price)
@@ -87,7 +90,7 @@ function ListingFormPage() {
       setColor(listing.color)
       setYearMade(listing.yearMade)
       setDescription(listing.description)
-      dispatch(fetchListing(listingId))
+      dispatch(listingActions.fetchListing(listingId))
     }
   }, [dispatch, listingId])
 
@@ -143,6 +146,17 @@ function ListingFormPage() {
               </option>
             )}
           </select>
+            <br/>
+          <label class="input-field" for="model">
+            Model:
+          </label>
+            <br/>
+          <input type="type" 
+            class="input-box"
+            name="model" 
+            value={model} 
+            onChange={e => setModel(e.target.value)}
+          />
             <br/>
           <label class="input-field" for="price">
             Price:

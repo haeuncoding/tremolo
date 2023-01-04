@@ -1,4 +1,4 @@
-Api::ShopsController < ApplicationController
+class Api::ShopsController < ApplicationController
   before_action :require_logged_in, only: [:create, :update, :destroy]
   def create
     @shop = Shop.new(shop_params)

@@ -1,4 +1,4 @@
-Api::ShopReviewsController < ApplicationController
+class Api::ShopReviewsController < ApplicationController
 
 before_action :require_logged_in, only: [:create, :update, :destroy]
   def create
