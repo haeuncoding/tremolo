@@ -2,7 +2,7 @@ import ListingComponent from "../ListingComponent";
 import * as listingActions from "../../../store/listings"
 import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
 import lolPhoto2 from '../../../assets/temp_assets/dumb_photo_4.JPG'
-
+import { useSelector } from "react-redux";
 import ListingTile from "./ListingTile";
 import './ListingGrid.css'
 
@@ -35,16 +35,16 @@ const demoListing2 = {
 
 
 function ListingGrid () {
-  // listings = useSelector(state => state.listings)
-  const listings = [
-    demoListing,
-    demoListing2
-  ]
+  const listings = useSelector(listingActions.getListings())
+  // const listings = [
+  //   demoListing,
+  //   demoListing2
+  // ]
 
   return (
-      <ul class="listing-grid">
-        {listings?.map((listing) => <ListingTile listing={(listing)} class="ind-tile"/>)}
-      </ul>
+    <ul class="listing-grid">
+      {listings?.map((listing) => <ListingTile listing={(listing)} class="ind-tile"/>)}
+    </ul>
   )
 }
 

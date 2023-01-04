@@ -16,4 +16,6 @@ Rails.application.routes.draw do
     resources :models, only: [:index, :create, :show]
     resources :makes, only: [:index, :show]
   end
+
+  get '*path', to: 'static_pages#frontend'
 end

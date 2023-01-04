@@ -32,10 +32,10 @@ const demoListing = {
 }
 
 function ListingComponent({ listing }) {
-  listing = demoListing
-  const category = demoCategory
-  const make = demoMake
-  const lister = demoLister
+  // listing = demoListing
+  // const category = demoCategory
+  // const make = demoMake
+  // const lister = demoLister
 
   return (
     // <h1>{listing.listingTitle}</h1>
@@ -50,10 +50,10 @@ function ListingComponent({ listing }) {
         </div>
         <div class="listing-info">
           <div class="listing-top">
-              <h5 id="category-make">{category.category} // {make.brandName}</h5>
+              <h5 id="category-make">{listing.categoryId} // {listing.makeId}</h5>
               {/* (listing.categoryId) (listing.makeId)*/}
             <div class="hl" />
-              <h4 id="shop-name">{lister.shopName}</h4>
+              <h4 id="shop-name">{listing.listerId}</h4>
               {/* listing.listerId */}
               <h5 id="location">{listing.location}</h5>
               <h1 id="listing-title">{listing.listingTitle}</h1>
