@@ -27,7 +27,13 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/master.key
+./backend/config/master.key
 
 .byebug_history
 /public
 .DS_Store
+
+../bfg.jar
+../tremolo.git
+../tremolo.git.bfg-report
