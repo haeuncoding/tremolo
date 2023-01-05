@@ -12,7 +12,7 @@ services:
     branch: main
     env: ruby
     buildCommand: "./backend/bin/render-build.sh"
-    startCommand: "./backend/rails s"
+    startCommand: "./rails s"
     envVars: 
       - key: DATABASE_URL
         fromDatabase:
