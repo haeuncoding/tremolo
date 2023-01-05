@@ -44,7 +44,7 @@ class User < ApplicationRecord
 
   has_one :shop,
     primary_key: :id,
-    foreign_key: :shop_id,
+    foreign_key: :owner_id,
     class_name: :Shop,
     dependent: :destroy
     

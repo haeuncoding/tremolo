@@ -16,7 +16,7 @@ class Shop < ApplicationRecord
 
   has_many :listings,
     primary_key: :id,
-    foreign_key: :shop_id,
+    foreign_key: :lister_id,
     class_name: :Listing
 
   belongs_to :owner,

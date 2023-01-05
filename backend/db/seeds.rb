@@ -8,15 +8,14 @@
 ApplicationRecord.transaction do 
   puts "Destroying tables..."
   # Unnecessary if using `rails db:seed:replant`
-  Listing.destroy_all
   ModelReview.destroy_all
   ShopReview.destroy_all
+  Listing.destroy_all
+  User.destroy_all
   Shop.destroy_all
   Model.destroy_all
   Make.destroy_all
   Category.destroy_all
-  User.destroy_all
-  
 
   puts "Resetting primary keys..."
   # For easy testing, so that after seeding, the first `User` has `id` of 1
@@ -78,7 +77,7 @@ ApplicationRecord.transaction do
     location: "Pawnee, IN"
   )
 
-  puts "Seeding makes and categories..."
+  puts "Seeding categories..."
   
   CATEGORIES = [
     "Guitars",
@@ -90,6 +89,14 @@ ApplicationRecord.transaction do
     "Recording",
     "Pro Audio"
   ]
+
+  CATEGORIES.each do |category| 
+    Category.create!({
+      category: category
+    })
+  end
+
+  puts "Seeding makes..."
 
   MAKES = [
     "Schocter",
@@ -186,6 +193,14 @@ ApplicationRecord.transaction do
     "Nemo"
   ]
 
+  MAKES.each do |make|
+    Make.create!({
+      brand_name: make
+    })
+  end
+
+  puts "Seeding models..."
+
   MODELS = [
     "S Shape",
     "T Shape",
@@ -193,24 +208,12 @@ ApplicationRecord.transaction do
     "Mira"
   ]
 
-  # CATEGORIES.each do |category| 
-  #   Category.create!({
-  #     category: category
-  #   })
-  # end
-
-  # MAKES.each do |make|
-  #   Make.create!({
-  #     brand_name: make
-  #   })
-  # end
-
-  # MODELS.each do |model|
-  #   Model.create!({
-  #     model: model,
-  #     make_id: 2,
-  #   })
-  # end
+  MODELS.each do |model|
+    Model.create!({
+      model: model,
+      make_id: 2,
+    })
+  end
 
   puts '---------------'
   puts 'DEMO USER CREATION VERIFICATION'
@@ -219,73 +222,72 @@ ApplicationRecord.transaction do
   puts 'demo user id:'
   puts demo_user[:id]
   puts '---------------'
-  # demo_user[:id]
 
-  # puts "Creating listings..."
-  # Listing.create!({
-  #   lister_id: demo_shop[:id],
-  #   make_id: 4,
-  #   model_id: 1,
-  #   category_id: 1,
-  #   listing_title: "Demo Model Stratocaster Placid Lake Blue",
-  #   condition: "Good",
-  #   price: "650.20",
-  #   location: demo_shop[:location],
-  #   year_made: "2010s",
-  #   description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
-  # })
+  puts "Creating listings..."
+  Listing.create!({
+    lister_id: demo_shop[:id],
+    make_id: 4,
+    model_id: 1,
+    category_id: 1,
+    listing_title: "Demo Model Stratocaster Placid Lake Blue",
+    condition: "Good",
+    price: "650.20",
+    location: demo_shop[:location],
+    year_made: "2010s",
+    description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
+  })
 
-  # Listing.create!({
-  #   lister_id: demo_shop_2[:id],
-  #   make_id: 2,
-  #   model_id: 3,
-  #   category_id: 1,
-  #   listing_title: "Demo Model Partscaster Blood Red",
-  #   condition: "Good",
-  #   price: "650.20",
-  #   location: demo_shop_2[:location],
-  #   year_made: "2010s",
-  #   description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
-  # })
+  Listing.create!({
+    lister_id: demo_shop_2[:id],
+    make_id: 2,
+    model_id: 3,
+    category_id: 1,
+    listing_title: "Demo Model Partscaster Blood Red",
+    condition: "Good",
+    price: "650.20",
+    location: demo_shop_2[:location],
+    year_made: "2010s",
+    description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
+  })
 
-  # Listing.create!({
-  #   lister_id: demo_shop_3[:id],
-  #   make_id: 4,
-  #   model_id: 2,
-  #   category_id: 4,
-  #   listing_title: "Demo Model Partscaster Poison Green",
-  #   condition: "Good",
-  #   price: "650.20",
-  #   location: demo_shop_3[:location],
-  #   year_made: "2010s",
-  #   description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
-  # })
+  Listing.create!({
+    lister_id: demo_shop_3[:id],
+    make_id: 4,
+    model_id: 2,
+    category_id: 4,
+    listing_title: "Demo Model Partscaster Poison Green",
+    condition: "Good",
+    price: "650.20",
+    location: demo_shop_3[:location],
+    year_made: "2010s",
+    description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
+  })
 
-  # Listing.create!({
-  #   lister_id: demo_shop_4[:id],
-  #   make_id: 3,
-  #   model_id: 4,
-  #   category_id: 1,
-  #   listing_title: "Demo Model Partscaster Orange Orange",
-  #   condition: "Good",
-  #   price: "650.20",
-  #   location: demo_shop_4[:location],
-  #   year_made: "2010s",
-  #   description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
-  # })
+  Listing.create!({
+    lister_id: demo_shop_4[:id],
+    make_id: 3,
+    model_id: 4,
+    category_id: 1,
+    listing_title: "Demo Model Partscaster Orange Orange",
+    condition: "Good",
+    price: "650.20",
+    location: demo_shop_4[:location],
+    year_made: "2010s",
+    description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
+  })
 
-  # Listing.create!({
-  #   lister_id: demo_shop_5[:id],
-  #   make_id: 2,
-  #   model_id: 1,
-  #   category_id: 1,
-  #   listing_title: "Demo Model Partscaster Orange Orange",
-  #   condition: "Good",
-  #   price: "650.20",
-  #   location: demo_shop_5[:location],
-  #   year_made: "2010s",
-  #   description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
-  # })
+  Listing.create!({
+    lister_id: demo_shop_5[:id],
+    make_id: 2,
+    model_id: 1,
+    category_id: 1,
+    listing_title: "Demo Model Partscaster Orange Orange",
+    condition: "Good",
+    price: "650.20",
+    location: demo_shop_5[:location],
+    year_made: "2010s",
+    description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
+  })
 
   puts "Done!"
 end
