@@ -53,7 +53,7 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path={`/listings/`}>
+          <Route exact path="/listings/:listingId">
             <ListingComponent />
           </Route>
           <Route path="/new_listing">

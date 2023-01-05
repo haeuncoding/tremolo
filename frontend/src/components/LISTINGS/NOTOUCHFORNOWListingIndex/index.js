@@ -7,7 +7,7 @@ import ListingTile from "../ListingTile/ListingTile";
 import './ListingGrid.css'
 import { useEffect } from "react";
 
-
+{
 const listing1 = ({
     lister_id: 1,
     make_id: 4,
@@ -111,12 +111,14 @@ const listing1 = ({
     year_made: "2010s",
     description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
   })
-
+}
 function ListingGrid () {
-  // const listings = useSelector(listingActions.getListings)
-  const listings = [
-    listing1, listing2, listing3, listing4, listing5, listing6, listing7, listing8
-  ]
+  const listings = useSelector(listingActions.getListings())
+  console.log("listings array listing grid")
+  console.log(listings)
+  // const listings = [
+  //   listing1, listing2, listing3, listing4, listing5, listing6, listing7, listing8
+  // ]
   const dispatch = useDispatch()
 
   useEffect(() => {

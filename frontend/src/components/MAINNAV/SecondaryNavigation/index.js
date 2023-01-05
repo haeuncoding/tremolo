@@ -7,15 +7,31 @@ import CategoryLink from './CategoryLink';
 
 function SecondaryNavigation() {
   const dispatch = useDispatch();
-  const categories = useSelector(categoryActions.getCategories)
+  const categoriesArr = useSelector(categoryActions.getCategories)
+  const categories = categoriesArr[0]
   console.log(categories)
+  
   useEffect(() => {
     dispatch(categoryActions.fetchCategories())
   }, [dispatch])
 
+// {<CategoryLink category={category}
+
   return (
     <ul id="sec-nav-container">
-      {categories.map(category => {<CategoryLink category={category} />})}
+      {/* {categories.map(category => <h2>{category.name}</h2>)} */}
+      <li>
+        category
+      </li>
+      <li>
+        category
+      </li>
+      <li>
+        category
+      </li>
+      <li>
+        category
+      </li>
       <li>
         <NavLink to="#"
           class="category-link">
