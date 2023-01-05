@@ -8,7 +8,6 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-# t.bigint "make_id", null: false
     # t.string "model", null: false
     # t.datetime "created_at", null: false
     # t.datetime "updated_at", null: false

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_03_183446) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_05_085817) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,9 +35,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_03_183446) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "model_id"
+    t.bigserial "users_id", null: false
+    t.integer "watcher_count"
     t.index ["category_id"], name: "index_listings_on_category_id"
     t.index ["lister_id"], name: "index_listings_on_lister_id"
     t.index ["make_id"], name: "index_listings_on_make_id"
+    t.index ["users_id"], name: "index_listings_on_users_id"
   end
 
   create_table "makes", force: :cascade do |t|
@@ -95,6 +98,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_03_183446) do
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "watchlist", default: [], array: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true

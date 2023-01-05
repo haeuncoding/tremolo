@@ -10,6 +10,7 @@
 #  location        :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  watchlist       :bigint           default([]), is an Array
 #
 class User < ApplicationRecord
 
@@ -41,14 +42,16 @@ class User < ApplicationRecord
     through: :shop,
     source: :shop
 
-
   has_one :shop,
     primary_key: :id,
     foreign_key: :shop_id,
     class_name: :Shop,
     dependent: :destroy
     
-
+  has_many :watched_listings,
+    primary_key: :id,
+    foreign_key: :watcher_id,
+    class_name: :Listing
   
 
 
@@ -80,6 +83,16 @@ class User < ApplicationRecord
 
   def ensure_session_token
     self.session_token ||= generate_unique_session_token
+  end
+
+  def add_to_watchlist(listing_id)
+    self.watched_listings << listing_id
+    watched = Listing.find_by_id(:listing_id)
+  end
+
+  def remove_from_watchlist(listing_id)
+    watched = Listing.find_by_id(:listing_id)
+    self.watched_listings.delete(listing_id)
   end
 
   private
