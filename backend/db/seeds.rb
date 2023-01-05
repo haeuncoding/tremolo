@@ -45,6 +45,24 @@ ApplicationRecord.transaction do
     location: "Newport Beach, CA"
   )
 
+  demo_shop_3 = Shop.create!(
+    shop_name: "Portillo's",
+    owner_id: 5,
+    location: "Chicago, IL"
+  )
+
+  demo_shop_4 = Shop.create!(
+    shop_name: "Cloud 9",
+    owner_id: 8,
+    location: "Ozark Highlands, OK"
+  )
+
+  demo_shop_5 = Shop.create!(
+    shop_name: "JJ's Diner",
+    owner_id: 10,
+    location: "Pawnee, IN"
+  )
+
   puts "Seeding makes and categories..."
   
   CATEGORIES = [
@@ -154,6 +172,13 @@ ApplicationRecord.transaction do
     "Nemo"
   ]
 
+  MODELS = [
+    "S Shape",
+    "T Shape",
+    "Warrior",
+    "Mira"
+  ]
+
   CATEGORIES.each do |category| 
     Category.create!({
       category: category
@@ -163,6 +188,13 @@ ApplicationRecord.transaction do
   MAKES.each do |make|
     Make.create!({
       brand_name: make
+    })
+  end
+
+  MODELS.each do |model|
+    Model.create!({
+      model: model,
+      make_id: 2,
     })
   end
 
@@ -179,11 +211,64 @@ ApplicationRecord.transaction do
   Listing.create!({
     lister_id: demo_shop[:id],
     make_id: 4,
+    model_id: 1,
     category_id: 1,
     listing_title: "Demo Model Stratocaster Placid Lake Blue",
     condition: "Good",
     price: "650.20",
-    location: "Chicago, IL",
+    location: demo_shop[:location],
+    year_made: "2010s",
+    description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
+  })
+
+  Listing.create!({
+    lister_id: demo_shop_2[:id],
+    make_id: 2,
+    model_id: 3,
+    category_id: 1,
+    listing_title: "Demo Model Partscaster Blood Red",
+    condition: "Good",
+    price: "650.20",
+    location: demo_shop_2[:location],
+    year_made: "2010s",
+    description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
+  })
+
+  Listing.create!({
+    lister_id: demo_shop_3[:id],
+    make_id: 4,
+    model_id: 2,
+    category_id: 4,
+    listing_title: "Demo Model Partscaster Poison Green",
+    condition: "Good",
+    price: "650.20",
+    location: demo_shop_3[:location],
+    year_made: "2010s",
+    description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
+  })
+
+  Listing.create!({
+    lister_id: demo_shop_4[:id],
+    make_id: 3,
+    model_id: 4,
+    category_id: 1,
+    listing_title: "Demo Model Partscaster Orange Orange",
+    condition: "Good",
+    price: "650.20",
+    location: demo_shop_4[:location],
+    year_made: "2010s",
+    description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
+  })
+
+  Listing.create!({
+    lister_id: demo_shop_5[:id],
+    make_id: 2,
+    model_id: 1,
+    category_id: 1,
+    listing_title: "Demo Model Partscaster Orange Orange",
+    condition: "Good",
+    price: "650.20",
+    location: demo_shop_5[:location],
     year_made: "2010s",
     description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
   })

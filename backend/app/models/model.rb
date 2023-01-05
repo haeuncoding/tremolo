@@ -16,17 +16,17 @@
 
 class Model < ApplicationRecord
   validates :model, presence: true, uniqueness: true
-  validates :make_id, presence: true, uniqueness: true
+  validates :make_id, presence: true
 
   has_many :listings,
     primary_key: :id,
     foreign_key: :model_id,
     class_name: :Listing
   
-  belongs_to :model_review,
-    primary_key: :id,
-    foreign_key: :model_reviewed_id,
-    class_name: :ModelReview
+  # belongs_to :model_review,
+  #   primary_key: :id,
+  #   foreign_key: :model_reviewed_id,
+  #   class_name: :ModelReview
 
 
 end

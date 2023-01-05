@@ -26,12 +26,10 @@ ul#main-nav {
   margin: auto;
 }
 
-.nav-icon {
+button.nav-icon {
   width: 5vw;
   height: auto;
-  /* margin-left: .1vw;
-  margin-right: .1vw; */
-  align-items: center;
+
   text-align: center;
 }
 
@@ -154,10 +152,10 @@ li {
   color: none;
   display: flex;
   text-align: center;
-  /* align-content: space-around; */
   text-decoration: none;
   border: none;
   font-size: 1.5vw;
+  align-content: center;
 }
 
 button#new-listing-button {

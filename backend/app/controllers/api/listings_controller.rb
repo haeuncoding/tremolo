@@ -4,6 +4,15 @@ class Api::ListingsController < ApplicationController
 
   before_action :require_logged_in, only: [:create, :destroy, :edit, :update]
 
+  def index 
+    @listings = Listing.all
+    if @listings
+      render :index
+    else 
+      render json: [errors: @listings.errors.full_messages]
+    end
+  end
+
   def create
     @listing = Listing.new(listing_params)
       if @listing.save

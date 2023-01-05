@@ -35,6 +35,9 @@ function App() {
       </div>  
     </div>
         <Switch>
+          <Route exact path="/">
+            <ListingGrid />
+          </Route>
           <Route path="/login">
             <LoginFormPage />
           </Route>
@@ -43,9 +46,6 @@ function App() {
           </Route>
           <Route path="/listing">
             <ListingComponent />
-          </Route>
-          <Route path="/feed">
-            <ListingGrid />
           </Route>
           <Route path="/feed_tile">
             <ListingTile />
