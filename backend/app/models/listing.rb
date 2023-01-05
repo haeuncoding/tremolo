@@ -16,6 +16,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  model_id      :string
+#  users_id      :bigint           not null
 #
 class Listing < ApplicationRecord
 
@@ -70,5 +71,14 @@ class Listing < ApplicationRecord
       return nil
     end
   end
+
+  def add_watcher_count
+    self.watcher_count += 1
+  end
   
+  def subtract_watcher_count
+    self.watcher_count -= 1
+  end
+
+
 end
