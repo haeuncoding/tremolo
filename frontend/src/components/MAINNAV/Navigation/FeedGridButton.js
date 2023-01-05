@@ -7,18 +7,18 @@ const FeedGridButton = () => {
   const [isHover, setIsHover] = useState(false)
 
   return (
-    <div class="nav-icon-container">
+    <div className="nav-icon-container">
       <button
-        class="nav-icon"
+        className="nav-icon"
         onMouseOver={e => (setIsHover(true))} 
         onMouseOut={e => (setIsHover(false))}
       >
-      <img class="nav-icon"
+      <img className="nav-icon"
         id="feed-grid-button"
         src={isHover ? FeedGridColor : FeedGrid}
         />
-      <div class="nav-link-container">
-        <label for="feed-grid-button">
+      <div className="nav-link-container">
+        <label htmlFor="feed-grid-button">
           Feed
         </label>
       </div>

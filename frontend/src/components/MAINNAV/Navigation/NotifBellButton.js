@@ -7,18 +7,18 @@ const NotifBellButton = () => {
   const [isHover, setIsHover] = useState(false)
 
   return (
-    <div class="nav-icon-container">
+    <div className="nav-icon-container">
       <button
-        class="nav-icon"
+        className="nav-icon"
         onMouseOver={e => (setIsHover(true))} 
         onMouseOut={e => (setIsHover(false))}
       >
-        <img class="nav-icon"
+        <img className="nav-icon"
           id="notif-button"
           src={isHover ? NotifBellColor : NotifBell}
           />
-      <div class="nav-link-container">
-        <label for="notif-button">
+      <div className="nav-link-container">
+        <label htmlFor="notif-button">
           Notifications
         </label>
       </div>

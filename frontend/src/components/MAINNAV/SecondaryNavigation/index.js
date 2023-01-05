@@ -1,59 +1,26 @@
-import React from 'react'
-import { useSelector } from "react-redux";
+import React, { useEffect } from 'react'
+import { useSelector, useDispatch } from "react-redux";
+import * as categoryActions from "../../../store/categories"
 import { NavLink, Link } from "react-router-dom";
 import './SecondaryNavigation.css'
+import CategoryLink from './CategoryLink';
 
 function SecondaryNavigation() {
+  const dispatch = useDispatch();
+  const categories = useSelector(categoryActions.getCategories)
+  console.log(categories)
+  useEffect(() => {
+    dispatch(categoryActions.fetchCategories())
+  }, [dispatch])
 
   return (
     <ul id="sec-nav-container">
+      {categories.map(category => {<CategoryLink category={category} />})}
       <li>
-        <Link to="#"
-          class="category-link">
-            Electric Guitars
-        </Link>
-      </li>
-      <div class="vl" />
-      <li>
-        <Link to="#"
-          class="category-link">
-            Basses
-          </Link>
-      </li>
-      <div class="vl" />
-      <li>
-        <Link to="#"
-          class="category-link">
-            Pedals and Amplifiers
-        </Link>
-      </li>
-      <div class="vl" />
-      <li>
-        <Link to="#"
-          class="category-link">
-            Pro Audio Equipment
-        </Link>
-      </li>
-      <div class="vl" />
-      <li>
-        <Link to="#"
-          class="category-link">
-            Drums & Percussion
-        </Link>
-      </li>
-      <div class="vl" />
-      <li>
-        <Link to="#"
-          class="category-link">
-            Keyboards & Synths
-        </Link>
-      </li>
-      <div class="vl" />
-      <li>
-        <Link to="#"
+        <NavLink to="#"
           class="category-link">
             View All
-        </Link>
+        </NavLink>
       </li>
     </ul>
   );

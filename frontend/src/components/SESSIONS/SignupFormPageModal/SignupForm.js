@@ -43,7 +43,7 @@ function SignupFormPage() {
       <ul>
         {errors.map(error => <li key={error}>{error}</li>)}
       </ul>
-      <label class="input-field" for="email">
+      <label className="input-field" htmlFor="email">
         Email:
       </label>
       <br />
@@ -53,11 +53,11 @@ function SignupFormPage() {
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          class="input-box"
+          className="input-box"
           required
         />
       <br />
-      <label class="input-field" for="username">
+      <label className="input-field" htmlFor="username">
         Username:
       </label>
       <br />
@@ -67,11 +67,11 @@ function SignupFormPage() {
         type="text"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        class="input-box"
+        className="input-box"
         required
       />
       <br />
-      <label class="input-field" for="password">
+      <label className="input-field" htmlFor="password">
         Password:
       </label>
       <br />
@@ -81,11 +81,11 @@ function SignupFormPage() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          class="input-box"
+          className="input-box"
           required
         />
       <br />
-      <label class="input-field">
+      <label className="input-field">
         Confirm Password:
       </label>
       <br />
@@ -95,11 +95,11 @@ function SignupFormPage() {
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
-          class="input-box"
+          className="input-box"
           required
         />
       <br />
-      <button id="submit" type="submit" class="sign-up-button">Sign Up</button>
+      <button id="submit" type="submit" className="sign-up-button">Sign Up</button>
     </form>
     </div>
   );

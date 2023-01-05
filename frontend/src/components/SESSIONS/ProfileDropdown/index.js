@@ -18,22 +18,22 @@ function ProfileDropdown({ user }) {
   };
 
   return (
-  <div class="logged-in-dropdown">
+  <div className="logged-in-dropdown">
       <button 
-        // class="logged-in-drop-button"
-        class="nav-icon"
+        // className="logged-in-drop-button"
+        className="nav-icon"
         onMouseOver={e => (setIsHover(true))} 
         onMouseOut={e => (setIsHover(false))}
         onClick={e => (setIsHover(true))}
       >
-        <img class="nav-icon"
+        <img className="nav-icon"
           src={isHover ? UserIconActive : UserIconInactive}
         />  
-        <label for="logged-in-dropdown-content">
+        <label htmlFor="logged-in-dropdown-content">
           Profile
         </label>
       </button>
-      <div class="logged-in-dropdown-content" id="logged-in-dropdown-content">
+      <div className="logged-in-dropdown-content" id="logged-in-dropdown-content">
           Welcome back, {user.username}
         <a onClick={logout}>Log Out</a>
       </div>

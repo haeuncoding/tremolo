@@ -8,22 +8,22 @@ function GenDropdown() {
   const [isHover, setIsHover] = useState(false)
 
   return (
-    <div class="gen-dropdown">
+    <div className="gen-dropdown">
       <button 
-        // class="gen-drop-button"
-        class="nav-icon"
+        // className="gen-drop-button"
+        className="nav-icon"
         onMouseOver={e => (setIsHover(true))} 
         onMouseOut={e => (setIsHover(false))}
         onClick={e => (setIsHover(true))}
       >
-        <img class="nav-icon"
+        <img className="nav-icon"
           src={isHover ? UserIconActive : UserIconInactive}
         />  
-        <label for="dropdown-content">
+        <label htmlFor="dropdown-content">
           Login
         </label>
       </button>
-      <div class="dropdown-content">
+      <div className="dropdown-content">
           <Link to="/login">
               Login
           </Link>

@@ -6,7 +6,7 @@ import SignupFormPage from './components/SESSIONS/SignupFormPage';
 
 import ListingFormPage from './components/LISTINGS/ListingFormPage';
 import ListingGrid from './components/LISTINGS/ListingGrid';
-import ListingTile from './components/LISTINGS/ListingGrid/ListingTile';
+import ListingTile from './components/LISTINGS/ListingTile/ListingTile';
 import ListingComponent from './components/LISTINGS/ListingComponent';
 
 import ReviewFormTest from './components/REVIEWS/ReviewForm';
@@ -20,23 +20,32 @@ function App() {
   return (
     <>
     <div id="nav-container">
-      {/* debugger */}
       <div>
         <Navigation 
-          class="nav"
+          className="nav"
           id="main-nav"
           />
       </div>  
       <div>
       <SecondaryNavigation 
-        class="nav"
+        className="nav"
         id="sec-nav"
         />
       </div>  
     </div>
         <Switch>
           <Route exact path="/">
-            <ListingGrid />
+            <div id="home-feed-grid">
+              <h1 className="grid-title">Your Daily Picks</h1>
+              <br />
+              <ListingGrid />
+              <h1 className="grid-title">Don't String Me Along! Guitars On Sale:</h1>
+              <br />
+              <ListingGrid />
+              <h1 className="grid-title">You Know I'm All About that Bass.</h1>
+              <br />
+              <ListingGrid />
+            </div>
           </Route>
           <Route path="/login">
             <LoginFormPage />
@@ -44,11 +53,8 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/listing">
+          <Route path={`/listings/`}>
             <ListingComponent />
-          </Route>
-          <Route path="/feed_tile">
-            <ListingTile />
           </Route>
           <Route path="/new_listing">
             <ListingFormPage />

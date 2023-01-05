@@ -35,35 +35,35 @@ function LoginForm() {
         <ul>
           {errors.map(error => <li key={error}>{error}</li>)}
         </ul>
-        <label class="input-field">
+        <label className="input-field">
           Username or Email
           <br />
           <input
             type="text"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
-            class="input-box"
+            className="input-box"
             required
           />
         </label>
 
         <br />
         
-        <label class="input-field">
+        <label className="input-field">
           Password
         <br />  
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            class="input-box"
+            className="input-box"
             required
           />
         </label>
 
         <br />
         
-        <button type="submit" class="input-field">Log In</button>
+        <button type="submit" className="input-field">Log In</button>
       </form>
       </div>
     </>

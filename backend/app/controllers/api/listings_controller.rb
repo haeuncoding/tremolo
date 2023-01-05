@@ -17,7 +17,6 @@ class Api::ListingsController < ApplicationController
     @listing = Listing.new(listing_params)
       if @listing.save
         render :show
-        # could also do render: show
       else
         render json: [errors: @listing.errors.full_messages]
       end

@@ -38,20 +38,20 @@ function SignupFormPage() {
 
   return (
     <div id="signup-screen">
-      <h1 class="title">Start your Tremolo journey here.</h1>
-      <form class="signup-form" onSubmit={handleSubmit}>
+      <h1 className="title">Start your Tremolo journey here.</h1>
+      <form className="signup-form" onSubmit={handleSubmit}>
         <ul id="signup-errors">
           {errors.map(error => <li key={error}>{error}</li>)}
         </ul>
         <br />
-        <label class="input-field"
-          for="email">
+        <label className="input-field"
+          htmlFor="email">
           Email:
         </label>
         <br />
           <input
             type="text"
-            class="input-box"
+            className="input-box"
             name="email"
             id="email"
             value={email}
@@ -59,14 +59,14 @@ function SignupFormPage() {
             required
           />
         <br />
-        <label class="input-field"
-          for="username">
+        <label className="input-field"
+          htmlFor="username">
           Username:
         </label>
         <br />
           <input
             type="text"
-            class="input-box"
+            className="input-box"
             name="username"
             id="username"
             value={username}
@@ -74,14 +74,14 @@ function SignupFormPage() {
             required
           />
         <br />
-        <label class="input-field"
-          for="password">
+        <label className="input-field"
+          htmlFor="password">
           Password:
         </label>
         <br />
           <input
             type="password"
-            class="input-box"
+            className="input-box"
             name="password"
             id="password"
             value={password}
@@ -89,14 +89,14 @@ function SignupFormPage() {
             required
           />
         <br />
-        <label class="input-field"
-          for="password-confirm">
+        <label className="input-field"
+          htmlFor="password-confirm">
           Confirm Password:
         </label>
         <br />
           <input
             type="password"
-            class="input-box"
+            className="input-box"
             name="password-confirm"
             id="password-confirm"
             value={confirmPassword}
