@@ -15,8 +15,8 @@
 #  description   :text             not null
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  model_id      :string
 #  watcher_count :integer
+#  models_id     :bigint
 #
 class Listing < ApplicationRecord
 
