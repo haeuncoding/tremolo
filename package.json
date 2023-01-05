@@ -11,7 +11,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm install --prefix ./frontend && npm run build --prefix ./frontend"
+    "build": "npm install --prefix ./frontend && npm run build --prefix ./frontend",
+    "rails": "bundle install --prefix ./backend && rails db:migrate db:seed --prefix ./backend",
+    "server": "rails s --prefix ./backend"
   },
   "keywords": [],
   "author": "",
