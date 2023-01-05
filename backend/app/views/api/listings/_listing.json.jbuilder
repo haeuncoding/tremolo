@@ -9,3 +9,6 @@ json.location listing.location
 json.color listing.color
 json.year_made listing.year_made
 json.description listing.description
+json.description listing.watcher_count
+json.created_at listing.created_at
+json.updated_at listing.updated_at

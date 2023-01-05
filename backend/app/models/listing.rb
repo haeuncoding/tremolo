@@ -16,7 +16,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  model_id      :string
-#  users_id      :bigint           not null
+#  watcher_count :integer
 #
 class Listing < ApplicationRecord
 
@@ -41,7 +41,7 @@ class Listing < ApplicationRecord
   validates :price, numericality: { minimum: 0 }, presence: true
   validates :location, presence: true
   validates :description, presence: true
-
+  validates :watcher_count, allow_nil: true, numericality: { minimum: 0 }
 # relations
 
   has_many :watchers,
