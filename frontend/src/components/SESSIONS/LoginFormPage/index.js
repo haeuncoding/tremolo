@@ -49,15 +49,15 @@ function LoginFormPage() {
 
   return (
     <div id="login-screen">
-      <h1 class="login-screen" id="title"> Welcome Back. </h1>
+      <h1 className="login-screen" id="title"> Welcome Back. </h1>
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map(error => <li key={error}>{error}</li>)}
         </ul>
         <br />
         <label
-          class="input-field"
-          for="credential">
+          className="input-field"
+          htmlFor="credential">
           Username or Email
         </label>
           <br />
@@ -66,13 +66,13 @@ function LoginFormPage() {
             name="credential"
             value={credential}
             onChange={(e) => setCredential(e.target.value)}
-            class="input-box"
+            className="input-box"
             required
           />
           <br />
         <label
-          class="input-field"
-          for="password"
+          className="input-field"
+          htmlFor="password"
           >
           Password
           <br />
@@ -82,7 +82,7 @@ function LoginFormPage() {
             name="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            class="input-box"
+            className="input-box"
             required
           />
         <br />

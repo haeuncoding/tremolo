@@ -100,23 +100,23 @@ const ListingFormPage = () => {
       <h1 id="listing-form-title">{isEdit ? "Update Listing" : "Create Listing"}</h1>
         <br/>
         <form onSubmit={handleSubmit}>
-          <label class="input-field" for="listing-title">
+          <label className="input-field" for="listing-title">
             Listing Title
           </label>
             <br/>
           <input type="text" 
-            class="input-box"
+            className="input-box"
             name="listing-title" 
             value={listingTitle} 
             onChange={e => setListingTitle(e.target.value)}
           />
             <br/>
-          <label class="input-field" for="category">
+          <label className="input-field" for="category">
             Category:
           </label>
             <br/>
           <select name="category"
-            class="input-box" 
+            className="input-box" 
             value={category} 
             onChange={e => setCategory(e.target.value)}>
               <option value="" disabled selected>
@@ -129,12 +129,12 @@ const ListingFormPage = () => {
               )}
           </select>
             <br/>
-          <label class="input-field" for="make">
+          <label className="input-field" for="make">
             Make:
           </label>
             <br/>
           <select name="make" 
-            class="input-box"
+            className="input-box"
             value={make} 
             onChange={e => setMake(e.target.value)}>
             <option value="" disabled selected>
@@ -147,23 +147,23 @@ const ListingFormPage = () => {
             )}
           </select>
             <br/>
-          <label class="input-field" for="model">
+          <label className="input-field" for="model">
             Model:
           </label>
             <br/>
           <input type="type" 
-            class="input-box"
+            className="input-box"
             name="model" 
             value={model} 
             onChange={e => setModel(e.target.value)}
           />
             <br/>
-          <label class="input-field" for="price">
+          <label className="input-field" for="price">
             Price:
           </label>
             <br/>
           <input type="number" 
-            class="input-box"
+            className="input-box"
             name="price" 
             value={price} 
             step="0.01" 
@@ -171,45 +171,45 @@ const ListingFormPage = () => {
             onChange={e => setPrice(e.target.value)}
           />
             <br/>
-          <label class="input-field" for="location">
+          <label className="input-field" htmlFor="location">
             Location:
           </label>
             <br/>
           <input type="text" 
-            class="input-box"
+            className="input-box"
             name="location" 
             value={location} 
             onChange={e => setLocation(e.target.value)}
           />
             <br/>
-          <label class="input-field" for="color">
+          <label className="input-field" htmlFor="color">
             Color:
           </label>
             <br/>
           <input type="text" 
-            class="input-box"
+            className="input-box"
             name="color" 
             value={color} 
             onChange={e => setColor(e.target.value)}
           />
             <br/>
-          <label class="input-field" for="year-made">
+          <label className="input-field" htmlFor="year-made">
             Year Made:
           </label>
             <br/>
           <input type="text" 
-            class="input-box"
+            className="input-box"
             name="year-made" 
             value={yearMade} 
             onChange={e => setYearMade(e.target.value)}
           />
             <br/>
-          <label class="input-field" for="description">
+          <label className="input-field" htmlFor="description">
             Description:
           </label>
             <br/>
           <textarea name="description" 
-            class="input-box"
+            className="input-box"
             onChange={e => setDescription(e.target.value)}
           />
             <br/>

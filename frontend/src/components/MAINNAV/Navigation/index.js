@@ -22,14 +22,14 @@ function Navigation() {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <li class="session-link">
+      <li className="session-link">
         <ProfileDropdown user={sessionUser} />
       </li>
     );
   } else {
     sessionLinks = (
       <>
-        <li class="session-link">
+        <li className="session-link">
           <GenDropdown />
         </li>
 
@@ -51,10 +51,10 @@ function Navigation() {
               />
           </NavLink>
         </li>
-        <li class="search-container">
-          <input type="text" class="search-bar" placeholder="Look for used and new gear here..." />
-          <div class="vl" id="search-vl" />
-          <SearchButton class="search-bar"/>
+        <li className="search-container">
+          <input type="text" className="search-bar" placeholder="Look for used and new gear here..." />
+          <div className="vl" id="search-vl" />
+          <SearchButton className="search-bar"/>
         </li>
         <li>
           <NavLink to="/new_listing">

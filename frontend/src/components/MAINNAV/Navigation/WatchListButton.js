@@ -8,18 +8,18 @@ const WatchListButton = () => {
   const [isHover, setIsHover] = useState(false)
 
   return (
-    <div class="nav-icon-container">
+    <div className="nav-icon-container">
       <button
-        class="nav-icon"
+        className="nav-icon"
         onMouseOver={e => (setIsHover(true))} 
         onMouseOut={e => (setIsHover(false))}
       >
-        <img class="nav-icon"
+        <img className="nav-icon"
           id="watchlist-button"
           src={isHover ? WatchListColor : WatchList}
           />
-        <div class="nav-link-container">
-          <label for="watchlist-button">
+        <div className="nav-link-container">
+          <label htmlFor="watchlist-button">
             Watchlist
           </label>
         </div>

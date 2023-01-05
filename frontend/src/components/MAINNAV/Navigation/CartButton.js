@@ -7,18 +7,18 @@ const CartButton = () => {
   const [isHover, setIsHover] = useState(false)
 
   return (
-    <div class="nav-icon-container">
+    <div className="nav-icon-container">
       <button
-        class="nav-icon"
+        className="nav-icon"
         onMouseOver={e => (setIsHover(true))} 
         onMouseOut={e => (setIsHover(false))}
       >
-        <img class="nav-icon"
+        <img className="nav-icon"
           id="cart-icon-button"
           src={isHover ? CartIconColor : CartIcon}
           />
-        <div class="nav-link-container">
-          <label for="cart-icon-button">
+        <div className="nav-link-container">
+          <label htmlFor="cart-icon-button">
             Cart
           </label>
         </div>

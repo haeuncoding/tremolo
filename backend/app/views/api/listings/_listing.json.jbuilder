@@ -1,0 +1,11 @@
+json.id listing.id
+json.lister_id listing.lister_id
+json.make_id listing.make_id
+json.model_id listing.model_id
+json.category_id listing.category_id
+json.condition listing.condition
+json.price listing.price
+json.location listing.location
+json.color listing.color
+json.year_made listing.year_made
+json.description listing.description

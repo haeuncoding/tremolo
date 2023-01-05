@@ -1,3 +1,3 @@
-json.listings do
-  json.extract! @listings, :id, :listing_title, :created_at, :updated_at
+json.listings @listings do |listing|
+  json.partial! "api/listings/listing", listing: listing
 end

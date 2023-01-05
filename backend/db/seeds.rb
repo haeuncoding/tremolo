@@ -66,15 +66,14 @@ ApplicationRecord.transaction do
   puts "Seeding makes and categories..."
   
   CATEGORIES = [
-    "Guitar",
-    "Bass",
-    "Pedal",
-    "Amplifier",
-    "Keyboard",
-    "Synth",
+    "Guitars",
+    "Basses",
+    "Pedals",
+    "Amplifiers",
+    "Keyboards and Synths",
+    "Percussion",
     "Recording",
-    "Pro Audio",
-    "Drums"
+    "Pro Audio"
   ]
 
   MAKES = [
