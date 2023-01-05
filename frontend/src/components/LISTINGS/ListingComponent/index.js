@@ -2,32 +2,50 @@ import React, { useEffect, useState } from 'react';
 import * as listingActions from "../../../store/listings"
 import * as categoryActions from "../../../store/categories"
 import * as makeActions from "../../../store/makes"
+import * as modelActions from "../../../store/models"
 import * as shopActions from "../../../store/shops"
 import { useSelector, useDispatch } from "react-redux"
 import { Link, Redirect, useParams } from "react-router-dom"
 import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
 import './ListingComponent.css'
 
-function ListingComponent () {
+const ListingComponent = () => {
   const { listingId } = useParams()
+  console.log(listingId)
   const listing = useSelector(listingActions.getListing(listingId))
-  // const category = useSelector(categoryActions.getCategory(listing.categoryId))
-  // const make = useSelector(makeActions.getMake(listing.makeId))
-  // const shop = useSelector(shopActions.getShop(listing.listerId))
   const dispatch = useDispatch()
+
 
   useEffect(() => {
     dispatch(listingActions.fetchListing(listingId))
-    dispatch(categoryActions.fetchCategory(listing.categoryId))
-    dispatch(makeActions.fetchMake(listing.makeId))
-    // dispatch(shopActions.fetchShop(listing.listerId))
   }, [dispatch, listingId])
 
-  // const lister = demoLister
+  const category = useSelector(categoryActions.getCategory(listing.categoryId))
+  // const make = useSelector(makeActions.getMake(listing.makeId))
+  // const shop = useSelector(shopActions.getShop(listing.listerId))
+
+  useEffect(() => {
+    dispatch(categoryActions.fetchCategory(listing.categoryId))
+  }, [dispatch, listing.categoryId])
+
+  // useEffect(() => {
+  //   dispatch(makeActions.fetchMake(listing.makeId))
+  // }, [dispatch, listing.makeId])
+
+  // useEffect(() => {
+  //   dispatch(shopActions.fetchShop(listing.listerId))
+  // }, [dispatch, listing.listerId])
+
+
+
+  if (!listing) {return (null)}
+  if (!category) {return (null)}
+  // if (!make) {return (null)}
+  // if (!shop) {return (null)}
+  console.log(listing)
 
 
   return (
-    // <h1>{listing.listingTitle}</h1>
     <>
     <div className="listing-container">
         <div className="listing-img">
@@ -39,9 +57,9 @@ function ListingComponent () {
         </div>
         <div className="listing-info">
           <div className="listing-top">
-              {/* <h5 id="category-make">{category} // {make}</h5> */}
+              <h5 id="category-make-model">{category.category} // </h5>
             <div className="hl" />
-              {/* <h4 id="shop-name">{shop.name}</h4> */}
+              {/* <h4 id="shop-name">{shop.shopName}</h4> */}
               <h5 id="location">{listing.location}</h5>
               <h1 id="listing-title">{listing.listingTitle}</h1>
                 <h5 id="condition">Condition - {listing.condition}</h5>

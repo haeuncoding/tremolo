@@ -4,7 +4,7 @@ import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
 import lolPhoto2 from '../../../assets/temp_assets/dumb_photo_4.JPG'
 import { useSelector, useDispatch } from "react-redux";
 import ListingTile from "../ListingTile/ListingTile";
-import './ListingGrid.css'
+import './ListingIndex.css'
 import { useEffect } from "react";
 
 {
@@ -112,13 +112,14 @@ const listing1 = ({
     description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
   })
 }
-function ListingGrid () {
-  const listings = useSelector(listingActions.getListings())
-  console.log("listings array listing grid")
+function ListingIndex () {
+  const listingsArr = useSelector(listingActions.getListings)
+  const listings = listingsArr.flat(1)
+  console.log('listing array')
   console.log(listings)
-  // const listings = [
-  //   listing1, listing2, listing3, listing4, listing5, listing6, listing7, listing8
-  // ]
+  console.log('listing one')
+  console.log(listings[0])
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -126,11 +127,10 @@ function ListingGrid () {
   }, [dispatch])
 
   return (
-    <ul className="listing-grid">
+    <ul className="listing-index">
       {listings?.map((listing) => <ListingTile listing={listing} class="ind-tile"/>)}
     </ul>
-    // <h1>this is the listing grid</h1>
   )
 }
 
-export default ListingGrid;
+export default ListingIndex;

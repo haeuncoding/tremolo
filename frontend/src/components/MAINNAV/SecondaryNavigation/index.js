@@ -15,6 +15,7 @@ function SecondaryNavigation() {
     dispatch(categoryActions.fetchCategories())
   }, [dispatch])
 
+  
 // {<CategoryLink category={category}
 
   return (

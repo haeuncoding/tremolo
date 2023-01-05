@@ -6,6 +6,7 @@ import SignupFormPage from './components/SESSIONS/SignupFormPage';
 
 import ListingFormPage from './components/LISTINGS/ListingFormPage';
 import ListingGrid from './components/LISTINGS/ListingGrid';
+import ListingIndex from './components/LISTINGS/ListingIndex'
 import ListingTile from './components/LISTINGS/ListingTile/ListingTile';
 import ListingComponent from './components/LISTINGS/ListingComponent';
 
@@ -52,6 +53,9 @@ function App() {
           </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route exact path="/listings">
+            <ListingIndex />
           </Route>
           <Route exact path="/listings/:listingId">
             <ListingComponent />
