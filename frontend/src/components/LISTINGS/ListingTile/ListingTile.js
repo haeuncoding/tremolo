@@ -6,12 +6,10 @@ import './ListingTile.css'
 
 function ListingTile({ listing }) {
 
-  // listing = demoListing
-
   return (
     <>
       <li className="ind-tile">
-        <Link exact to={`/api/listings/${listing.id}`}>
+        <Link to={`/listings/${listing.id}`}>
           <div className="tile-container">
             <div id="image-container">
               <img src={lolPhoto} className="child-ele listing-image" id="preview-image"/>      
