@@ -75,9 +75,7 @@ function Navigation() {
         <li>
           <NotifBellButton />
         </li>
-        <li>
           {sessionLinks}
-        </li>
       </ul>
     </div>
   );

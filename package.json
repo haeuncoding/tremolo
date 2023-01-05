@@ -7,7 +7,7 @@
     "node": "16.x"
   },
   "directories": {
-    "lib": "lib"
+    "lib": "./backend/lib"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

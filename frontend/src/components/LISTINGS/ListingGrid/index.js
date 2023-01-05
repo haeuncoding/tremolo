@@ -2,49 +2,28 @@ import ListingComponent from "../ListingComponent";
 import * as listingActions from "../../../store/listings"
 import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
 import lolPhoto2 from '../../../assets/temp_assets/dumb_photo_4.JPG'
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import ListingTile from "./ListingTile";
 import './ListingGrid.css'
-
-const demoListing = {
-    listerId: 1,
-    makeId: 4,
-    categoryId: 1,
-    image: lolPhoto,
-    listingTitle: "Demo Model Stratocaster Placid Lake Blue",
-    condition: "Good",
-    price: 650.20,
-    location: "Chicago, IL, USA",
-    year_made: "2010s",
-    description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
-}
-
-const demoListing2 = {
-    listerId: 1,
-    makeId: 4,
-    categoryId: 1,
-    image: lolPhoto2,
-    listingTitle: "LE Model Telecaster Blood Red",
-    condition: "Excellent",
-    price: 750.00,
-    location: "Richmond, CA, USA",
-    year_made: "2010s",
-    description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
-}
-
-
+import { useEffect } from "react";
 
 function ListingGrid () {
-  const listings = useSelector(listingActions.getListings())
+  const listings = useSelector(listingActions.getListings)
+  const dispatch = useDispatch()
   // const listings = [
   //   demoListing,
   //   demoListing2
   // ]
 
+  useEffect(() => {
+    dispatch(listingActions.fetchListings())
+  }, [dispatch])
+
   return (
     <ul class="listing-grid">
-      {listings?.map((listing) => <ListingTile listing={(listing)} class="ind-tile"/>)}
+      {listings?.map((listing) => <ListingTile listing={listing} class="ind-tile"/>)}
     </ul>
+    // <h1>this is the listing grid</h1>
   )
 }
 

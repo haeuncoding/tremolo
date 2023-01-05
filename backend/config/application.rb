@@ -18,13 +18,13 @@ require "action_cable/engine"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Backend
+module Tremolo
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore,
-      key: '_auth_me_session',
+      key: '_tremolo_session',
       same_site: :lax, 
       secure: Rails.env.production?
 
