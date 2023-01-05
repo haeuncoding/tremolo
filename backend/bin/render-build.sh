@@ -3,4 +3,6 @@
 set -o errexit
 
 npm run build
-npm run rails
+cd backend
+bundle install
+rails db:migrate db:seed
