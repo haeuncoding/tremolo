@@ -35,12 +35,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_05_085817) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "model_id"
-    t.bigserial "users_id", null: false
     t.integer "watcher_count"
     t.index ["category_id"], name: "index_listings_on_category_id"
     t.index ["lister_id"], name: "index_listings_on_lister_id"
     t.index ["make_id"], name: "index_listings_on_make_id"
-    t.index ["users_id"], name: "index_listings_on_users_id"
   end
 
   create_table "makes", force: :cascade do |t|
