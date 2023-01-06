@@ -10,9 +10,10 @@ import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
 import './ListingComponent.css'
 
 const ListingComponent = () => {
+  const sessionUser = useSelector(state => state.session.user)
+  const [isWatched, setIsWatched] = useState(false)
   const { listingId } = useParams()
   const listing = useSelector(listingActions.getListing(listingId))
-  const [isLaunched, setIsLaunched] = useState(false)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -20,16 +21,45 @@ const ListingComponent = () => {
     
   }, [dispatch, listingId])
 
-  
-  const category = useSelector(categoryActions.getCategory(listing.categoryId))
-  const make = useSelector(makeActions.getMake(listing.makeId))
-  // const shop = useSelector(shopActions.getShop(listing.listerId))
+  const handleWatchClick = (e) => {
+    e.preventDefault();
+    if (sessionUser) {
+      if (isWatched) {
+        setIsWatched(false)
+        console.log(isWatched)
+        console.log(sessionUser.watchlist)
+        var index = sessionUser.watchlist.indexOf(listingId)
+        sessionUser.watchlist.splice(index, 1)
+        console.log('before')
+        console.log(e.target.className)
+        e.target.className = "watch-button-off"
+        console.log('after')
+        console.log(e.target.className)
+      } else {
+        setIsWatched(true)
+        console.log(isWatched)
+        console.log(sessionUser.watchlist)
+        sessionUser.watchlist.push(listingId)
+        console.log('before')
+        console.log(e.target.className)
+        e.target.className = "watch-button-on"
+        console.log('after')
+        console.log(e.target.className)
+      }
+    }
+    
+    // sessionUser.watchlist.push(listingId)
+    // then redirect to grid of sessionUser's watchlist
+  }
+  // const category = useSelector(categoryActions.getCategory(listing.categoryId))
+  // const make = useSelector(makeActions.getMake(listing.makeId))
+  // const shop = useSelector(shopActions.getShopByOwnerId(listing.listerId))
 
-  useEffect(() => {
-    dispatch(categoryActions.fetchCategory(listing.categoryId))
-    dispatch(makeActions.fetchMake(listing.makeId))
-    // dispatch(shopActions.fetchShop(listing.listerId))
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(categoryActions.fetchCategory(listing.categoryId))
+  //   dispatch(makeActions.fetchMake(listing.makeId))
+  //   dispatch(shopActions.fetchShopByOwnerId(listing.listerId))
+  // }, [dispatch])
 
   // console.log('lister id')
   // console.log(listing.listerId)
@@ -54,8 +84,8 @@ const ListingComponent = () => {
 
 
 
-  if (!listing ) {return (null)}
-// || !category || !make
+  if (!listing) {return (null)}
+//  || !category || !make || !shop
   // console.log(listing)
 
 
@@ -65,13 +95,10 @@ const ListingComponent = () => {
         <div className="listing-img">
             <img src={lolPhoto} alt="" />
             <br />
-            <button>
-              Click here to watch
-            </button>
         </div>
         <div className="listing-info">
           <div className="listing-top">
-              <h5 id="category-make-model">{category.category} // {make.brandName}</h5>
+              {/* <h5 id="category-make-model">{category.category} // {make.brandName}</h5> */}
             <div className="hl" />
               {/* <h4 id="shop-name">{shop.shopName}</h4> */}
               <h5 id="location">{listing.location}</h5>
@@ -84,7 +111,11 @@ const ListingComponent = () => {
                 <br className="user-options" />
                 <div className="user-options" id="div2">
                   <button className="user-options" id="offer-button">Make an Offer</button>
-                  <button className="user-options" id="watch-button">Watch</button>
+                  <button className="watch-button-off" 
+                    id="watch-button" 
+                    onClick={handleWatchClick}>
+                      Watch
+                  </button>
                 </div>
             <div className="hl" />
               <p>

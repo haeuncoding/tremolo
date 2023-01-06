@@ -49,6 +49,17 @@
   align-self: center;
 }
 
+.watch-button-on:focus {
+  transition: .25s;
+  cursor: pointer;
+  background-color: #0F749A;
+  color: rgb(252, 252, 252);
+  border-color: #0F749A;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 30px;
+}
+
 h3#price {
   font-size: 3vw;
   font-weight: 500;
@@ -101,7 +112,7 @@ div.user-options#div2 {
   margin-bottom: 1vw;
 }
 
-button.user-options {
+button.user-options, button.watch-button-on, button.watch-button-off {
   display: flex;
   font-family: 'Open Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-decoration: none;
@@ -151,7 +162,7 @@ button.user-options {
   border-radius: 30px;
   justify-content: center;
 }
-button.user-options:hover, #watch-button:hover, #offer-button:hover {
+button.user-options:hover, #offer-button:hover {
   transition: .25s;
   cursor: pointer;
   background-color: #0F749A;
@@ -163,6 +174,30 @@ button.user-options:hover, #watch-button:hover, #offer-button:hover {
 
 }
 
+#watch-button:hover {
+  transition: .25s;
+  cursor: pointer;
+  background-color: #0F749A;
+  color: rgb(252, 252, 252);
+  border: #0F749A;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 30px;
+}
+
+.watch-button-on {
+  transition: .25s;
+  cursor: pointer;
+  background-color: #0F749A;
+  color: rgb(252, 252, 252);
+  border: #0F749A;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 30px;
+}
+
+
+
 #cart-button:hover {
   transition: .25s;
   cursor: pointer;
@@ -173,4 +208,15 @@ button.user-options:hover, #watch-button:hover, #offer-button:hover {
   border-width: 2px;
   border-radius: 30px;
 
+}
+
+.watch-button-on:active {
+  transition: .25s;
+  cursor: pointer;
+  background-color: #0F749A;
+  color: rgb(252, 252, 252);
+  border-color: #0F749A;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 30px;
 }

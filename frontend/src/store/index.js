@@ -10,6 +10,7 @@ import modelsReducer from './models'
 import shopReviewsReducer from './shopReviews'
 import shopsReducer from './shops'
 import session from './session'
+import usersReducer from './users';
 
 export const rootReducer = combineReducers({
   session: sessionReducer,
@@ -19,7 +20,8 @@ export const rootReducer = combineReducers({
   shopReviews: shopReviewsReducer,
   categories: categoriesReducer,
   models: modelsReducer,
-  shops: shopsReducer
+  shops: shopsReducer,
+  users: usersReducer
 })
 
 let enhancer;
