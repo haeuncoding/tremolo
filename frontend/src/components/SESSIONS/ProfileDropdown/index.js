@@ -38,7 +38,7 @@ function ProfileDropdown({ user }) {
           <p className="dropdown-link">
             Welcome back, {user.username}
           </p>
-        <a class="dropdown-link" onClick={logout}>Log Out</a>
+        <a className="dropdown-link" onClick={logout}>Log Out</a>
       </div>
     </div>
   )
