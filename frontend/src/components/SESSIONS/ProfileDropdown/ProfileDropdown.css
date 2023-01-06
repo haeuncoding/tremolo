@@ -4,9 +4,11 @@ form, body, h1, h2, h3, p {
 
 
 .logged-in-drop-button {
-  background: none;
+  background: #FFFFFF;
   border: none;
 }
+
+
 
 /* 
 a.logged-in-dropdown-content {
@@ -17,13 +19,38 @@ a.logged-in-dropdown-content {
   display: block;
 } */
 /* Change color of dropdown links on hover */
-.logged-in-dropdown-content a:hover {
+/* .logged-in-dropdown-content a:hover {
   /* background-color: #ddd; */
+
+
+div.logged-in-dropdown {
+  text-align: right;
+
+  position: relative;
 }
+
+.dropdown-link {
+    width: 100%;
+    font-size: 1.5vw;
+    padding: 2vw;
+    /* padding-right: 4vw; */
+    /* margin-left: auto; */
+    /* margin-right: 4vw; */
+    text-align: right;
+  }
+
+  
 
 /* Show the dropdown menu on hover */
 .logged-in-dropdown:hover .logged-in-dropdown-content {
+  position: absolute;
+  text-align: right;
+  background: solid;
+  float: right;
+    background-color: #FFFFFF;
   display: block;
+  /* width: 200%; */
+  align-content: right;
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */

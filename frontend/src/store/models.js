@@ -17,7 +17,7 @@ export const receiveModel = (model) => ({
 
 export const getModels = (store) => {
   if (store.models) { 
-    return Object.values(store.models); 
+    return Object.values(store.models).flat(1); 
   } else {
   return [];
   }

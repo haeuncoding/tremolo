@@ -2,8 +2,6 @@ import React from 'react'
 import { useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import './Navigation.css'
-import LoginFormModal from '../../SESSIONS/LoginFormModal';
-import SignupFormModal from '../../SESSIONS/SignupFormPageModal';
 import GenDropdown from '../../SESSIONS/GenDropdown';
 import ProfileDropdown from '../../SESSIONS/ProfileDropdown';
 
@@ -63,16 +61,16 @@ function Navigation() {
             </button>
           </NavLink>
         </li>
-        <li>
+        <li className="button-container">
           <WatchListButton />
         </li>
-        <li>
+        <li className="button-container">
           <FeedGridButton />
         </li>
-        <li>
+        <li className="button-container">
           <CartButton />
         </li>
-        <li>
+        <li className="button-container">
           <NotifBellButton />
         </li>
           {sessionLinks}

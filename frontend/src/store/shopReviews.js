@@ -23,7 +23,7 @@ export const removeShopReview = (shopReviewId) => ({
 
 export const getShopReviews = (store) => {
   if (store.shopReviews) { 
-    return Object.values(store.shopReviews); 
+    return Object.values(store.shopReviews).flat(1); 
   } else {
   return [];
   }

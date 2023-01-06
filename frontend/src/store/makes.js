@@ -17,7 +17,7 @@ export const receiveMake = (make) => ({
 
 export const getMakes = (store) => {
   if (store.makes) { 
-    return Object.values(store.makes); 
+    return Object.values(store.makes).flat(1); 
   } else {
   return [];
   }

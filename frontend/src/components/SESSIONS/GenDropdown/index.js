@@ -19,15 +19,16 @@ function GenDropdown() {
         <img className="nav-icon"
           src={isHover ? UserIconActive : UserIconInactive}
         />  
+        <br />
         <label htmlFor="dropdown-content">
           Login
         </label>
       </button>
       <div className="dropdown-content">
-          <Link to="/login">
+          <Link class="dropdown-link" to="/login">
               Login
           </Link>
-          <Link to="/signup">
+          <Link class="dropdown-link" to="/signup">
               Signup
           </Link>
       </div>
