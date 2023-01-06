@@ -4,6 +4,7 @@
   width: 20vw;
   height: 20vw;
   object-fit: cover;
+  text-decoration: none;
 }
 
 
@@ -70,4 +71,5 @@ h3#price {
   margin-left: -.45vw;
   font-size: 2vw;
   font-weight: normal;
+  text-decoration: none;
 }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as listingActions from "../../../store/listings"
 import * as categoryActions from "../../../store/categories"
 import * as makeActions from "../../../store/makes"
-import * as modelActions from "../../../store/models"
+// import * as modelActions from "../../../store/models"
 import * as shopActions from "../../../store/shops"
 import { useSelector, useDispatch } from "react-redux"
 import { Link, Redirect, useParams } from "react-router-dom"
@@ -11,22 +11,33 @@ import './ListingComponent.css'
 
 const ListingComponent = () => {
   const { listingId } = useParams()
-  console.log(listingId)
-  const listing = useSelector(listingActions.getListing(listingId))
   const dispatch = useDispatch()
-
+  const listing = useSelector(listingActions.getListing(listingId))
+  // console.log(make)
 
   useEffect(() => {
+    if (listing) {
     dispatch(listingActions.fetchListing(listingId))
-  }, [dispatch, listingId])
+  }}, [dispatch, listingId])
 
-  const category = useSelector(categoryActions.getCategory(listing.categoryId))
+
+  // const category = useSelector(categoryActions.getCategory(listing.categoryId))
+  // const make = useSelector(makeActions.getMake(listing.makeId))
+
+  // const shopArr = useSelector(shopActions.getShop(listing.listerId))
+
+  // useEffect(() => {
+  //   dispatch(categoryActions.fetchCategory(listing.categoryId))
+  //   dispatch(makeActions.fetchMake(listing.makeId))
+  // }, [dispatch])
+
+    // console.log(shop)
   // const make = useSelector(makeActions.getMake(listing.makeId))
   // const shop = useSelector(shopActions.getShop(listing.listerId))
 
-  useEffect(() => {
-    dispatch(categoryActions.fetchCategory(listing.categoryId))
-  }, [dispatch, listing.categoryId])
+  // useEffect(() => {
+  //   dispatch(categoryActions.fetchCategory(listing.categoryId))
+  // }, [dispatch, listing.categoryId])
 
   // useEffect(() => {
   //   dispatch(makeActions.fetchMake(listing.makeId))
@@ -39,8 +50,8 @@ const ListingComponent = () => {
 
 
   if (!listing) {return (null)}
-  if (!category) {return (null)}
-  // if (!make) {return (null)}
+  // if (!category) {return null}
+  // if (!make) {return null}
   // if (!shop) {return (null)}
   console.log(listing)
 
@@ -57,7 +68,7 @@ const ListingComponent = () => {
         </div>
         <div className="listing-info">
           <div className="listing-top">
-              <h5 id="category-make-model">{category.category} // </h5>
+              {/* <h5 id="category-make-model">{category.category} // {make.brandName}</h5> */}
             <div className="hl" />
               {/* <h4 id="shop-name">{shop.shopName}</h4> */}
               <h5 id="location">{listing.location}</h5>

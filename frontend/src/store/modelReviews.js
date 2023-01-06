@@ -23,7 +23,7 @@ export const removeModelReview = (modelReviewId) => ({
 
 export const getModelReviews = (store) => {
   if (store.modelReviews) { 
-    return Object.values(store.modelReviews); 
+    return Object.values(store.modelReviews).flat(1); 
   } else {
   return [];
   }

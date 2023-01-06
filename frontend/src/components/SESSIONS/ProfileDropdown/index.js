@@ -29,13 +29,16 @@ function ProfileDropdown({ user }) {
         <img className="nav-icon"
           src={isHover ? UserIconActive : UserIconInactive}
         />  
+        <br />
         <label htmlFor="logged-in-dropdown-content">
           Profile
         </label>
       </button>
       <div className="logged-in-dropdown-content" id="logged-in-dropdown-content">
-          Welcome back, {user.username}
-        <a onClick={logout}>Log Out</a>
+          <p className="dropdown-link">
+            Welcome back, {user.username}
+          </p>
+        <a class="dropdown-link" onClick={logout}>Log Out</a>
       </div>
     </div>
   )

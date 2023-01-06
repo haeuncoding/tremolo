@@ -17,7 +17,7 @@ export const receiveCategory = (category) => ({
 
 export const getCategories = (store) => {
   if (store.categories) { 
-    return Object.values(store.categories); 
+    return Object.values(store.categories).flat(1); 
   } else {
   return [];
   }

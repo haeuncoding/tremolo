@@ -26,11 +26,16 @@ ul#main-nav {
   margin: auto;
 }
 
+li.button-container {
+  display: flex;
+  margin-left: .5vw;
+  margin-right: .5vw;
+  /* align-content: center; */
+}
+
 button.nav-icon {
   width: 5vw;
   height: auto;
-
-  text-align: center;
 }
 
 input.search-bar {
@@ -106,7 +111,7 @@ button#search-button:hover > #search-icon {
 }
 
 .nav-link-container {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .search-bar {
@@ -151,11 +156,11 @@ li {
   font-style: none;
   color: none;
   display: flex;
-  text-align: center;
+  /* text-align: center; */
   text-decoration: none;
-  border: none;
+  /* border: none; */
   font-size: 1.5vw;
-  align-content: center;
+  /* align-content: center; */
 }
 
 button#new-listing-button {

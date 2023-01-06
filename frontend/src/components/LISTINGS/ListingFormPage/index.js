@@ -21,23 +21,22 @@ const ListingFormPage = () => {
   const [yearMade, setYearMade] = useState("");
   const [description, setDescription] = useState("")
   const [isEdit, setIsEdit] = useState(false)
+
   // const [errors, setErrors] = useState([]);
   const makes = Makes
   const categories = Categories
+  const conditions = [
+    "Non-Functioning", 
+    "Poor", 
+    "Fair", 
+    "Good", 
+    "Very Good", 
+    "Excellent", 
+    "Mint", 
+    "Brand New"
+  ]
+  
   const listing = useSelector(listingActions.getListing(listingId));
-
-//   const demoListing = {
-//     listerId: 1,
-//     makeId: 4,
-//     categoryId: 1,
-//     image: lolPhoto,
-//     listingTitle: "Demo Model Stratocaster Placid Lake Blue",
-//     condition: "Good",
-//     price: 650.20,
-//     location: "Chicago, IL, USA",
-//     year_made: "2010s",
-//     description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers! Mauris finibus arcu tellus, non rutrum ante efficitur eget. Fusce dignissim lacinia elementum. Sed placerat mi a mauris porta, at efficitur elit tincidunt. Suspendisse vel sollicitudin neque. Sed facilisis elementum massa sit amet feugiat. Nullam lacinia est eros, a efficitur massa dictum eget. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam id massa nec purus pharetra hendrerit."
-// }
 
 
   const handleSubmit = async e => {
@@ -72,7 +71,7 @@ const ListingFormPage = () => {
       }
       dispatch(listingActions.createListing(data));
     }
-    return <Redirect to="/" />
+    return (<Redirect to="/" />)
   };
 
 
@@ -81,9 +80,9 @@ const ListingFormPage = () => {
     if (listingId) {
       setIsEdit(true)
       setListingTitle(listing.listingTitle);
-      setMake(listing.make);
-      setModel(listing.model)
-      setCategory(listing.category);
+      setMake(listing.makeId);
+      setModel(listing.modelId)
+      setCategory(listing.categoryId);
       setCondition(listing.condition)
       setPrice(listing.price)
       setLocation(listing.location)
@@ -203,6 +202,24 @@ const ListingFormPage = () => {
             value={yearMade} 
             onChange={e => setYearMade(e.target.value)}
           />
+          <br/>
+          <label className="input-field" for="condition">
+            Condition:
+          </label>
+            <br/>
+          <select name="condition"
+            className="input-box" 
+            value={condition} 
+            onChange={e => setCondition(e.target.value)}>
+              <option value="" disabled selected>
+                Condition
+              </option>
+              {conditions.map((condition) => 
+                <option value={condition}>
+                  {condition}
+                </option>
+              )}
+          </select>
             <br/>
           <label className="input-field" htmlFor="description">
             Description:

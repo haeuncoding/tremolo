@@ -1,4 +1,4 @@
-.nav-icon-container, .logged-in-dropdown, .gen-dropdown {
+.button-container .logged-in-dropdown .gen-dropdown {
   width: 5.5vw;
   height: 5.5vw;
   margin-top: 1.5vw;
@@ -10,7 +10,7 @@
 }
 
 .logged-in-dropdown, .gen-dropdown {
-  text-align: right;
+
   position: relative;
   /* position: relative; */
   /* display: inline-block; */

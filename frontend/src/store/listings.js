@@ -1,3 +1,5 @@
+import csrfFetch from '../store/csrf'
+
 // action constants and corresponding action creators
 export const RECEIVE_LISTINGS = "listings/RECEIVE_LISTINGS"
 export const RECEIVE_LISTING = "listings/RECEIVE_LISTING"
@@ -23,7 +25,7 @@ export const removeListing = (listingId) => ({
 
 export const getListings = (store) => {
   if (store.listings) { 
-    return Object.values(store.listings); 
+    return Object.values(store.listings).flat(1); 
   } else {
   return [];
   }
@@ -55,7 +57,7 @@ export const fetchListing = (listingId) => async (dispatch) => {
 }
 
 export const createListing = (listingData) => async (dispatch) => {
-  const response = await fetch(`/api/listings`, {
+  const response = await csrfFetch(`/api/listings`, {
     method: "POST",
     body: JSON.stringify(listingData),
     headers: {
