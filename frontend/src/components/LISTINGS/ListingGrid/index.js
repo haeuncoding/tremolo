@@ -6,15 +6,18 @@ import { useSelector, useDispatch } from "react-redux";
 import ListingTile from "../ListingTile/ListingTile";
 import './ListingGrid.css'
 import { useEffect } from "react";
+import * as filters from "../../../util/filters"
 
-function ListingGrid () {
-  // const listings = [
+const ListingGrid = (filter) => {
+
   const listings = useSelector(listingActions.getListings)
-  // console.log("listings array listing grid")
-  // console.log(listings)
-  // const listings = [
-  //   listing1, listing2, listing3, listing4, listing5, listing6, listing7, listing8
-  // ]
+
+  // if (!filter || !typeof(filter) === 'function') {
+  //   filter = filters.defaultFilter
+  // }
+
+  // listings = filter(listings)
+
   const dispatch = useDispatch()
 
   useEffect(() => {

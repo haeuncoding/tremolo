@@ -14,59 +14,61 @@ import ReviewFormTest from './components/REVIEWS/ReviewForm';
 
 import Navigation from "./components/MAINNAV/Navigation";
 import SecondaryNavigation from './components/MAINNAV/SecondaryNavigation';
+// import Cart from './components/MAINNAV/Navigation/Cart/Cart'
+import * as filters from './util/filters'
 
 import './App.css'
 
 function App() {
   return (
     <>
-    <div id="nav-container">
-      <div>
-        <Navigation 
-          className="nav"
-          id="main-nav"
-          />
-      </div>  
-      <div>
-      <SecondaryNavigation 
-        className="nav"
-        id="sec-nav"
-        />
-      </div>  
-    </div>
-        <Switch>
-          <Route exact path="/">
-            <div id="home-feed-grid">
-              <h1 className="grid-title">Your Daily Picks</h1>
-              <br />
-              <ListingGrid />
-              <h1 className="grid-title">Don't String Me Along! Guitars On Sale:</h1>
-              <br />
-              <ListingGrid />
-              <h1 className="grid-title">You Know I'm All About that Bass.</h1>
-              <br />
-              <ListingGrid />
-            </div>
-          </Route>
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route exact path="/listings">
-            <ListingIndex />
-          </Route>
-          <Route path="/listings/:listingId">
-            <ListingComponent />
-          </Route>
-          <Route path="/new_listing">
-            <ListingFormPage />
-          </Route>
-          <Route path="/new_review">
-            <ReviewFormTest />
-          </Route>
-        </Switch>
+        <div id="nav-container">
+          <div>
+            <Navigation 
+              className="nav"
+              id="main-nav"
+              />
+          </div>  
+          <div>
+          <SecondaryNavigation 
+            className="nav"
+            id="sec-nav"
+            />
+          </div>  
+        </div>
+          <Switch>
+            <Route exact path="/">
+              <div id="home-feed-grid">
+                <h1 className="grid-title">Your Daily Picks</h1>
+                <br />
+                <ListingGrid filter={filters.defaultFilter}/>
+                <h1 className="grid-title">Don't String Me Along! Guitars On Sale:</h1>
+                <br />
+                <ListingGrid ListingGrid filter={filters.defaultFilter} />
+                <h1 className="grid-title">You Know I'm All About that Bass.</h1>
+                <br />
+                <ListingGrid ListingGrid filter={filters.defaultFilter} />
+              </div>
+            </Route>
+            <Route path="/login">
+              <LoginFormPage />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
+            <Route exact path="/listings">
+              <ListingIndex />
+            </Route>
+            <Route path="/listings/:listingId">
+              <ListingComponent />
+            </Route>
+            <Route path="/new_listing">
+              <ListingFormPage />
+            </Route>
+            <Route path="/new_review">
+              <ReviewFormTest />
+            </Route>
+          </Switch>
     </>
   );
 }

@@ -37,6 +37,14 @@ export const getShop = (shopId) => (store) => {
   }
 }
 
+export const getShopByOwnerId = (ownerId) => (store) => {
+  if (store.shops && store.shops.find(shop => shop.ownerId == ownerId)) {
+      return store.shops.find(shop => shop.ownerId == ownerId)
+  } else {
+    return null
+  }
+}
+
 // thunk action creators
 export const fetchShops = () => async (dispatch) => {
   const response = await fetch(`/api/shops`)
@@ -53,6 +61,17 @@ export const fetchShop = (shopId) => async (dispatch) => {
     dispatch(receiveShop(shop))
   }
 }
+
+export const fetchShopByOwnerId = (ownerId) => (store) => async (dispatch) => {
+  const shop = store.shops.find(shop => shop.ownerId == ownerId)
+  const response = await fetch(`/api/shops/${shop.id}`)
+  if (response.ok) {
+    const foundShop = await response.json()
+    dispatch(receiveShop(foundShop))
+  }
+}
+
+
 
 export const createShop = (shopData) => async (dispatch) => {
   const response = await fetch(`/api/shops`, {
