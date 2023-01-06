@@ -57,7 +57,7 @@ function App() {
           <Route exact path="/listings">
             <ListingIndex />
           </Route>
-          <Route exact path="/listings/:listingId">
+          <Route path="/listings/:listingId">
             <ListingComponent />
           </Route>
           <Route path="/new_listing">

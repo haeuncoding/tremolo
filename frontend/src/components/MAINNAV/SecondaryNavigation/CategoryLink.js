@@ -6,8 +6,8 @@ const CategoryLink = ({category}) => {
 
   return (
     <>
-      <li class="sec-nav-link-container">
-        <NavLink class="sec-nav-link" to={`/categories/${category.id}`}>
+      <li category={category}>
+        <NavLink className="sec-nav-link" to={`/categories/${category.id}`}>
           {category.category}
         </NavLink>
       </li>

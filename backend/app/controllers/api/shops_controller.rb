@@ -3,6 +3,11 @@ class Api::ShopsController < ApplicationController
   wrap_parameters include: Shop.attribute_names
 
   before_action :require_logged_in, only: [:create, :update, :destroy]
+  def index
+    @shops = Shop.all
+    render :index
+  end
+  
   def create
     @shop = Shop.new(shop_params)
       if @shop.save

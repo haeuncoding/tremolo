@@ -23,9 +23,9 @@ function SecondaryNavigation() {
   return (
     <ul id="sec-nav-container">
       {categories.map(category => <CategoryLink category={category} />)}
-      <li class="sec-nav-link-container">
+      <li className="sec-nav-link-container">
         <NavLink to="#"
-          class="sec-nav-link">
+          className="sec-nav-link">
             View All
         </NavLink>
       </li>

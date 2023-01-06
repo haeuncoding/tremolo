@@ -25,10 +25,10 @@ function GenDropdown() {
         </label>
       </button>
       <div className="dropdown-content">
-          <Link class="dropdown-link" to="/login">
+          <Link className="dropdown-link" to="/login">
               Login
           </Link>
-          <Link class="dropdown-link" to="/signup">
+          <Link className="dropdown-link" to="/signup">
               Signup
           </Link>
       </div>

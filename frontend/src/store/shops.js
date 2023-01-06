@@ -23,7 +23,7 @@ export const removeShop = (shopId) => ({
 
 export const getShops = (store) => {
   if (store.shops) { 
-    return Object.values(store.shops).flat(1); 
+    return Object.values(store.shops); 
   } else {
   return [];
   }

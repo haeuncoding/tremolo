@@ -33,6 +33,7 @@ export const getListings = (store) => {
 
 export const getListing = (listingId) => (store) => {
   if (store.listings && store.listings[listingId]) {
+    console.log(store.listings)
     return store.listings[listingId]
   } else {
     return null;
@@ -72,7 +73,7 @@ export const createListing = (listingData) => async (dispatch) => {
 }
 
 export const updateListing = (listing) => async (dispatch) => {
-  const response = await fetch(`/api/listings/${listing.id}`, {
+  const response = await csrfFetch(`/api/listings/${listing.id}`, {
     method: "PATCH",
     body: JSON.stringify(listing),
     headers: {
