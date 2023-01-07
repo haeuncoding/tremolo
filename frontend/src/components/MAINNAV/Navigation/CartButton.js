@@ -1,6 +1,7 @@
 import CartIcon from '../../../assets/CartIconFin.png';
 import CartIconColor from '../../../assets/CartIconFinColor.png';
-import SideCart from './SideCart/SideCart'
+// import SideCart from './SideCart/SideCart'
+// import { slide as Cart } from 'react-burger-menu';
 import React, { useState } from 'react';
 import './Button.css'
 
@@ -22,15 +23,18 @@ const CartButton = () => {
         onMouseOver={e => (setIsHover(true))} 
         onMouseOut={e => (setIsHover(false))}
         cursor="pointer"
-        onClick={handleCartClick}
+        // onClick={handleCartClick}
       >
-        <img className="nav-icon"
+        {/* <Cart className="nav-icon"
           id="cart-icon-button"
-          src={isHover ? CartIconColor : CartIcon}
+          customBurgerIcon={ */}
+          <img className="nav-icon"
+          id="cart-icon-button"
+          src={isHover ? CartIconColor : CartIcon } 
           />
+
         <div className="nav-link-container">
           <label htmlFor="cart-icon-button">
-            <SideCart  right />
             Cart
           </label>
         </div>

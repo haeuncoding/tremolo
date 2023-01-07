@@ -91,6 +91,5 @@ const BrandNames = [
     "Purrl",
     "Evens",
     "Nemo"
-]
-
+  ]
 export default BrandNames
