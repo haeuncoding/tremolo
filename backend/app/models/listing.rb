@@ -50,10 +50,25 @@ class Listing < ApplicationRecord
   #   class_name: :User,
   #   dependent: :destroy
   
-  belongs_to :shop,
+  # belongs_to :shop,
+  #   primary_key: :id,
+  #   foreign_key: :lister_id,
+  #   class_name: :Shop
+
+  belongs_to :category,
     primary_key: :id,
-    foreign_key: :lister_id,
-    class_name: :Shop
+    foreign_key: :category_id,
+    class_name: :Category
+
+  belongs_to :make,
+    primary_key: :id,
+    foreign_key: :make_id,
+    class_name: :Make
+
+  belongs_to :model,
+    primary_key: :id,
+    foreign_key: :model_id,
+    class_name: :Model
 
   def self.find_by_id(id)
     @listing = Listing.find_by(id)

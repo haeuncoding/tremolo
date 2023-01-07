@@ -14,10 +14,10 @@ class Shop < ApplicationRecord
   validates :owner_id, presence: true, uniqueness: true
   validates :location, presence: true
 
-  has_many :listings,
-    primary_key: :id,
-    foreign_key: :lister_id,
-    class_name: :Listing
+  # has_many :listings,
+  #   primary_key: :id,
+  #   foreign_key: :lister_id,
+  #   class_name: :Listing
 
   belongs_to :owner,
     primary_key: :id,

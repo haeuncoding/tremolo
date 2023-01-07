@@ -1,13 +1,12 @@
 const Categories = [
-    "Guitar",
-    "Bass",
-    "Pedal",
-    "Amplifier",
-    "Keyboard",
-    "Synth",
+    "Guitars",
+    "Basses",
+    "Pedals",
+    "Amplifiers",
+    "Keyboards and Synths",
+    "Percussion",
     "Recording",
-    "Pro Audio",
-    "Drums"
+    "Pro Audio"
 ]
 
 export default Categories

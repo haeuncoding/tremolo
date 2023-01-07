@@ -68,6 +68,7 @@ h3#price {
   align-self: left;
   align-content: left;
   text-align: left;
+  margin-top: -5vw;
   margin-left: -.45vw;
   font-size: 2vw;
   font-weight: normal;

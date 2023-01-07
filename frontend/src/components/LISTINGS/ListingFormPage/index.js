@@ -69,6 +69,7 @@ const ListingFormPage = () => {
         yearMade: yearMade,
         description: description
       }
+      console.log(data)
       dispatch(listingActions.createListing(data));
     }
     return (<Redirect to="/" />)
@@ -99,7 +100,7 @@ const ListingFormPage = () => {
       <h1 id="listing-form-title">{isEdit ? "Update Listing" : "Create Listing"}</h1>
         <br/>
         <form onSubmit={handleSubmit}>
-          <label className="input-field" for="listing-title">
+          <label className="input-field" htmlFor="listing-title">
             Listing Title
           </label>
             <br/>

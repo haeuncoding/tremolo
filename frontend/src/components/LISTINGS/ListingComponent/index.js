@@ -47,10 +47,9 @@ const ListingComponent = () => {
         console.log(e.target.className)
       }
     }
-    
-    // sessionUser.watchlist.push(listingId)
-    // then redirect to grid of sessionUser's watchlist
   }
+
+  // }
   // const category = useSelector(categoryActions.getCategory(listing.categoryId))
   // const make = useSelector(makeActions.getMake(listing.makeId))
   // const shop = useSelector(shopActions.getShopByOwnerId(listing.listerId))
@@ -58,7 +57,7 @@ const ListingComponent = () => {
   // useEffect(() => {
   //   dispatch(categoryActions.fetchCategory(listing.categoryId))
   //   dispatch(makeActions.fetchMake(listing.makeId))
-  //   dispatch(shopActions.fetchShopByOwnerId(listing.listerId))
+  // //   dispatch(shopActions.fetchShopByOwnerId(listing.listerId))
   // }, [dispatch])
 
   // console.log('lister id')
@@ -85,7 +84,8 @@ const ListingComponent = () => {
 
 
   if (!listing) {return (null)}
-//  || !category || !make || !shop
+//  || !category || !make
+  //  || !category || !make || !shop
   // console.log(listing)
 
 
@@ -98,7 +98,7 @@ const ListingComponent = () => {
         </div>
         <div className="listing-info">
           <div className="listing-top">
-              {/* <h5 id="category-make-model">{category.category} // {make.brandName}</h5> */}
+              <h5 id="category-make-model">{listing.category} // {listing.make}</h5>
             <div className="hl" />
               {/* <h4 id="shop-name">{shop.shopName}</h4> */}
               <h5 id="location">{listing.location}</h5>
@@ -113,8 +113,9 @@ const ListingComponent = () => {
                   <button className="user-options" id="offer-button">Make an Offer</button>
                   <button className="watch-button-off" 
                     id="watch-button" 
-                    onClick={handleWatchClick}>
-                      Watch
+                    onClick={handleWatchClick}
+                    >
+                    {isWatched ? "Watching" : "Watch"}
                   </button>
                 </div>
             <div className="hl" />

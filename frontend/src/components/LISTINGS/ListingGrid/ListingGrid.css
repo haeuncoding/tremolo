@@ -1,6 +1,6 @@
 .ind-tile {
   height: 7vw;
-  scale: 40%;
+  scale: 0%;
   margin-left: -5vw;
   margin-right: -5vw;
 }
@@ -27,8 +27,8 @@ ul.listing-grid {
 }
 
 ::-webkit-scrollbar {
-  height: 6.5px;
-  /* width: 8px; */
+  height: 3.5px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
