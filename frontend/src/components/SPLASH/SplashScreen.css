@@ -1,0 +1,75 @@
+#splash-container {
+  text-align: center;
+  position: relative;
+}
+
+#splash-text-container {
+  display: block;
+  position: absolute;
+  width: 50%;
+  padding-left: 4vw;
+  margin-top: 7vw;
+}
+
+#splash-title {
+  font-size: 2vw;
+  position: absolute;
+  color: white;
+  margin-bottom: 5vw;
+}
+
+#splash-caption {
+  text-align: left;
+  font-weight: 300;
+  font-size: 3vw;
+  position: absolute;
+  color: white;
+}
+
+#link-button-container {
+  background: none;
+  position: absolute;
+}
+
+#shop-now-button {
+  background-color: rgb(252, 252, 252);
+  font-family: 'Open Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-decoration: none;
+  color: #0f749a;
+  /* font-size: max(1vw); */
+  height: max-content;
+  font-weight: 700;
+  text-emphasis-style: bold;
+  border: rgb(252, 252, 252);
+  border-style: solid;
+  border-width: 1.25px;
+  border-radius: 30px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  /* margin-left: .5vw; */
+  margin-right: .5vw;
+  margin-top: 15vw;
+}
+
+#shop-now-button:hover {
+  transition: .25s;
+  cursor: pointer;
+  background-color: #0b536d;
+  color: rgb(252, 252, 252);
+  border: #0b536d;
+  border-style: solid;
+  border-width: 1.25px;
+  border-radius: 30px;
+}
+
+#splash-screen {
+  /* width: 40vw; */
+  /* text-align: center; */
+  width: 90vw;
+  height: 35vw;
+  object-fit: none;
+  object-fit: cover;
+  border-radius: 15px;
+}

@@ -2,21 +2,6 @@ h1, h2, h3, p {
   font-family: 'Roboto', sans-serif;
 }
 
-
-#splash-container {
-  text-align: center;
-}
-
-#splash-screen {
-  /* width: 40vw; */
-  /* text-align: center; */
-  width: 90vw;
-  height: 35vw;
-  object-fit: none;
-  object-fit: cover;
-  border-radius: 15px;
-}
-
 #nav-container {
   display: flex;
   flex-direction: column;
