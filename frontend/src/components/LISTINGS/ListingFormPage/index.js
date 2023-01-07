@@ -8,6 +8,8 @@ import Categories from "../../../assets/Categories"
 import './ListingFormPage.css';
 
 const ListingFormPage = () => {
+  const sessionUser = useSelector(state => state.session.user)
+
   const { listingId } = useParams();
   const dispatch = useDispatch();
   // const [listerId, setListerId] = useState({})
@@ -45,6 +47,7 @@ const ListingFormPage = () => {
     if (listingId) {
       const data = {
         id: listingId,
+        listerId: sessionUser.id,
         listingTitle: listingTitle,
         make: make,
         model: model,
@@ -60,6 +63,7 @@ const ListingFormPage = () => {
     } else {
       const data = {
         listingTitle: listingTitle,
+        listerId: sessionUser.id,
         make: make,
         model: model,
         category: category,
@@ -83,8 +87,8 @@ const ListingFormPage = () => {
       setIsEdit(true)
       setListingTitle(listing.listingTitle);
       setMake(listing.makeId);
-      setModel(listing.modelId)
-      setCategory(listing.categoryId);
+      setModel(listing.model)
+      setCategory(listing.category);
       setCondition(listing.condition)
       setPrice(listing.price)
       setLocation(listing.location)

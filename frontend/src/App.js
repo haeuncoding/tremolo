@@ -10,6 +10,8 @@ import ListingIndex from './components/LISTINGS/ListingIndex'
 import ListingTile from './components/LISTINGS/ListingTile/ListingTile';
 import ListingComponent from './components/LISTINGS/ListingComponent';
 
+import SplashScreen from './components/SPLASH/SplashScreen';
+
 import ReviewFormTest from './components/REVIEWS/ReviewForm';
 
 import Navigation from "./components/MAINNAV/Navigation";
@@ -39,6 +41,7 @@ function App() {
           <Switch>
             <Route exact path="/">
               <div id="home-feed-grid">
+                  <SplashScreen/>                
                 <h1 className="grid-title">Your Daily Picks</h1>
                 <br />
                 <ListingGrid filter={filters.defaultFilter}/>
