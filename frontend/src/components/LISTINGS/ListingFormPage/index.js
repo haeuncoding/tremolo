@@ -10,6 +10,7 @@ import './ListingFormPage.css';
 const ListingFormPage = () => {
   const { listingId } = useParams();
   const dispatch = useDispatch();
+  // const [listerId, setListerId] = useState({})
   const [listingTitle, setListingTitle] = useState("");
   const [make, setMake] = useState("")
   const [model, setModel] = useState("")
