@@ -1,5 +1,5 @@
 json.id listing.id
-json.lister_id listing.lister_id.shop
+json.lister_id listing.lister_id.shop.owner_id
 json.listing_title listing.listing_title
 json.make_id listing.make.brand_name
 json.model_id listing.model.model
