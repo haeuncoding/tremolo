@@ -205,13 +205,34 @@ ApplicationRecord.transaction do
     "S Shape",
     "T Shape",
     "Warrior",
-    "Mira"
+    "Mira",
+    "Aries",
+    "DC",
+    "Vader",
+    "Osiris",
+    "Zeus",
+    "Lyra",
+    "K-Series",
+    "Theos",
+    "Hyperdrive",
+    "Lightspeed",
+    "Crescent",
+    "CT6",
+    "Chris Letchford Signature Series",
+    "Dan Sugarman Signature Series",
+    "Lee McKinney Signature Series",
+    "Marc Okubo Signature Series",
+    "Scott Carstairs Signature Series",
+    "Espada",
+    "Jazzmaster",
+    "Jaguar",
+    "Diablo"
   ]
 
   MODELS.each do |model|
     Model.create!({
       model: model,
-      make_id: 2,
+      make_id: rand(1..25),
     })
   end
 

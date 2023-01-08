@@ -16,8 +16,6 @@ import ReviewFormTest from './components/REVIEWS/ReviewForm';
 
 import Navigation from "./components/MAINNAV/Navigation";
 import SecondaryNavigation from './components/MAINNAV/SecondaryNavigation';
-// import Cart from './components/MAINNAV/Navigation/Cart/Cart'
-import * as filters from './util/filters'
 
 import './App.css'
 
@@ -44,13 +42,13 @@ function App() {
                   <SplashScreen/>                
                 <h1 className="grid-title">Your Daily Picks</h1>
                 <br />
-                <ListingGrid filter={filters.defaultFilter}/>
+                <ListingGrid />
                 <h1 className="grid-title">Don't String Me Along! Guitars On Sale:</h1>
                 <br />
-                <ListingGrid ListingGrid filter={filters.defaultFilter} />
-                <h1 className="grid-title">You Know I'm All About that Bass.</h1>
+                <ListingGrid ListingGrid />
+                <h1 className="grid-title">You Know I'm All About that Bass:</h1>
                 <br />
-                <ListingGrid ListingGrid filter={filters.defaultFilter} />
+                <ListingGrid ListingGrid  />
               </div>
             </Route>
             <Route path="/login">

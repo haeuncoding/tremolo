@@ -1,4 +1,4 @@
-import ListingComponent from "../ListingComponent";
+import ListingComponent from "../LISTINGS/ListingComponent";
 import * as listingActions from "../../../store/listings"
 import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
 import lolPhoto2 from '../../../assets/temp_assets/dumb_photo_4.JPG'
@@ -6,8 +6,9 @@ import { useSelector, useDispatch } from "react-redux";
 import ListingTile from "../ListingTile/ListingTile";
 import './ListingGrid.css'
 import { useEffect } from "react";
+import * as filters from "../../../util/filters"
 
-const ListingGrid = () => {
+const CartPage = () => {
 
   const listings = useSelector(listingActions.getListings)
 
@@ -19,17 +20,15 @@ const ListingGrid = () => {
 
   const dispatch = useDispatch()
 
-  console.log(listings)
   useEffect(() => {
     dispatch(listingActions.fetchListings())
   }, [dispatch])
-
-    // <h1>this is the listing grid</h1>
 
   return (
     <ul className="listing-grid">
       {listings?.map((listing) => <ListingTile listing={listing} class="ind-tile"/>)}
     </ul>
+    // <h1>this is the listing grid</h1>
   )
 }
 

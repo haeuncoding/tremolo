@@ -10,7 +10,7 @@ form, body, h1, h2, h3, p {
   align-self: flex-start;
   text-align: justify;
 
-  margin-bottom: -1vw;
+  /* margin-bottom: -1vw; */
 }
 
 div.nav-icon-container ~ label {
@@ -110,9 +110,6 @@ button#search-button:hover > #search-icon {
   transition: .25s;
 }
 
-.nav-link-container {
-  /* text-align: center; */
-}
 
 .search-bar {
   width: 40vw;

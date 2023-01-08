@@ -42,7 +42,14 @@ export const getListing = (listingId) => (store) => {
 
 // thunk action creators
 export const fetchListings = () => async (dispatch) => {
-  const response = await fetch(`/api/listings`)
+  const response = await fetch(`/api/listings`, {
+    method: "GET",
+    body: JSON.stringify(),
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }
+  })
   if (response.ok) {
     const listings = await response.json();
     dispatch(receiveListings(listings))

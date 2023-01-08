@@ -15,7 +15,7 @@ class Api::ListingsController < ApplicationController
 
   def create
     @listing = Listing.new(listing_params)
-      if @listing.save
+      if @listing.save!
         render :show
       else
         render json: [errors: @listing.errors.full_messages]
@@ -24,7 +24,7 @@ class Api::ListingsController < ApplicationController
 
   def show
     @listing = Listing.find_by(id: params[:id])
-    render 'api/listings/show'
+    render :show
   end
 
   # def edit
