@@ -16,7 +16,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  watcher_count :integer
-#  models_id     :bigint
+#  model_id      :bigint
 #
 class Listing < ApplicationRecord
 
@@ -50,10 +50,10 @@ class Listing < ApplicationRecord
   #   class_name: :User,
   #   dependent: :destroy
   
-  # belongs_to :shop,
-  #   primary_key: :id,
-  #   foreign_key: :lister_id,
-  #   class_name: :Shop
+  belongs_to :shop,
+    primary_key: :id,
+    foreign_key: :lister_id,
+    class_name: :Shop
 
   belongs_to :category,
     primary_key: :id,

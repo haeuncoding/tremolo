@@ -49,45 +49,7 @@ const ListingComponent = () => {
     }
   }
 
-  // }
-  // const category = useSelector(categoryActions.getCategory(listing.categoryId))
-  // const make = useSelector(makeActions.getMake(listing.makeId))
-  // const shop = useSelector(shopActions.getShopByOwnerId(listing.listerId))
-
-  // useEffect(() => {
-  //   dispatch(categoryActions.fetchCategory(listing.categoryId))
-  //   dispatch(makeActions.fetchMake(listing.makeId))
-  // //   dispatch(shopActions.fetchShopByOwnerId(listing.listerId))
-  // }, [dispatch])
-
-  // console.log('lister id')
-  // console.log(listing.listerId)
-
-    // console.log(shop)
-  // const make = useSelector(makeActions.getMake(listing.makeId))
-  // const shop = useSelector(shopActions.getShop(listing.listerId))
-
-  // useEffect(() => {
-  //   dispatch(shopActions.fetchShop(listing.listerId))
-  // }, [dispatch, listing.listerId])
-
-  // useEffect(() => {
-  //   dispatch(categoryActions.fetchCategory(listing.categoryId))
-  // }, [dispatch, listing.categoryId])
-
-  // useEffect(() => {
-  //   dispatch(makeActions.fetchMake(listing.makeId))
-  // }, [dispatch, listing.makeId])
-
-
-
-
-
   if (!listing) {return (null)}
-//  || !category || !make
-  //  || !category || !make || !shop
-  // console.log(listing)
-
 
   return (
     <>
@@ -98,9 +60,9 @@ const ListingComponent = () => {
         </div>
         <div className="listing-info">
           <div className="listing-top">
-              <h5 id="category-make-model">{listing.category} // {listing.make}</h5>
+              <h5 id="category-make-model">{listing.category} // {listing.make} // {listing.model}</h5>
             <div className="hl" />
-              {/* <h4 id="shop-name">{shop.shopName}</h4> */}
+              <h4 id="shop-name">{listing.shop}</h4>
               <h5 id="location">{listing.location}</h5>
               <h1 id="listing-title">{listing.listingTitle}</h1>
                 <h5 id="condition">Condition - {listing.condition}</h5>

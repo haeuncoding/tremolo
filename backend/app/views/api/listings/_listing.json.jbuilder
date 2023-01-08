@@ -1,8 +1,8 @@
 json.id listing.id
-json.lister_id listing.lister_id.shop.owner_id
+json.shop listing.shop.shop_name
 json.listing_title listing.listing_title
-json.make_id listing.make.brand_name
-json.model_id listing.model.model
+json.make listing.make.brand_name
+json.model listing.model.model
 json.category listing.category.category
 json.condition listing.condition
 json.price listing.price
