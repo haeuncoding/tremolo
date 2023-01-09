@@ -39,6 +39,6 @@ before_action :require_logged_in, only: [:create, :update, :destroy]
   private
 
   def shop_review_params
-    params.require(:shop_review).permit(:shop_reviewer_id, :shop_reviewed_id, :rating, :description)
+    params.require(:shop_review).permit(:shop_reviewer_id, :shop_reviewed_id, :rating, :description, :created_at, :updated_at)
   end
 end

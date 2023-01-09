@@ -11,6 +11,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  watchlist       :bigint           default([]), is an Array
+#  cart            :bigint           default([]), is an Array
 #
 class User < ApplicationRecord
 
@@ -88,11 +89,13 @@ class User < ApplicationRecord
   def add_to_watchlist(listing_id)
     self.watched_listings << listing_id
     watched = Listing.find_by_id(:listing_id)
+    watched.add_watcher_count
   end
 
   def remove_from_watchlist(listing_id)
     watched = Listing.find_by_id(:listing_id)
     self.watched_listings.delete(listing_id)
+    watched.subtract_watcher_count
   end
 
   private
