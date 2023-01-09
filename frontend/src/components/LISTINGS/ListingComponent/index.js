@@ -9,6 +9,7 @@ import { Link, Redirect, useParams } from "react-router-dom"
 import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
 import './ListingComponent.css'
 import ModelReviewForm from '../../REVIEWS/ModelReviewForm';
+import ReviewTile from '../../REVIEWS/ReviewTile';
 
 const ListingComponent = () => {
   const sessionUser = useSelector(state => state.session.user)
@@ -17,12 +18,21 @@ const ListingComponent = () => {
   const { listingId } = useParams()
   const listing = useSelector(listingActions.getListing(listingId))
   const dispatch = useDispatch()
-
+  const modelReviews = useSelector(state => Object.values(state.modelReviews))
   useEffect(() => {
     dispatch(listingActions.fetchListing(listingId))
-    
   }, [dispatch, listingId])
 
+  const currentModelReviews = () => {
+    return(listing.model
+      ? modelReviews.filter(modelReview => modelReview.model === listing.model)
+      : []
+      )
+  }
+
+  const displayCurrentModelReviews = (reviews) => {
+    reviews.map(review => <ReviewTile review={review} /> )
+  }
   const handleWatchClick = (e) => {
     e.preventDefault();
     if (sessionUser) {
@@ -80,7 +90,9 @@ const ListingComponent = () => {
     }
   }
 
-  if (!listing) {return (null)}
+  if (!listing) {return (
+    <h3>Whoops! Looks like the listing you want doesn't exist.</h3>
+  )}
 
   return (
     <>
@@ -119,6 +131,7 @@ const ListingComponent = () => {
         </div>
       </div>
       <ModelReviewForm />
+      <displayCurrentModelReviews reviews={currentModelReviews} />
     </>
   )
 }

@@ -5,7 +5,7 @@ wrap_parameters include: ModelReview.attribute_names
 before_action :require_logged_in, only: [:create, :update, :destroy]
   def create
     @model_review = ModelReview.new(model_review_params)
-      if @model_review.save
+      if @model_review.save!
         render :show
       else
         render json: [errors: @model_review.errors.full_messages]
