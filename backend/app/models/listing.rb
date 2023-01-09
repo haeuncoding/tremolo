@@ -32,11 +32,11 @@ class Listing < ApplicationRecord
   ]
 
 # validations
-  validates :lister_id, presence: true
+  # validates :lister_id, presence: true
   validates :make_id, presence: true
   validates :model_id, presence: true
   validates :category_id, presence: true
-  validates :listing_title, presence: true
+  # validates :listing_title, allow_nil: true
   validates :condition, inclusion: { in: CONDITIONS }
   validates :price, numericality: { minimum: 0 }, presence: true
   validates :location, presence: true
@@ -79,13 +79,25 @@ class Listing < ApplicationRecord
     end
   end
 
-  def self.find_by_category(category_id)
-    @listings = Listing.select { |listing| listing.category.id == category.id }
-    if @listings
-      return @listings
-    else
-      return nil
-    end
+  def self.in_category(category_id)
+    Listing.where(category_id: category_id)
+  end
+
+  def self.of_make(make_id)
+    Listing.where(make_id: make_id)
+  end
+
+  def self.of_model(make_id, model_id)
+    Listing.where(make_id: make_id, model_id: model_id)
+  end
+
+  def self.of_shop(shop_id)
+    Listing.where(lister_id: shop_id)
+  end
+
+  def self.apply_filters(category_id, make_id, model_id, shop_id, min_price, max_price)
+    
+    Listing.where(category_id: category_id, make_id: make_id, model_id: model_id, lister_id: shop_id, price: (min_price..max_price))
   end
 
   def add_watcher_count

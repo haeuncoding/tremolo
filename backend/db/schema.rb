@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_05_231814) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_09_063542) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_05_231814) do
     t.string "model", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
     t.index ["make_id"], name: "index_models_on_make_id"
   end
 
@@ -98,6 +99,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_05_231814) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "watchlist", default: [], array: true
+    t.bigint "cart", default: [], array: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true

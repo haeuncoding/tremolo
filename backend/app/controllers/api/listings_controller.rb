@@ -5,6 +5,7 @@ class Api::ListingsController < ApplicationController
   before_action :require_logged_in, only: [:create, :destroy, :edit, :update]
 
   def index 
+    # @listings = Listing.apply_filters(params[:category_id], params[:make_id], params[:model_id], params[:shop_id], params[:min_price], params[:max_price])
     @listings = Listing.all
     if @listings
       render :index
@@ -15,7 +16,7 @@ class Api::ListingsController < ApplicationController
 
   def create
     @listing = Listing.new(listing_params)
-      if @listing.save!
+      if @listing.save
         render :show
       else
         render json: [errors: @listing.errors.full_messages]

@@ -19,7 +19,7 @@ class ModelReview < ApplicationRecord
     foreign_key: :model_reviewer_id,
     class_name: :User
 
-  has_one :model_reviewed,
+  belongs_to :model_reviewed,
     foreign_key: :model_reviewed_id,
     class_name: :Model
 end

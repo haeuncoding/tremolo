@@ -39,7 +39,7 @@ before_action :require_logged_in, only: [:create, :update, :destroy]
   private
 
   def model_review_params
-    params.require(:model_review).permit(:model_reviewer_id, :model_reviewed_id, :rating, :description)
+    params.require(:model_review).permit(:model_reviewer_id, :model_reviewed_id, :rating, :description, :created_at, :updated_at)
   end
 
 end
