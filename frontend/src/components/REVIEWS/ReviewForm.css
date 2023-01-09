@@ -5,19 +5,27 @@ form, body, h1, h2, h3, p {
 .review-form-container {
   align-items: center;
   align-content: center;
-  text-align: center;
+  text-align: left;
   margin-left: auto;
   margin-right: auto;
   background-color: #efefef;
-  width: 30vw;
+  width: 85vw;
+  padding: 2vw;
+  padding-left: 4vw;
+  margin-top: 2vw;
+  border-radius: 15px;
 }
 
 .star-container, img.star {
   text-align: center;
   width: 4vw;
   height: auto;
-  margin-left: .1vw;
+  /* margin-left: .1vw; */
   margin-right: .1vw;
+}
+
+.stars {
+  margin-left: -1vw;
 }
 
 button.star-container {
@@ -30,13 +38,30 @@ ul {
   text-decoration: none;
 }
 
+label#label-for-desc, h2#label-desc-text {
+  font-size: 2vw;
+  margin-bottom: -.5vw;
+}
+
+#review-description-input {
+  width: 79vw;
+  border-radius: 15px;
+  border: none;
+  padding: 2vw;
+  /* height: 25vw; */
+}
+
+h2#label-star {
+  margin-bottom: .5vw;
+}
+
 button#submit-review {
   margin-top: 3vw;
   margin-bottom: 3vw;
   background-color: rgb(252, 252, 252);
   font-family: 'Open Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-decoration: none;
-  font-size: max(1vw);
+  font-size: max(2vw);
   height: max-content;
   font-weight: 700;
   text-emphasis-style: bold;

@@ -4,6 +4,7 @@
 }
 
 #splash-text-container {
+  text-align: left;
   display: block;
   position: absolute;
   width: 50%;
@@ -13,22 +14,23 @@
 
 #splash-title {
   font-size: 2vw;
-  position: absolute;
+  /* position: absolute; */
   color: white;
-  margin-bottom: 5vw;
+  margin-bottom: -4vw;
 }
 
 #splash-caption {
   text-align: left;
   font-weight: 300;
   font-size: 3vw;
-  position: absolute;
+  /* position: absolute; */
   color: white;
+  margin-bottom: 2vw;
 }
 
 #link-button-container {
   background: none;
-  position: absolute;
+  position: relative;
 }
 
 #shop-now-button {
@@ -36,8 +38,9 @@
   font-family: 'Open Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-decoration: none;
   color: #0f749a;
-  /* font-size: max(1vw); */
-  height: max-content;
+  font-size: 2vw;
+  height: min-content;
+  width: 30vw;
   font-weight: 700;
   text-emphasis-style: bold;
   border: rgb(252, 252, 252);
@@ -47,10 +50,9 @@
   padding: 10px;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
-  /* margin-left: .5vw; */
+  margin-left: 2vw;
   margin-right: .5vw;
-  margin-top: 15vw;
+  /* margin-top: 1vw; */
 }
 
 #shop-now-button:hover {

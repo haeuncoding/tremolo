@@ -27,9 +27,11 @@ const ListingGrid = () => {
     // <h1>this is the listing grid</h1>
 
   return (
-    <ul className="listing-grid">
-      {listings?.map((listing) => <ListingTile listing={listing} class="ind-tile"/>)}
-    </ul>
+    <div id='category-grid-container'>
+      <ul className="listing-grid" id="category-grid">
+        {listings?.map((listing) => <ListingTile listing={listing} class="ind-tile"/>)}
+      </ul>      
+    </div>
   )
 }
 

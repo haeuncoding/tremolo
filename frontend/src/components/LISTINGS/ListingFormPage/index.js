@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as listingActions from "../../../store/listings"
-import Makes from "../../../assets/BrandNames"
-import Categories from "../../../assets/Categories"
+// import Makes from "../../../assets/BrandNames"
+// import Categories from "../../../assets/Categories"
+import * as ListingUtility from "../../../util/listing_util"
 
 import './ListingFormPage.css';
 
 const ListingFormPage = () => {
   const sessionUser = useSelector(state => state.session.user)
-
   const { listingId } = useParams();
   const dispatch = useDispatch();
   // const [listerId, setListerId] = useState({})
@@ -26,8 +26,12 @@ const ListingFormPage = () => {
   const [isEdit, setIsEdit] = useState(false)
 
   // const [errors, setErrors] = useState([]);
-  const makes = Makes
-  const categories = Categories
+  const makes = ListingUtility.AllMakes
+  const categories = ListingUtility.AllCategories
+  const models = ListingUtility.AllModels
+  const shop = ListingUtility.FindSpecificShop(sessionUser.id)
+
+
   const conditions = [
     "Non-Functioning", 
     "Poor", 
@@ -41,7 +45,7 @@ const ListingFormPage = () => {
   
   const listing = useSelector(listingActions.getListing(listingId));
 
-
+  console.log(sessionUser)
   const handleSubmit = async e => {
     e.preventDefault();
     if (listingId) {
@@ -51,7 +55,7 @@ const ListingFormPage = () => {
         listingTitle: listingTitle,
         make: make,
         model: model,
-        category: category,
+        category: category.id,
         condition: condition,
         price: price,
         location: location,
@@ -87,7 +91,7 @@ const ListingFormPage = () => {
       setIsEdit(true)
       setListingTitle(listing.listingTitle);
       setMake(listing.makeId);
-      setModel(listing.model)
+      setModel(listing.modelId)
       setCategory(listing.category);
       setCondition(listing.condition)
       setPrice(listing.price)
@@ -97,7 +101,7 @@ const ListingFormPage = () => {
       setDescription(listing.description)
       dispatch(listingActions.fetchListing(listingId))
     }
-  }, [dispatch, listingId])
+  }, [dispatch, listingId, listing.listingTitle, listing.makeId, listing.modelId, listing.category, listing.condition, listing.price, listing.location, listing.color, listing.yearMade, listing.description])
 
   return (
     <>

@@ -7,17 +7,7 @@ export function useInput (initialValue) {
     setValue(e.target.value)
   }
 
-  return {
-    value,
-    onChange: handleChange
-  }
-}
-
-export function useSubmit ({initialState}) {
-  const newState = {...initialState}
-  const [errors, setErrors] = useState({})
-
-  e.preventDefault
+  return [value, handleChange]
 }
 
 export function useSubmit ({createAction, onSuccess, wrap}) {

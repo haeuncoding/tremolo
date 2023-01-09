@@ -1,24 +1,25 @@
-.ind-tile {
-  height: 7vw;
-  scale: 0%;
-  margin-left: -5vw;
-  margin-right: -5vw;
-}
 
 ul.listing-grid {
   background-color: #efefef;
   margin-left: 0;
   margin-right: 0;
   text-align: center;
-  width: 100%;
+  width: 95vw;
   display: inline-flex;
+  vertical-align: center;
+  align-content: center;
   overflow-x: auto;
-  border: solid #efefef;
   border-radius: 12px;
-  padding: 0;
-  padding-top: -5vw;
-  margin-top: 1vw;
-  height: 20vw;
+  /* padding: 0; */
+  /* padding-top: -5vw; */
+  /* margin-top: 1vw; */
+  height: 25vw;
+  padding-left: 0;
+}
+
+li.ind-tile {
+  /* /* margin-left: -5vw; */
+  margin-right: -12vw; 
 }
 
 .channel-main {

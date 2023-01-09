@@ -1,3 +1,5 @@
+import csrfFetch from "./csrf"
+
 // action constants and corresponding action creators
 export const RECEIVE_MODEL_REVIEWS = "modelReviews/RECEIVE_MODEL_REVIEWS"
 export const RECEIVE_MODEL_REVIEW = "modelReviews/RECEIVE_MODEL_REVIEW"
@@ -46,7 +48,7 @@ export const fetchModelReviews = () => async (dispatch) => {
   }
 }
 
-export const fetchmodelReview = (modelReviewId) => async (dispatch) => {
+export const fetchModelReview = (modelReviewId) => async (dispatch) => {
   const response = await fetch(`/api/model_reviews/${modelReviewId}`)
   if (response.ok) {
     const modelReview = await response.json()
@@ -54,8 +56,8 @@ export const fetchmodelReview = (modelReviewId) => async (dispatch) => {
   }
 }
 
-export const createmodelReview = (modelReviewData) => async (dispatch) => {
-  const response = await fetch(`/api/model_reviews`, {
+export const createModelReview = (modelReviewData) => async (dispatch) => {
+  const response = await csrfFetch(`/api/model_reviews`, {
     method: "POST",
     body: JSON.stringify(modelReviewData),
     headers: {

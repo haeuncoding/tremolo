@@ -1,0 +1,86 @@
+#splash-container2 {
+  /* text-align: center; */
+  position: relative;
+  text-align: right;
+}
+
+#splash-text-container2 {
+  display: block;
+  text-shadow: 2px 2px 20px #000000;
+  text-align: right;
+  position: absolute;
+  width: 100%;
+  padding-left: 4vw;
+  margin-top: 7vw;
+  z-index: 99;
+}
+
+#splash-caption2 {
+  text-align: right;
+  text-shadow: 2px 2px 20px #000000;
+  font-weight: 300;
+  font-size: 3vw;
+  position: absolute;
+  right: 8vw;
+  top: 3vw;
+  color: white;
+  z-index: 99;
+}
+
+#link-button-container2 {
+  background: none;
+  position: relative;
+  right: 6vw;
+  /* bottom: -15vw; */
+  text-align: right;
+  float: right;
+  z-index: 99;
+}
+
+#shop-now-button2 {
+  background-color: rgb(252, 252, 252);
+  font-family: 'Open Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-decoration: none;
+  color: #0f749a;
+  font-size: max(2vw);
+  height: min-content;
+  font-weight: 700;
+  text-emphasis-style: bold;
+  border: rgb(252, 252, 252);
+  border-style: solid;
+  border-width: 1.25px;
+  border-radius: 30px;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  /* display: inline-block; */
+  /* margin-left: .5vw; */
+  margin-right: .5vw;
+  margin-top: 12vw;
+  z-index: 99;
+}
+
+#shop-now-button2:hover {
+  transition: .25s;
+  cursor: pointer;
+  background-color: #0b536d;
+  color: rgb(252, 252, 252);
+  border: #0b536d;
+  border-style: solid;
+  border-width: 1.25px;
+  border-radius: 30px;
+}
+
+img#splash-screen2 {
+  /* width: 40vw; */
+  /* text-align: center; */
+  /* background-color: black; */
+  /* opacity: 80%; */
+  filter: brightness(80%);
+  width: 90vw;
+  height: 35vw;
+  object-fit: none;
+  object-fit: cover;
+  border-radius: 15px;
+  z-index: 0;
+}
