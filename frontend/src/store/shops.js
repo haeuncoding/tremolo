@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux"
 // action constants and corresponding action creators
 export const RECEIVE_SHOPS = "shops/RECEIVE_SHOPS"
 export const RECEIVE_SHOP = "shops/RECEIVE_SHOP"
@@ -38,12 +39,23 @@ export const getShop = (shopId) => (store) => {
 }
 
 export const getShopByOwnerId = (ownerId) => (store) => {
-  if (store.shops && store.shops.find(shop => shop.ownerId == ownerId)) {
-      return store.shops.find(shop => shop.ownerId == ownerId)
-  } else {
-    return null
+    let shopsArr =[]
+    if (store.shops) { 
+      shopsArr =  Object.values(store.shops); 
+    }
+    if (shopsArr.find(shop => shop[ownerId] === ownerId)) {
+      return shopsArr.find(shop => shop[ownerId] === ownerId)
+    } else {
+      return null
   }
 }
+
+  // if (store.shops && store.shops.find(shop => shop[ownerId] === ownerId)) {
+  //     return store.shops.find(shop => shop.ownerId === ownerId)
+  // } else {
+  //   return null
+  // }
+
 
 // thunk action creators
 export const fetchShops = () => async (dispatch) => {
@@ -62,14 +74,14 @@ export const fetchShop = (shopId) => async (dispatch) => {
   }
 }
 
-export const fetchShopByOwnerId = (ownerId) => (store) => async (dispatch) => {
-  const shop = store.shops.find(shop => shop.ownerId == ownerId)
-  const response = await fetch(`/api/shops/${shop.id}`)
-  if (response.ok) {
-    const foundShop = await response.json()
-    dispatch(receiveShop(foundShop))
-  }
-}
+// export const fetchShopByOwnerId = (ownerId) => (store) => async (dispatch) => {
+//   const shop = store.shops.get(shop => shop.ownerId === ownerId)
+//   const response = await fetch(`/api/shops/${shop.id}`)
+//   if (response.ok) {
+//     const foundShop = await response.json()
+//     dispatch(receiveShop(foundShop))
+//   }
+// }
 
 
 

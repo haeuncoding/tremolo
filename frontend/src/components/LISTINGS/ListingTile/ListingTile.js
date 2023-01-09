@@ -9,7 +9,7 @@ function ListingTile({ listing }) {
   return (
     <>
       <li className="ind-tile">
-        <Link to={`/listings/${listing.id}`}>
+        <Link id="tile-link" to={`/listings/${listing.id}`}>
           <div className="tile-container">
             <div id="image-container">
               <img src={lolPhoto} className="child-ele listing-image" id="preview-image"/>      
@@ -20,7 +20,7 @@ function ListingTile({ listing }) {
               
             </div>
             <br />
-            <h3 className="child-ele" id="price">${listing.price}</h3>
+            <h3 className="child-ele" id="price">${listing.price.toFixed(2)}</h3>
             <br />
             <h5 className="child-ele" id="condition">Condition - {listing.condition}</h5>
           </div>

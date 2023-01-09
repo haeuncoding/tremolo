@@ -1,17 +1,29 @@
-import ListingComponent from "../LISTINGS/ListingComponent";
+import ListingComponent from "../../LISTINGS/ListingComponent";
 import * as listingActions from "../../../store/listings"
 import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
 import lolPhoto2 from '../../../assets/temp_assets/dumb_photo_4.JPG'
 import { useSelector, useDispatch } from "react-redux";
-import ListingTile from "../ListingTile/ListingTile";
-import './ListingGrid.css'
+import CartTile from "./CartTile";
+import './CartPage.css'
 import { useEffect } from "react";
-import * as filters from "../../../util/filters"
 
 const CartPage = () => {
-
+  const sessionUser = useSelector(state => state.session.user)
   const listings = useSelector(listingActions.getListings)
 
+  console.log(listings)
+
+  let cart
+
+  if (!sessionUser.cart.length) {
+    cart = []
+  } else {
+    listings.forEach(listing => {
+      if (sessionUser.cart.includes(listing.id)) {
+        cart.push(listing.id)
+      }
+    })  
+  }
   // if (!filter || !typeof(filter) === 'function') {
   //   filter = filters.defaultFilter
   // }
@@ -26,10 +38,10 @@ const CartPage = () => {
 
   return (
     <ul className="listing-grid">
-      {listings?.map((listing) => <ListingTile listing={listing} class="ind-tile"/>)}
+      {cart?.map((cartItem) => <CartTile listing={cartItem} class="ind-cart-tile"/>)}
     </ul>
     // <h1>this is the listing grid</h1>
   )
 }
 
-export default ListingGrid;
+export default CartPage;

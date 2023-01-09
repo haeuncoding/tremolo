@@ -192,13 +192,13 @@ a {
 
 a:hover {
   display: block;
-  transition: .5s;
+  transition: .125s;
   cursor: pointer;
   color: #0F749A;
-  text-shadow: 0 0.015em #0F749A,
-    0 -0.015em #0F749A,
-    0.01em 0 #0F749A,
-    -0.01em 0 #0F749A;
+  text-shadow: 0 0.001em #0F749A,
+    0 -0.001em #0F749A,
+    0.001em 0 #0F749A,
+    -0.001em 0 #0F749A;
 }
 
 button#new-listing-button:hover {

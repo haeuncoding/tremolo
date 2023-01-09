@@ -10,7 +10,7 @@ class Api::ListingsController < ApplicationController
     if @listings
       render :index
     else 
-      render json: [errors: @listings.errors.full_messages]
+      render {}
     end
   end
 
