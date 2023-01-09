@@ -25,10 +25,16 @@ function ModelReviewForm({ modelReviewId }) {
   const [description, setDescription] = useState("")
   const [isEdit, setIsEdit] = useState(false)
   const listing = useSelector(getListing(listingId))
-  const modelReview = useSelector(getModelReview(modelReviewId))
   const modelId = listing.modelId
+
+  const modelReview = useSelector(getModelReview(modelReviewId))
+  console.log('listing')
   console.log(listing)
-  console.log(modelId)
+  console.log('model')
+  console.log(listing.model)
+  console.log('modelId')
+  console.log(listing.modelId)
+  console.log('stars')
   console.log(stars)
 
 
@@ -170,18 +176,7 @@ function ModelReviewForm({ modelReviewId }) {
     console.log('stars')
     console.log(stars)
   }
-  
-  // hooks.useSubmit({createModelReview, onSuccess, wrap})
-
-  // const [errors, onSubmit] = hooks.useSubmit({
-  //   createAction: () => createModelReview({
-  //       modelReviewerId: sessionUser.id,
-  //       modelReviewedId: modelId,
-  //       rating: stars,
-  //       description: description
-  //   }),
-  //   onSuccess: () => {return (<Redirect to={`listings/${listingId}`} />)}
-  // })
+  console.log(sessionUser)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -196,8 +191,8 @@ function ModelReviewForm({ modelReviewId }) {
       dispatch(updateModelReview(data));
     } else {
       const data = {
-        modelReviewerId: sessionUser.id,
-        modelReviewedId: modelId,
+        model_reviewer_id: sessionUser.id,
+        model_reviewed_id: modelId,
         rating: stars,
         description: description
       }

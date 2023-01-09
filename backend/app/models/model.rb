@@ -23,7 +23,7 @@ class Model < ApplicationRecord
     foreign_key: :model_id,
     class_name: :Listing
   
-  has_many :model_review,
+  has_many :model_reviews,
     primary_key: :id,
     foreign_key: :model_reviewed_id,
     class_name: :ModelReview

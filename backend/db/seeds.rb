@@ -226,7 +226,8 @@ ApplicationRecord.transaction do
     "Espada",
     "Jazzmaster",
     "Jaguar",
-    "Diablo"
+    "Diablo",
+    "Yeti"
   ]
 
   PEDAL_MODELS = [
@@ -314,7 +315,6 @@ ApplicationRecord.transaction do
     category_id: 1
   })
 
-
   PEDAL_MODELS[0..2].each do |model|
     Model.create!({
       model: model,
@@ -377,6 +377,19 @@ ApplicationRecord.transaction do
       category_id: 5
     })
   end
+
+  Model.create!({
+    model: GUITAR_MODELS[25],
+    make_id: 22,
+    category_id: 1
+  })
+
+  Model.create!({
+    model: "NG-7",
+    make_id: 78,
+    category_id: 2
+  })
+
   
   puts '---------------'
   puts 'DEMO USER CREATION VERIFICATION'
@@ -403,7 +416,7 @@ ApplicationRecord.transaction do
   Listing.create!({
     lister_id: demo_shop_2[:id],
     make_id: 2,
-    model_id: 3,
+    model_id: 26,
     category_id: 3,
     listing_title: "Chise Blass DOOM",
     condition: "Good",
@@ -416,7 +429,7 @@ ApplicationRecord.transaction do
   Listing.create!({
     lister_id: demo_shop_2[:id],
     make_id: 2,
-    model_id: 3,
+    model_id: 28,
     category_id: 3,
     listing_title: "Chise Blass Travesty",
     condition: "Very Good",
@@ -428,10 +441,10 @@ ApplicationRecord.transaction do
 
   Listing.create!({
     lister_id: demo_shop_2[:id],
-    make_id: 2,
-    model_id: 3,
+    make_id: 13,
+    model_id: 33,
     category_id: 3,
-    listing_title: "Chise Blass Addiction",
+    listing_title: "Maris Addiction",
     condition: "Mint",
     price: "500.00",
     location: demo_shop_2[:location],
@@ -442,7 +455,7 @@ ApplicationRecord.transaction do
   Listing.create!({
     lister_id: demo_shop_2[:id],
     make_id: 2,
-    model_id: 3,
+    model_id: 27,
     category_id: 3,
     listing_title: "Chise Blass Light World",
     condition: "Mint",
@@ -455,7 +468,7 @@ ApplicationRecord.transaction do
   Listing.create!({
     lister_id: demo_shop_2[:id],
     make_id: 13,
-    model_id: 3,
+    model_id: 31,
     category_id: 3,
     listing_title: "Maris MonoMoon",
     condition: "Good",
@@ -468,7 +481,7 @@ ApplicationRecord.transaction do
   Listing.create!({
     lister_id: demo_shop_2[:id],
     make_id: 13,
-    model_id: 3,
+    model_id: 30,
     category_id: 3,
     listing_title: "Maris LOX",
     condition: "Poor",
@@ -481,7 +494,7 @@ ApplicationRecord.transaction do
   Listing.create!({
     lister_id: demo_shop_2[:id],
     make_id: 55,
-    model_id: 3,
+    model_id: 29,
     category_id: 3,
     listing_title: "Electro Harmonics POG2",
     condition: "Poor",
@@ -495,7 +508,7 @@ ApplicationRecord.transaction do
   Listing.create!({
     lister_id: demo_shop_3[:id],
     make_id: 79,
-    model_id: 2,
+    model_id: 5,
     category_id: 1,
     listing_title: "Keesell Aries Red Crackle",
     condition: "Good",
@@ -508,7 +521,7 @@ ApplicationRecord.transaction do
   Listing.create!({
     lister_id: demo_shop_3[:id],
     make_id: 22,
-    model_id: 4,
+    model_id: 64,
     category_id: 1,
     listing_title: "Done-able Yeti",
     condition: "Excellent",
@@ -570,371 +583,6 @@ ApplicationRecord.transaction do
     description: "got it for my daughter but she doesn't play with it. says 'she is too old for Hello Kitty', who knew that at age 50 they might not like Hello Kitty?"
   })
 
-  Listing.create!({
-    lister_id: demo_shop[:id],
-    make_id: 4,
-    model_id: 1,
-    category_id: 1,
-    listing_title: "Stratocaster Placid Lake Blue",
-    condition: "Good",
-    price: "650.20",
-    location: demo_shop[:location],
-    year_made: "2010s",
-    description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_2[:id],
-    make_id: 2,
-    model_id: 3,
-    category_id: 3,
-    listing_title: "Chise Blass DOOM",
-    condition: "Good",
-    price: "400.00",
-    location: demo_shop_2[:location],
-    year_made: "2023",
-    description: "Koel Jorte gave it to me, with a secret. a sinister secret"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_2[:id],
-    make_id: 2,
-    model_id: 3,
-    category_id: 3,
-    listing_title: "Chise Blass Travesty",
-    condition: "Very Good",
-    price: "400.00",
-    location: demo_shop_2[:location],
-    year_made: "2023",
-    description: "Koel Jorte gave it to me, with a secret. a sinister secret"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_2[:id],
-    make_id: 2,
-    model_id: 3,
-    category_id: 3,
-    listing_title: "Chise Blass Addiction",
-    condition: "Mint",
-    price: "500.00",
-    location: demo_shop_2[:location],
-    year_made: "2023",
-    description: "The new pedal or smth, idk man"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_2[:id],
-    make_id: 2,
-    model_id: 3,
-    category_id: 3,
-    listing_title: "Chise Blass Light World",
-    condition: "Mint",
-    price: "400.00",
-    location: demo_shop_2[:location],
-    year_made: "2023",
-    description: "Comes with a Triforce! best deal you're gonna get."
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_2[:id],
-    make_id: 13,
-    model_id: 3,
-    category_id: 3,
-    listing_title: "Maris MonoMoon",
-    condition: "Good",
-    price: "400.00",
-    location: demo_shop_2[:location],
-    year_made: "2000",
-    description: "I mean that's it. Just one moon. Maybe in another universe there's a Polymoon"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_2[:id],
-    make_id: 13,
-    model_id: 3,
-    category_id: 3,
-    listing_title: "Maris LOX",
-    condition: "Poor",
-    price: "700.00",
-    location: demo_shop_2[:location],
-    year_made: "2023",
-    description: "It smells like fish... was like that when I got it, funnily enough. OHH IT IS LOX I GET IT NOW I-"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_2[:id],
-    make_id: 55,
-    model_id: 3,
-    category_id: 3,
-    listing_title: "Electro Harmonics POG2",
-    condition: "Poor",
-    price: "500.00",
-    location: demo_shop_2[:location],
-    year_made: "2014",
-    description: "The kids these days keep saying POG, i don't get it. i feel like EH should change their name to Electro Harmonix, it'd be so much better for the kids"
-  })
-
-
-  Listing.create!({
-    lister_id: demo_shop_3[:id],
-    make_id: 79,
-    model_id: 2,
-    category_id: 1,
-    listing_title: "Keesell Aries Red Crackle",
-    condition: "Good",
-    price: "2650.20",
-    location: demo_shop_3[:location],
-    year_made: "2010s",
-    description: "actually touched by Christ - the crackle finish is what happened when he touched it"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_3[:id],
-    make_id: 22,
-    model_id: 4,
-    category_id: 1,
-    listing_title: "Done-able Yeti",
-    condition: "Excellent",
-    price: "3650.20",
-    location: demo_shop_3[:location],
-    year_made: "2010s",
-    description: "comes with an ACTUAL YETI, Sasha from Extronaut has dun it again"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_4[:id],
-    make_id: 78,
-    model_id: 4,
-    category_id: 2,
-    listing_title: "Dingfloor NG-7",
-    condition: "Good",
-    price: "3500",
-    location: demo_shop_4[:location],
-    year_made: "2010s",
-    description: "Some bald guy touched it and i don't want it anymore"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_5[:id],
-    make_id: 4,
-    model_id: 24,
-    category_id: 1,
-    listing_title: "Jag Racing Orange",
-    condition: "Good",
-    price: "650.20",
-    location: demo_shop_5[:location],
-    year_made: "2010s",
-    description: "came with an actual jaguar. not the car, the animal. was mauled. can't play anymore"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_5[:id],
-    make_id: 4,
-    model_id: 23,
-    category_id: 1,
-    listing_title: "Jazzmaster Forest Green",
-    condition: "Brand New",
-    price: "6400.20",
-    location: demo_shop_5[:location],
-    year_made: "2022s",
-    description: "was touched by all the Jazz Masters, BB King, etc. you name it"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_5[:id],
-    make_id: 4,
-    model_id: 2,
-    category_id: 1,
-    listing_title: "Hello Kitty Tele",
-    condition: "Brand New",
-    price: "6400.20",
-    location: demo_shop_5[:location],
-    year_made: "2022s",
-    description: "got it for my daughter but she doesn't play with it. says 'she is too old for Hello Kitty', who knew that at age 50 they might not like Hello Kitty?"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop[:id],
-    make_id: 4,
-    model_id: 1,
-    category_id: 1,
-    listing_title: "Stratocaster Placid Lake Blue",
-    condition: "Good",
-    price: "650.20",
-    location: demo_shop[:location],
-    year_made: "2010s",
-    description: "it's a demo model for the store - but just need a new guitar and looking to swap this one for another one. open to offers!"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_2[:id],
-    make_id: 2,
-    model_id: 3,
-    category_id: 3,
-    listing_title: "Chise Blass DOOM",
-    condition: "Good",
-    price: "400.00",
-    location: demo_shop_2[:location],
-    year_made: "2023",
-    description: "Koel Jorte gave it to me, with a secret. a sinister secret"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_2[:id],
-    make_id: 2,
-    model_id: 3,
-    category_id: 3,
-    listing_title: "Chise Blass Travesty",
-    condition: "Very Good",
-    price: "400.00",
-    location: demo_shop_2[:location],
-    year_made: "2023",
-    description: "Koel Jorte gave it to me, with a secret. a sinister secret"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_2[:id],
-    make_id: 2,
-    model_id: 3,
-    category_id: 3,
-    listing_title: "Chise Blass Addiction",
-    condition: "Mint",
-    price: "500.00",
-    location: demo_shop_2[:location],
-    year_made: "2023",
-    description: "The new pedal or smth, idk man"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_2[:id],
-    make_id: 2,
-    model_id: 3,
-    category_id: 3,
-    listing_title: "Chise Blass Light World",
-    condition: "Mint",
-    price: "400.00",
-    location: demo_shop_2[:location],
-    year_made: "2023",
-    description: "Comes with a Triforce! best deal you're gonna get."
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_2[:id],
-    make_id: 13,
-    model_id: 3,
-    category_id: 3,
-    listing_title: "Maris MonoMoon",
-    condition: "Good",
-    price: "400.00",
-    location: demo_shop_2[:location],
-    year_made: "2000",
-    description: "I mean that's it. Just one moon. Maybe in another universe there's a Polymoon"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_2[:id],
-    make_id: 13,
-    model_id: 3,
-    category_id: 3,
-    listing_title: "Maris LOX",
-    condition: "Poor",
-    price: "700.00",
-    location: demo_shop_2[:location],
-    year_made: "2023",
-    description: "It smells like fish... was like that when I got it, funnily enough. OHH IT IS LOX I GET IT NOW I-"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_2[:id],
-    make_id: 55,
-    model_id: 3,
-    category_id: 3,
-    listing_title: "Electro Harmonics POG2",
-    condition: "Poor",
-    price: "500.00",
-    location: demo_shop_2[:location],
-    year_made: "2014",
-    description: "The kids these days keep saying POG, i don't get it. i feel like EH should change their name to Electro Harmonix, it'd be so much better for the kids"
-  })
-
-
-  Listing.create!({
-    lister_id: demo_shop_3[:id],
-    make_id: 79,
-    model_id: 2,
-    category_id: 1,
-    listing_title: "Keesell Aries Red Crackle",
-    condition: "Good",
-    price: "2650.20",
-    location: demo_shop_3[:location],
-    year_made: "2010s",
-    description: "actually touched by Christ - the crackle finish is what happened when he touched it"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_3[:id],
-    make_id: 22,
-    model_id: 4,
-    category_id: 1,
-    listing_title: "Done-able Yeti",
-    condition: "Excellent",
-    price: "3650.20",
-    location: demo_shop_3[:location],
-    year_made: "2010s",
-    description: "comes with an ACTUAL YETI, Sasha from Extronaut has dun it again"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_4[:id],
-    make_id: 78,
-    model_id: 4,
-    category_id: 2,
-    listing_title: "Dingfloor NG-7",
-    condition: "Good",
-    price: "3500",
-    location: demo_shop_4[:location],
-    year_made: "2010s",
-    description: "Some bald guy touched it and i don't want it anymore"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_5[:id],
-    make_id: 4,
-    model_id: 24,
-    category_id: 1,
-    listing_title: "Jag Racing Orange",
-    condition: "Good",
-    price: "650.20",
-    location: demo_shop_5[:location],
-    year_made: "2010s",
-    description: "came with an actual jaguar. not the car, the animal. was mauled. can't play anymore"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_5[:id],
-    make_id: 4,
-    model_id: 23,
-    category_id: 1,
-    listing_title: "Jazzmaster Forest Green",
-    condition: "Brand New",
-    price: "6400.20",
-    location: demo_shop_5[:location],
-    year_made: "2022s",
-    description: "was touched by all the Jazz Masters, BB King, etc. you name it"
-  })
-
-  Listing.create!({
-    lister_id: demo_shop_5[:id],
-    make_id: 4,
-    model_id: 2,
-    category_id: 1,
-    listing_title: "Hello Kitty Tele",
-    condition: "Brand New",
-    price: "6400.20",
-    location: demo_shop_5[:location],
-    year_made: "2022s",
-    description: "got it for my daughter but she doesn't play with it. says 'she is too old for Hello Kitty', who knew that at age 50 they might not like Hello Kitty?"
-  })
 
   puts "Done!"
 end
