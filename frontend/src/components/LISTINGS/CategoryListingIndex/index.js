@@ -33,6 +33,7 @@ function CategoryListingIndex () {
   return (
     <div className="category-display-container">
       <div className="category-left-side">
+        <h2 id="filter-title">Filters</h2>
         <form>
           <input className="filter">
           </input>
