@@ -85,8 +85,8 @@ const ReviewTile = ({review}) => {
             {`"${review.description}"`}
           </p>
         <br />
-      {console.log(sessionUser.id)}
-      {console.log(review.modelReviewerId)}
+      {/* {console.log(sessionUser.id)} */}
+      {/* {console.log(review.modelReviewerId)} */}
 
       {isUser ? UserReviewActions : ""}
     </div>

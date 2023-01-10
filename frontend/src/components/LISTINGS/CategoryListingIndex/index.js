@@ -2,7 +2,7 @@ import ListingComponent from "../ListingComponent";
 import { useParams } from "react-router-dom";
 import * as listingActions from "../../../store/listings"
 import { useSelector, useDispatch } from "react-redux";
-import ListingTile from "../ListingTile/ListingTile";
+import CategoryListingTile from "../ListingTile/ListingTile";
 import './CategoryListingIndex.css'
 import { useEffect } from "react";
 import { useInput } from "../../../hooks";
@@ -13,24 +13,38 @@ function CategoryListingIndex () {
   const listings = useSelector(listingActions.getListings)
   const {category, setCategory} = useInput('')
   const dispatch = useDispatch()
-
   useEffect(() => {
-    dispatch(listingActions.fetchListings())
+    dispatch(listingActions.fetchListings({categoryId: categoryId}))
   }, [dispatch])
   
   console.log(listings) 
   
    const filteredListings = () => {
-    return(
-      categoryId
-        ? listings.filter((listing) => listing.categoryId === categoryId)
-        : listings
-  )}
+      if (categoryId) {
+        return (listings.filter((listing) => listing.categoryId === categoryId))
+      } else {
+        return (listings)
+      }
+  }
+
+  console.log('filtered listings here')
+  console.log(filteredListings())
   
   return (
-    <ul className="listing-index">
-      {filteredListings?.map((listing) => <ListingTile listing={listing} class="ind-tile"/>)}
-    </ul>
+    <div className="category-display-container">
+      <div className="category-left-side">
+        <form>
+          <input className="filter">
+          </input>
+        </form>
+      </div>
+      <div className="category-right-side">
+        <ul className="category-listing-index" >
+          {listings?.map((listing) => <CategoryListingTile listing={listing} />)}
+        </ul>
+      </div>   
+    </div>
+
   )
 }
 

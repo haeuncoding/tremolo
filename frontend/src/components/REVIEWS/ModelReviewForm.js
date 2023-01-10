@@ -4,7 +4,6 @@ import { Redirect, useParams } from "react-router-dom";
 import { getModelReview, fetchModelReview, createModelReview, updateModelReview } from "../../store/modelReviews"
 import { getListing, fetchListing } from "../../store/listings";
 import './ReviewForm.css';
-import { renderLoginError } from "../../util/user_util";
 import SingleStarEmpty from "../../assets/review-icons/SingleStarEmpty.png"
 import SingleStarHover from "../../assets/review-icons/SingleStarHover.png"
 import * as hooks from "../../hooks/index"
@@ -16,37 +15,37 @@ function ModelReviewForm({ modelReviewId }) {
 
   const { listingId } = useParams()
   const [stars, setStars] = useState("0")
-  const [isOneHover, setIsOneHover] = useState(false)
-  const [isTwoHover, setIsTwoHover] = useState(false)
-  const [isThreeHover, setIsThreeHover] = useState(false)
-  const [isFourHover, setIsFourHover] = useState(false)
-  const [isFiveHover, setIsFiveHover] = useState(false)
-  const [isOneActive, setIsOneActive] = useState(false)
-  const [isTwoActive, setIsTwoActive] = useState(false)
-  const [isThreeActive, setIsThreeActive] = useState(false)
-  const [isFourActive, setIsFourActive] = useState(false)
-  const [isFiveActive, setIsFiveActive] = useState(false)
-  const [description, setDescription] = useState("")
+    const [isOneHover, setIsOneHover] = useState(false)
+    const [isTwoHover, setIsTwoHover] = useState(false)
+    const [isThreeHover, setIsThreeHover] = useState(false)
+    const [isFourHover, setIsFourHover] = useState(false)
+    const [isFiveHover, setIsFiveHover] = useState(false)
+    const [isOneActive, setIsOneActive] = useState(false)
+    const [isTwoActive, setIsTwoActive] = useState(false)
+    const [isThreeActive, setIsThreeActive] = useState(false)
+    const [isFourActive, setIsFourActive] = useState(false)
+    const [isFiveActive, setIsFiveActive] = useState(false)
+    const [description, setDescription] = useState("")
   const [isEdit, setIsEdit] = useState(false)
   const [errors, setErrors] = useState(false)
   const listing = useSelector(getListing(listingId))
   const modelId = listing.modelId
 
-  console.log('session user here!')
-  console.log(sessionUser)
-  // console.log(sessionUser.id)
-  console.log('-----------------')
+  // console.log('session user here!')
+  // console.log(sessionUser)
+  // // console.log(sessionUser.id)
+  // console.log('-----------------')
 
   const modelReview = useSelector(getModelReview(modelReviewId))
-  console.log(' this is in the model review form ')
-  console.log('listing')
-  console.log(listing)
-  console.log('model')
-  console.log(listing.model)
-  console.log('modelId')
-  console.log(listing.modelId)
-  console.log('stars')
-  console.log(stars)
+  // console.log(' this is in the model review form ')
+  // console.log('listing')
+  // console.log(listing)
+  // console.log('model')
+  // console.log(listing.model)
+  // console.log('modelId')
+  // console.log(listing.modelId)
+  // console.log('stars')
+  // console.log(stars)
 
 
 
@@ -218,10 +217,8 @@ function ModelReviewForm({ modelReviewId }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!sessionUser) {
-      renderLoginError()
-    }
     if (modelReviewId) {
+      setIsEdit(true)
       const data = {
         id: modelReviewId,
         modelReviewerId: sessionUser.id,
@@ -313,7 +310,6 @@ function ModelReviewForm({ modelReviewId }) {
                 />
             </button>
         </div>
-        {errors ? renderLoginError() : ""}
         <label htmlFor="review-description" id="label-for-desc">
           <h2 id="label-desc-text">Any additional thoughts? (Optional) </h2>
         </label>
