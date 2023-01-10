@@ -1,0 +1,36 @@
+.review-tile-container {
+  width: 60vw;
+  min-height: 20vw;
+  height: fit-content;
+  background-color: #EFEFEF;
+  display: block;
+  text-align: left;
+  padding: 2vw;
+  padding-left: 4vw;
+  margin-top: 2vw;
+  border-radius: 15px;
+}
+
+#reviewer-name-model {
+  font-weight: 400;
+  font-size: 3vw;
+  margin-bottom: -1.5vw;
+} 
+
+.star-display {
+  margin-bottom: -2vw;
+}
+
+#tile-hori-line {
+  margin-bottom: 1.5vw;
+  width: 20.5vw;
+}
+
+#tile-desc-text {
+ font-style: italic;
+}
+
+#reviewed-model {
+  font-weight: 400;
+  font-size: 2vw;
+}

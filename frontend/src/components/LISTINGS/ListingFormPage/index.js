@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Redirect, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as listingActions from "../../../store/listings"
-// import Makes from "../../../assets/BrandNames"
-// import Categories from "../../../assets/Categories"
+import * as makeActions from "../../../store/makes"
+import * as categoryActions from "../../../store/categories"
 import * as ListingUtility from "../../../util/listing_util"
 
 import './ListingFormPage.css';
@@ -12,7 +12,7 @@ const ListingFormPage = () => {
   const sessionUser = useSelector(state => state.session.user)
   const { listingId } = useParams();
   const dispatch = useDispatch();
-  // const [listerId, setListerId] = useState({})
+  const [listerId, setListerId] = useState()
   const [listingTitle, setListingTitle] = useState("");
   const [make, setMake] = useState("")
   const [model, setModel] = useState("")
@@ -24,13 +24,10 @@ const ListingFormPage = () => {
   const [yearMade, setYearMade] = useState("");
   const [description, setDescription] = useState("")
   const [isEdit, setIsEdit] = useState(false)
+  const listing = useSelector(listingActions.getListing(listingId));
+
 
   // const [errors, setErrors] = useState([]);
-  const makes = ListingUtility.AllMakes
-  const categories = ListingUtility.AllCategories
-  const models = ListingUtility.AllModels
-  const shop = ListingUtility.FindSpecificShop(sessionUser.id)
-
 
   const conditions = [
     "Non-Functioning", 
@@ -43,40 +40,39 @@ const ListingFormPage = () => {
     "Brand New"
   ]
   
-  const listing = useSelector(listingActions.getListing(listingId));
 
   console.log(sessionUser)
   const handleSubmit = async e => {
     e.preventDefault();
     if (listingId) {
       const data = {
-        id: listingId,
-        listerId: sessionUser.id,
-        listingTitle: listingTitle,
-        make: make,
-        model: model,
-        category: category.id,
-        condition: condition,
-        price: price,
-        location: location,
-        color: color,
-        yearMade: yearMade,
-        description: description
+        // id: listingId,
+        // shopId: sessionUser.id,
+        // listingTitle: listingTitle,
+        // make: make,
+        // model: model,
+        // categoryId: category.id,
+        // condition: condition,
+        // price: price,
+        // location: location,
+        // color: color,
+        // yearMade: yearMade,
+        // description: description
       }
       dispatch(listingActions.updateListing(data));
     } else {
       const data = {
-        listingTitle: listingTitle,
-        listerId: sessionUser.id,
-        make: make,
-        model: model,
-        category: category,
-        condition: condition,
-        price: price,
-        location: location,
-        color: color,
-        yearMade: yearMade,
-        description: description
+        // listingTitle: listingTitle,
+        // listerId: sessionUser.id,
+        // make: make,
+        // model: model,
+        // category: category,
+        // condition: condition,
+        // price: price,
+        // location: location,
+        // color: color,
+        // yearMade: yearMade,
+        // description: description
       }
       console.log(data)
       dispatch(listingActions.createListing(data));
@@ -84,6 +80,17 @@ const ListingFormPage = () => {
     return (<Redirect to="/" />)
   };
 
+
+  const makes = useSelector(ListingUtility.AllMakes)
+  // const brandNames = Object.values(makes.brandName)
+  console.log('the brand names')
+  console.log(makes)
+  const categories = useSelector(ListingUtility.AllCategories)
+  console.log('the categories')
+  console.log(categories)
+  const models = useSelector(ListingUtility.AllModels)
+  console.log('the models')
+  console.log(models)
 
   
   useEffect(() => {
@@ -101,7 +108,67 @@ const ListingFormPage = () => {
       setDescription(listing.description)
       dispatch(listingActions.fetchListing(listingId))
     }
-  }, [dispatch, listingId, listing.listingTitle, listing.makeId, listing.modelId, listing.category, listing.condition, listing.price, listing.location, listing.color, listing.yearMade, listing.description])
+  }, [dispatch, listingId])
+
+  const CategoryMap = () => {
+    return (
+    <select name="category" 
+          className="input-box"
+          value={category} 
+          onChange={e => setCategory(e.target.value)}>
+        <option value="" disabled selected></option>
+    {categories.map(category => 
+        <option id={category.id} value={category.id}>
+          {category.category}
+        </option>
+    )}
+    </select>
+    )
+  }
+
+  const MakeMap = () => {
+    return (
+    <select name="make" 
+          className="input-box"
+          value={make} 
+          onChange={e => setMake(e.target.value)}>
+        <option value="" disabled selected></option>
+    {makes.map(make => 
+        <option id={make.id} value={make.id}>
+          {make.brandName}
+        </option>
+    )}
+    </select>
+    )
+  }
+
+  const ModelMap = () => {
+    return (
+    <select name="model" 
+          className="input-box"
+          value={model} 
+          onChange={e => setModel(e.target.value)}>
+        <option value="" disabled selected></option>
+    {models.map(model => 
+        <option id={model.id} value={model.id}>
+          {model.model}
+        </option>
+    )}
+    </select>
+    )
+  }
+
+
+  
+
+  // const categoryMap = () => {
+  //   {categories.map((category) => 
+  //     <option value={category}>
+  //       {category.category}
+  //     </option>
+  //   )}
+  // }
+
 
   return (
     <>
@@ -124,41 +191,18 @@ const ListingFormPage = () => {
             Category:
           </label>
             <br/>
-          <select name="category"
-            className="input-box" 
-            value={category} 
-            onChange={e => setCategory(e.target.value)}>
-              <option value="" disabled selected>
-                Select a Category
-              </option>
-              {categories.map((category) => 
-                <option value={category}>
-                  {category}
-                </option>
-              )}
-          </select>
+          <CategoryMap />
             <br/>
           <label className="input-field" for="make">
             Make:
           </label>
             <br/>
-          <select name="make" 
-            className="input-box"
-            value={make} 
-            onChange={e => setMake(e.target.value)}>
-            <option value="" disabled selected>
-              Select a Make
-            </option>
-            {makes.map((make) => 
-              <option value={make}>
-                {make}
-              </option>
-            )}
-          </select>
+          <MakeMap />
             <br/>
           <label className="input-field" for="model">
             Model:
           </label>
+          <ModelMap />
             <br/>
           <input type="type" 
             className="input-box"

@@ -1,1 +1,1 @@
-json.partial! "api/models/model", model: model
+json.partial! "api/models/model", model: @model
