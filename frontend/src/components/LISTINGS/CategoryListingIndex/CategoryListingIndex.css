@@ -6,6 +6,10 @@ li.category-ind-tile {
   /* margin-bottom: 5vw; */
 }
 
+#filter-title {
+  font-size: 1.5vw;
+}
+
 #category-tile-link {
   background: none;
   width: 10vw;
@@ -38,7 +42,7 @@ a#tile-link {
 
 input.filter {
   width: 12vw;
-  margin-top: 2vw;
+  margin-top: .2vw;
   margin-right: 1vw;
   margin-left: 1vw;
   border-radius: 10px;
@@ -74,9 +78,9 @@ ul.category-listing-index {
   overflow-y: auto;
   border-radius: 12px;
   padding: 0;
-  margin-left: -1vw;
-  padding-top: -5vw;
-  margin-top: 1vw;
+  margin-left: 0vw;
+  /* padding-top: -5vw; */
+  /* margin-top: 1vw; */
   /* margin-bottom: -1vw; */
   height: 28vw;
 }
