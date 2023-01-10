@@ -28,5 +28,10 @@ class Model < ApplicationRecord
     foreign_key: :model_reviewed_id,
     class_name: :ModelReview
 
+  belongs_to :make,
+    primary_key: :id,
+    foreign_key: :make_id,
+    class_name: :Make
+
 
 end

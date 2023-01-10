@@ -3,6 +3,15 @@ class Api::ModelsController < ApplicationController
 wrap_parameters include: Model.attribute_names
 
 before_action :require_logged_in, only: [:create]
+
+  def index 
+    @models = Model.all
+    if (@models)
+      render :index
+    else
+      render nil
+    end
+  end
   def create
     @model = Model.new(model_params)
       if @model.save

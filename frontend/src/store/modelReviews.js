@@ -1,5 +1,5 @@
 import csrfFetch from "./csrf"
-
+import{ RECEIVE_LISTING } from "./listings"
 // action constants and corresponding action creators
 export const RECEIVE_MODEL_REVIEWS = "modelReviews/RECEIVE_MODEL_REVIEWS"
 export const RECEIVE_MODEL_REVIEW = "modelReviews/RECEIVE_MODEL_REVIEW"
@@ -98,6 +98,8 @@ export const deleteModelReview = (id) => async (dispatch) => {
 const modelReviewsReducer = (state = {}, action) => {
     let newState = { ...state };
   switch (action.type) {
+    case RECEIVE_LISTING:
+      return { ...newState, ...action.listingPayload.reviews };
     case RECEIVE_MODEL_REVIEWS:
       return { ...newState, ...action.modelReviews };
     case RECEIVE_MODEL_REVIEW:

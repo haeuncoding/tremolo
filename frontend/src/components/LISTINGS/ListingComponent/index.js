@@ -23,16 +23,15 @@ const ListingComponent = () => {
     dispatch(listingActions.fetchListing(listingId))
   }, [dispatch, listingId])
 
-  const currentModelReviews = () => {
-    return(listing.model
-      ? modelReviews.filter(modelReview => modelReview.model === listing.model)
-      : []
-      )
-  }
+  const DisplayCurrentModelReviews = () => {
+    // console.log('display current model reviews')
+    // console.log("Me!! HEre!! In the Listing COmponenet!")
+    console.log(modelReviews)
+    // console.log('====================')
+    return (modelReviews.map(review => <ReviewTile review={review} /> )
+  )}
 
-  const displayCurrentModelReviews = (reviews) => {
-    reviews.map(review => <ReviewTile review={review} /> )
-  }
+
   const handleWatchClick = (e) => {
     e.preventDefault();
     if (sessionUser) {
@@ -131,7 +130,8 @@ const ListingComponent = () => {
         </div>
       </div>
       <ModelReviewForm />
-      <displayCurrentModelReviews reviews={currentModelReviews} />
+      
+      {DisplayCurrentModelReviews()}
     </>
   )
 }

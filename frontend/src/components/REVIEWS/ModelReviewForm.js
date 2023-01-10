@@ -9,7 +9,10 @@ import SingleStarHover from "../../assets/review-icons/SingleStarHover.png"
 import * as hooks from "../../hooks/index"
 function ModelReviewForm({ modelReviewId }) {
   const dispatch = useDispatch()
+  
   const sessionUser = useSelector(state => state.session.user)
+
+
   const { listingId } = useParams()
   const [stars, setStars] = useState("0")
   const [isOneHover, setIsOneHover] = useState(false)
@@ -26,6 +29,11 @@ function ModelReviewForm({ modelReviewId }) {
   const [isEdit, setIsEdit] = useState(false)
   const listing = useSelector(getListing(listingId))
   const modelId = listing.modelId
+
+  console.log('session user here!')
+  console.log(sessionUser)
+  // console.log(sessionUser.id)
+  console.log('-----------------')
 
   const modelReview = useSelector(getModelReview(modelReviewId))
   console.log('listing')
