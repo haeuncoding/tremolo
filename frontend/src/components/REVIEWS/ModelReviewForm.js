@@ -4,6 +4,7 @@ import { Redirect, useParams } from "react-router-dom";
 import { getModelReview, fetchModelReview, createModelReview, updateModelReview } from "../../store/modelReviews"
 import { getListing, fetchListing } from "../../store/listings";
 import './ReviewForm.css';
+import { renderLoginError } from "../../util/user_util";
 import SingleStarEmpty from "../../assets/review-icons/SingleStarEmpty.png"
 import SingleStarHover from "../../assets/review-icons/SingleStarHover.png"
 import * as hooks from "../../hooks/index"
@@ -27,6 +28,7 @@ function ModelReviewForm({ modelReviewId }) {
   const [isFiveActive, setIsFiveActive] = useState(false)
   const [description, setDescription] = useState("")
   const [isEdit, setIsEdit] = useState(false)
+  const [errors, setErrors] = useState(false)
   const listing = useSelector(getListing(listingId))
   const modelId = listing.modelId
 
@@ -36,6 +38,7 @@ function ModelReviewForm({ modelReviewId }) {
   console.log('-----------------')
 
   const modelReview = useSelector(getModelReview(modelReviewId))
+  console.log(' this is in the model review form ')
   console.log('listing')
   console.log(listing)
   console.log('model')
@@ -47,11 +50,15 @@ function ModelReviewForm({ modelReviewId }) {
 
 
 
-  const handleStars = (num) => async (e) => {
+
+
+  const handleStars = async (e) => {
     e.preventDefault()
-    setStars(parseInt(e.target.value))
+    setStars(e.target.getAttribute('value'))
     console.log('e.target.value')
-    console.log(e.target.value)
+    console.log(e.target.getAttribute('value'))
+    e.target.getAttribute('value')
+    const num = e.target.getAttribute('value')
     switch (num) {
       case 1:
         if (isOneActive) {
@@ -181,13 +188,39 @@ function ModelReviewForm({ modelReviewId }) {
       default:
         break;
     }
-    console.log('stars')
-    console.log(stars)
   }
-  console.log(sessionUser)
+
+  // const [errors, handleSubmit] = hooks.useSubmit({
+  //   if (modelReviewId) {
+  //     const data = {
+  //       id: modelReviewId,
+  //       modelReviewerId: sessionUser.id,
+  //       modelReviewedId: modelId,
+  //       rating: stars,
+  //       description: description
+  //     }
+  //     createAction: () => {updateModelReview(data)};,
+  //     onSuccess: () => {
+  //       <Redirect to={`listings/${listingId}`} />
+  //     }
+  //   } else {
+  //     const data = {
+  //       model_reviewer_id: sessionUser.id,
+  //       model_reviewed_id: modelId,
+  //       rating: stars,
+  //       description: description
+  //     }
+  //     createAction: () => {createModelReview(data)};,
+  //     onSuccess: () => {
+  //       <Redirect to={`listings/${listingId}`} />
+  //   }
+  // })
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!sessionUser) {
+      renderLoginError()
+    }
     if (modelReviewId) {
       const data = {
         id: modelReviewId,
@@ -207,31 +240,22 @@ function ModelReviewForm({ modelReviewId }) {
       console.log(data)
       dispatch(createModelReview(data));
     }
-    return (<Redirect to={`listings/${listingId}`} />)
+    return (Redirect(`listings/${listingId}`))
   }
 
   return (
     <div className="review-form-container">
       <h2 id="label-star">Leave a Review</h2>
       <form onSubmit={(e) => handleSubmit}>
-        <div className="stars" required>
-            
-            <select name="stars" value={stars} onChange={(e) => setStars(e.target.value)}>
-              <option value={1}>1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-            
-            {/* <button value={1}
+        <div className="stars" required onClick={handleStars}>
+            <button value={1}
               className="star-container"
               src={SingleStarEmpty}
               onMouseOver={(e) => (setIsOneHover(true))}
               onMouseOut={(e) => (setIsOneHover(false))} 
-              onClick={handleStars(1)}
               >
                 <img className="star"
+                value={1}
                 id="one-star"
                 src={(isOneHover || isTwoHover || isThreeHover || isFourHover || isFiveHover || isOneActive ) ? SingleStarHover : SingleStarEmpty}
                 />
@@ -241,9 +265,10 @@ function ModelReviewForm({ modelReviewId }) {
               src={SingleStarEmpty}
               onMouseOver={(e) => (setIsTwoHover(true))}
               onMouseOut={(e) => (setIsTwoHover(false))} 
-              onClick={handleStars(2)}
+              onClick={handleStars}
               >
                 <img className="star"
+                value={2}
                 id="two-star"
                 src={(isTwoHover || isThreeHover || isFourHover || isFiveHover || isTwoActive) ? SingleStarHover : SingleStarEmpty}
                 />
@@ -253,9 +278,10 @@ function ModelReviewForm({ modelReviewId }) {
               src={SingleStarEmpty}
               onMouseOver={(e) => (setIsThreeHover(true))}
               onMouseOut={(e) => (setIsThreeHover(false))} 
-              onClick={handleStars(3)}
+              onClick={handleStars}
               >
                 <img className="star"
+                value={3}
                 id="three-star"
                 src={(isThreeHover || isFourHover || isFiveHover || isThreeActive ) ? SingleStarHover : SingleStarEmpty}
                 />
@@ -265,9 +291,10 @@ function ModelReviewForm({ modelReviewId }) {
               src={SingleStarEmpty}
               onMouseOver={(e) => (setIsFourHover(true))}
               onMouseOut={(e) => (setIsFourHover(false))} 
-              onClick={handleStars(4)}
+              onClick={handleStars}
               >
                 <img className="star"
+                value={4}
                 id="four-star"
                 src={(isFourHover || isFiveHover || isFourActive ) ? SingleStarHover : SingleStarEmpty}
                 />
@@ -277,16 +304,18 @@ function ModelReviewForm({ modelReviewId }) {
               src={SingleStarEmpty}
               onMouseOver={(e) => (setIsFiveHover(true))}
               onMouseOut={(e) => (setIsFiveHover(false))} 
-              onClick={handleStars(5)}
+              onClick={handleStars}
               >
                 <img className="star"
+                value={5}
                 id="five-star"
                 src={(isFiveHover || isFiveActive ) ? SingleStarHover : SingleStarEmpty}
                 />
-            </button> */}
+            </button>
         </div>
+        {errors ? renderLoginError() : ""}
         <label htmlFor="review-description" id="label-for-desc">
-          <h2 id="label-desc-text">Any additional thoughts?</h2>
+          <h2 id="label-desc-text">Any additional thoughts? (Optional) </h2>
         </label>
         <br />
           <input

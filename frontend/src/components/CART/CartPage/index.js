@@ -24,11 +24,7 @@ const CartPage = () => {
       }
     })  
   }
-  // if (!filter || !typeof(filter) === 'function') {
-  //   filter = filters.defaultFilter
-  // }
 
-  // listings = filter(listings)
 
   const dispatch = useDispatch()
 
