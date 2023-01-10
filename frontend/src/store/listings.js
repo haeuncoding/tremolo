@@ -33,6 +33,7 @@ export const getListings = (store) => {
 
 export const getListing = (listingId) => (store) => {
   if (store.listings && store.listings[listingId]) {
+    console.log("listing from the getListing action")
     console.log(store.listings)
     return store.listings[listingId]
   } else {

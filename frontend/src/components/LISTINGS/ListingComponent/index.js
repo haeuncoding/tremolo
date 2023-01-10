@@ -10,7 +10,8 @@ import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
 import './ListingComponent.css'
 import ModelReviewForm from '../../REVIEWS/ModelReviewForm';
 import ReviewTile from '../../REVIEWS/ReviewTile';
-import { UpdateUserWatchlist, UpdateUserCart } from '../../../util/user_util';
+import UpdateUserWatchlist from '../../../util/UpdateUserWatchlist';
+import UpdateUserCart from '../../../util/UpdateUserCart';
 
 const ListingComponent = () => {
   const sessionUser = useSelector(state => state.session.user)
@@ -25,7 +26,6 @@ const ListingComponent = () => {
   }, [dispatch, listingId])
 
   const DisplayCurrentModelReviews = () => {
-    console.log(modelReviews)
     return (modelReviews.map(review => <ReviewTile review={review} /> )
   )}
 
@@ -55,7 +55,7 @@ const ListingComponent = () => {
     if (sessionUser) {
       if (isAddedToCart) {
         setIsAddedToCart(false)
-        UpdateUserCart(listingId)
+        UpdateUserCart(listingId, dispatch)
         console.log(e.target.className)
         e.target.className = "in-cart"
         console.log('after')
@@ -93,7 +93,8 @@ const ListingComponent = () => {
                 <h5 id="component-condition">Condition - {listing.condition}</h5>
               <h3 id="component-price">${listing.price.toFixed(2)}</h3>
               <div className="user-options" id="div1">
-                <button className="user-options" 
+                <button className={isAddedToCart ? "added-cart" : "not-added-cart"}
+                // "user-options" 
                   id="cart-button"
                   onClick={handleCartClick}>
                   {isAddedToCart ? "Added to Cart!" : "Add to Cart"}
@@ -102,7 +103,7 @@ const ListingComponent = () => {
                 <br className="user-options" />
                 <div className="user-options" id="div2">
                   <button className="user-options" id="offer-button">Make an Offer</button>
-                  <button className="watch-button-off" 
+                  <button className={isWatched ? "watch-button-on" : "watch-button-off"}
                     id="watch-button" 
                     onClick={handleWatchClick}
                     >
