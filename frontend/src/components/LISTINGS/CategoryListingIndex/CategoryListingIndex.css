@@ -1,3 +1,5 @@
+
+
 li.category-ind-tile {
   height: 7vw;
   /* scale: 40%;
@@ -8,6 +10,11 @@ li.category-ind-tile {
 
 #filter-title {
   font-size: 1.5vw;
+}
+
+div#category-tile-label-container {
+  text-align: center;
+  align-items: center;
 }
 
 #category-tile-link {

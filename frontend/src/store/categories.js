@@ -4,7 +4,7 @@ export const RECEIVE_CATEGORY = "categories/RECEIVE_CATEGORY"
 
 export const receiveCategories = (categories) => ({
   type: RECEIVE_CATEGORIES,
-  categories
+  categories: categories.categories
 })
 
 export const receiveCategory = (category) => ({
@@ -17,7 +17,9 @@ export const receiveCategory = (category) => ({
 
 export const getCategories = (store) => {
   if (store.categories) { 
-    return Object.values(store.categories).flat(1); 
+    // console.log('store categories here!')
+    // console.log(Object.values(store.categories).flat(1))
+    return Object.values(store.categories)
   } else {
   return [];
   }
@@ -33,8 +35,10 @@ export const getCategory = (categoryId) => (store) => {
 
 // thunk action creators
 export const fetchCategories = () => async (dispatch) => {
-  const response = await fetch(`/api/categories`)
+  const response = await fetch(`/api/categories`);
   if (response.ok) {
+    // console.log('curses! can you hear me?')
+    // console.log(response.json())
     const categories = await response.json();
     dispatch(receiveCategories(categories))
   }

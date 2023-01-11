@@ -64,7 +64,6 @@ export const AllModels = () => {
     dispatch(modelActions.fetchModels())
   }, [dispatch])
 
-  console.log(models)
   return (
     models
   )

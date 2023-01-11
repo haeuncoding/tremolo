@@ -30,10 +30,44 @@ function LoginFormPage() {
       });
   }
 
-    const handleDemoSubmit = (e) => {
+  const handleDemoSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential: 'Demo-n-User', password: 'daemon' }))
+    return dispatch(sessionActions.login({ credential: 'Daemo', password: 'daemon' }))
+      .catch(async (res) => {
+        let data;
+        try {
+          data = await res.clone().json();
+        } catch {
+          data = await res.text(); // Will hit this case if the server is down
+        }
+        if (data?.errors) setErrors(data.errors);
+        else if (data) setErrors([data]);
+        else setErrors([res.statusText]);
+      });
+  }
+
+  const handleDemoTwoSubmit = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(sessionActions.login({ credential: 'Starby', password: 'starby' }))
+      .catch(async (res) => {
+        let data;
+        try {
+          data = await res.clone().json();
+        } catch {
+          data = await res.text(); // Will hit this case if the server is down
+        }
+        if (data?.errors) setErrors(data.errors);
+        else if (data) setErrors([data]);
+        else setErrors([res.statusText]);
+      });
+  }
+
+  const handleDemoThreeSubmit = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    return dispatch(sessionActions.login({ credential: 'Koel Jorte', password: 'chiseblass' }))
       .catch(async (res) => {
         let data;
         try {
@@ -89,7 +123,13 @@ function LoginFormPage() {
         <button id="login-button" type="submit">Log In</button>
       </form>
       <form onSubmit={handleDemoSubmit}>
-        <button id="demo-login-button" type="submit">Demo Log In</button>
+        <button id="demo-login-button" type="submit">D(a)emo Log In</button>
+      </form>
+      <form onSubmit={handleDemoTwoSubmit}>
+        <button id="demo-login-button" type="submit">Starby Log In (Demo)</button>
+      </form>
+      <form onSubmit={handleDemoThreeSubmit}>
+        <button id="demo-login-button" type="submit">Koel Jorte Log In (Demo)</button>
       </form>
     </div>
   );

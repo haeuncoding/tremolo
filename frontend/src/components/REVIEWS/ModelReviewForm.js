@@ -215,6 +215,10 @@ function ModelReviewForm({ modelReviewId }) {
   //   }
   // })
 
+  const handleDesc = async (e) => {
+    this.setDescription({value: e.target.value})
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (modelReviewId) {
@@ -310,9 +314,9 @@ function ModelReviewForm({ modelReviewId }) {
                 />
             </button>
         </div>
-        <label htmlFor="review-description" id="label-for-desc">
+        {/* <label htmlFor="review-description" id="label-for-desc">
           <h2 id="label-desc-text">Any additional thoughts? (Optional) </h2>
-        </label>
+        </label> */}
         <br />
           <input
             type="textarea"
@@ -320,6 +324,7 @@ function ModelReviewForm({ modelReviewId }) {
             name="review-description"
             id="review-description-input"
             value={description}
+            placeholder="Any additional thoughts? (Optional)"
             onChange={(e) => setDescription(e.target.value)}
           />
         <br />

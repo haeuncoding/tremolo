@@ -34,7 +34,8 @@ export const getListings = (store) => {
 export const getListing = (listingId) => (store) => {
   if (store.listings && store.listings[listingId]) {
     console.log("listing from the getListing action")
-    console.log(store.listings)
+    console.log(store.listings[listingId])
+    console.log("====================")
     return store.listings[listingId]
   } else {
     return null;

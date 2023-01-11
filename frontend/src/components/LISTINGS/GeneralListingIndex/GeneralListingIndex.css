@@ -1,0 +1,81 @@
+
+
+li.category-ind-tile {
+  height: 7vw;
+  /* scale: 40%;
+  margin-left: -3vw;
+  margin-right: 0vw; */
+  /* margin-bottom: 5vw; */
+}
+
+
+#category-tile-link {
+  background: none;
+  width: 10vw;
+  margin-right: 0;
+}
+
+.hl#general-feed-hl {
+  /* margin-top: 1.5vw; */
+  margin-bottom: 1.5vw;
+}
+
+.general-display-container {
+  display: flexbox;
+  justify-content:space-evenly;
+}
+
+a#tile-link {
+  margin-right: 0vw;
+  width: 0;
+}
+
+ul.general-listing-index {
+  background-color: #efefef;
+  margin-left: 0;
+  margin-right: 0;
+  margin-bottom: 0;
+  text-align: left;
+  width: 95vw;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  justify-items: flex-start;
+  row-gap: 18vw;
+  /* grid-auto-rows: 80vw; */
+  overflow-y: auto;
+  border-radius: 12px;
+  padding: 0;
+  margin-left: 0vw;
+  /* padding-top: -5vw; */
+  margin-top: 1vh;
+  /* margin-bottom: -1vw; */
+  /* height: 46.5vw; */
+  height: 65vh;
+}
+
+.general-listing-index li {
+  display: inline-block;
+}
+
+.channel-main {
+  overflow-x: scroll;
+  max-width: 40px;
+}
+
+::-webkit-scrollbar {
+  height: 6.5px;
+  /* width: 8px; */
+}
+
+::-webkit-scrollbar-track {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background-color: #bdbdbd;
+  margin: 3px 0;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #2e33385b;
+}

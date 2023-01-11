@@ -15,20 +15,73 @@ import UpdateUserCart from '../../../util/UpdateUserCart';
 
 const ListingComponent = () => {
   const sessionUser = useSelector(state => state.session.user)
+  const [isLister, setIsLister] = useState(false)
   const [isWatched, setIsWatched] = useState(false)
   const [isAddedToCart, setIsAddedToCart] = useState(false)
   const { listingId } = useParams()
   const listing = useSelector(listingActions.getListing(listingId))
   const dispatch = useDispatch()
   const modelReviews = useSelector(state => Object.values(state.modelReviews))
+  
   useEffect(() => {
     dispatch(listingActions.fetchListing(listingId))
   }, [dispatch, listingId])
+
+
 
   const DisplayCurrentModelReviews = () => {
     return (modelReviews.map(review => <ReviewTile review={review} /> )
   )}
 
+  const NonListerActions = () => {
+    return (
+      <>
+      <div className="user-options" id="div1">
+        <button className={isAddedToCart ? "added-cart" : "not-added-cart"}
+        // "user-options" 
+          id="cart-button"
+          onClick={handleCartClick}>
+          {isAddedToCart ? "Added to Cart!" : "Add to Cart"}
+        </button>
+      </div>
+        <br className="user-options" />
+        <div className="user-options" id="div2">
+          <button className="user-options" id="offer-button">Make an Offer</button>
+          <button className={isWatched ? "watch-button-on" : "watch-button-off"}
+            id="watch-button" 
+            onClick={handleWatchClick}
+            >
+            {isWatched ? "Watching" : "Watch"}
+          </button>
+      </div>
+      </>
+    )
+    }
+  
+
+  const ListerActions = () => {
+      return (
+      <>
+      <div className="user-options" id="div1">
+        <button className="user-options"
+        // "user-options" 
+          id="edit-button"
+          onClick={"editListing"}>
+          Edit Listing
+        </button>
+      </div>
+        <br className="user-options" />
+        <div className="user-options" id="div2">
+        <button className="user-options"
+        // "user-options" 
+          id="delete-button"
+          onClick={"deleteListing"}>
+          Delete Listing
+        </button>
+      </div>
+      </>
+    )
+  }
 
   const handleWatchClick = (e) => {
     e.preventDefault();
@@ -72,9 +125,19 @@ const ListingComponent = () => {
     }
   }
 
-  if (!listing) {return (
-    <h3>"Whoops! Looks like the listing you want doesn't exist."</h3>
-  )}
+  useEffect((e) => {
+    // e.preventDefault()
+    if (listing.shopId === sessionUser.id) {
+      setIsLister(true)
+    }
+  }, [listing.shopId])
+
+  if (!listing) {
+    return (<h3>"Whoops! Looks like the listing you want doesn't exist."</h3>)
+  }
+
+
+
 
   return (
     <>
@@ -92,24 +155,7 @@ const ListingComponent = () => {
               <h1 id="listing-component-title">{listing.listingTitle}</h1>
                 <h5 id="component-condition">Condition - {listing.condition}</h5>
               <h3 id="component-price">${listing.price.toFixed(2)}</h3>
-              <div className="user-options" id="div1">
-                <button className={isAddedToCart ? "added-cart" : "not-added-cart"}
-                // "user-options" 
-                  id="cart-button"
-                  onClick={handleCartClick}>
-                  {isAddedToCart ? "Added to Cart!" : "Add to Cart"}
-                </button>
-              </div>
-                <br className="user-options" />
-                <div className="user-options" id="div2">
-                  <button className="user-options" id="offer-button">Make an Offer</button>
-                  <button className={isWatched ? "watch-button-on" : "watch-button-off"}
-                    id="watch-button" 
-                    onClick={handleWatchClick}
-                    >
-                    {isWatched ? "Watching" : "Watch"}
-                  </button>
-                </div>
+              {isLister ? <ListerActions /> : <NonListerActions />}
             <div className="hl" />
               <p>
                 {listing.description}
@@ -118,8 +164,9 @@ const ListingComponent = () => {
         </div>
       </div>
       <ModelReviewForm />
-      
-      {DisplayCurrentModelReviews()}
+      <div id="current-model-reviews-container">
+        {DisplayCurrentModelReviews()}        
+      </div>
     </>
   )
 }

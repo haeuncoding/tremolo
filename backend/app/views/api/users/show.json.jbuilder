@@ -1,3 +1,19 @@
 json.user do
-  json.extract! @user, :id, :email, :username, :watchlist, :created_at, :updated_at
+  json.extract! @user, :id, :email, :username, :created_at, :updated_at
+end
+
+json.watchlist do 
+  @user.watchlist.each do |watched_listing|
+    json.set! watched_listing.id do 
+      json.partial! "api/listings/listing", listing: watched_listing
+    end
+  end
+end
+
+json.cart do 
+  @user.cart.each do |cart_listing|
+    json.set! cart_listing.id do 
+      json.partial! "api/listings/listing", listing: cart_listing
+    end
+  end
 end
