@@ -1,4 +1,4 @@
-.cart-ind-tile {
+.cart-ind-tile, .cart-end-ind-tile {
   height: 7vw;
   display: inline-flex;
   scale: 75%;

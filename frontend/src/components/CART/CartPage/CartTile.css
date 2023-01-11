@@ -14,7 +14,7 @@
   padding: 2vw;
 }
 
-div.cart-tile-container {
+div.cart-tile-container, div.cart-end-tile-container {
   transition: .1s;
   background-color: #efefef;
   border-radius: 20px;
@@ -32,6 +32,15 @@ div.cart-tile-container {
   /* padding-bottom: 0; */
   /* padding-left: .25vw;
   padding-right: .25vw; */
+}
+
+.hl#cart-hl {
+  width: 65vw;
+  margin-top: 2vw;
+}
+
+div.cart-end-tile-container {
+  margin-left: -8.5vw;
 }
 
 div.cart-tile-container:hover {
@@ -76,7 +85,7 @@ h1#cart-listing-title.child-ele {
   vertical-align: middle;
 }
 
-h3#cart-price {
+h3#cart-price, h3#cart-subtotal-price {
   padding-left: 2vw;
   padding-right: 2vw;
   font-size: 2vw;

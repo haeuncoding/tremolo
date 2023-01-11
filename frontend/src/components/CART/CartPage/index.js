@@ -28,6 +28,15 @@ const CartPage = () => {
   console.log(cart)
   console.log('end cart and life pls')
 
+  const subtotal = (cart) => {
+    let val = 0
+    cart.forEach((item => {
+      val += item.price
+    }))
+    return val;
+  }
+
+  const userSubtotal = subtotal(cart)
 
 
   // if (!sessionUser) {
@@ -47,6 +56,14 @@ const CartPage = () => {
   return (
     <ul className="listing-grid" display="grid">
       {cart.map((cartItem) => <CartTile listing={cartItem} />)}
+      <div className="hl" id="cart-hl"/>
+      <li className="cart-end-ind-tile">
+          <div className="cart-end-tile-container">
+            <br />
+            <br />
+            <h3 className="child-ele" id="cart-subtotal-price">Subtotal: ${userSubtotal}</h3>
+          </div>
+      </li>
     </ul>
     // <h1>this is the listing grid</h1>
   )
