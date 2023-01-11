@@ -31,9 +31,21 @@ ApplicationRecord.transaction do
   puts "Creating users..."
   # Create one user with an easy to remember username, email, and password:
   demo_user = User.create!(
-    username: 'Demo-n-User', 
+    username: 'Daemo', 
     email: 'daemon@user', 
     password: 'daemon'
+  )
+
+  demo_user_2 = User.create!(
+    username: 'Starby', 
+    email: 'starby@starby', 
+    password: 'starby'
+  )
+
+  demo_user_3 = User.create!(
+    username: 'Koel Jorte', 
+    email: 'ChiseBlass@Audio', 
+    password: 'chiseblass'
   )
 
   # More users
@@ -393,10 +405,20 @@ ApplicationRecord.transaction do
   
   puts '---------------'
   puts 'DEMO USER CREATION VERIFICATION'
-  puts 'demo user object:'
+  puts 'demo user 1 object:'
   puts demo_user
-  puts 'demo user id:'
+  puts 'demo user 1 id:'
   puts demo_user[:id]
+
+  puts 'demo user 2 object:'
+  puts demo_user_2
+  puts 'demo user 2 id:'
+  puts demo_user_2[:id]
+
+  puts 'demo user 3 object:'
+  puts demo_user_3
+  puts 'demo user 3 id:'
+  puts demo_user_3[:id]
   puts '---------------'
 
   puts "Creating listings..."

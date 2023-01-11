@@ -4,6 +4,7 @@ import UserIconInactive from '../../../assets/UserIconNoHover.png'
 import UserIconActive from '../../../assets/UserIconHover.png'
 import { useDispatch } from 'react-redux';
 import './ProfileDropdown.css'
+import { Redirect } from 'react-router-dom';
 
 
 function ProfileDropdown({ user }) {
@@ -15,6 +16,7 @@ function ProfileDropdown({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
+    return (Redirect("root/"))
   };
 
   return (

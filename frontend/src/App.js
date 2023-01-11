@@ -22,7 +22,7 @@ import SecondaryNavigation from './components/MAINNAV/SecondaryNavigation';
 
 import './App.css'
 import CategoryListingIndex from './components/LISTINGS/CategoryListingIndex';
-
+import GeneralListingIndex from './components/LISTINGS/GeneralListingIndex';
 function App() {
   return (
     <>
@@ -65,8 +65,8 @@ function App() {
             <Route path="/cart">
               <CartPage />
             </Route>
-            <Route exact path="/listings">
-              <ListingIndex />
+            <Route exact path="/my_feed">
+              <GeneralListingIndex />
             </Route>
             <Route exact path="/categories/:categoryId">
               <CategoryListingIndex />

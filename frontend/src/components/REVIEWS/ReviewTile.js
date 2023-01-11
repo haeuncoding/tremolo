@@ -59,20 +59,42 @@ const ReviewTile = ({review}) => {
         }
   }
 
-  useEffect (() => {
-    if (review.modelReviewerId === sessionUser.id) {setIsUser(true)}
-  }, [sessionUser.id])
+  // useEffect (() => {
+  //   if (review.modelReviewerId === sessionUser.id) {setIsUser(true)}
+  // }, [sessionUser.id])
+
+  useEffect (() =>{
+  if (sessionUser && review.modelReviewerId === sessionUser.id) {
+    setIsUser(true)
+  } else {
+    setIsUser(false)
+  }})
 
 
   const UserReviewActions = () => {
-
-      <div id="userReviewActions">
-        <button>Edit Review</button>
-        <button>Delete Review</button>
+    return(
+      <div id="user-review-actions">
+        <div class="user-review-action-singular">
+          <button id="edit-review">Edit Review</button>
+        </div>
+      <div className="vl" id="user-review-vertical-line"/>
+        <div class="user-review-action-singular">
+          <button id="delete-review">Delete Review</button>        
+        </div>
       </div>
-      
+    )      
   }
 
+   const NonUserReviewActions = () => {
+    return(
+      <div id="user-review-actions">
+
+      </div>
+    )      
+  }
+  if (!sessionUser) {
+    return (null)
+  }
   return (
     <div className="review-tile-container">
       <h2 id="reviewer-name-model">{review.modelReviewer} // {review.brandName} // {review.modelReviewed}</h2>
@@ -85,10 +107,12 @@ const ReviewTile = ({review}) => {
             {`"${review.description}"`}
           </p>
         <br />
+        <div className="hl" id="tile-hori-line"></div>
+
       {/* {console.log(sessionUser.id)} */}
       {/* {console.log(review.modelReviewerId)} */}
 
-      {isUser ? UserReviewActions : ""}
+      {isUser ? UserReviewActions() : NonUserReviewActions()}
     </div>
   );
 }

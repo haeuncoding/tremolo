@@ -114,7 +114,34 @@ div.user-options#div2 {
   margin-bottom: 1vw;
 }
 
-.added-cart#cart-button, .not-added-cart#cart-button, button#cart-button, button.user-options, button.watch-button-on, button.watch-button-off {
+button#edit-button {
+  color: #efefef;
+  background-color: #0F749A;
+  min-width: max-content;
+  width: 30vw;
+  border: #0F749A;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 30px;
+  text-align: center;
+  height: 1vw;
+}
+
+button#delete-button {
+  color: #efefef;
+  background-color: #9a0f0f;
+  min-width: max-content;
+  width: 30vw;
+  border: #9a0f0f;
+  margin-top: -1.5vw;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 30px;
+  text-align: center;
+  height: 1vw;
+}
+
+button.user-options, .added-cart#cart-button, .not-added-cart#cart-button, button#cart-button, button.watch-button-on, button.watch-button-off {
   display: flex;
   font-family: 'Open Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-decoration: none;
@@ -151,7 +178,6 @@ div.user-options#div2 {
   border-style: solid;
   border-width: 2px;
   border-radius: 30px;
-
 }
 
 #watch-button {
@@ -260,4 +286,15 @@ div.user-options#div2 {
   border-style: solid;
   border-width: 2px;
   border-radius: 30px;
+}
+
+#current-model-reviews-container {
+  align-items: left;
+  margin-left: 4vw;
+  margin-right: 1.5vw;
+  display: grid;
+  grid-template-columns: repeat(4, .4fr);
+  justify-content: space-around;
+  column-gap: .01vw;
+  row-gap: .1vw;
 }

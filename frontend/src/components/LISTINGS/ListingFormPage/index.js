@@ -3,7 +3,9 @@ import { Redirect, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as listingActions from "../../../store/listings"
 import * as ListingUtility from "../../../util/listing_util"
-
+import { getCategories, fetchCategories } from "../../../store/categories";
+import { getMakes, fetchMakes } from "../../../store/makes";
+import { getModels, fetchModels } from "../../../store/models"
 import './ListingFormPage.css';
 
 const ListingFormPage = () => {
@@ -12,9 +14,9 @@ const ListingFormPage = () => {
   const dispatch = useDispatch();
   const [listerId, setListerId] = useState()
   const [listingTitle, setListingTitle] = useState("");
-  const [make, setMake] = useState("")
-  const [model, setModel] = useState("")
-  const [category, setCategory] = useState("")
+  const [makeId, setMakeId] = useState("")
+  const [modelId, setModelId] = useState("")
+  const [categoryId, setCategoryId] = useState("")
   const [condition, setCondition] = useState("")
   const [price, setPrice] = useState("");
   const [location, setLocation] = useState("");
@@ -44,33 +46,35 @@ const ListingFormPage = () => {
     e.preventDefault();
     if (listingId) {
       const data = {
-        // id: listingId,
-        // shopId: sessionUser.id,
-        // listingTitle: listingTitle,
-        // make: make,
-        // model: model,
-        // categoryId: category.id,
-        // condition: condition,
-        // price: price,
-        // location: location,
-        // color: color,
-        // yearMade: yearMade,
-        // description: description
+        id: listingId,
+        listing_title: listingTitle,
+        lister_id: sessionUser.id,
+        shop_id: sessionUser.id,
+        make_id: makeId,
+        model_id: modelId,
+        category_id: categoryId,
+        condition: condition,
+        price: price,
+        location: location,
+        color: color,
+        yearMade: yearMade,
+        description: description
       }
       dispatch(listingActions.updateListing(data));
     } else {
       const data = {
-        // listingTitle: listingTitle,
-        // listerId: sessionUser.id,
-        // make: make,
-        // model: model,
-        // category: category,
-        // condition: condition,
-        // price: price,
-        // location: location,
-        // color: color,
-        // yearMade: yearMade,
-        // description: description
+        listing_title: listingTitle,
+        lister_id: sessionUser.id,
+        shop_id: sessionUser.id,
+        make_id: makeId,
+        model_id: modelId,
+        category_id: categoryId,
+        condition: condition,
+        price: price,
+        location: location,
+        color: color,
+        yearMade: yearMade,
+        description: description
       }
       console.log(data)
       dispatch(listingActions.createListing(data));
@@ -78,15 +82,34 @@ const ListingFormPage = () => {
     return (<Redirect to="/" />)
   };
 
+  const categories = useSelector(getCategories)
+
+  useEffect(() => {
+    dispatch(fetchCategories())
+  }, [dispatch])
+
+
+  const makes = useSelector(getMakes)
+
+  useEffect(() => {
+    dispatch(fetchMakes())
+  }, [dispatch])
+
+  const models = useSelector(getModels)
+
+  useEffect(() => {
+    dispatch(fetchModels())
+  }, [dispatch])
+
   // const makes = useSelector(ListingUtility.AllMakes)
-  // console.log('the brand names')
-  // console.log(makes)
+  // // console.log('the brand names')
+  // // console.log(makes)
   // const categories = useSelector(ListingUtility.AllCategories)
-  // console.log('the categories')
-  // console.log(categories)
+  // // console.log('the categories')
+  // // console.log(categories)
   // const models = useSelector(ListingUtility.AllModels)
-  // console.log('the models')
-  // console.log(models)
+  // // console.log('the models')
+  // // console.log(models)
 
   
   useEffect(() => {
@@ -94,66 +117,73 @@ const ListingFormPage = () => {
       setIsEdit(true)
       setListingTitle(listing.listingTitle);
       setListerId(sessionUser.id)
-      setMake(listing.makeId);
-      setModel(listing.modelId)
-      setCategory(listing.category);
+      setMakeId(listing.makeId);
+      setModelId(listing.modelId)
+      setCategoryId(listing.category);
       setCondition(listing.condition)
       setPrice(listing.price)
       setLocation(listing.location)
       setColor(listing.color)
       setYearMade(listing.yearMade)
       setDescription(listing.description)
-      dispatch(listingActions.fetchListing(listingId))
+      dispatch(listingActions.updateListing(listingId))
     }
   }, [dispatch, listingId])
 
-  // const CategoryMap = () => {
-  //   return (
-  //   <select name="category" 
-  //         className="input-box"
-  //         value={category} 
-  //         onChange={e => setCategory(e.target.value)}>
-  //       <option value="" disabled selected></option>
-  //   {categories.map(category => 
-  //       <option id={category.id} value={category.id}>
-  //         {category.category}
-  //       </option>
-  //   )}
-  //   </select>
-  //   )
+  const CategoryMap = () => {
+    return (
+    <select name="category" 
+          className="input-box"
+          value={categoryId} 
+          onChange={e => setCategoryId(e.target.value)}>
+        <option value="" disabled selected></option>
+    {categories.map(category => 
+        <option id={category.id} value={category.id}>
+          {category.category}
+        </option>
+    )}
+    </select>
+    )
+  }
+
+  const MakeMap = () => {
+    return (
+    <select name="make" 
+          className="input-box"
+          value={makeId} 
+          onChange={e => setMakeId(e.target.value)}>
+        <option value="" disabled selected></option>
+    {makes.map(make => 
+        <option id={make.id} value={make.id}>
+          {make.brandName}
+        </option>
+    )}
+    </select>
+    )
+  }
+
+  const ModelMap = () => {
+    return (
+    <select name="model" 
+          className="input-box"
+          value={modelId} 
+          onChange={e => setModelId(e.target.value)}>
+        <option value="" disabled selected></option>
+    {models.map(model => 
+        <option id={model.id} value={model.id}>
+          {model.model}
+        </option>
+    )}
+    </select>
+    )
+  }
+  // TODO: option to do list :)
+
+  // if (!makes || !categories || !models ) {
+  //   return null
   // }
 
-  // const MakeMap = () => {
-  //   return (
-  //   <select name="make" 
-  //         className="input-box"
-  //         value={make} 
-  //         onChange={e => setMake(e.target.value)}>
-  //       <option value="" disabled selected></option>
-  //   {makes.map(make => 
-  //       <option id={make.id} value={make.id}>
-  //         {make.brandName}
-  //       </option>
-  //   )}
-  //   </select>
-  //   )
-  // }
-
-  // const ModelMap = () => {
-  //   return (
-  //   <select name="model" 
-  //         className="input-box"
-  //         value={model} 
-  //         onChange={e => setModel(e.target.value)}>
-  //       <option value="" disabled selected></option>
-  //   {models.map(model => 
-  //       <option id={model.id} value={model.id}>
-  //         {model.model}
-  //       </option>
-  //   )}
-  //   </select>
-  //   )
-  // }
+  if (!categories) return null;
 
   return (
     <>
@@ -176,24 +206,24 @@ const ListingFormPage = () => {
             Category:
           </label>
             <br/>
-          {/* <CategoryMap /> */}
+          <CategoryMap />
             <br/>
           <label className="input-field" for="make">
             Make:
           </label>
             <br/>
-          {/* <MakeMap /> */}
+          <MakeMap />
             <br/>
           <label className="input-field" for="model">
             Model:
           </label>
-          {/* <ModelMap /> */}
+          <ModelMap />
             <br/>
           <input type="type" 
             className="input-box"
             name="model" 
-            value={model} 
-            onChange={e => setModel(e.target.value)}
+            value={modelId} 
+            onChange={e => setModelId(e.target.value)}
           />
             <br/>
           <label className="input-field" for="price">
