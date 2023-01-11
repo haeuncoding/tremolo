@@ -77,6 +77,9 @@ function App() {
             <Route path="/new_listing">
               <ListingFormPage />
             </Route>
+            <Route path="/edit/:listing_id">
+              <ListingFormPage />
+            </Route>
           </Switch>
     </>
   );

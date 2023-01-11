@@ -4,7 +4,7 @@ export const RECEIVE_MAKE = "makes/RECEIVE_MAKE"
 
 export const receiveMakes = (makes) => ({
   type: RECEIVE_MAKES,
-  makes
+  makes: makes.makes
 })
 
 export const receiveMake = (make) => ({

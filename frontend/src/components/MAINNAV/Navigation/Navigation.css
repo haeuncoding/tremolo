@@ -209,7 +209,7 @@ button#new-listing-button:hover {
   border: #0F749A;
   border-style: solid;
   border-radius: 30px;
-
+  border-width: 1.25px;
 }
 
 /* needs a logo, searchbar, search button, new listing, watch list, profile button

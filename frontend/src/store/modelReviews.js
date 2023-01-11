@@ -7,7 +7,7 @@ export const REMOVE_MODEL_REVIEW = "modelReviews/REMOVE_MODEL_REVIEW"
 
 export const receiveModelReviews = (modelReviews) => ({
   type: RECEIVE_MODEL_REVIEWS,
-  modelReviews
+  modelReviews: modelReviews.modelReviews
 })
 
 export const receiveModelReview = (modelReview) => ({
@@ -25,7 +25,7 @@ export const removeModelReview = (modelReviewId) => ({
 
 export const getModelReviews = (store) => {
   if (store.modelReviews) { 
-    return Object.values(store.modelReviews).flat(1); 
+    return Object.values(store.modelReviews)
   } else {
   return [];
   }

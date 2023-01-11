@@ -116,6 +116,7 @@ div.user-options#div2 {
 
 button#edit-button {
   color: #efefef;
+  text-decoration: none;
   background-color: #0F749A;
   min-width: max-content;
   width: 30vw;
@@ -127,13 +128,39 @@ button#edit-button {
   height: 1vw;
 }
 
-button#delete-button {
+button#edit-button:hover {
   color: #efefef;
-  background-color: #9a0f0f;
+  background-color: #094054;
   min-width: max-content;
   width: 30vw;
-  border: #9a0f0f;
-  margin-top: -1.5vw;
+  border: #094054;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 30px;
+  text-align: center;
+  height: 1vw;
+}
+
+button#delete-button {
+  color: #efefef;
+  background-color: #ba1313;
+  min-width: max-content;
+  width: 30vw;
+  border: #ba1313;
+  margin-top: -.25vh;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 30px;
+  text-align: center;
+  height: 1vw;
+}
+
+button#delete-button:hover {
+  color: #efefef;
+  background-color: #6f0b0b;
+  min-width: max-content;
+  width: 30vw;
+  border: #6f0b0b;
   border-style: solid;
   border-width: 2px;
   border-radius: 30px;

@@ -12,7 +12,7 @@ import ModelReviewForm from '../../REVIEWS/ModelReviewForm';
 import ReviewTile from '../../REVIEWS/ReviewTile';
 import UpdateUserWatchlist from '../../../util/UpdateUserWatchlist';
 import UpdateUserCart from '../../../util/UpdateUserCart';
-
+import { deleteListing } from '../../../store/listings';
 const ListingComponent = () => {
   const sessionUser = useSelector(state => state.session.user)
   const [isLister, setIsLister] = useState(false)
@@ -25,6 +25,9 @@ const ListingComponent = () => {
   
   useEffect(() => {
     dispatch(listingActions.fetchListing(listingId))
+    if (listingId && listing.shopId === sessionUser.id) {
+        setIsLister(true)
+    }
   }, [dispatch, listingId])
 
 
@@ -58,30 +61,36 @@ const ListingComponent = () => {
     )
     }
   
-
+    // TODO - not registering listing id when redirected to edit -- also it fails if i don't manually uncomment it out then back in
   const ListerActions = () => {
       return (
       <>
+      <Link to={`/edit/${listingId}`}>
       <div className="user-options" id="div1">
-        <button className="user-options"
-        // "user-options" 
-          id="edit-button"
-          onClick={"editListing"}>
-          Edit Listing
-        </button>
+        
+          <button className="user-options"
+          // "user-options" 
+            id="edit-button"
+            // onClick={handleEdit}
+            >
+            Edit Listing
+          </button>
       </div>
+      </Link>
         <br className="user-options" />
         <div className="user-options" id="div2">
         <button className="user-options"
         // "user-options" 
           id="delete-button"
-          onClick={"deleteListing"}>
+          onClick={handleDelete}>
           Delete Listing
         </button>
       </div>
       </>
     )
   }
+
+
 
   const handleWatchClick = (e) => {
     e.preventDefault();
@@ -125,17 +134,14 @@ const ListingComponent = () => {
     }
   }
 
-  useEffect((e) => {
-    // e.preventDefault()
-    if (listing.shopId === sessionUser.id) {
-      setIsLister(true)
-    }
-  }, [listing.shopId])
-
   if (!listing) {
     return (<h3>"Whoops! Looks like the listing you want doesn't exist."</h3>)
   }
 
+  const handleDelete = (e) => {
+    e.preventDefault()
+    dispatch(deleteListing(listingId))
+  }
 
 
 
