@@ -1,24 +1,27 @@
-.ind-tile {
+.cart-ind-tile {
   height: 7vw;
-  scale: 0%;
+  display: inline-flex;
+  scale: 75%;
   margin-left: -5vw;
   margin-right: -5vw;
 }
 
 ul.listing-grid {
-  background-color: #efefef;
+  /* background-color: #efefef; */
   margin-left: 0;
   margin-right: 0;
   text-align: center;
   width: 100%;
-  display: inline-flex;
-  overflow-x: auto;
-  border: solid #efefef;
-  border-radius: 12px;
+  display: grid;
+  row-gap: 2vh;
+  /* overflow-x: auto; */
+  /* border: solid #efefef;
+  border-radius: 12px; */
   padding: 0;
   padding-top: -5vw;
   margin-top: 1vw;
-  height: 20vw;
+  margin-left: .75vw;
+  height: auto;
 }
 
 .channel-main {

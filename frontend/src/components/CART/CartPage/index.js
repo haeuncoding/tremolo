@@ -11,18 +11,23 @@ const CartPage = () => {
   const sessionUser = useSelector(state => state.session.user)
   console.log(sessionUser.id)
 
-  const user = useSelector(fetchUser(sessionUser.id))
-  console.log(user)
-  const cart = user.cart
-  // const listings = useSelector(listingActions.getListings)
+  // const user = useSelector(fetchUser(sessionUser.id))
+  // console.log(user)
+  // const cart = user.cart
+  const listings = useSelector(listingActions.getListings)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    {
-      // dispatch(listingActions.fetchListings())
-    dispatch(updateUser(sessionUser.id))}
+      dispatch(listingActions.fetchListings())
+    // dispatch(updateUser(sessionUser.id))}
 
   }, [dispatch, sessionUser.id])
+
+  const cart = listings.slice(4, 8)
+  console.log('cart here god i am so fucking tired')
+  console.log(cart)
+  console.log('end cart and life pls')
+
 
 
   // if (!sessionUser) {
@@ -40,10 +45,10 @@ const CartPage = () => {
 
 
   return (
-    // <ul className="listing-grid">
-    //   {cart.map((cartItem) => <CartTile listing={cartItem} class="ind-cart-tile"/>)}
-    // </ul>
-    <h1>this is the listing grid</h1>
+    <ul className="listing-grid" display="grid">
+      {cart.map((cartItem) => <CartTile listing={cartItem} />)}
+    </ul>
+    // <h1>this is the listing grid</h1>
   )
 }
 

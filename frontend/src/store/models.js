@@ -4,7 +4,7 @@ export const RECEIVE_MODEL = "models/RECEIVE_MODEL"
 
 export const receiveModels = (models) => ({
   type: RECEIVE_MODELS,
-  models
+  models: models.models
 })
 
 export const receiveModel = (model) => ({
@@ -17,7 +17,7 @@ export const receiveModel = (model) => ({
 
 export const getModels = (store) => {
   if (store.models) { 
-    return Object.values(store.models).flat(1); 
+    return Object.values(store.models); 
   } else {
   return [];
   }

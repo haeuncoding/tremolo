@@ -8,21 +8,19 @@ function CartTile({ listing }) {
 
   return (
     <>
-      <li className="ind-tile">
-        <Link id="tile-link" to={`/listings/${listing.id}`}>
-          <div className="tile-container">
-            <div id="image-container">
-              <img src={lolPhoto} className="child-ele listing-image" id="preview-image"/>      
+      <li className="cart-ind-tile" id={`${listing.id}`}>
+        <Link id="cart-tile-link" to={`/listings/${listing.id}`}>
+          <div className="cart-tile-container">
+            <div id="cart-image-container">
+              <img src={lolPhoto} className="child-ele listing-image" id="cart-preview-image"/>      
             </div>
             <br />
-            <div id="title-div">
-              <h1 className="child-ele" id="listing-title">{listing.listingTitle}</h1>
+            <div id="cart-title-div">
+              <h1 className="child-ele" id="cart-listing-title">{listing.listingTitle}</h1>
               
             </div>
             <br />
-            <h3 className="child-ele" id="price">${listing.price}</h3>
-            <br />
-            <h5 className="child-ele" id="condition">Condition - {listing.condition}</h5>
+            <h3 className="child-ele" id="cart-price">${listing.price}</h3>
           </div>
         </Link>
       </li>

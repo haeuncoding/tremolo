@@ -40,10 +40,28 @@ const ListingFormPage = () => {
     "Brand New"
   ]
   
+  useEffect(() => {
+    if (listingId) {
+      setIsEdit(true)
+      setListingTitle(listing.listingTitle);
+      setListerId(sessionUser.id)
+      setMakeId(listing.makeId);
+      setModelId(listing.modelId)
+      setCategoryId(listing.category);
+      setCondition(listing.condition)
+      setPrice(listing.price)
+      setLocation(listing.location)
+      setColor(listing.color)
+      setYearMade(listing.yearMade)
+      setDescription(listing.description)
+      dispatch(listingActions.updateListing(listingId))
+    }
+  }, [dispatch, listingId])
 
   console.log(sessionUser)
   const handleSubmit = async e => {
     e.preventDefault();
+    console.log(listingId)
     if (listingId) {
       const data = {
         id: listingId,
@@ -112,23 +130,7 @@ const ListingFormPage = () => {
   // // console.log(models)
 
   
-  useEffect(() => {
-    if (listingId) {
-      setIsEdit(true)
-      setListingTitle(listing.listingTitle);
-      setListerId(sessionUser.id)
-      setMakeId(listing.makeId);
-      setModelId(listing.modelId)
-      setCategoryId(listing.category);
-      setCondition(listing.condition)
-      setPrice(listing.price)
-      setLocation(listing.location)
-      setColor(listing.color)
-      setYearMade(listing.yearMade)
-      setDescription(listing.description)
-      dispatch(listingActions.updateListing(listingId))
-    }
-  }, [dispatch, listingId])
+
 
   const CategoryMap = () => {
     return (
@@ -219,12 +221,12 @@ const ListingFormPage = () => {
           </label>
           <ModelMap />
             <br/>
-          <input type="type" 
+          {/* <input type="type" 
             className="input-box"
             name="model" 
             value={modelId} 
             onChange={e => setModelId(e.target.value)}
-          />
+          /> */}
             <br/>
           <label className="input-field" for="price">
             Price:

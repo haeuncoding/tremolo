@@ -7,7 +7,7 @@ export const REMOVE_LISTING = "listings/REMOVE_LISTING"
 
 export const receiveListings = (listings) => ({
   type: RECEIVE_LISTINGS,
-  listings
+  listings: listings.listings
 })
 
 export const receiveListing = (listingPayload) => ({
@@ -25,7 +25,7 @@ export const removeListing = (listingId) => ({
 
 export const getListings = (store) => {
   if (store.listings) { 
-    return Object.values(store.listings).flat(1); 
+    return Object.values(store.listings); 
   } else {
   return [];
   }
@@ -99,7 +99,7 @@ export const updateListing = (listing) => async (dispatch) => {
 }
 
 export const deleteListing = (id) => async (dispatch) => {
-  const response = await fetch(`/api/listings/${id}`, {
+  const response = await csrfFetch(`/api/listings/${id}`, {
     method: "DELETE"
   });
   if (response.ok) {
