@@ -80,6 +80,8 @@ export const createListing = (listingData) => async (dispatch) => {
   if (response.ok) {
     const newListing = await response.json();
     dispatch(receiveListing(newListing))
+    window.location.href =`/`
+// listings/:${newListing.id}
   }
 }
 

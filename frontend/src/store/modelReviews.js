@@ -72,7 +72,7 @@ export const createModelReview = (modelReviewData) => async (dispatch) => {
 }
 
 export const updateModelReview = (modelReview) => async (dispatch) => {
-  const response = await fetch(`/api/model_reviews/${modelReview.id}`, {
+  const response = await csrfFetch(`/api/model_reviews/${modelReview.id}`, {
     method: "PATCH",
     body: JSON.stringify(modelReview),
     headers: {
@@ -87,7 +87,7 @@ export const updateModelReview = (modelReview) => async (dispatch) => {
 }
 
 export const deleteModelReview = (id) => async (dispatch) => {
-  const response = await fetch(`/api/model_reviews/${id}`, {
+  const response = await csrfFetch(`/api/model_reviews/${id}`, {
     method: "DELETE"
   });
   if (response.ok) {
@@ -105,6 +105,7 @@ const modelReviewsReducer = (state = {}, action) => {
     case RECEIVE_MODEL_REVIEW:
       return { ...newState, [action.modelReview.id]: action.modelReview };
     case REMOVE_MODEL_REVIEW:
+      console.log('hello')
       delete newState[action.modelReviewId];
       return newState;
     default:

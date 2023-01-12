@@ -20,10 +20,8 @@ before_action :require_logged_in, only: [:create, :update, :destroy]
     @model_review = ModelReview.find_by(id: params[:id])
     if current_user.id === @model_review.model_reviewer_id
       if @model_review.update(model_review_params)
-        redirect_to model_url(@model_review.model_reviewed_id)
       else
         flash[:errors] = @model_review.errors.full_messages
-        redirect_to model_url(@model_review.model_reviewed_id)
       end
     end
   end
@@ -32,7 +30,6 @@ before_action :require_logged_in, only: [:create, :update, :destroy]
     @model_review = ModelReview.find_by(id: params[:id])
     if current_user.id === @model_review.model_reviewer_id
       @model_review.delete
-        redirect_to model_url(@model_review.model_reviewed_id)
     end
   end
 

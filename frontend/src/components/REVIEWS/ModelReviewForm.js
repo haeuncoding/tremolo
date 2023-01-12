@@ -7,7 +7,7 @@ import './ReviewForm.css';
 import SingleStarEmpty from "../../assets/review-icons/SingleStarEmpty.png"
 import SingleStarHover from "../../assets/review-icons/SingleStarHover.png"
 import * as hooks from "../../hooks/index"
-function ModelReviewForm({ modelReviewId }) {
+function ModelReviewForm() {
   const dispatch = useDispatch()
   
   const sessionUser = useSelector(state => state.session.user)
@@ -31,27 +31,63 @@ function ModelReviewForm({ modelReviewId }) {
   const listing = useSelector(getListing(listingId))
   const modelId = listing.modelId
 
-  // console.log('session user here!')
-  // console.log(sessionUser)
-  // // console.log(sessionUser.id)
-  // console.log('-----------------')
+  // TODO add error render for not logged in
 
-  const modelReview = useSelector(getModelReview(modelReviewId))
-  // console.log(' this is in the model review form ')
-  // console.log('listing')
-  // console.log(listing)
-  // console.log('model')
-  // console.log(listing.model)
-  // console.log('modelId')
-  // console.log(listing.modelId)
-  // console.log('stars')
-  // console.log(stars)
+  const starsDisplay = (e) => {
+    switch (e.target.value) {
+          case 1:
+            return (
+            <div className="star-display">
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+            </div>)
+          case 2:
+            return (
+            <div className="star-display">
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+            </div>)
+          case 3:
+            return (
+            <div className="star-display">
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+            </div>)
+          case 4:
+            return (
+            <div className="star-display">
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+            </div>)
+          case 5:
+            return (
+            <div className="star-display">
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+            </div>)
+          default:
+            // <p> hello there it's me</p>
+            break;
+        }
+  }
 
 
-
-
-
-  const handleStars = async (e) => {
+  const handleStars = (e) => {
     e.preventDefault()
     setStars(e.target.getAttribute('value'))
     console.log('e.target.value')
@@ -61,47 +97,31 @@ function ModelReviewForm({ modelReviewId }) {
     switch (num) {
       case 1:
         if (isOneActive) {
-        setIsOneHover(false)        
-        setIsTwoHover(false)
-        setIsThreeHover(false)
-        setIsFourHover(false)
-        setIsFiveHover(false)
         setIsOneActive(false)
         setIsTwoActive(false)
         setIsThreeActive(false)
         setIsFourActive(false)
         setIsFiveActive(false)
+        setStars(0)
         } else {
-        setIsOneHover(true)        
-        setIsTwoHover(false)
-        setIsThreeHover(false)
-        setIsFourHover(false)
-        setIsFiveHover(false)
         setIsOneActive(true)
         setIsTwoActive(false)
         setIsThreeActive(false)
         setIsFourActive(false)
         setIsFiveActive(false)
+        console.log("OI! LOOK HERE")
+        console.log(e.target.getAttribute('value'))
+        setStars(e.target.getAttribute('value'))
         }
         break;
       case 2:
         if (isTwoActive) {
-        setIsOneHover(true)        
-        setIsTwoHover(false)
-        setIsThreeHover(false)
-        setIsFourHover(false)
-        setIsFiveHover(false)
         setIsOneActive(false)
         setIsTwoActive(false)
         setIsThreeActive(false)
         setIsFourActive(false)
         setIsFiveActive(false)
         } else {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(false)
-        setIsFourHover(false)
-        setIsFiveHover(false)
         setIsOneActive(true)
         setIsTwoActive(true)
         setIsThreeActive(false)
@@ -111,22 +131,12 @@ function ModelReviewForm({ modelReviewId }) {
         break;
       case 3:
         if (isThreeActive) {
-        setIsOneHover(false)        
-        setIsTwoHover(false)
-        setIsThreeHover(false)
-        setIsFourHover(false)
-        setIsFiveHover(false)
         setIsOneActive(false)
         setIsTwoActive(false)
         setIsThreeActive(false)
         setIsFourActive(false)
         setIsFiveActive(false)
         } else {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(true)
-        setIsFourHover(false)
-        setIsFiveHover(false)
         setIsOneActive(true)
         setIsTwoActive(true)
         setIsThreeActive(true)
@@ -136,22 +146,12 @@ function ModelReviewForm({ modelReviewId }) {
         break;
       case 4:
         if (isFourActive) {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(true)
-        setIsFourHover(false)
-        setIsFiveHover(false)
         setIsOneActive(false)
         setIsTwoActive(false)
         setIsThreeActive(false)
         setIsFourActive(false)
         setIsFiveActive(false)
         } else {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(true)
-        setIsFourHover(true)
-        setIsFiveHover(false)
         setIsOneActive(true)
         setIsTwoActive(true)
         setIsThreeActive(true)
@@ -161,22 +161,12 @@ function ModelReviewForm({ modelReviewId }) {
         break;
       case 5:
         if (isFiveActive) {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(true)
-        setIsFourHover(true)
-        setIsFiveHover(false)
         setIsOneActive(false)
         setIsTwoActive(false)
         setIsThreeActive(false)
         setIsFourActive(false)
         setIsFiveActive(false)
         } else {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(true)
-        setIsFourHover(true)
-        setIsFiveHover(false)
         setIsOneActive(true)
         setIsTwoActive(true)
         setIsThreeActive(true)
@@ -189,49 +179,9 @@ function ModelReviewForm({ modelReviewId }) {
     }
   }
 
-  // const [errors, handleSubmit] = hooks.useSubmit({
-  //   if (modelReviewId) {
-  //     const data = {
-  //       id: modelReviewId,
-  //       modelReviewerId: sessionUser.id,
-  //       modelReviewedId: modelId,
-  //       rating: stars,
-  //       description: description
-  //     }
-  //     createAction: () => {updateModelReview(data)};,
-  //     onSuccess: () => {
-  //       <Redirect to={`listings/${listingId}`} />
-  //     }
-  //   } else {
-  //     const data = {
-  //       model_reviewer_id: sessionUser.id,
-  //       model_reviewed_id: modelId,
-  //       rating: stars,
-  //       description: description
-  //     }
-  //     createAction: () => {createModelReview(data)};,
-  //     onSuccess: () => {
-  //       <Redirect to={`listings/${listingId}`} />
-  //   }
-  // })
-
-  const handleDesc = async (e) => {
-    this.setDescription({value: e.target.value})
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (modelReviewId) {
-      setIsEdit(true)
-      const data = {
-        id: modelReviewId,
-        modelReviewerId: sessionUser.id,
-        modelReviewedId: modelId,
-        rating: stars,
-        description: description
-      }
-      dispatch(updateModelReview(data));
-    } else {
+    {
       const data = {
         model_reviewer_id: sessionUser.id,
         model_reviewed_id: modelId,
@@ -239,6 +189,8 @@ function ModelReviewForm({ modelReviewId }) {
         description: description
       }
       console.log(data)
+      setStars(0)
+      setDescription("")
       dispatch(createModelReview(data));
     }
     return (Redirect(`listings/${listingId}`))
@@ -248,12 +200,13 @@ function ModelReviewForm({ modelReviewId }) {
     <div className="review-form-container">
       <h2 id="label-star">Leave a Review</h2>
       <form onSubmit={(e) => handleSubmit}>
-        <div className="stars" required onClick={handleStars}>
+        <div className="stars" required onClick={() => handleStars}>
             <button value={1}
               className="star-container"
               src={SingleStarEmpty}
               onMouseOver={(e) => (setIsOneHover(true))}
               onMouseOut={(e) => (setIsOneHover(false))} 
+              onClick={()=> {handleStars()}}
               >
                 <img className="star"
                 value={1}
@@ -266,7 +219,7 @@ function ModelReviewForm({ modelReviewId }) {
               src={SingleStarEmpty}
               onMouseOver={(e) => (setIsTwoHover(true))}
               onMouseOut={(e) => (setIsTwoHover(false))} 
-              onClick={handleStars}
+              onClick={()=> {handleStars()}}
               >
                 <img className="star"
                 value={2}
@@ -279,7 +232,7 @@ function ModelReviewForm({ modelReviewId }) {
               src={SingleStarEmpty}
               onMouseOver={(e) => (setIsThreeHover(true))}
               onMouseOut={(e) => (setIsThreeHover(false))} 
-              onClick={handleStars}
+              onClick={()=> {handleStars()}}
               >
                 <img className="star"
                 value={3}
@@ -292,7 +245,7 @@ function ModelReviewForm({ modelReviewId }) {
               src={SingleStarEmpty}
               onMouseOver={(e) => (setIsFourHover(true))}
               onMouseOut={(e) => (setIsFourHover(false))} 
-              onClick={handleStars}
+              onClick={()=> {handleStars()}}
               >
                 <img className="star"
                 value={4}
@@ -305,7 +258,7 @@ function ModelReviewForm({ modelReviewId }) {
               src={SingleStarEmpty}
               onMouseOver={(e) => (setIsFiveHover(true))}
               onMouseOut={(e) => (setIsFiveHover(false))} 
-              onClick={handleStars}
+              onClick={()=> {handleStars()}}
               >
                 <img className="star"
                 value={5}
@@ -314,9 +267,7 @@ function ModelReviewForm({ modelReviewId }) {
                 />
             </button>
         </div>
-        {/* <label htmlFor="review-description" id="label-for-desc">
-          <h2 id="label-desc-text">Any additional thoughts? (Optional) </h2>
-        </label> */}
+
         <br />
           <input
             type="textarea"
