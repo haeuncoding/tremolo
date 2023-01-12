@@ -12,11 +12,11 @@ const CategoryListingGrid = ({categoryId}) => {
   const listings = useSelector(listingActions.getListings)
 
     const DisplayFilteredListings = () => {
-    // listings.forEach(listing => {
-    //   console.log("CATEGORY CHECKING")
-    //   console.log(listing.categoryId)
-    //   console.log(listing.category)
-    // })
+    listings.forEach(listing => {
+      console.log("CATEGORY CHECKING")
+      console.log(listing.categoryId)
+      console.log(listing.category)
+    })
     const filtered = listings.filter(listing => listing.categoryId === categoryId)
     return (
       filtered?.map((listing) => <ListingTile listing={listing} class="home-ind-tile"/>)

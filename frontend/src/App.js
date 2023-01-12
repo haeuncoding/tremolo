@@ -56,18 +56,33 @@ function App() {
                 <ListingGrid ListingGrid  />
               </div>
             </Route>
-            <Route path="/login" component={LoginFormPage} />
-            <Route path="/signup" component={SignupFormPage} />
-
-            <Route path="/cart" component={CartPage} />
-
-            <Route exact path="/my_feed" component={GeneralListingIndex} />
-
-            <Route exact path="/categories/:categoryId" component={CategoryListingIndex} />
-            <Route exact path="/listings/:listingId" component={ListingComponent} />
-            <Route path="/new_listing" component={ListingFormPage} />
-            <Route path="/listings/:listing_id/edit/" component={ListingFormPage} />
-            <Route path="/listings/submission_success" component={PostSubmitListingComp} />
+            <Route path="/login">
+              <LoginFormPage />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
+            <Route path="/cart">
+              <CartPage />
+            </Route>
+            <Route exact path="/my_feed">
+              <GeneralListingIndex />
+            </Route>
+            <Route exact path="/categories/:categoryId">
+              <CategoryListingIndex />
+            </Route>
+            <Route exact path="/listings/:listingId">
+              <ListingComponent />
+            </Route>
+            <Route path="/new_listing">
+              <ListingFormPage />
+            </Route>
+            <Route path="/edit/:listing_id">
+              <ListingFormPage />
+            </Route>
+            <Route path="/listings/submission_success">
+              <PostSubmitListingComp />
+            </Route>
           </Switch>
     </>
   );

@@ -51,7 +51,7 @@ class User < ApplicationRecord
     
   has_many :watched_listings,
     primary_key: :id,
-    foreign_key: :user_id,
+    foreign_key: :watcher_id,
     class_name: :Listing
   
 

@@ -8,7 +8,7 @@ const SplashScreen2 = () => {
     <div id="splash-container2">
       <div id="splash-text-container2">
         <h3 id="splash-caption2">Pedal to the Metal</h3> 
-        <Link id="link-button-container2" to='/categories/2'>
+        <Link id="link-button-container2" to='/listings'>
           <button id="shop-now-button2">
             Check Out our Pedal Selection
           </button>       

@@ -55,13 +55,12 @@ export const fetchCategory = (categoryId) => async (dispatch) => {
 const categoriesReducer = (state = {}, action) => {
     let newState = { ...state };
   switch (action.type) {
+    case RECEIVE_LISTINGS:
+      return { ...newState, ...action.listings }
     case RECEIVE_CATEGORIES:
       return { ...newState, ...action.categories };
     case RECEIVE_CATEGORY:
       return { ...newState, [action.category.id]: action.category };
-    case RECEIVE_LISTINGS:
-      return { ...newState, ...action.listings.category }
-
     default:
       return state;
   }

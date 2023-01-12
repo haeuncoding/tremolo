@@ -8,9 +8,8 @@ import { getMakes, fetchMakes } from "../../../store/makes";
 import { getModels, fetchModels } from "../../../store/models"
 import './ListingFormPage.css';
 
-function ListingFormPage() {
+const ListingFormPage = () => {
   const sessionUser = useSelector(state => state.session.user)
-  console.log('god is a lie and man is a failure')
   const { listingId } = useParams();
   const dispatch = useDispatch();
   const [listerId, setListerId] = useState()
@@ -26,7 +25,7 @@ function ListingFormPage() {
   const [description, setDescription] = useState("")
   const [isEdit, setIsEdit] = useState(false)
   const listing = useSelector(listingActions.getListing(listingId));
-  console.log(listing)
+
 
   // const [errors, setErrors] = useState([]);
 
@@ -42,11 +41,8 @@ function ListingFormPage() {
   ]
   
   useEffect(() => {
-    console.log("HI LOOK HEREEEEEEEEEEEEEEEEEEEEEEEEEE")
-    console.log(listingId)
     if (listingId) {
       setIsEdit(true)
-      dispatch(listingActions.fetchListing(listingId))
       setListingTitle(listing.listingTitle);
       setListerId(sessionUser.id)
       setMakeId(listing.makeId);
@@ -65,6 +61,7 @@ function ListingFormPage() {
   console.log(sessionUser)
   const handleSubmit = async e => {
     e.preventDefault();
+    console.log(listingId)
     if (listingId) {
       const data = {
         id: listingId,

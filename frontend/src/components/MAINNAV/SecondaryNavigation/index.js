@@ -8,7 +8,7 @@ import CategoryLink from './CategoryLink';
 function SecondaryNavigation() {
   const dispatch = useDispatch();
   const categoriesArr = useSelector(categoryActions.getCategories)
-  const categories = categoriesArr
+  const categories = categoriesArr.flat(1)
   console.log(categories)
   
   useEffect(() => {
@@ -24,7 +24,7 @@ function SecondaryNavigation() {
     <ul id="sec-nav-container">
       {categories.map(category => <CategoryLink category={category} />)}
       <li className="sec-nav-link-container">
-        <NavLink to="/my_feed"
+        <NavLink to="#"
           className="sec-nav-link">
             View All
         </NavLink>

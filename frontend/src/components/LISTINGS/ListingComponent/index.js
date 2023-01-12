@@ -29,10 +29,8 @@ const ListingComponent = () => {
   useEffect(() => {
     dispatch(listingActions.fetchListing(listingId))
     if (listingId && sessionUser) {
-      if (listing){
-        if (listing.listerId === sessionUser.id) {
+      if (listing.listerId === sessionUser.id) {
         setIsLister(true)
-      }
       }
     }
   }, [dispatch, listingId])
@@ -40,10 +38,10 @@ const ListingComponent = () => {
 
 
   const DisplayCurrentModelReviews = () => {
-    // modelReviews.forEach(review => {
-    //   console.log(review.modelReviewed)
-    //   console.log(review.modelReviewedId)
-    // })
+    modelReviews.forEach(review => {
+      console.log(review.modelReviewed)
+      console.log(review.modelReviewedId)
+    })
     const filtered = modelReviews.filter(review => review.modelReviewedId === listing.modelId)
     return (filtered.map(review => <ReviewTile review={review} /> )
   )}
@@ -75,11 +73,9 @@ const ListingComponent = () => {
   
     // TODO - not registering listing id when redirected to edit -- also it fails if i don't manually uncomment it out then back in
   const ListerActions = () => {
-      const { listingId }= useParams()
-      console.log(listingId)
       return (
       <>
-      {/* <Link to={`/listings/${listingId}/edit`} id="edit-link-listing-comp"> */}
+      <Link to={`/edit/${listingId}`}>
       <div className="user-options" id="div1">
         <button className="user-options"
           id="edit-button"
@@ -91,7 +87,7 @@ const ListingComponent = () => {
             </EditListingModal>
           )}
       </div>
-      {/* </Link> */}
+      </Link>
         <br className="user-options" />
         <div className="user-options" id="div2">
         <button className="user-options"
@@ -149,7 +145,7 @@ const ListingComponent = () => {
     }
   }
 
-  if (!listing) {
+  if (!listing || !listing.listerId) {
     return (null)
   }
 
