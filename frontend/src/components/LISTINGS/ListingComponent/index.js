@@ -4,13 +4,16 @@ import { useSelector, useDispatch } from "react-redux"
 import { Link, Redirect, useParams } from "react-router-dom"
 import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
 import './ListingComponent.css'
-import ModelReviewForm from '../../REVIEWS/ModelReviewForm';
+import ModelReviewForm from "../../REVIEWS/ModelReviewForm"
+import EditListingModalForm from '../ListingFormPage/EditListingFormModal/EditListingModalForm';
+import { EditListingModal } from '../../../context/EditListingModal';
 import ReviewTile from '../../REVIEWS/ReviewTile';
 import UpdateUserWatchlist from '../../../util/UpdateUserWatchlist';
 import UpdateUserCart from '../../../util/UpdateUserCart';
 import { deleteListing } from '../../../store/listings';
 const ListingComponent = () => {
   const sessionUser = useSelector(state => state.session.user)
+  const [showModal, setShowModal] = useState(false);
   const [isLister, setIsLister] = useState(false)
   const [isWatched, setIsWatched] = useState(false)
   const [isAddedToCart, setIsAddedToCart] = useState(false)
@@ -72,18 +75,19 @@ const ListingComponent = () => {
       console.log(listingId)
       return (
       <>
-      <Link to={`/listings/${listingId}/edit`} >
+      {/* <Link to={`/listings/${listingId}/edit`} id="edit-link-listing-comp"> */}
       <div className="user-options" id="div1">
-        
-          <button className="user-options"
-          // "user-options" 
-            id="edit-button"
-            // onClick={handleEdit}
-            >
-            Edit Listing
-          </button>
+        <button className="user-options"
+          id="edit-button"
+          onClick={() => setShowModal(true)}>Edit Listing</button>
+          {showModal && (
+            <EditListingModal onClose={() => setShowModal(false)}>
+              {console.log('hi this is when the modal form opens')}
+              <EditListingModalForm id={listingId} />
+            </EditListingModal>
+          )}
       </div>
-      </Link>
+      {/* </Link> */}
         <br className="user-options" />
         <div className="user-options" id="div2">
         <button className="user-options"

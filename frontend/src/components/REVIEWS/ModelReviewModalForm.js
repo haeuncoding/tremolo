@@ -28,7 +28,6 @@ function ModelReviewModalForm(modelReviewId) {
     const [isFourActive, setIsFourActive] = useState(false)
     const [isFiveActive, setIsFiveActive] = useState(false)
     const [description, setDescription] = useState("")
-  const [isEdit, setIsEdit] = useState(false)
   const [errors, setErrors] = useState(false)
   const listing = useSelector(getListing(listingId))
   const modelId = listing.modelId
@@ -42,7 +41,7 @@ function ModelReviewModalForm(modelReviewId) {
   console.log('throwing up screaming and crying')
   console.log(review)
 
-  const handleStars = async (e) => {
+  const handleStars = (e) => {
     e.preventDefault()
     setStars(e.target.getAttribute('value'))
     console.log('e.target.value')
@@ -52,22 +51,12 @@ function ModelReviewModalForm(modelReviewId) {
     switch (num) {
       case 1:
         if (isOneActive) {
-        setIsOneHover(false)        
-        setIsTwoHover(false)
-        setIsThreeHover(false)
-        setIsFourHover(false)
-        setIsFiveHover(false)
         setIsOneActive(false)
         setIsTwoActive(false)
         setIsThreeActive(false)
         setIsFourActive(false)
         setIsFiveActive(false)
         } else {
-        setIsOneHover(true)        
-        setIsTwoHover(false)
-        setIsThreeHover(false)
-        setIsFourHover(false)
-        setIsFiveHover(false)
         setIsOneActive(true)
         setIsTwoActive(false)
         setIsThreeActive(false)
@@ -77,22 +66,13 @@ function ModelReviewModalForm(modelReviewId) {
         break;
       case 2:
         if (isTwoActive) {
-        setIsOneHover(true)        
-        setIsTwoHover(false)
-        setIsThreeHover(false)
-        setIsFourHover(false)
-        setIsFiveHover(false)
+
         setIsOneActive(false)
         setIsTwoActive(false)
         setIsThreeActive(false)
         setIsFourActive(false)
         setIsFiveActive(false)
         } else {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(false)
-        setIsFourHover(false)
-        setIsFiveHover(false)
         setIsOneActive(true)
         setIsTwoActive(true)
         setIsThreeActive(false)
@@ -102,22 +82,13 @@ function ModelReviewModalForm(modelReviewId) {
         break;
       case 3:
         if (isThreeActive) {
-        setIsOneHover(false)        
-        setIsTwoHover(false)
-        setIsThreeHover(false)
-        setIsFourHover(false)
-        setIsFiveHover(false)
+
         setIsOneActive(false)
         setIsTwoActive(false)
         setIsThreeActive(false)
         setIsFourActive(false)
         setIsFiveActive(false)
         } else {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(true)
-        setIsFourHover(false)
-        setIsFiveHover(false)
         setIsOneActive(true)
         setIsTwoActive(true)
         setIsThreeActive(true)
@@ -127,22 +98,12 @@ function ModelReviewModalForm(modelReviewId) {
         break;
       case 4:
         if (isFourActive) {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(true)
-        setIsFourHover(false)
-        setIsFiveHover(false)
         setIsOneActive(false)
         setIsTwoActive(false)
         setIsThreeActive(false)
         setIsFourActive(false)
         setIsFiveActive(false)
         } else {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(true)
-        setIsFourHover(true)
-        setIsFiveHover(false)
         setIsOneActive(true)
         setIsTwoActive(true)
         setIsThreeActive(true)
@@ -152,22 +113,12 @@ function ModelReviewModalForm(modelReviewId) {
         break;
       case 5:
         if (isFiveActive) {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(true)
-        setIsFourHover(true)
-        setIsFiveHover(false)
         setIsOneActive(false)
         setIsTwoActive(false)
         setIsThreeActive(false)
         setIsFourActive(false)
         setIsFiveActive(false)
         } else {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(true)
-        setIsFourHover(true)
-        setIsFiveHover(false)
         setIsOneActive(true)
         setIsTwoActive(true)
         setIsThreeActive(true)
@@ -181,9 +132,9 @@ function ModelReviewModalForm(modelReviewId) {
   }
 
   useEffect(() => {
+      dispatch(fetchModelReview(modelReviewId.id))
       setStars(review.stars)
       setDescription(review.description)
-      dispatch(fetchModelReview(modelReviewId.id))
   }, [dispatch])
 
   const handleDescription = async (e) => {
@@ -196,8 +147,6 @@ function ModelReviewModalForm(modelReviewId) {
     e.preventDefault();
     const data = {
       id: modelReviewId.id,
-      // modelReviewerId,
-      // modelReviewedId,
       rating: stars,
       description: description
     }
@@ -209,7 +158,7 @@ function ModelReviewModalForm(modelReviewId) {
 
   return (
     <div className="review-form-container">
-      <h2 id="label-star" value={isEdit}>{"Edit Your Review"}</h2>
+      <h2 id="label-star">{"Edit Your Review"}</h2>
       <form onSubmit={handleSubmit}>
         <div className="stars" required onClick={handleStars}>
             <button value={1}

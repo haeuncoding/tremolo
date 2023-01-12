@@ -183,6 +183,10 @@ button.user-options, .added-cart#cart-button, .not-added-cart#cart-button, butto
   justify-content: center;
 }
 
+#edit-link-listing-comp {
+  text-decoration: none;
+}
+
 
 #cart-button {
   color: #efefef;

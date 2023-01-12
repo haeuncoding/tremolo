@@ -10,7 +10,7 @@ import { useState, useEffect } from "react";
 const CartPage = () => {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user)
-  const user = dispatch(fetchUser(sessionUser.id))
+  // const user = dispatch(fetchUser(sessionUser.id))
 
   // useEffect(() => {
   //   dispatch(fetchUser(sessionUser.id))
@@ -18,10 +18,10 @@ const CartPage = () => {
   // }, [])
 
   console.log(sessionUser)
-  console.log(sessionUser.id)
-  console.log('sessionUser^^^^^^^^^^^^^^^^^^^^')
-  console.log(user)
-  console.log('from backend User^^^^^^^^^^^^^^^^^^^^')
+  // console.log(sessionUser.id)
+  // console.log('sessionUser^^^^^^^^^^^^^^^^^^^^')
+  // console.log(user)
+  // console.log('from backend User^^^^^^^^^^^^^^^^^^^^')
 
 
   // const [cart, setCart] = useState([])
