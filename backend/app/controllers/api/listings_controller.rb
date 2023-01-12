@@ -37,10 +37,9 @@ class Api::ListingsController < ApplicationController
     @listing = Listing.find_by(id: params[:id])
     if current_user.id === @listing.lister_id
       if @listing.update(listing_params)
-        :show
+        render :show
       else
-        flash[:errors] = @listing.errors.full_messages
-        redirect_to listing_url(@listing.id)
+        render json: @listing.errors.full_messages
       end
     end
   end
