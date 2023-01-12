@@ -20,8 +20,9 @@ before_action :require_logged_in, only: [:create, :update, :destroy]
     @model_review = ModelReview.find_by(id: params[:id])
     if current_user.id === @model_review.model_reviewer_id
       if @model_review.update(model_review_params)
+        render :show
       else
-        flash[:errors] = @model_review.errors.full_messages
+        render json: @model_review.errors.full_messages
       end
     end
   end
