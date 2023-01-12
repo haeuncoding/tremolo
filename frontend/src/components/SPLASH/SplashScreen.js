@@ -10,7 +10,7 @@ const SplashScreen = () => {
         <h1 id="splash-title">New Year, New Gear</h1>
         <br />
         <h3 id="splash-caption">That means savings on items from Chise Blass, Ernie Balls, Bender, and more!</h3> 
-        <Link id="link-button-container" to='/listings'>
+        <Link id="link-button-container" to='/my_feed'>
           <button id="shop-now-button">
             Shop Now
           </button>       

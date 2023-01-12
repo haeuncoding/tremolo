@@ -57,12 +57,12 @@ export const updateUser = (user) => async (dispatch) => {
 const usersReducer = (state = {}, action) => {
     let newState = { ...state };
   switch (action.type) {
-    // case RECEIVE_LISTINGS:
-    //   return { ...newState, ...action.listings}
     case RECEIVE_USER:
       console.log('user payload')
       console.log(action.userPayload)
       return { ...newState, [action.userPayload]: action.userPayload };
+    case RECEIVE_LISTINGS:
+      return { ...newState, ...action.listings.user}
     default:
       return state;
   }
