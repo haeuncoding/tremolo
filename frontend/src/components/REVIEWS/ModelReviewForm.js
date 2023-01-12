@@ -189,9 +189,10 @@ function ModelReviewForm() {
         description: description
       }
       console.log(data)
+      dispatch(createModelReview(data))
       setStars(0)
       setDescription("")
-      dispatch(createModelReview(data));
+      ;
     }
     return (Redirect(`listings/${listingId}`))
   }
