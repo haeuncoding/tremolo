@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import * as listingActions from "../../../store/listings"
-import * as categoryActions from "../../../store/categories"
-import * as makeActions from "../../../store/makes"
-import * as modelActions from "../../../store/models"
-import * as shopActions from "../../../store/shops"
 import { useSelector, useDispatch } from "react-redux"
 import { Link, Redirect, useParams } from "react-router-dom"
 import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
@@ -25,15 +21,22 @@ const ListingComponent = () => {
   
   useEffect(() => {
     dispatch(listingActions.fetchListing(listingId))
-    if (listingId && listing.shopId === sessionUser.id) {
+    if (listingId && sessionUser) {
+      if (listing.listerId === sessionUser.id) {
         setIsLister(true)
+      }
     }
-  }, [dispatch, listingId])
+  }, [dispatch, listingId, sessionUser])
 
 
 
   const DisplayCurrentModelReviews = () => {
-    return (modelReviews.map(review => <ReviewTile review={review} /> )
+    modelReviews.forEach(review => {
+      console.log(review.modelReviewed)
+      console.log(review.modelReviewedId)
+    })
+    const filtered = modelReviews.filter(review => review.modelReviewedId === listing.modelId)
+    return (filtered.map(review => <ReviewTile review={review} /> )
   )}
 
   const NonListerActions = () => {
@@ -134,9 +137,11 @@ const ListingComponent = () => {
     }
   }
 
-  if (!listing) {
-    return (<h3>"Whoops! Looks like the listing you want doesn't exist."</h3>)
+  if (!listing || !listing.listerId) {
+    return (null)
   }
+
+
 
   const handleDelete = (e) => {
     e.preventDefault()
@@ -156,7 +161,7 @@ const ListingComponent = () => {
           <div className="listing-top">
               <h5 id="category-make-model">{listing.category} // {listing.make} // {listing.model}</h5>
             <div className="hl" />
-              <h4 id="shop-name">{listing.shop}</h4>
+              <h4 id="shop-name">{listing.shopName}</h4>
               <h5 id="location">{listing.location}</h5>
               <h1 id="listing-component-title">{listing.listingTitle}</h1>
                 <h5 id="component-condition">Condition - {listing.condition}</h5>

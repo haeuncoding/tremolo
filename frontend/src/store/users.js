@@ -4,9 +4,9 @@ import { RECEIVE_LISTINGS } from "./listings"
 
 export const RECEIVE_USER = "users/RECEIVE_USER"
 
-export const receiveUser = (user) => ({
+export const receiveUser = (userPayload) => ({
   type: RECEIVE_USER,
-  user
+  userPayload
 })
 
 export const getUser = (userId) => (store) => {
@@ -25,7 +25,8 @@ export const getUser = (userId) => (store) => {
 
 // thunk action creators
 export const fetchUser = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/users/${userId}`)
+  console.log('hello????????????????')
+  const response = await csrfFetch(`/api/users/${userId}`)
   if (response.ok) {
     console.log("HELLO!! HELLO!!???")
     console.log(response.json())
@@ -56,10 +57,12 @@ export const updateUser = (user) => async (dispatch) => {
 const usersReducer = (state = {}, action) => {
     let newState = { ...state };
   switch (action.type) {
-    case RECEIVE_LISTINGS:
-      return { ...newState, ...action.listings}
+    // case RECEIVE_LISTINGS:
+    //   return { ...newState, ...action.listings}
     case RECEIVE_USER:
-      return { ...newState, [action.user.id]: action.user };
+      console.log('user payload')
+      console.log(action.userPayload)
+      return { ...newState, [action.userPayload]: action.userPayload };
     default:
       return state;
   }

@@ -1,4 +1,6 @@
 // action constants and corresponding action creators
+import { RECEIVE_LISTINGS } from "./listings"
+
 export const RECEIVE_CATEGORIES = "categories/RECEIVE_CATEGORIES"
 export const RECEIVE_CATEGORY = "categories/RECEIVE_CATEGORY"
 
@@ -55,6 +57,8 @@ export const fetchCategory = (categoryId) => async (dispatch) => {
 const categoriesReducer = (state = {}, action) => {
     let newState = { ...state };
   switch (action.type) {
+    case RECEIVE_LISTINGS:
+      return { ...newState, ...action.listings }
     case RECEIVE_CATEGORIES:
       return { ...newState, ...action.categories };
     case RECEIVE_CATEGORY:

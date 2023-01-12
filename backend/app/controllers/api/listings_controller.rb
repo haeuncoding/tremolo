@@ -37,7 +37,7 @@ class Api::ListingsController < ApplicationController
     @listing = Listing.find_by(id: params[:id])
     if current_user.id === @listing.lister_id
       if @listing.update(listing_params)
-        redirect_to listing_url(@listing.id)
+        :show
       else
         flash[:errors] = @listing.errors.full_messages
         redirect_to listing_url(@listing.id)
@@ -49,7 +49,6 @@ class Api::ListingsController < ApplicationController
     @listing = Listing.find_by(id: params[:id])
     if current_user.id === @listing.lister_id
       @listing.delete
-      redirect_to user_url(current_user.id)
     end
   end
 

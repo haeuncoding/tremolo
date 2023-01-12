@@ -53,7 +53,7 @@ class Listing < ApplicationRecord
   belongs_to :shop,
     primary_key: :id,
     foreign_key: :lister_id,
-    class_name: :Shop
+    class_name: :User
 
   belongs_to :category,
     primary_key: :id,
@@ -95,9 +95,8 @@ class Listing < ApplicationRecord
     Listing.where(lister_id: shop_id)
   end
 
-  def self.apply_filters(category_id, make_id, model_id, shop_id, min_price, max_price)
-    
-    Listing.where(category_id: category_id, make_id: make_id, model_id: model_id, lister_id: shop_id, price: (min_price..max_price))
+  def self.apply_filters(category_id, make_id, model_id, lister_id, min_price, max_price)
+    Listing.where(category_id: category_id, make_id: make_id, model_id: model_id, lister_id: lister_id, price: (min_price..max_price))
   end
 
   def add_watcher_count

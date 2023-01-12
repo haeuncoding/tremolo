@@ -5,43 +5,61 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUser, fetchUser, updateUser } from "../../../store/users";
 import CartTile from "./CartTile";
 import './CartPage.css'
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const CartPage = () => {
-  const sessionUser = useSelector(state => state.session.user)
-  console.log(sessionUser.id)
-
-  // const user = useSelector(fetchUser(sessionUser.id))
-  // console.log(user)
-  // const cart = user.cart
-  const listings = useSelector(listingActions.getListings)
   const dispatch = useDispatch()
+  const sessionUser = useSelector(state => state.session.user)
+  const user = dispatch(fetchUser(sessionUser.id))
+
+  // useEffect(() => {
+  //   dispatch(fetchUser(sessionUser.id))
+  // // const cart = user.cart
+  // }, [])
+
+  console.log(sessionUser)
+  console.log(sessionUser.id)
+  console.log('sessionUser^^^^^^^^^^^^^^^^^^^^')
+  console.log(user)
+  console.log('from backend User^^^^^^^^^^^^^^^^^^^^')
+
+
+  // const [cart, setCart] = useState([])
+
+
+
+  const listings = useSelector(listingActions.getListings)
 
   useEffect(() => {
       dispatch(listingActions.fetchListings())
     // dispatch(updateUser(sessionUser.id))}
+  }, [dispatch])
 
-  }, [dispatch, sessionUser.id])
 
   const cart = listings.slice(4, 8)
-  console.log('cart here god i am so fucking tired')
-  console.log(cart)
-  console.log('end cart and life pls')
+  // console.log('cart here god i am so fucking tired')
+  // console.log('end cart and life pls')
 
   const subtotal = (cart) => {
     let val = 0
-    cart.forEach((item => {
-      val += item.price
-    }))
-    return val;
+    if (cart.length) {
+      cart.forEach((item => {
+        val += item.price
+      }))
+    }
+    return val.toFixed(2);
   }
 
-  const userSubtotal = subtotal(cart)
+  // const userSubtotal = subtotal(cart)
+  const userSubtotal = 0
+
+  if (!sessionUser) {
+    return (
+      <h1>Whoops! Looks like you gotta login there, partner.</h1>
+    )
+  } 
 
 
-  // if (!sessionUser) {
-  //   return (null)
-  // } 
   
   // else {
   //   listings.forEach(listing => {
