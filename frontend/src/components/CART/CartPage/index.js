@@ -5,10 +5,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUser, fetchUser, updateUser } from "../../../store/users";
 import CartTile from "./CartTile";
 import './CartPage.css'
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 const CartPage = () => {
-  const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user)
   // const user = dispatch(fetchUser(sessionUser.id))
 
@@ -28,38 +27,37 @@ const CartPage = () => {
 
 
 
+  // const user = useSelector(fetchUser(sessionUser.id))
+  // console.log(user)
+  // const cart = user.cart
   const listings = useSelector(listingActions.getListings)
+  const dispatch = useDispatch()
 
   useEffect(() => {
       dispatch(listingActions.fetchListings())
     // dispatch(updateUser(sessionUser.id))}
-  }, [dispatch])
 
+  }, [dispatch, sessionUser.id])
 
   const cart = listings.slice(4, 8)
-  // console.log('cart here god i am so fucking tired')
-  // console.log('end cart and life pls')
+  console.log('cart here god i am so fucking tired')
+  console.log(cart)
+  console.log('end cart and life pls')
 
   const subtotal = (cart) => {
     let val = 0
-    if (cart.length) {
-      cart.forEach((item => {
-        val += item.price
-      }))
-    }
-    return val.toFixed(2);
+    cart.forEach((item => {
+      val += item.price
+    }))
+    return val;
   }
 
-  // const userSubtotal = subtotal(cart)
-  const userSubtotal = 0
-
-  if (!sessionUser) {
-    return (
-      <h1>Whoops! Looks like you gotta login there, partner.</h1>
-    )
-  } 
+  const userSubtotal = subtotal(cart)
 
 
+  // if (!sessionUser) {
+  //   return (null)
+  // } 
   
   // else {
   //   listings.forEach(listing => {

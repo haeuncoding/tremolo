@@ -1,6 +1,6 @@
 json.id listing.id
-json.shop_name listing.shop.shop_name
-json.lister_id listing.lister_id
+json.shop listing.shop.shop_name
+json.shop_id listing.lister_id
 json.listing_title listing.listing_title
 json.make listing.make.brand_name
 json.make_id listing.make_id

@@ -12,7 +12,6 @@
 #  updated_at      :datetime         not null
 #  watchlist       :bigint           default([]), is an Array
 #  cart            :bigint           default([]), is an Array
-#  shop_name       :string
 #
 class User < ApplicationRecord
 
@@ -31,7 +30,7 @@ class User < ApplicationRecord
     format: { with: URI::MailTo::EMAIL_REGEXP }
 
   validates :password, length: { in: 6..255 }, allow_nil: true
-  validates :location, presence: true
+
 # relations
   # has_many :shop_reviews,
 
@@ -41,9 +40,13 @@ class User < ApplicationRecord
     class_name: :ModelReview
   
   has_many :listings, 
+    through: :shop,
+    source: :shop
+
+  has_one :shop,
     primary_key: :id,
-    foreign_key: :lister_id,
-    class_name: :Listing,
+    foreign_key: :owner_id,
+    class_name: :Shop,
     dependent: :destroy
     
   has_many :watched_listings,

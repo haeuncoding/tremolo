@@ -1,6 +1,4 @@
 // action constants and corresponding action creators
-import { RECEIVE_LISTINGS } from "./listings"
-
 export const RECEIVE_CATEGORIES = "categories/RECEIVE_CATEGORIES"
 export const RECEIVE_CATEGORY = "categories/RECEIVE_CATEGORY"
 

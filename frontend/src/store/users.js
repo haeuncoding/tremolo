@@ -4,9 +4,9 @@ import { RECEIVE_LISTINGS } from "./listings"
 
 export const RECEIVE_USER = "users/RECEIVE_USER"
 
-export const receiveUser = (userPayload) => ({
+export const receiveUser = (user) => ({
   type: RECEIVE_USER,
-  userPayload
+  user
 })
 
 export const getUser = (userId) => (store) => {
@@ -25,8 +25,7 @@ export const getUser = (userId) => (store) => {
 
 // thunk action creators
 export const fetchUser = (userId) => async (dispatch) => {
-  console.log('hello????????????????')
-  const response = await csrfFetch(`/api/users/${userId}`)
+  const response = await fetch(`/api/users/${userId}`)
   if (response.ok) {
     console.log("HELLO!! HELLO!!???")
     console.log(response.json())

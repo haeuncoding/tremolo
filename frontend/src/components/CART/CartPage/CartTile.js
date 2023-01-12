@@ -20,7 +20,7 @@ function CartTile({ listing }) {
               
             </div>
             <br />
-            <h3 className="child-ele" id="cart-price">${listing.price.toFixed(2)}</h3>
+            <h3 className="child-ele" id="cart-price">${listing.price}</h3>
           </div>
         </Link>
       </li>

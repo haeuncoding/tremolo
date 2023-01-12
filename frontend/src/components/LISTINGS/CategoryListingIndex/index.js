@@ -12,12 +12,10 @@ import { fetchCategory, getCategory } from "../../../store/categories";
 function CategoryListingIndex () {
   const { categoryId } = useParams()
   console.log(categoryId)
-
-  const category = useSelector(state => state.categories[categoryId])
+  const category = useSelector(getCategory(categoryId))
   const listings = useSelector(listingActions.getListings)
-
-
-  
+  // const categories = useSelector(state => state.categories)
+  // console.log(categories)
   const dispatch = useDispatch()
 
   useEffect(() => {

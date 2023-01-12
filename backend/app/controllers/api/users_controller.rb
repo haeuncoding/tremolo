@@ -13,10 +13,6 @@ class Api::UsersController < ApplicationController
       end
   end
 
-  def show
-    @user = User.find_by(id: params[:id])
-  end
-
   def update
     @user = User.find_by(id: params[:id])
     if current_user.id === @user.id
@@ -30,7 +26,7 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:id, :email, :username, :shop_name, :location, :password, :watchlist, :cart)
+    params.require(:user).permit(:email, :username, :password, :watchlist, :cart)
   end
 
 end

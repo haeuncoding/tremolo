@@ -2,12 +2,11 @@
 #
 # Table name: models
 #
-#  id          :bigint           not null, primary key
-#  make_id     :bigint           not null
-#  model       :string           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  category_id :bigint
+#  id         :bigint           not null, primary key
+#  make_id    :bigint           not null
+#  model      :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
     # t.string "model", null: false
     # t.datetime "created_at", null: false

@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import * as listingActions from "../../../store/listings"
+import * as categoryActions from "../../../store/categories"
+import * as makeActions from "../../../store/makes"
+import * as modelActions from "../../../store/models"
+import * as shopActions from "../../../store/shops"
 import { useSelector, useDispatch } from "react-redux"
 import { Link, Redirect, useParams } from "react-router-dom"
 import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
@@ -31,7 +35,7 @@ const ListingComponent = () => {
       }
       }
     }
-  }, [dispatch, listingId, sessionUser])
+  }, [dispatch, listingId])
 
 
 
@@ -149,8 +153,6 @@ const ListingComponent = () => {
     return (null)
   }
 
-
-
   const handleDelete = (e) => {
     e.preventDefault()
     dispatch(deleteListing(listingId))
@@ -169,7 +171,7 @@ const ListingComponent = () => {
           <div className="listing-top">
               <h5 id="category-make-model">{listing.category} // {listing.make} // {listing.model}</h5>
             <div className="hl" />
-              <h4 id="shop-name">{listing.shopName}</h4>
+              <h4 id="shop-name">{listing.shop}</h4>
               <h5 id="location">{listing.location}</h5>
               <h1 id="listing-component-title">{listing.listingTitle}</h1>
                 <h5 id="component-condition">Condition - {listing.condition}</h5>

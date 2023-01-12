@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_11_194624) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_09_063542) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,8 +65,29 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_194624) do
     t.string "model", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "category_id", null: false
+    t.bigint "category_id"
     t.index ["make_id"], name: "index_models_on_make_id"
+  end
+
+  create_table "shop_reviews", force: :cascade do |t|
+    t.bigint "shop_reviewer_id", null: false
+    t.bigint "shop_reviewed_id", null: false
+    t.integer "rating"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shop_reviewed_id"], name: "index_shop_reviews_on_shop_reviewed_id"
+    t.index ["shop_reviewer_id"], name: "index_shop_reviews_on_shop_reviewer_id"
+  end
+
+  create_table "shops", force: :cascade do |t|
+    t.string "shop_name", null: false
+    t.bigint "owner_id", null: false
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_shops_on_owner_id"
+    t.index ["shop_name"], name: "index_shops_on_shop_name"
   end
 
   create_table "users", force: :cascade do |t|
@@ -74,12 +95,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_194624) do
     t.string "email", null: false
     t.string "password_digest", null: false
     t.string "session_token", null: false
-    t.string "location", null: false
+    t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "watchlist", default: [], array: true
     t.bigint "cart", default: [], array: true
-    t.string "shop_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
@@ -87,6 +107,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_11_194624) do
 
   add_foreign_key "listings", "categories"
   add_foreign_key "listings", "makes"
-  add_foreign_key "listings", "users", column: "lister_id"
+  add_foreign_key "listings", "shops", column: "lister_id"
   add_foreign_key "models", "makes"
+  add_foreign_key "shop_reviews", "shops", column: "shop_reviewed_id"
+  add_foreign_key "shop_reviews", "users", column: "shop_reviewer_id"
+  add_foreign_key "shops", "users", column: "owner_id"
 end

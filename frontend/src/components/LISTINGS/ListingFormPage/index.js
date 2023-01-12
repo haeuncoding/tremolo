@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, useParams, useNavigate } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import * as listingActions from "../../../store/listings"
 import * as ListingUtility from "../../../util/listing_util"
 import { getCategories, fetchCategories } from "../../../store/categories";
 import { getMakes, fetchMakes } from "../../../store/makes";
 import { getModels, fetchModels } from "../../../store/models"
-import PostSubmitListingComponent from "../ListingFormPage/PostSubmitListingComp";
 import './ListingFormPage.css';
 
 function ListingFormPage() {
@@ -71,6 +70,7 @@ function ListingFormPage() {
         id: listingId,
         listing_title: listingTitle,
         lister_id: sessionUser.id,
+        shop_id: sessionUser.id,
         make_id: makeId,
         model_id: modelId,
         category_id: categoryId,
@@ -82,13 +82,11 @@ function ListingFormPage() {
         description: description
       }
       dispatch(listingActions.updateListing(data));
-      return (
-       <Redirect to={`/listings/:${listingId}`} />
-      )
     } else {
       const data = {
         listing_title: listingTitle,
         lister_id: sessionUser.id,
+        shop_id: sessionUser.id,
         make_id: makeId,
         model_id: modelId,
         category_id: categoryId,
@@ -100,13 +98,9 @@ function ListingFormPage() {
         description: description
       }
       console.log(data)
-      const props = (data) 
-      dispatch(listingActions.createListing(data))
-      // window.location.href =`/listings/submission_success`
-        
-        
-      
+      dispatch(listingActions.createListing(data));
     }
+    return (<Redirect to="/" />)
   };
 
   const categories = useSelector(getCategories)
@@ -127,6 +121,19 @@ function ListingFormPage() {
   useEffect(() => {
     dispatch(fetchModels())
   }, [dispatch])
+
+  // const makes = useSelector(ListingUtility.AllMakes)
+  // // console.log('the brand names')
+  // // console.log(makes)
+  // const categories = useSelector(ListingUtility.AllCategories)
+  // // console.log('the categories')
+  // // console.log(categories)
+  // const models = useSelector(ListingUtility.AllModels)
+  // // console.log('the models')
+  // // console.log(models)
+
+  
+
 
   const CategoryMap = () => {
     return (
@@ -177,6 +184,9 @@ function ListingFormPage() {
   }
   // TODO: option to do list :)
 
+  // if (!makes || !categories || !models ) {
+  //   return null
+  // }
 
   if (!categories) return null;
 

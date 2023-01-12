@@ -7,7 +7,6 @@ import SignupFormPage from './components/SESSIONS/SignupFormPage';
 import CartPage from './components/CART/CartPage';
 
 import ListingFormPage from './components/LISTINGS/ListingFormPage';
-import CategoryListingGrid from './components/LISTINGS/ListingGrid/CategoryListingGrid';
 import ListingGrid from './components/LISTINGS/ListingGrid';
 import ListingIndex from './components/LISTINGS/ListingIndex'
 import ListingTile from './components/LISTINGS/ListingTile/ListingTile';
@@ -24,7 +23,6 @@ import SecondaryNavigation from './components/MAINNAV/SecondaryNavigation';
 import './App.css'
 import CategoryListingIndex from './components/LISTINGS/CategoryListingIndex';
 import GeneralListingIndex from './components/LISTINGS/GeneralListingIndex';
-import PostSubmitListingComp from './components/LISTINGS/ListingFormPage/PostSubmitListingComp';
 function App() {
   return (
     <>
@@ -51,11 +49,11 @@ function App() {
                 <ListingGrid />
                 <h1 className="grid-title">Don't String Me Along! Guitars On Sale:</h1>
                 <br />
-                <CategoryListingGrid categoryId={1} />
+                <ListingGrid ListingGrid />
                   <SplashScreen2 />                
                 <h1 className="grid-title">You Know I'm All About that Bass:</h1>
                 <br />
-                <CategoryListingGrid categoryId={2} />
+                <ListingGrid ListingGrid  />
               </div>
             </Route>
             <Route path="/login" component={LoginFormPage} />
