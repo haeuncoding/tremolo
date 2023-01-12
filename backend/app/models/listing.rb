@@ -44,9 +44,9 @@ class Listing < ApplicationRecord
   validates :watcher_count, allow_nil: true, numericality: { minimum: 0 }
 # relations
 
-  # has_many :watchers,
+  # belongs_to :watchlist,
   #   primary_key: :id,
-  #   foreign_key: :watcher_id,
+  #   foreign_key: :user_id,
   #   class_name: :User,
   #   dependent: :destroy
   
