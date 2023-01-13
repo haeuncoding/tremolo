@@ -2,17 +2,21 @@ import React, { useState } from 'react';
 import * as ListingActions from "../../../store/listings"
 import { Link, Redirect } from "react-router-dom"
 import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
+import RandomImage from "../ListingComponent/RandomCategoryImage.js"
 import './ListingTile.css'
 
 function ListingTile({ listing }) {
-
+  console.log(listing)
+  console.log(listing.categoryId)
+  const categoryId = listing.categoryId
+  const image = RandomImage(categoryId)
   return (
     <>
       <li className="ind-tile">
         <Link id="tile-link" to={`/listings/${listing.id}`}>
           <div className="tile-container">
             <div id="image-container">
-              <img src={lolPhoto} className="child-ele listing-image" id="preview-image"/>      
+              <img src={image} className="child-ele listing-image" id="preview-image"/>      
             </div>
             <br />
             <div id="title-div">

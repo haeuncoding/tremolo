@@ -22,7 +22,7 @@ before_action :require_logged_in, only: [:create, :update, :destroy]
       if @model_review.update(model_review_params)
         render :show
       else
-        render json: @model_review.errors.full_messages
+        render json: [errors: @model_review.errors.full_messages]
       end
     end
   end

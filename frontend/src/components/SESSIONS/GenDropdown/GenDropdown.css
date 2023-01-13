@@ -42,12 +42,13 @@ ul {
   padding-right: 4vw;
   margin-left: auto;
   margin-right: 4vw;
-  align-content: flex-end;
+  /* align-content: flex-end; */
 }
 
 
 /* Show the dropdown menu on hover */
 .gen-dropdown:hover .dropdown-content {
+  right: 2vw;
   background: solid;
   background-color: #FFFFFF;
   display: block;

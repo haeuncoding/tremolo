@@ -77,3 +77,7 @@ button#edit-review, button#delete-review {
   margin-left: -3vw;
   /* margin-right: .5vw; */
 }
+
+.model-edit {
+  border-radius: 15px;
+}
