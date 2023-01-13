@@ -9,10 +9,10 @@ import SingleStarHover from "../../assets/review-icons/SingleStarHover.png"
 import * as hooks from "../../hooks/index"
 function ModelReviewForm() {
   const dispatch = useDispatch()
+  const [loggedIn, setLoggedIn] = useState(false)
   
   const sessionUser = useSelector(state => state.session.user)
-
-
+  console.log(sessionUser)
   const { listingId } = useParams()
   const [stars, setStars] = useState(0)
     const [isOneHover, setIsOneHover] = useState(false)
@@ -205,91 +205,113 @@ function ModelReviewForm() {
     }
   }
 
-  return (
-    <div className="review-form-container">
-      <h2 id="label-star">Leave a Review</h2>
-      <form onSubmit={(e) => handleSubmit}>
-                  <div className="stars" required onClick={handleStars}>
-              <button value={1}
-                className="star-container"
-                src={SingleStarEmpty}
-                onMouseOver={() => (setIsOneHover(true))}
-                onMouseOut={() => (setIsOneHover(false))} 
-                >
-                  <img className="star"
-                  value={1}
-                  id="one-star"
-                  src={(isOneHover || isTwoHover || isThreeHover || isFourHover || isFiveHover || isOneActive ) ? SingleStarHover : SingleStarEmpty}
-                  />
-              </button>
-              <button value={2}
-                className="star-container"
-                src={SingleStarEmpty}
-                onMouseOver={() => (setIsTwoHover(true))}
-                onMouseOut={() => (setIsTwoHover(false))} 
-                onClick={handleStars}
-                >
-                  <img className="star"
-                  value={2}
-                  id="two-star"
-                  src={(isTwoHover || isThreeHover || isFourHover || isFiveHover || isTwoActive) ? SingleStarHover : SingleStarEmpty}
-                  />
-              </button>
-              <button value={3}
-                className="star-container"
-                src={SingleStarEmpty}
-                onMouseOver={() => (setIsThreeHover(true))}
-                onMouseOut={() => (setIsThreeHover(false))} 
-                onClick={handleStars}
-                >
-                  <img className="star"
-                  value={3}
-                  id="three-star"
-                  src={(isThreeHover || isFourHover || isFiveHover || isThreeActive ) ? SingleStarHover : SingleStarEmpty}
-                  />
-              </button>
-              <button value={4}
-                className="star-container"
-                src={SingleStarEmpty}
-                onMouseOver={() => (setIsFourHover(true))}
-                onMouseOut={() => (setIsFourHover(false))} 
-                onClick={handleStars}
-                >
-                  <img className="star"
-                  value={4}
-                  id="four-star"
-                  src={(isFourHover || isFiveHover || isFourActive ) ? SingleStarHover : SingleStarEmpty}
-                  />
-              </button>
-              <button value={5}
-                className="star-container"
-                src={SingleStarEmpty}
-                onMouseOver={() => (setIsFiveHover(true))}
-                onMouseOut={() => (setIsFiveHover(false))} 
-                onClick={handleStars}
-                >
-                  <img className="star"
-                  value={5}
-                  id="five-star"
-                  src={(isFiveHover || isFiveActive ) ? SingleStarHover : SingleStarEmpty}
-                  />
-              </button>
-        </div>
+  if (!sessionUser) {
+    return (
+      nonSessionUser()
+    )
+  }
 
-        <br />
-          <input
-            type="textarea"
-            rows="5"
-            name="review-description"
-            id="review-description-input"
-            value={description}
-            placeholder="Any additional thoughts? (Optional)"
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        <br />
-        <button type="submit" id="submit-review" onClick={handleSubmit}>Submit Review</button>
-      </form>
-    </div>
+  const ifSessionUser = () => {
+    return (
+      <div className="review-form-container">
+        <h2 id="label-star">Leave a Review</h2>
+        <form onSubmit={(e) => handleSubmit}>
+                    <div className="stars" required onClick={handleStars}>
+                <button value={1}
+                  className="star-container"
+                  src={SingleStarEmpty}
+                  onMouseOver={() => (setIsOneHover(true))}
+                  onMouseOut={() => (setIsOneHover(false))} 
+                  >
+                    <img className="star"
+                    value={1}
+                    id="one-star"
+                    src={(isOneHover || isTwoHover || isThreeHover || isFourHover || isFiveHover || isOneActive ) ? SingleStarHover : SingleStarEmpty}
+                    />
+                </button>
+                <button value={2}
+                  className="star-container"
+                  src={SingleStarEmpty}
+                  onMouseOver={() => (setIsTwoHover(true))}
+                  onMouseOut={() => (setIsTwoHover(false))} 
+                  onClick={handleStars}
+                  >
+                    <img className="star"
+                    value={2}
+                    id="two-star"
+                    src={(isTwoHover || isThreeHover || isFourHover || isFiveHover || isTwoActive) ? SingleStarHover : SingleStarEmpty}
+                    />
+                </button>
+                <button value={3}
+                  className="star-container"
+                  src={SingleStarEmpty}
+                  onMouseOver={() => (setIsThreeHover(true))}
+                  onMouseOut={() => (setIsThreeHover(false))} 
+                  onClick={handleStars}
+                  >
+                    <img className="star"
+                    value={3}
+                    id="three-star"
+                    src={(isThreeHover || isFourHover || isFiveHover || isThreeActive ) ? SingleStarHover : SingleStarEmpty}
+                    />
+                </button>
+                <button value={4}
+                  className="star-container"
+                  src={SingleStarEmpty}
+                  onMouseOver={() => (setIsFourHover(true))}
+                  onMouseOut={() => (setIsFourHover(false))} 
+                  onClick={handleStars}
+                  >
+                    <img className="star"
+                    value={4}
+                    id="four-star"
+                    src={(isFourHover || isFiveHover || isFourActive ) ? SingleStarHover : SingleStarEmpty}
+                    />
+                </button>
+                <button value={5}
+                  className="star-container"
+                  src={SingleStarEmpty}
+                  onMouseOver={() => (setIsFiveHover(true))}
+                  onMouseOut={() => (setIsFiveHover(false))} 
+                  onClick={handleStars}
+                  >
+                    <img className="star"
+                    value={5}
+                    id="five-star"
+                    src={(isFiveHover || isFiveActive ) ? SingleStarHover : SingleStarEmpty}
+                    />
+                </button>
+          </div>
+
+          <br />
+            <input
+              type="textarea"
+              rows="5"
+              name="review-description"
+              id="review-description-input"
+              value={description}
+              placeholder="Any additional thoughts? (Optional)"
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          <br />
+          <button type="submit" id="submit-review" onClick={handleSubmit}>Submit Review</button>
+        </form>
+      </div>
+    )
+  }
+
+  const nonSessionUser = () => {
+    return (
+      <div className="non-logged-in-review-form-container">
+        <h1>Hold on! Log in first to leave a review.</h1>
+      </div>
+    )
+  }
+
+  return (
+    <>
+     {(sessionUser) ? ifSessionUser() : nonSessionUser() }
+    </>
   );
 }
 
