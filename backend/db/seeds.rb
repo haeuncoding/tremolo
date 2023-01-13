@@ -77,7 +77,7 @@ ApplicationRecord.transaction do
   })
 
   # More users
-  10.times do 
+  25.times do 
     User.create!(
       username: Faker::TvShows::BojackHorseman.unique.character,
       email: Faker::Internet.unique.email,
@@ -89,6 +89,8 @@ ApplicationRecord.transaction do
     ) 
   end
 
+
+  puts User.all.length
   # Shops
 
   # demo_shop = Shop.create!(
@@ -120,6 +122,17 @@ ApplicationRecord.transaction do
   #   owner_id: 10,
   #   location: "Pawnee, IN"
   # )
+
+  CONDITIONS = [
+    "Non-Functioning", 
+    "Poor", 
+    "Fair", 
+    "Good", 
+    "Very Good", 
+    "Excellent", 
+    "Mint", 
+    "Brand New"
+  ]
 
   puts "Seeding categories..."
   
@@ -636,6 +649,61 @@ ApplicationRecord.transaction do
     year_made: "2022s",
     description: "got it for my daughter but she doesn't play with it. says 'she is too old for Hello Kitty', who knew that at age 50 they might not like Hello Kitty?"
   })
+
+  Listing.create!({
+    lister_id: demo_user_5[:id],
+    make_id: 4,
+    model_id: 2,
+    category_id: 1,
+    listing_title: "Hello Kitty Tele",
+    condition: "Brand New",
+    price: "6400.20",
+    location: demo_user_5[:location],
+    year_made: "2022s",
+    description: "got it for my daughter but she doesn't play with it. says 'she is too old for Hello Kitty', who knew that at age 50 they might not like Hello Kitty?"
+  })
+
+    Listing.create!({
+    lister_id: demo_user_5[:id],
+    make_id: 4,
+    model_id: 2,
+    category_id: 1,
+    listing_title: "Hello Kitty Strat",
+    condition: "Brand New",
+    price: "6400.20",
+    location: demo_user_5[:location],
+    year_made: "2022s",
+    description: "got it for my daughter but she doesn't play with it. says 'she is too old for Hello Kitty', who knew that at age 50 they might not like Hello Kitty? I learned my lesson after the tele, i thought"
+  })
+
+  50.times do
+    user = User.all.sample
+    Listing.create!({
+      lister_id: user[:id],
+      make_id: rand(1..92),
+      model_id: rand(1..65),
+      category_id: rand(1..8),
+      listing_title: "#{(Faker::Color.color_name).capitalize} #{Faker::TvShows::RickAndMorty.location} #{Faker::Music.instrument}",
+      color: Faker::Color.color_name,
+      condition: CONDITIONS.sample,
+      price: rand(100.00..10000.00),
+      location: user[:location],
+      year_made: rand(1900..2023),
+      description: "#{Faker::TvShows::BojackHorseman.quote} #{Faker::TvShows::BojackHorseman.tongue_twister}"
+    })
+  end
+
+  puts "Creating model reviews..."
+
+
+  30.times do 
+    ModelReview.create!({
+      model_reviewer_id: rand(1...30),
+      model_reviewed_id: rand(1..65),
+      rating: rand(1..5),
+      description: Faker::TvShows::BrooklynNineNine.quote
+    })
+  end
 
 
   puts "Done!"
