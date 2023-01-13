@@ -13,7 +13,7 @@ function CategoryListingIndex () {
   const { categoryId } = useParams()
   console.log(categoryId)
 
-  const category = useSelector(state => state.categories[categoryId -1])
+  const category = useSelector(state => state.categories[categoryId - 1])
   const listings = useSelector(listingActions.getListings)
 
 

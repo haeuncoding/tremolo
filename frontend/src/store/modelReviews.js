@@ -81,6 +81,8 @@ export const updateModelReview = (modelReview) => async (dispatch) => {
     }
   })
   if (response.ok) {
+    console.log(' HELLO HELLO HELLO :D ')
+    console.log(response)
     const updatedModelReview = await response.json();
     dispatch(receiveModelReview(updatedModelReview))
   }

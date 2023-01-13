@@ -9,11 +9,17 @@ import ReviewTile from '../../REVIEWS/ReviewTile';
 import UpdateUserWatchlist from '../../../util/UpdateUserWatchlist';
 import UpdateUserCart from '../../../util/UpdateUserCart';
 import { deleteListing } from '../../../store/listings';
+
+
 const ListingComponent = () => {
   const sessionUser = useSelector(state => state.session.user)
+
   const [isLister, setIsLister] = useState(false)
+
+
   const [isWatched, setIsWatched] = useState(false)
   const [isAddedToCart, setIsAddedToCart] = useState(false)
+
   const { listingId } = useParams()
   const listing = useSelector(listingActions.getListing(listingId))
   const dispatch = useDispatch()
@@ -21,13 +27,20 @@ const ListingComponent = () => {
   
   useEffect(() => {
     dispatch(listingActions.fetchListing(listingId))
-    if (listingId && sessionUser) {
-      if (listing){
-        if (listing.listerId === sessionUser.id) {
-        setIsLister(true)
-      }
-      }
-    }
+    // .then(() => {
+    //   if (listing.listerId === sessionUser.id) {
+    //   setIsLister(true)
+    //   }}
+    // )
+    // if (listingId && sessionUser) {
+      // console.log('listing loaded :)')
+      // if (listing && listing.listerId === sessionUser.id){
+        // console.log('user owns listing')
+        // if (listing.listerId === sessionUser.id) {
+        // setIsLister(true)
+      // }
+      // }
+    // }
   }, [dispatch, listingId, sessionUser])
 
 
@@ -141,7 +154,7 @@ const ListingComponent = () => {
     }
   }
 
-  if (!listing) {
+  if (!listing || !sessionUser) {
     return (null)
   }
 
@@ -170,7 +183,7 @@ const ListingComponent = () => {
               <h1 id="listing-component-title">{listing.listingTitle}</h1>
                 <h5 id="component-condition">Condition - {listing.condition}</h5>
               <h3 id="component-price">${listing.price.toFixed(2)}</h3>
-              {isLister ? <ListerActions /> : <NonListerActions />}
+              {(listing.listerId === sessionUser.id) ? <ListerActions /> : <NonListerActions />}
             <div className="hl" />
               <p>
                 {listing.description}
