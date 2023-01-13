@@ -25,6 +25,8 @@ import './App.css'
 import CategoryListingIndex from './components/LISTINGS/CategoryListingIndex';
 import GeneralListingIndex from './components/LISTINGS/GeneralListingIndex';
 import PostSubmitListingComp from './components/LISTINGS/ListingFormPage/PostSubmitListingComp';
+import Footer from './components/MAINNAV/Footer';
+
 function App() {
   return (
     <>
@@ -71,6 +73,7 @@ function App() {
             <Route path="/listings/:listing_id/edit/" component={ListingFormPage} />
             <Route path="/listings/submission_success" component={PostSubmitListingComp} />
           </Switch>
+        <Footer />
     </>
   );
 }

@@ -8,11 +8,12 @@ import { getMakes, fetchMakes } from "../../../store/makes";
 import { getModels, fetchModels } from "../../../store/models"
 import PostSubmitListingComponent from "../ListingFormPage/PostSubmitListingComp";
 import './ListingFormPage.css';
+import { render } from "react-dom";
 
 function ListingFormPage() {
   const sessionUser = useSelector(state => state.session.user)
   console.log('god is a lie and man is a failure')
-  const { listingId } = useParams();
+  const { listing_id } = useParams();
   const dispatch = useDispatch();
   const [listerId, setListerId] = useState()
   const [listingTitle, setListingTitle] = useState("");
@@ -26,10 +27,9 @@ function ListingFormPage() {
   const [yearMade, setYearMade] = useState("");
   const [description, setDescription] = useState("")
   const [isEdit, setIsEdit] = useState(false)
-  const listing = useSelector(listingActions.getListing(listingId));
-  console.log(listing)
+  const listing = useSelector(listingActions.getListing(listing_id));
 
-  // const [errors, setErrors] = useState([]);
+  console.log(listing)
 
   const conditions = [
     "Non-Functioning", 
@@ -43,32 +43,36 @@ function ListingFormPage() {
   ]
   
   useEffect(() => {
-    console.log("HI LOOK HEREEEEEEEEEEEEEEEEEEEEEEEEEE")
-    console.log(listingId)
-    if (listingId) {
+    if (listing_id) {
       setIsEdit(true)
-      dispatch(listingActions.fetchListing(listingId))
-      setListingTitle(listing.listingTitle);
-      setListerId(sessionUser.id)
-      setMakeId(listing.makeId);
-      setModelId(listing.modelId)
-      setCategoryId(listing.category);
-      setCondition(listing.condition)
-      setPrice(listing.price)
-      setLocation(listing.location)
-      setColor(listing.color)
-      setYearMade(listing.yearMade)
-      setDescription(listing.description)
-      dispatch(listingActions.updateListing(listingId))
+      dispatch(listingActions.fetchListing(listing_id))
     }
-  }, [dispatch, listingId])
+  }, [dispatch, listing_id])
+
+    console.log('hello - its cheese')
+    useEffect(() => {
+      if (listing) {
+        console.log('I was wondering if after all these years you would like some meat')
+        setListingTitle(listing.listingTitle);
+        setListerId(sessionUser.id)
+        setMakeId(listing.makeId);
+        setModelId(listing.modelId)
+        setCategoryId(listing.categoryId);
+        setCondition(listing.condition)
+        setPrice(listing.price)
+        setLocation(listing.location)
+        setColor(listing.color)
+        setYearMade(listing.yearMade)
+        setDescription(listing.description)
+      }
+    }, [listing])
 
   console.log(sessionUser)
   const handleSubmit = async e => {
     e.preventDefault();
-    if (listingId) {
+    if (listing_id) {
       const data = {
-        id: listingId,
+        id: listing_id,
         listing_title: listingTitle,
         lister_id: sessionUser.id,
         make_id: makeId,
@@ -78,12 +82,14 @@ function ListingFormPage() {
         price: price,
         location: location,
         color: color,
-        yearMade: yearMade,
+        year_made: yearMade,
         description: description
       }
+      console.log('data for update listing')
+      console.log(data)
       dispatch(listingActions.updateListing(data));
       return (
-       <Redirect to={`/listings/:${listingId}`} />
+       <Redirect to={`/listings/:${listing_id}`} />
       )
     } else {
       const data = {
@@ -96,19 +102,15 @@ function ListingFormPage() {
         price: price,
         location: location,
         color: color,
-        yearMade: yearMade,
+        year_made: yearMade,
         description: description
       }
-      console.log(data)
-      const props = (data) 
       dispatch(listingActions.createListing(data))
       // window.location.href =`/listings/submission_success`
-        
-        
-      
     }
   };
 
+  
   const categories = useSelector(getCategories)
 
   useEffect(() => {
@@ -127,6 +129,11 @@ function ListingFormPage() {
   useEffect(() => {
     dispatch(fetchModels())
   }, [dispatch])
+
+  if (!listing) {return (
+    <h1>`Hold your horses pard'ner!`</h1>
+  )}
+
 
   const CategoryMap = () => {
     return (
@@ -178,8 +185,8 @@ function ListingFormPage() {
   // TODO: option to do list :)
 
 
-  if (!categories) return null;
-
+  // if (!categories) return null;
+  if (!listing) {return null};
   return (
     <>
       <div id="form-container">

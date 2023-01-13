@@ -81,7 +81,6 @@ function ModelReviewForm() {
               <img className="star" alt="" src={SingleStarHover} />
             </div>)
           default:
-            // <p> hello there it's me</p>
             break;
         }
   }
@@ -194,20 +193,19 @@ function ModelReviewForm() {
       setDescription("")
       ;
     }
-    return (Redirect(`listings/${listingId}`))
   }
 
   return (
     <div className="review-form-container">
       <h2 id="label-star">Leave a Review</h2>
       <form onSubmit={(e) => handleSubmit}>
-        <div className="stars" required onClick={() => handleStars}>
+        <div className="stars" required onClick={handleStars}>
             <button value={1}
               className="star-container"
               src={SingleStarEmpty}
-              onMouseOver={(e) => (setIsOneHover(true))}
-              onMouseOut={(e) => (setIsOneHover(false))} 
-              onClick={()=> {handleStars()}}
+              // onMouseOver={(e) => (setIsOneHover(true))}
+              // onMouseOut={(e) => (setIsOneHover(false))} 
+              onClick={handleStars}
               >
                 <img className="star"
                 value={1}
@@ -218,9 +216,9 @@ function ModelReviewForm() {
             <button value={2}
               className="star-container"
               src={SingleStarEmpty}
-              onMouseOver={(e) => (setIsTwoHover(true))}
-              onMouseOut={(e) => (setIsTwoHover(false))} 
-              onClick={()=> {handleStars()}}
+              // onMouseOver={(e) => (setIsTwoHover(true))}
+              // onMouseOut={(e) => (setIsTwoHover(false))} 
+              onClick={handleStars}
               >
                 <img className="star"
                 value={2}
@@ -231,9 +229,9 @@ function ModelReviewForm() {
             <button value={3}
               className="star-container"
               src={SingleStarEmpty}
-              onMouseOver={(e) => (setIsThreeHover(true))}
-              onMouseOut={(e) => (setIsThreeHover(false))} 
-              onClick={()=> {handleStars()}}
+              // onMouseOver={(e) => (setIsThreeHover(true))}
+              // onMouseOut={(e) => (setIsThreeHover(false))} 
+              onClick={handleStars}
               >
                 <img className="star"
                 value={3}
@@ -244,9 +242,9 @@ function ModelReviewForm() {
             <button value={4}
               className="star-container"
               src={SingleStarEmpty}
-              onMouseOver={(e) => (setIsFourHover(true))}
-              onMouseOut={(e) => (setIsFourHover(false))} 
-              onClick={()=> {handleStars()}}
+              // onMouseOver={(e) => (setIsFourHover(true))}
+              // onMouseOut={(e) => (setIsFourHover(false))} 
+              onClick={handleStars}
               >
                 <img className="star"
                 value={4}
@@ -257,9 +255,9 @@ function ModelReviewForm() {
             <button value={5}
               className="star-container"
               src={SingleStarEmpty}
-              onMouseOver={(e) => (setIsFiveHover(true))}
-              onMouseOut={(e) => (setIsFiveHover(false))} 
-              onClick={()=> {handleStars()}}
+              // onMouseOver={(e) => (setIsFiveHover(true))}
+              // onMouseOut={(e) => (setIsFiveHover(false))} 
+              onClick={handleStars}
               >
                 <img className="star"
                 value={5}

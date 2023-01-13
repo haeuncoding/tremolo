@@ -86,6 +86,8 @@ export const createListing = (listingData) => async (dispatch) => {
 }
 
 export const updateListing = (listing) => async (dispatch) => {
+  console.log('update listing lalalalalalalalalalla')
+  console.log(listing)
   const response = await csrfFetch(`/api/listings/${listing.id}`, {
     method: "PATCH",
     body: JSON.stringify(listing),
@@ -94,7 +96,11 @@ export const updateListing = (listing) => async (dispatch) => {
       "Accept": "application/json"
     }
   })
+  console.log('OMG RESPONSE !!!!!!!')
+  console.log(response)
   if (response.ok) {
+    console.log('big mood RESPONSE ARE YOU OKAY????')
+      // console.log(response.json())
     const updatedListing = await response.json();
     dispatch(receiveListing(updatedListing))
   }

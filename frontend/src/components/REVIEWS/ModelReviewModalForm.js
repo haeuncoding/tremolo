@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import { getModelReview, fetchModelReview, createModelReview, updateModelReview } from "../../store/modelReviews"
 import { getListing, fetchListing } from "../../store/listings";
-import './ReviewForm.css';
+// import './ReviewForm.css';
 import SingleStarEmpty from "../../assets/review-icons/SingleStarEmpty.png"
 import SingleStarHover from "../../assets/review-icons/SingleStarHover.png"
 import * as hooks from "../../hooks/index"
 import { fetchModel } from "../../store/models";
+
 function ModelReviewModalForm(modelReviewId) {
   console.log("this is when it's inside the modal form")
   console.log(modelReviewId)
@@ -16,7 +17,7 @@ function ModelReviewModalForm(modelReviewId) {
   const sessionUser = useSelector(state => state.session.user)
 
     const { listingId } = useParams()
-    const [stars, setStars] = useState("0")
+    const [stars, setStars] = useState(0)
     const [isOneHover, setIsOneHover] = useState(false)
     const [isTwoHover, setIsTwoHover] = useState(false)
     const [isThreeHover, setIsThreeHover] = useState(false)
@@ -28,154 +29,111 @@ function ModelReviewModalForm(modelReviewId) {
     const [isFourActive, setIsFourActive] = useState(false)
     const [isFiveActive, setIsFiveActive] = useState(false)
     const [description, setDescription] = useState("")
-  const [isEdit, setIsEdit] = useState(false)
-  const [errors, setErrors] = useState(false)
-  const listing = useSelector(getListing(listingId))
-  const modelId = listing.modelId
-
-  // console.log('session user here!')
-  // console.log(sessionUser)
-  // // console.log(sessionUser.id)
-  // console.log('-----------------')
+    const [isEdit, setIsEdit] = useState(false)
+    const [errors, setErrors] = useState(false)
+    const listing = useSelector(getListing(listingId))
+    const modelId = listing.modelId
 
   const review = useSelector(getModelReview(modelReviewId.id))
   console.log('throwing up screaming and crying')
   console.log(review)
 
+  function resetStars () {
+    setIsOneActive(false)
+    setIsTwoActive(false)
+    setIsThreeActive(false)
+    setIsFourActive(false)
+    setIsFiveActive(false)
+  }
+
+  function setOneActive () {
+    setIsOneActive(true)
+    setIsTwoActive(false)
+    setIsThreeActive(false)
+    setIsFourActive(false)
+    setIsFiveActive(false)
+  }
+
+  function setTwoActive () {
+    setIsOneActive(true)
+    setIsTwoActive(true)
+    setIsThreeActive(false)
+    setIsFourActive(false)
+    setIsFiveActive(false)
+  }
+
+  function setThreeActive () {
+    setIsOneActive(true)
+    setIsTwoActive(true)
+    setIsThreeActive(true)
+    setIsFourActive(false)
+    setIsFiveActive(false)
+  }
+
+  function setFourActive () {
+    setIsOneActive(true)
+    setIsTwoActive(true)
+    setIsThreeActive(true)
+    setIsFourActive(true)
+    setIsFiveActive(false)
+  }
+
+  function setFiveActive () {
+    setIsOneActive(true)
+    setIsTwoActive(true)
+    setIsThreeActive(true)
+    setIsFourActive(true)
+    setIsFiveActive(true)
+  }
+
+
   const handleStars = async (e) => {
     e.preventDefault()
     setStars(e.target.getAttribute('value'))
-    console.log('e.target.value')
-    console.log(e.target.getAttribute('value'))
-    e.target.getAttribute('value')
     const num = e.target.getAttribute('value')
     switch (num) {
       case 1:
         if (isOneActive) {
-        setIsOneHover(false)        
-        setIsTwoHover(false)
-        setIsThreeHover(false)
-        setIsFourHover(false)
-        setIsFiveHover(false)
-        setIsOneActive(false)
-        setIsTwoActive(false)
-        setIsThreeActive(false)
-        setIsFourActive(false)
-        setIsFiveActive(false)
+          resetStars()
         } else {
-        setIsOneHover(true)        
-        setIsTwoHover(false)
-        setIsThreeHover(false)
-        setIsFourHover(false)
-        setIsFiveHover(false)
-        setIsOneActive(true)
-        setIsTwoActive(false)
-        setIsThreeActive(false)
-        setIsFourActive(false)
-        setIsFiveActive(false)
+          resetStars()
+          setOneActive()
         }
         break;
       case 2:
         if (isTwoActive) {
-        setIsOneHover(true)        
-        setIsTwoHover(false)
-        setIsThreeHover(false)
-        setIsFourHover(false)
-        setIsFiveHover(false)
-        setIsOneActive(false)
-        setIsTwoActive(false)
-        setIsThreeActive(false)
-        setIsFourActive(false)
-        setIsFiveActive(false)
+          resetStars()
         } else {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(false)
-        setIsFourHover(false)
-        setIsFiveHover(false)
-        setIsOneActive(true)
-        setIsTwoActive(true)
-        setIsThreeActive(false)
-        setIsFourActive(false)
-        setIsFiveActive(false)
+          resetStars()
+          setTwoActive()
         }
         break;
       case 3:
         if (isThreeActive) {
-        setIsOneHover(false)        
-        setIsTwoHover(false)
-        setIsThreeHover(false)
-        setIsFourHover(false)
-        setIsFiveHover(false)
-        setIsOneActive(false)
-        setIsTwoActive(false)
-        setIsThreeActive(false)
-        setIsFourActive(false)
-        setIsFiveActive(false)
+          resetStars()
         } else {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(true)
-        setIsFourHover(false)
-        setIsFiveHover(false)
-        setIsOneActive(true)
-        setIsTwoActive(true)
-        setIsThreeActive(true)
-        setIsFourActive(false)
-        setIsFiveActive(false)
+          resetStars()
+          setThreeActive()
         }
         break;
       case 4:
         if (isFourActive) {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(true)
-        setIsFourHover(false)
-        setIsFiveHover(false)
-        setIsOneActive(false)
-        setIsTwoActive(false)
-        setIsThreeActive(false)
-        setIsFourActive(false)
-        setIsFiveActive(false)
+          resetStars()
         } else {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(true)
-        setIsFourHover(true)
-        setIsFiveHover(false)
-        setIsOneActive(true)
-        setIsTwoActive(true)
-        setIsThreeActive(true)
-        setIsFourActive(true)
-        setIsFiveActive(false)
+          resetStars()
+          setFourActive()
         }
         break;
       case 5:
         if (isFiveActive) {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(true)
-        setIsFourHover(true)
-        setIsFiveHover(false)
-        setIsOneActive(false)
-        setIsTwoActive(false)
-        setIsThreeActive(false)
-        setIsFourActive(false)
-        setIsFiveActive(false)
+          resetStars()
         } else {
-        setIsOneHover(true)        
-        setIsTwoHover(true)
-        setIsThreeHover(true)
-        setIsFourHover(true)
-        setIsFiveHover(false)
-        setIsOneActive(true)
-        setIsTwoActive(true)
-        setIsThreeActive(true)
-        setIsFourActive(true)
-        setIsFiveActive(true)
+          resetStars()
+          setFiveActive()
         }
         break;
       default:
+          resetStars()
         break;
     }
   }
@@ -194,13 +152,17 @@ function ModelReviewModalForm(modelReviewId) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(review.modelReviewerId)
+    console.log(review.modelReviewedId)
+
     const data = {
       id: modelReviewId.id,
-      // modelReviewerId,
-      // modelReviewedId,
-      rating: stars,
+      model_reviewer_id: review.modelReviewerId,
+      model_reviewed_id: review.modelReviewedId,
+      rating: parseInt(stars),
       description: description
     }
+      console.log(data)
       dispatch(updateModelReview(data));
     };
   if (!modelReviewId) {
@@ -209,7 +171,7 @@ function ModelReviewModalForm(modelReviewId) {
 
   return (
     <div className="review-form-container">
-      <h2 id="label-star" value={isEdit}>{"Edit Your Review"}</h2>
+      <h2 id="label-star">Edit Your Review</h2>
       <form onSubmit={handleSubmit}>
         <div className="stars" required onClick={handleStars}>
             <button value={1}

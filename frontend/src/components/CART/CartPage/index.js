@@ -10,8 +10,12 @@ import { useState, useEffect } from "react";
 const CartPage = () => {
   const dispatch = useDispatch()
   const sessionUser = useSelector(state => state.session.user)
-  const user = dispatch(fetchUser(sessionUser.id))
-
+  const user = useSelector(getUser(sessionUser.id))
+  
+  useEffect(() => {
+    dispatch(fetchUser(sessionUser.id))
+  }, [])
+  // const cart = user.cart
   // useEffect(() => {
   //   dispatch(fetchUser(sessionUser.id))
   // // const cart = user.cart
@@ -36,9 +40,7 @@ const CartPage = () => {
   }, [dispatch])
 
 
-  const cart = listings.slice(4, 8)
-  // console.log('cart here god i am so fucking tired')
-  // console.log('end cart and life pls')
+  const trueTrueCart = listings.slice(4, 8)
 
   const subtotal = (cart) => {
     let val = 0
@@ -50,8 +52,8 @@ const CartPage = () => {
     return val.toFixed(2);
   }
 
-  // const userSubtotal = subtotal(cart)
-  const userSubtotal = 0
+  const userSubtotal = subtotal(trueTrueCart)
+  // const userSubtotal = 0
 
   if (!sessionUser) {
     return (
@@ -73,7 +75,7 @@ const CartPage = () => {
 
   return (
     <ul className="listing-grid" display="grid">
-      {cart.map((cartItem) => <CartTile listing={cartItem} />)}
+      {trueTrueCart.map((cartItem) => <CartTile listing={cartItem} />)}
       <div className="hl" id="cart-hl"/>
       <li className="cart-end-ind-tile">
           <div className="cart-end-tile-container">
