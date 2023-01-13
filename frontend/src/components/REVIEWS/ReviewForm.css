@@ -2,6 +2,20 @@ form, body, h1, h2, h3, p {
   font-family: 'Roboto', sans-serif;
 }
 
+div.non-logged-in-review-form-container {
+    text-align: center;
+    height: 22vw;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #a5a5a5;
+    width: 80vw;
+    padding: 2vw;
+    padding-top: .5vw;
+    /* padding-left: 4vw; */
+    margin-top: 2vw;
+    border-radius: 15px;
+}
+
 .review-form-container {
   /* align-items:left; */
   /* align-content: center; */

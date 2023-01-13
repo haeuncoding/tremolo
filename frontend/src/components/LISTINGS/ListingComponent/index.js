@@ -9,10 +9,11 @@ import ReviewTile from '../../REVIEWS/ReviewTile';
 import UpdateUserWatchlist from '../../../util/UpdateUserWatchlist';
 import UpdateUserCart from '../../../util/UpdateUserCart';
 import { deleteListing } from '../../../store/listings';
+import RandomCategoryImage from './RandomCategoryImage';
 
 
 const ListingComponent = () => {
-  const sessionUser = useSelector(state => state.session.user)
+  let sessionUser = useSelector(state => state.session.user)
 
   const [isLister, setIsLister] = useState(false)
 
@@ -24,7 +25,6 @@ const ListingComponent = () => {
   const listing = useSelector(listingActions.getListing(listingId))
   const dispatch = useDispatch()
   const modelReviews = useSelector(state => Object.values(state.modelReviews))
-  
   useEffect(() => {
     dispatch(listingActions.fetchListing(listingId))
     // .then(() => {
@@ -153,9 +153,6 @@ const ListingComponent = () => {
     }
   }
 
-  if (!listing || !sessionUser) {
-    return (null)
-  }
 
 
 
@@ -165,12 +162,29 @@ const ListingComponent = () => {
   }
 
 
+  console.log(listing)
+  if (!listing || !sessionUser) {
+    //  || !sessionUser
+    return (
+      <>
+        <h1>You gotta log in first pal!</h1>
+        <h2> Or the listing doesn't exist. :( </h2>
+      </>
+    )
+  }
+
+  // if (!sessionUser) {
+  //   return (
+  //     sessionUser = 'xyz'
+  //   )
+  // }
+  const image = RandomCategoryImage(listing.categoryId)
 
   return (
     <>
     <div className="listing-container">
         <div className="listing-img">
-            <img src={lolPhoto} alt="" />
+            <img src={image} alt="" />
             <br />
         </div>
         <div className="listing-info">
