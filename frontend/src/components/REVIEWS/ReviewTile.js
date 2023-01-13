@@ -525,9 +525,6 @@ const ReviewTile = ({review}) => {
         <br />
         <div className="hl" id="tile-hori-line"></div>
 
-      {/* {console.log(sessionUser.id)} */}
-      {/* {console.log(review.modelReviewerId)} */}
-
       {isUser ? UserReviewActions() : NonUserReviewActions()}
     </div>
   );

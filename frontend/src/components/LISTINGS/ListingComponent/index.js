@@ -46,10 +46,6 @@ const ListingComponent = () => {
 
 
   const DisplayCurrentModelReviews = () => {
-    // modelReviews.forEach(review => {
-    //   console.log(review.modelReviewed)
-    //   console.log(review.modelReviewedId)
-    // })
     const filtered = modelReviews.filter(review => review.modelReviewedId === listing.modelId)
     return (filtered.map(review => <ReviewTile review={review} /> )
   )}
@@ -88,9 +84,7 @@ const ListingComponent = () => {
       <div className="user-options" id="div1">
         
           <button className="user-options"
-          // "user-options" 
             id="edit-button"
-            // onClick={handleEdit}
             >
             Edit Listing
           </button>
