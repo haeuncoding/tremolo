@@ -23,34 +23,72 @@ a.logged-in-dropdown-content {
   /* background-color: #ddd; */
 
 
-div.logged-in-dropdown {
+/* div.logged-in-dropdown {
   text-align: right;
 
   position: relative;
-}
+} */
 
 .dropdown-link {
     width: 100%;
     font-size: 1.5vw;
-    padding: 2vw;
-    /* padding-right: 4vw; */
-    /* margin-left: auto; */
-    /* margin-right: 4vw; */
+    /* padding: 2vw; */
+    padding-right: 4vw;
+    margin-left: auto;
+    margin-right: 4vw;
     text-align: right;
+    right: 3vw;
   }
 
+  #greeting-dropdown {
+    width:150%;
+    height: 150%;
+    text-align: center;
+    background: white;
+  };
+
+  a#log-out-button {
+    top: 10vw;
+    height: 150%;
+    font-size: 3vw;
+  }
+
+  .logged-in-dropdown-content {
+    position: absolute;
+    display: flex;
+    bottom: 10vw;
+    right: 2vw;
+    text-align: right;
+    background: solid;
+    float: right;
+    background-color: #FFFFFF;
+    display: block;
+    height: 100%;
+    width: 150%;
+    text-shadow: 2vw 2vw 2;
+    /* width: 200%; */
+    align-content: right;
+  }
   
+    /* Change the ba
 
 /* Show the dropdown menu on hover */
 .logged-in-dropdown:hover .logged-in-dropdown-content {
   position: absolute;
-  text-align: right;
+  top: 2vw;
+  right: 2vw;
+  text-align: center;
   background: solid;
   float: right;
-    background-color: #FFFFFF;
+  background-color: #FFFFFF;
   display: block;
-  /* width: 200%; */
+  width: 150%;
+  width: 200%;
   align-content: right;
+}
+
+.dropdown-link {
+  margin: -2vw;
 }
 
 /* Change the background color of the dropdown button when the dropdown content is shown */

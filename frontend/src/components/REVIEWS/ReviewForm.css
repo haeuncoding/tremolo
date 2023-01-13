@@ -3,17 +3,31 @@ form, body, h1, h2, h3, p {
 }
 
 .review-form-container {
-  align-items:left;
-  align-content: center;
-  text-align: left;
-  height: 19.5vw;
-  margin-left: 4vw;
+  /* align-items:left; */
+  /* align-content: center; */
+  text-align: center;
+  height: 22vw;
+  margin-left: auto;
   margin-right: auto;
   background-color: #efefef;
-  width: 25vw;
+  width: 80vw;
   padding: 2vw;
   padding-top: .5vw;
-  padding-left: 4vw;
+  /* padding-left: 4vw; */
+  margin-top: 2vw;
+  border-radius: 15px;
+}
+
+.edit-review-form-container {
+  text-align: center;
+  height: 22vw;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #efefef;
+  width: 80vw;
+  padding: 2vw;
+  padding-top: .5vw;
+  /* padding-left: 4vw; */
   margin-top: 2vw;
   border-radius: 15px;
 }
@@ -22,21 +36,22 @@ form, body, h1, h2, h3, p {
   text-align: center;
   width: 4vw;
   height: auto;
-  /* margin-left: .1vw; */
-  margin-right: .1vw;
+  margin-left: .1vw;
+  /* margin-right: .1vw; */
   scale: 80%;
 }
 
-.stars {
+div.stars {
   margin-left: -1vw;
-  margin-bottom: -1vw;
+  margin-bottom: -2vw;
 }
 
 button.star-container {
   background: none;
   border: none;
   color: none;
-  margin-right: -1vw;
+  margin-left: -.5vw;
+  margin-right: -.5vw;
   margin-bottom: -2vw;
 }
 
@@ -51,7 +66,7 @@ label#label-for-desc, h2#label-desc-text {
 }
 
 #review-description-input {
-  width: 20vw;
+  width: 40vw;
   border-radius: 15px;
   border: none;
   padding: 1vw;
@@ -66,13 +81,13 @@ h2#label-star {
 
 button#submit-review {
   scale: 60%;
-  margin-top: .5vw;
-  margin-bottom: .5vw;
+  margin-top: 1vw;
+  margin-bottom: 1vw;
   background-color: rgb(252, 252, 252);
   font-family: 'Open Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   text-decoration: none;
-  font-size: max(2vw);
-  height: max-content;
+  font-size: 2vw;
+  height: 8vw;
   font-weight: 400;
   text-emphasis-style: bold;
   border: none;
@@ -82,8 +97,8 @@ button#submit-review {
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  margin-left: -3vw;
-  margin-right: .5vw;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 button#submit-review:hover {

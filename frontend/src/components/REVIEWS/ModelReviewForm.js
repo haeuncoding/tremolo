@@ -14,12 +14,13 @@ function ModelReviewForm() {
 
 
   const { listingId } = useParams()
-  const [stars, setStars] = useState("0")
+  const [stars, setStars] = useState(0)
     const [isOneHover, setIsOneHover] = useState(false)
     const [isTwoHover, setIsTwoHover] = useState(false)
     const [isThreeHover, setIsThreeHover] = useState(false)
     const [isFourHover, setIsFourHover] = useState(false)
     const [isFiveHover, setIsFiveHover] = useState(false)
+
     const [isOneActive, setIsOneActive] = useState(false)
     const [isTwoActive, setIsTwoActive] = useState(false)
     const [isThreeActive, setIsThreeActive] = useState(false)
@@ -32,6 +33,56 @@ function ModelReviewForm() {
   const modelId = listing.modelId
 
   // TODO add error render for not logged in
+
+  function resetStars () {
+    setIsOneActive(false)
+    setIsTwoActive(false)
+    setIsThreeActive(false)
+    setIsFourActive(false)
+    setIsFiveActive(false)
+  }
+
+  function setOneActive () {
+    setIsOneActive(true)
+    setIsTwoActive(false)
+    setIsThreeActive(false)
+    setIsFourActive(false)
+    setIsFiveActive(false)
+  }
+
+  function setTwoActive () {
+    setIsOneActive(true)
+    setIsTwoActive(true)
+    setIsThreeActive(false)
+    setIsFourActive(false)
+    setIsFiveActive(false)
+  }
+
+  function setThreeActive () {
+    setIsOneActive(true)
+    setIsTwoActive(true)
+    setIsThreeActive(true)
+    setIsFourActive(false)
+    setIsFiveActive(false)
+  }
+
+  function setFourActive () {
+    setIsOneActive(true)
+    setIsTwoActive(true)
+    setIsThreeActive(true)
+    setIsFourActive(true)
+    setIsFiveActive(false)
+  }
+
+  function setFiveActive () {
+    setIsOneActive(true)
+    setIsTwoActive(true)
+    setIsThreeActive(true)
+    setIsFourActive(true)
+    setIsFiveActive(true)
+  } 
+
+
 
   const starsDisplay = (e) => {
     switch (e.target.value) {
@@ -86,97 +137,56 @@ function ModelReviewForm() {
   }
 
 
-  const handleStars = (e) => {
+  const handleStars = async (e) => {
     e.preventDefault()
     setStars(e.target.getAttribute('value'))
-    console.log('e.target.value')
-    console.log(e.target.getAttribute('value'))
-    e.target.getAttribute('value')
     const num = e.target.getAttribute('value')
     switch (num) {
       case 1:
         if (isOneActive) {
-        setIsOneActive(false)
-        setIsTwoActive(false)
-        setIsThreeActive(false)
-        setIsFourActive(false)
-        setIsFiveActive(false)
-        setStars(0)
+          resetStars()
         } else {
-        setIsOneActive(true)
-        setIsTwoActive(false)
-        setIsThreeActive(false)
-        setIsFourActive(false)
-        setIsFiveActive(false)
-        console.log("OI! LOOK HERE")
-        console.log(e.target.getAttribute('value'))
-        setStars(e.target.getAttribute('value'))
+          resetStars()
+          setOneActive()
         }
         break;
       case 2:
         if (isTwoActive) {
-        setIsOneActive(false)
-        setIsTwoActive(false)
-        setIsThreeActive(false)
-        setIsFourActive(false)
-        setIsFiveActive(false)
+          resetStars()
         } else {
-        setIsOneActive(true)
-        setIsTwoActive(true)
-        setIsThreeActive(false)
-        setIsFourActive(false)
-        setIsFiveActive(false)
+          resetStars()
+          setTwoActive()
         }
         break;
       case 3:
         if (isThreeActive) {
-        setIsOneActive(false)
-        setIsTwoActive(false)
-        setIsThreeActive(false)
-        setIsFourActive(false)
-        setIsFiveActive(false)
+          resetStars()
         } else {
-        setIsOneActive(true)
-        setIsTwoActive(true)
-        setIsThreeActive(true)
-        setIsFourActive(false)
-        setIsFiveActive(false)
+          resetStars()
+          setThreeActive()
         }
         break;
       case 4:
         if (isFourActive) {
-        setIsOneActive(false)
-        setIsTwoActive(false)
-        setIsThreeActive(false)
-        setIsFourActive(false)
-        setIsFiveActive(false)
+          resetStars()
         } else {
-        setIsOneActive(true)
-        setIsTwoActive(true)
-        setIsThreeActive(true)
-        setIsFourActive(true)
-        setIsFiveActive(false)
+          resetStars()
+          setFourActive()
         }
         break;
       case 5:
         if (isFiveActive) {
-        setIsOneActive(false)
-        setIsTwoActive(false)
-        setIsThreeActive(false)
-        setIsFourActive(false)
-        setIsFiveActive(false)
+          resetStars()
         } else {
-        setIsOneActive(true)
-        setIsTwoActive(true)
-        setIsThreeActive(true)
-        setIsFourActive(true)
-        setIsFiveActive(true)
+          resetStars()
+          setFiveActive()
         }
         break;
       default:
+          resetStars()
         break;
+      }
     }
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -199,72 +209,71 @@ function ModelReviewForm() {
     <div className="review-form-container">
       <h2 id="label-star">Leave a Review</h2>
       <form onSubmit={(e) => handleSubmit}>
-        <div className="stars" required onClick={handleStars}>
-            <button value={1}
-              className="star-container"
-              src={SingleStarEmpty}
-              // onMouseOver={(e) => (setIsOneHover(true))}
-              // onMouseOut={(e) => (setIsOneHover(false))} 
-              onClick={handleStars}
-              >
-                <img className="star"
-                value={1}
-                id="one-star"
-                src={(isOneHover || isTwoHover || isThreeHover || isFourHover || isFiveHover || isOneActive ) ? SingleStarHover : SingleStarEmpty}
-                />
-            </button>
-            <button value={2}
-              className="star-container"
-              src={SingleStarEmpty}
-              // onMouseOver={(e) => (setIsTwoHover(true))}
-              // onMouseOut={(e) => (setIsTwoHover(false))} 
-              onClick={handleStars}
-              >
-                <img className="star"
-                value={2}
-                id="two-star"
-                src={(isTwoHover || isThreeHover || isFourHover || isFiveHover || isTwoActive) ? SingleStarHover : SingleStarEmpty}
-                />
-            </button>
-            <button value={3}
-              className="star-container"
-              src={SingleStarEmpty}
-              // onMouseOver={(e) => (setIsThreeHover(true))}
-              // onMouseOut={(e) => (setIsThreeHover(false))} 
-              onClick={handleStars}
-              >
-                <img className="star"
-                value={3}
-                id="three-star"
-                src={(isThreeHover || isFourHover || isFiveHover || isThreeActive ) ? SingleStarHover : SingleStarEmpty}
-                />
-            </button>
-            <button value={4}
-              className="star-container"
-              src={SingleStarEmpty}
-              // onMouseOver={(e) => (setIsFourHover(true))}
-              // onMouseOut={(e) => (setIsFourHover(false))} 
-              onClick={handleStars}
-              >
-                <img className="star"
-                value={4}
-                id="four-star"
-                src={(isFourHover || isFiveHover || isFourActive ) ? SingleStarHover : SingleStarEmpty}
-                />
-            </button>
-            <button value={5}
-              className="star-container"
-              src={SingleStarEmpty}
-              // onMouseOver={(e) => (setIsFiveHover(true))}
-              // onMouseOut={(e) => (setIsFiveHover(false))} 
-              onClick={handleStars}
-              >
-                <img className="star"
-                value={5}
-                id="five-star"
-                src={(isFiveHover || isFiveActive ) ? SingleStarHover : SingleStarEmpty}
-                />
-            </button>
+                  <div className="stars" required onClick={handleStars}>
+              <button value={1}
+                className="star-container"
+                src={SingleStarEmpty}
+                onMouseOver={() => (setIsOneHover(true))}
+                onMouseOut={() => (setIsOneHover(false))} 
+                >
+                  <img className="star"
+                  value={1}
+                  id="one-star"
+                  src={(isOneHover || isTwoHover || isThreeHover || isFourHover || isFiveHover || isOneActive ) ? SingleStarHover : SingleStarEmpty}
+                  />
+              </button>
+              <button value={2}
+                className="star-container"
+                src={SingleStarEmpty}
+                onMouseOver={() => (setIsTwoHover(true))}
+                onMouseOut={() => (setIsTwoHover(false))} 
+                onClick={handleStars}
+                >
+                  <img className="star"
+                  value={2}
+                  id="two-star"
+                  src={(isTwoHover || isThreeHover || isFourHover || isFiveHover || isTwoActive) ? SingleStarHover : SingleStarEmpty}
+                  />
+              </button>
+              <button value={3}
+                className="star-container"
+                src={SingleStarEmpty}
+                onMouseOver={() => (setIsThreeHover(true))}
+                onMouseOut={() => (setIsThreeHover(false))} 
+                onClick={handleStars}
+                >
+                  <img className="star"
+                  value={3}
+                  id="three-star"
+                  src={(isThreeHover || isFourHover || isFiveHover || isThreeActive ) ? SingleStarHover : SingleStarEmpty}
+                  />
+              </button>
+              <button value={4}
+                className="star-container"
+                src={SingleStarEmpty}
+                onMouseOver={() => (setIsFourHover(true))}
+                onMouseOut={() => (setIsFourHover(false))} 
+                onClick={handleStars}
+                >
+                  <img className="star"
+                  value={4}
+                  id="four-star"
+                  src={(isFourHover || isFiveHover || isFourActive ) ? SingleStarHover : SingleStarEmpty}
+                  />
+              </button>
+              <button value={5}
+                className="star-container"
+                src={SingleStarEmpty}
+                onMouseOver={() => (setIsFiveHover(true))}
+                onMouseOut={() => (setIsFiveHover(false))} 
+                onClick={handleStars}
+                >
+                  <img className="star"
+                  value={5}
+                  id="five-star"
+                  src={(isFiveHover || isFiveActive ) ? SingleStarHover : SingleStarEmpty}
+                  />
+              </button>
         </div>
 
         <br />

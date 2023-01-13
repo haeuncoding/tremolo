@@ -11,89 +11,19 @@ import SingleStarEmpty from "../../assets/review-icons/SingleStarEmpty.png"
 import SingleStarHover from "../../assets/review-icons/SingleStarHover.png"
 
 import './ReviewTile.css'
-const ReviewTile = ({review}) => {
-  const dispatch = useDispatch()
-  const [isUser, setIsUser] = useState(false)
-  const [showModal, setShowModal] = useState(false);
-  const sessionUser = useSelector(state => state.session.user)
-  const starsDisplay = (review) => {
-    switch (review.rating) {
-          case 1:
-            return (
-            <div className="star-display">
-              <img className="star" alt="" src={SingleStarHover} />
-              <img className="star" alt="" src={SingleStarEmpty} />
-              <img className="star" alt="" src={SingleStarEmpty} />
-              <img className="star" alt="" src={SingleStarEmpty} />
-              <img className="star" alt="" src={SingleStarEmpty} />
-            </div>)
-          case 2:
-            return (
-            <div className="star-display">
-              <img className="star" alt="" src={SingleStarHover} />
-              <img className="star" alt="" src={SingleStarHover} />
-              <img className="star" alt="" src={SingleStarEmpty} />
-              <img className="star" alt="" src={SingleStarEmpty} />
-              <img className="star" alt="" src={SingleStarEmpty} />
-            </div>)
-          case 3:
-            return (
-            <div className="star-display">
-              <img className="star" alt="" src={SingleStarHover} />
-              <img className="star" alt="" src={SingleStarHover} />
-              <img className="star" alt="" src={SingleStarHover} />
-              <img className="star" alt="" src={SingleStarEmpty} />
-              <img className="star" alt="" src={SingleStarEmpty} />
-            </div>)
-          case 4:
-            return (
-            <div className="star-display">
-              <img className="star" alt="" src={SingleStarHover} />
-              <img className="star" alt="" src={SingleStarHover} />
-              <img className="star" alt="" src={SingleStarHover} />
-              <img className="star" alt="" src={SingleStarHover} />
-              <img className="star" alt="" src={SingleStarEmpty} />
-            </div>)
-          case 5:
-            return (
-            <div className="star-display">
-              <img className="star" alt="" src={SingleStarHover} />
-              <img className="star" alt="" src={SingleStarHover} />
-              <img className="star" alt="" src={SingleStarHover} />
-              <img className="star" alt="" src={SingleStarHover} />
-              <img className="star" alt="" src={SingleStarHover} />
-            </div>)
-          default:
-            <p> hello there it's me</p>
-            break;
-        }
-  }
 
-  // TODO get it bc it's in review bc you have to review
-  // anyway, you gotta do :
-  // -footer w live links
-  // css
-  // do drop down menu
-  // make sure all things close on submit
-  // repeated thing on home page
-  // images not of sarah
-  // test
-  // and go through scorecard
-  // 
-
-  // useEffect (() => {
-  //   if (review.modelReviewerId === sessionUser.id) {setIsUser(true)}
-  // }, [sessionUser.id])
 
 function ModelReviewModalForm(modelReviewId) {
   console.log("this is when it's inside the modal form")
   console.log(modelReviewId)
   const dispatch = useDispatch()
+  const [showModal, setShowModal] = useState(false);
+
   
   const sessionUser = useSelector(state => state.session.user)
 
     const { listingId } = useParams()
-    const [stars, setStars] = useState(0)
+
     const [isOneHover, setIsOneHover] = useState(false)
     const [isTwoHover, setIsTwoHover] = useState(false)
     const [isThreeHover, setIsThreeHover] = useState(false)
@@ -104,9 +34,8 @@ function ModelReviewModalForm(modelReviewId) {
     const [isThreeActive, setIsThreeActive] = useState(false)
     const [isFourActive, setIsFourActive] = useState(false)
     const [isFiveActive, setIsFiveActive] = useState(false)
+    const [stars, setStars] = useState(0)
     const [description, setDescription] = useState("")
-    const [isEdit, setIsEdit] = useState(false)
-    const [errors, setErrors] = useState(false)
     const listing = useSelector(getListing(listingId))
     const modelId = listing.modelId
 
@@ -239,14 +168,14 @@ function ModelReviewModalForm(modelReviewId) {
       description: description
     }
       console.log(data)
-      dispatch(updateModelReview(data));
+      dispatch(updateModelReview(data)).then(() => {window.location.href =`/listings/${listingId}`});
     };
   if (!modelReviewId) {
     return null
   }
 
   return (
-    <div className="review-form-container">
+    <div className="edit-review-form-container">
       <h2 id="label-star">Edit Your Review</h2>
       <form onSubmit={handleSubmit}>
         <div className="stars" required onClick={handleStars}>
@@ -332,16 +261,214 @@ function ModelReviewModalForm(modelReviewId) {
   );
 }
 
+
+
+
+
+
+const ReviewTile = ({review}) => {
+  const dispatch = useDispatch()
+  const [isUser, setIsUser] = useState(false)
+  const sessionUser = useSelector(state => state.session.user)
+  const [stars, setStars] = useState(0)
+  const [description, setDescription] = useState("")
+  const [showModal, setShowModal] = useState(false);
+
+    // star display related
+  const [isOneHover, setIsOneHover] = useState(false)
+  const [isTwoHover, setIsTwoHover] = useState(false)
+  const [isThreeHover, setIsThreeHover] = useState(false)
+  const [isFourHover, setIsFourHover] = useState(false)
+  const [isFiveHover, setIsFiveHover] = useState(false)
+
+  const [isOneActive, setIsOneActive] = useState(false)
+  const [isTwoActive, setIsTwoActive] = useState(false)
+  const [isThreeActive, setIsThreeActive] = useState(false)
+  const [isFourActive, setIsFourActive] = useState(false)
+  const [isFiveActive, setIsFiveActive] = useState(false)
+
   useEffect (() =>{
   if (sessionUser && review.modelReviewerId === sessionUser.id) {
     setIsUser(true)
-  } else {
-    setIsUser(false)
-  }}, [])
+  } 
+  // else {
+  //   setIsUser(false)
+  // }
+}, [])
 
+
+  function resetStars () {
+    setIsOneActive(false)
+    setIsTwoActive(false)
+    setIsThreeActive(false)
+    setIsFourActive(false)
+    setIsFiveActive(false)
+  }
+
+  function setOneActive () {
+    setIsOneActive(true)
+    setIsTwoActive(false)
+    setIsThreeActive(false)
+    setIsFourActive(false)
+    setIsFiveActive(false)
+  }
+
+  function setTwoActive () {
+    setIsOneActive(true)
+    setIsTwoActive(true)
+    setIsThreeActive(false)
+    setIsFourActive(false)
+    setIsFiveActive(false)
+  }
+
+  function setThreeActive () {
+    setIsOneActive(true)
+    setIsTwoActive(true)
+    setIsThreeActive(true)
+    setIsFourActive(false)
+    setIsFiveActive(false)
+  }
+
+  function setFourActive () {
+    setIsOneActive(true)
+    setIsTwoActive(true)
+    setIsThreeActive(true)
+    setIsFourActive(true)
+    setIsFiveActive(false)
+  }
+
+  function setFiveActive () {
+    setIsOneActive(true)
+    setIsTwoActive(true)
+    setIsThreeActive(true)
+    setIsFourActive(true)
+    setIsFiveActive(true)
+  } 
+
+  const starsDisplay = (review) => {
+    switch (review.rating) {
+          case 1:
+            return (
+            <div className="star-display">
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+            </div>)
+          case 2:
+            return (
+            <div className="star-display">
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+            </div>)
+          case 3:
+            return (
+            <div className="star-display">
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+            </div>)
+          case 4:
+            return (
+            <div className="star-display">
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarEmpty} />
+            </div>)
+          case 5:
+            return (
+            <div className="star-display">
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+              <img className="star" alt="" src={SingleStarHover} />
+            </div>)
+          default:
+            <p> hello there it's me</p>
+            break;
+        }
+  }
+
+  
+  const handleStars = async (e) => {
+    e.preventDefault()
+    setStars(e.target.getAttribute('value'))
+    const num = e.target.getAttribute('value')
+    switch (num) {
+      case 1:
+        if (isOneActive) {
+          resetStars()
+        } else {
+          resetStars()
+          setOneActive()
+        }
+        break;
+      case 2:
+        if (isTwoActive) {
+          resetStars()
+        } else {
+          resetStars()
+          setTwoActive()
+        }
+        break;
+      case 3:
+        if (isThreeActive) {
+          resetStars()
+        } else {
+          resetStars()
+          setThreeActive()
+        }
+        break;
+      case 4:
+        if (isFourActive) {
+          resetStars()
+        } else {
+          resetStars()
+          setFourActive()
+        }
+        break;
+      case 5:
+        if (isFiveActive) {
+          resetStars()
+        } else {
+          resetStars()
+          setFiveActive()
+        }
+        break;
+      default:
+          resetStars()
+        break;
+    }
+  }
+
+
+
+  // TODO get it bc it's in review bc you have to review
+  // anyway, you gotta do :
+  // css
+  // make sure all things close on submit
+  // repeated thing on home page
+  // images not of sarah
+  // test
+  // and go through scorecard
+  // 
+
+  // useEffect (() => {
+  //   if (review.modelReviewerId === sessionUser.id) {setIsUser(true)}
+  // }, [sessionUser.id])
 
   const UserReviewActions = () => {
     const reviewId = review.id
+    console.log('look here you dumbass')
     console.log(reviewId)
     return (
       <div id="user-review-actions">
@@ -349,8 +476,10 @@ function ModelReviewModalForm(modelReviewId) {
           <button id="edit-review"
             onClick={() => setShowModal(true)}>Edit Review</button>
             {showModal && (
-              <Modal onClose={() => setShowModal(false)} >
-                <ModelReviewModalForm id={reviewId} />
+              <Modal onClose={() => setShowModal(false)}>
+
+                <ModelReviewModalForm class="model-edit" id={reviewId} />
+
               </Modal>
             )}
         </div>

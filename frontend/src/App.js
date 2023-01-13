@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import LoginFormPage from './components/SESSIONS/LoginFormPage';
 import SignupFormPage from './components/SESSIONS/SignupFormPage';
@@ -28,6 +29,9 @@ import PostSubmitListingComp from './components/LISTINGS/ListingFormPage/PostSub
 import Footer from './components/MAINNAV/Footer';
 
 function App() {
+
+
+
   return (
     <>
         <div id="nav-container">
@@ -47,6 +51,7 @@ function App() {
           <Switch>
             <Route exact path="/">
               <div id="home-feed-grid">
+                
                   <SplashScreen />                
                 <h1 className="grid-title">Your Daily Picks</h1>
                 <br />

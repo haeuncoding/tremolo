@@ -20,7 +20,7 @@
 }
 
 #github-icon, #linkedin-icon {
-
+  text-align: center;
   background-color: none;
   max-width: 2vw;
   max-height: 2vw;
@@ -30,6 +30,7 @@ button#github-button, button#linkedin-button {
   margin-top: 3.2vh;
   margin-left: 1.5vw;
   margin-right: 1.5vw;
+  text-align: center;
   padding: 10px;
   max-width: 5vw;
   max-height: 5vw;
@@ -37,9 +38,17 @@ button#github-button, button#linkedin-button {
   background-color: none;
   border-radius: 2vw;
   border: none;
+  cursor: pointer;
 }
 
 button#github-button:hover, button#linkedin-button:hover {
   transition: .5s;
   background: #09455b;
+  cursor: pointer;
+}
+
+.outer-link {
+  text-align: center;
+  background: none;
+  cursor: pointer;
 }

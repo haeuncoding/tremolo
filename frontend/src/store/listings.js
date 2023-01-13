@@ -81,7 +81,6 @@ export const createListing = (listingData) => async (dispatch) => {
     const newListing = await response.json();
     dispatch(receiveListing(newListing))
     window.location.href =`/`
-// listings/:${newListing.id}
   }
 }
 
@@ -112,6 +111,7 @@ export const deleteListing = (id) => async (dispatch) => {
   });
   if (response.ok) {
     dispatch(removeListing(id))
+    window.location.href =`/`
   }
 }
 

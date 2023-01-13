@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import { getModelReview, fetchModelReview, createModelReview, updateModelReview } from "../../store/modelReviews"
 import { getListing, fetchListing } from "../../store/listings";
-// import './ReviewForm.css';
+import './ReviewForm.css';
 import SingleStarEmpty from "../../assets/review-icons/SingleStarEmpty.png"
 import SingleStarHover from "../../assets/review-icons/SingleStarHover.png"
 import * as hooks from "../../hooks/index"
@@ -17,7 +17,7 @@ function ModelReviewModalForm(modelReviewId) {
   const sessionUser = useSelector(state => state.session.user)
 
     const { listingId } = useParams()
-    const [stars, setStars] = useState(0)
+
     const [isOneHover, setIsOneHover] = useState(false)
     const [isTwoHover, setIsTwoHover] = useState(false)
     const [isThreeHover, setIsThreeHover] = useState(false)
@@ -28,6 +28,7 @@ function ModelReviewModalForm(modelReviewId) {
     const [isThreeActive, setIsThreeActive] = useState(false)
     const [isFourActive, setIsFourActive] = useState(false)
     const [isFiveActive, setIsFiveActive] = useState(false)
+    const [stars, setStars] = useState(0)
     const [description, setDescription] = useState("")
     const [isEdit, setIsEdit] = useState(false)
     const [errors, setErrors] = useState(false)

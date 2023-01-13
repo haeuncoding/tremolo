@@ -79,13 +79,12 @@ const ListingComponent = () => {
     )
     }
   
-    // TODO - not registering listing id when redirected to edit -- also it fails if i don't manually uncomment it out then back in
   const ListerActions = () => {
       const { listingId }= useParams()
       console.log(listingId)
       return (
       <>
-      <Link to={`/listings/${listingId}/edit`} >
+      <Link to={`/listings/${listingId}/edit`} id="edit-link-user-options">
       <div className="user-options" id="div1">
         
           <button className="user-options"

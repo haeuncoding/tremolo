@@ -182,7 +182,6 @@ function ListingFormPage() {
     </select>
     )
   }
-  // TODO: option to do list :)
 
 
   // if (!categories) return null;
