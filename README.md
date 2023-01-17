@@ -43,6 +43,26 @@ Tremolo is a web app that allows users to upload their listings and also peruse 
 
 ```
 
+This feature was a little hard to pull off, since it required monitoring the current user and then changing the links to appear in such a way that remained visually pleasing. The stars still remain a little bit of a conundrum, but overall, I'm pleased with the progress thus far.
+
+``` css
+
+h1#listing-title.child-ele {
+  font-size: 3.5vw;
+  font-weight: 500;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: -8.5vw;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+```
+
+CSS seems a little odd to put as something that was a challenge, but for a while, I couldn't think of how to put titles in such a way that didn't disrupt the tile container and kept their general sizes. Text overflow seemed too clunky and scrolling to see the title is not ideal - so coming up with this was a huge relief and came with a massive feeling of triumph.
 
 
 
@@ -54,23 +74,3 @@ Tremolo is a web app that allows users to upload their listings and also peruse 
 * Offer Functionality
 * Messaging Functionality
 * Filter Functionality
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

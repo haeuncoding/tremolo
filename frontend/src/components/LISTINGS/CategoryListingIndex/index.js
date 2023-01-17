@@ -48,19 +48,20 @@ function CategoryListingIndex () {
         <div class="hl" />
       </div>
       <div className="category-display-container">
-        <div className="category-left-side">
-          <h2 id="filter-title">Filters</h2>
-          <form>
-            <select className="filter">
-            </select>
-            <select className="filter">
-            </select>
+        
+        {/* <div className="category-left-side"> */}
+          {/* <h2 id="filter-title">Filters</h2> */}
+          {/* <form> */}
+            {/* <select className="filter"> */}
+            {/* </select> */}
+            {/* <select className="filter"> */}
+            {/* </select> */}
             {/* <PriceSlider /> */}
-            <input className="filter">
-            </input>
+            {/* <input className="filter"> */}
+            {/* </input> */}
 
-          </form>
-        </div>
+          {/* </form> */}
+        {/* </div> */}
         <div className="category-right-side">
           <ul className="category-listing-index" >
             <DisplayFilteredListings />

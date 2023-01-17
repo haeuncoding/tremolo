@@ -17,13 +17,26 @@ div.nav-icon-container ~ label {
   text-align: center;
 }
 
+ul#logo-nav {
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  vertical-align: center;
+  margin-right: auto;
+  margin-left: 0;
+  float: left;
+}
+
 ul#main-nav {
   padding: 0;
   display: flex;
   flex-direction: row;
   align-items: center;
   vertical-align: center;
-  margin: auto;
+  margin-right: 0;
+  margin-left: auto;
+  float: right;
 }
 
 li.button-container {
