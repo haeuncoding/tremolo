@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import * as listingActions from "../../../store/listings"
 import { useSelector, useDispatch } from "react-redux"
 import { Link, Redirect, useParams } from "react-router-dom"
-import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
 import './ListingComponent.css'
 import ModelReviewForm from '../../REVIEWS/ModelReviewForm';
 import ReviewTile from '../../REVIEWS/ReviewTile';
@@ -77,7 +76,6 @@ const ListingComponent = () => {
   
   const ListerActions = () => {
       const { listingId }= useParams()
-      console.log(listingId)
       return (
       <>
       <Link to={`/listings/${listingId}/edit`} id="edit-link-user-options">
