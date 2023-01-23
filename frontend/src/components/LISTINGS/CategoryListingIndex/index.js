@@ -11,11 +11,8 @@ import { fetchCategory, getCategory } from "../../../store/categories";
 
 function CategoryListingIndex () {
   const { categoryId } = useParams()
-  console.log(categoryId)
-  const categories = useSelector(state => state.categories)
-  console.log(categories)
-  // const category = useSelector(getCategory(categoryId))
-  const category = useSelector(state => state.categories[categoryId])
+
+  const category = useSelector(state => state.categories[categoryId - 1])
   const listings = useSelector(listingActions.getListings)
 
   const dispatch = useDispatch()
@@ -31,7 +28,6 @@ function CategoryListingIndex () {
       <h1>Whoopsie, looks like you'll have to wait a bit. Or refresh.</h1>
     )
   }
-  console.log(listings) 
   
   const filteredListings = () => {
     if (categoryId) {
@@ -53,19 +49,20 @@ function CategoryListingIndex () {
         <div class="hl" />
       </div>
       <div className="category-display-container">
-        <div className="category-left-side">
-          <h2 id="filter-title">Filters</h2>
-          <form>
-            <select className="filter">
-            </select>
-            <select className="filter">
-            </select>
+        
+        {/* <div className="category-left-side"> */}
+          {/* <h2 id="filter-title">Filters</h2> */}
+          {/* <form> */}
+            {/* <select className="filter"> */}
+            {/* </select> */}
+            {/* <select className="filter"> */}
+            {/* </select> */}
             {/* <PriceSlider /> */}
-            <input className="filter">
-            </input>
+            {/* <input className="filter"> */}
+            {/* </input> */}
 
-          </form>
-        </div>
+          {/* </form> */}
+        {/* </div> */}
         <div className="category-right-side">
           <ul className="category-listing-index" >
             {listings?.map((listing) => <CategoryListingTile listing={listing} />)}

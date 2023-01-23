@@ -9,10 +9,10 @@ import SingleStarHover from "../../assets/review-icons/SingleStarHover.png"
 import * as hooks from "../../hooks/index"
 function ModelReviewForm({ modelReviewId }) {
   const dispatch = useDispatch()
+  const [loggedIn, setLoggedIn] = useState(false)
   
   const sessionUser = useSelector(state => state.session.user)
-
-
+  console.log(sessionUser)
   const { listingId } = useParams()
   const [stars, setStars] = useState(0)
     const [isOneHover, setIsOneHover] = useState(false)
@@ -20,6 +20,7 @@ function ModelReviewForm({ modelReviewId }) {
     const [isThreeHover, setIsThreeHover] = useState(false)
     const [isFourHover, setIsFourHover] = useState(false)
     const [isFiveHover, setIsFiveHover] = useState(false)
+
     const [isOneActive, setIsOneActive] = useState(false)
     const [isTwoActive, setIsTwoActive] = useState(false)
     const [isThreeActive, setIsThreeActive] = useState(false)
@@ -46,6 +47,56 @@ function ModelReviewForm({ modelReviewId }) {
   // console.log(listing.modelId)
   // console.log('stars')
   // console.log(stars)
+
+
+
+  function resetStars () {
+    setIsOneActive(false)
+    setIsTwoActive(false)
+    setIsThreeActive(false)
+    setIsFourActive(false)
+    setIsFiveActive(false)
+  }
+
+  function setOneActive () {
+    setIsOneActive(true)
+    setIsTwoActive(false)
+    setIsThreeActive(false)
+    setIsFourActive(false)
+    setIsFiveActive(false)
+  }
+
+  function setTwoActive () {
+    setIsOneActive(true)
+    setIsTwoActive(true)
+    setIsThreeActive(false)
+    setIsFourActive(false)
+    setIsFiveActive(false)
+  }
+
+  function setThreeActive () {
+    setIsOneActive(true)
+    setIsTwoActive(true)
+    setIsThreeActive(true)
+    setIsFourActive(false)
+    setIsFiveActive(false)
+  }
+
+  function setFourActive () {
+    setIsOneActive(true)
+    setIsTwoActive(true)
+    setIsThreeActive(true)
+    setIsFourActive(true)
+    setIsFiveActive(false)
+  }
+
+  function setFiveActive () {
+    setIsOneActive(true)
+    setIsTwoActive(true)
+    setIsThreeActive(true)
+    setIsFourActive(true)
+    setIsFiveActive(true)
+  } 
 
 
 
@@ -97,20 +148,24 @@ function ModelReviewForm({ modelReviewId }) {
               <img className="star" alt="" src={SingleStarHover} />
             </div>)
           default:
-            // <p> hello there it's me</p>
             break;
         }
   }
 
 
-  const handleStars = (e) => {
+  const handleStars = async (e) => {
     e.preventDefault()
+<<<<<<< HEAD
+=======
+    setStars(e.target.getAttribute('value'))
+>>>>>>> 1122023main
     const num = e.target.getAttribute('value')
     console.log('does it hit here')
     console.log(num)
     switch(num) {
     case 1:
         if (isOneActive) {
+<<<<<<< HEAD
         setIsOneHover(false)        
         setIsTwoHover(false)
         setIsThreeHover(false)
@@ -132,16 +187,19 @@ function ModelReviewForm({ modelReviewId }) {
         setIsThreeActive(false)
         setIsFourActive(false)
         setIsFiveActive(false)
+=======
+          resetStars()
+        } else {
+          resetStars()
+          setOneActive()
+>>>>>>> 1122023main
         }
         break;
       case 2:
         if (isTwoActive) {
-        setIsOneActive(false)
-        setIsTwoActive(false)
-        setIsThreeActive(false)
-        setIsFourActive(false)
-        setIsFiveActive(false)
+          resetStars()
         } else {
+<<<<<<< HEAD
         setIsOneHover(true)        
         setIsTwoHover(true)
         setIsThreeHover(false)
@@ -152,16 +210,17 @@ function ModelReviewForm({ modelReviewId }) {
         setIsThreeActive(false)
         setIsFourActive(false)
         setIsFiveActive(false)
+=======
+          resetStars()
+          setTwoActive()
+>>>>>>> 1122023main
         }
         break;
       case 3:
         if (isThreeActive) {
-        setIsOneActive(false)
-        setIsTwoActive(false)
-        setIsThreeActive(false)
-        setIsFourActive(false)
-        setIsFiveActive(false)
+          resetStars()
         } else {
+<<<<<<< HEAD
         setIsOneHover(true)        
         setIsTwoHover(true)
         setIsThreeHover(true)
@@ -172,10 +231,15 @@ function ModelReviewForm({ modelReviewId }) {
         setIsThreeActive(true)
         setIsFourActive(false)
         setIsFiveActive(false)
+=======
+          resetStars()
+          setThreeActive()
+>>>>>>> 1122023main
         }
         break;
       case 4:
         if (isFourActive) {
+<<<<<<< HEAD
         setIsOneHover(true)        
         setIsTwoHover(true)
         setIsThreeHover(true)
@@ -197,15 +261,18 @@ function ModelReviewForm({ modelReviewId }) {
         setIsThreeActive(true)
         setIsFourActive(true)
         setIsFiveActive(false)
+=======
+          resetStars()
+        } else {
+          resetStars()
+          setFourActive()
+>>>>>>> 1122023main
         }
       case 5:
         if (isFiveActive) {
-        setIsOneActive(false)
-        setIsTwoActive(false)
-        setIsThreeActive(false)
-        setIsFourActive(false)
-        setIsFiveActive(false)
+          resetStars()
         } else {
+<<<<<<< HEAD
         setIsOneHover(true)        
         setIsTwoHover(true)
         setIsThreeHover(true)
@@ -226,11 +293,16 @@ function ModelReviewForm({ modelReviewId }) {
         console.log(isThreeActive);
         console.log(isFourActive);
         console.log(isFiveActive); 
+=======
+          resetStars()
+          setFiveActive()
+>>>>>>> 1122023main
         }
       default:
+          resetStars()
         break;
+      }
     }
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -252,6 +324,7 @@ function ModelReviewForm({ modelReviewId }) {
         description: description
       }
       console.log(data)
+<<<<<<< HEAD
       dispatch(createModelReview(data));
       // setStars(0)
       // setDescription("")
@@ -347,6 +420,122 @@ function ModelReviewForm({ modelReviewId }) {
         <button type="submit" id="submit-review" onClick={handleSubmit}>Submit Review</button>
       </form>
     </div>
+=======
+      dispatch(createModelReview(data))
+      setStars(0)
+      setDescription("")
+      ;
+    }
+  }
+
+  if (!sessionUser) {
+    return (
+      nonSessionUser()
+    )
+  }
+
+  const ifSessionUser = () => {
+    return (
+      <div className="review-form-container">
+        <h2 id="label-star">Leave a Review</h2>
+        <form onSubmit={(e) => handleSubmit}>
+                    <div className="stars" required onClick={handleStars}>
+                <button value={1}
+                  className="star-container"
+                  src={SingleStarEmpty}
+                  onMouseOver={() => (setIsOneHover(true))}
+                  onMouseOut={() => (setIsOneHover(false))} 
+                  >
+                    <img className="star"
+                    value={1}
+                    id="one-star"
+                    src={(isOneHover || isTwoHover || isThreeHover || isFourHover || isFiveHover || isOneActive ) ? SingleStarHover : SingleStarEmpty}
+                    />
+                </button>
+                <button value={2}
+                  className="star-container"
+                  src={SingleStarEmpty}
+                  onMouseOver={() => (setIsTwoHover(true))}
+                  onMouseOut={() => (setIsTwoHover(false))} 
+                  onClick={handleStars}
+                  >
+                    <img className="star"
+                    value={2}
+                    id="two-star"
+                    src={(isTwoHover || isThreeHover || isFourHover || isFiveHover || isTwoActive) ? SingleStarHover : SingleStarEmpty}
+                    />
+                </button>
+                <button value={3}
+                  className="star-container"
+                  src={SingleStarEmpty}
+                  onMouseOver={() => (setIsThreeHover(true))}
+                  onMouseOut={() => (setIsThreeHover(false))} 
+                  onClick={handleStars}
+                  >
+                    <img className="star"
+                    value={3}
+                    id="three-star"
+                    src={(isThreeHover || isFourHover || isFiveHover || isThreeActive ) ? SingleStarHover : SingleStarEmpty}
+                    />
+                </button>
+                <button value={4}
+                  className="star-container"
+                  src={SingleStarEmpty}
+                  onMouseOver={() => (setIsFourHover(true))}
+                  onMouseOut={() => (setIsFourHover(false))} 
+                  onClick={handleStars}
+                  >
+                    <img className="star"
+                    value={4}
+                    id="four-star"
+                    src={(isFourHover || isFiveHover || isFourActive ) ? SingleStarHover : SingleStarEmpty}
+                    />
+                </button>
+                <button value={5}
+                  className="star-container"
+                  src={SingleStarEmpty}
+                  onMouseOver={() => (setIsFiveHover(true))}
+                  onMouseOut={() => (setIsFiveHover(false))} 
+                  onClick={handleStars}
+                  >
+                    <img className="star"
+                    value={5}
+                    id="five-star"
+                    src={(isFiveHover || isFiveActive ) ? SingleStarHover : SingleStarEmpty}
+                    />
+                </button>
+          </div>
+
+          <br />
+            <input
+              type="textarea"
+              rows="5"
+              name="review-description"
+              id="review-description-input"
+              value={description}
+              placeholder="Any additional thoughts? (Optional)"
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          <br />
+          <button type="submit" id="submit-review" onClick={handleSubmit}>Submit Review</button>
+        </form>
+      </div>
+    )
+  }
+
+  const nonSessionUser = () => {
+    return (
+      <div className="non-logged-in-review-form-container">
+        <h1>Hold on! Log in first to leave a review.</h1>
+      </div>
+    )
+  }
+
+  return (
+    <>
+     {(sessionUser) ? ifSessionUser() : nonSessionUser() }
+    </>
+>>>>>>> 1122023main
   );
 }
 

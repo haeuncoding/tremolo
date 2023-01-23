@@ -80,10 +80,16 @@ export const createListing = (listingData) => async (dispatch) => {
   if (response.ok) {
     const newListing = await response.json();
     dispatch(receiveListing(newListing))
+<<<<<<< HEAD
+=======
+    window.location.href =`/`
+>>>>>>> 1122023main
   }
 }
 
 export const updateListing = (listing) => async (dispatch) => {
+  console.log('update listing lalalalalalalalalalla')
+  console.log(listing)
   const response = await csrfFetch(`/api/listings/${listing.id}`, {
     method: "PATCH",
     body: JSON.stringify(listing),
@@ -92,7 +98,11 @@ export const updateListing = (listing) => async (dispatch) => {
       "Accept": "application/json"
     }
   })
+  console.log('OMG RESPONSE !!!!!!!')
+  console.log(response)
   if (response.ok) {
+    console.log('big mood RESPONSE ARE YOU OKAY????')
+      // console.log(response.json())
     const updatedListing = await response.json();
     dispatch(receiveListing(updatedListing))
   }
@@ -104,6 +114,7 @@ export const deleteListing = (id) => async (dispatch) => {
   });
   if (response.ok) {
     dispatch(removeListing(id))
+    window.location.href =`/`
   }
 }
 

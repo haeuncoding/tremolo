@@ -1,6 +1,4 @@
 import * as listingActions from "../../../store/listings"
-import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
-import lolPhoto2 from '../../../assets/temp_assets/dumb_photo_4.JPG'
 import { useSelector, useDispatch } from "react-redux";
 import { getUser, fetchUser, updateUser } from "../../../store/users";
 import CartTile from "./CartTile";
@@ -9,18 +7,17 @@ import { useEffect } from "react";
 
 const CartPage = () => {
   const sessionUser = useSelector(state => state.session.user)
-  // const user = dispatch(fetchUser(sessionUser.id))
-
+  const user = useSelector(getUser(sessionUser.id))
+  
+  useEffect(() => {
+    dispatch(fetchUser(sessionUser.id))
+  }, [])
+  // const cart = user.cart
   // useEffect(() => {
   //   dispatch(fetchUser(sessionUser.id))
   // // const cart = user.cart
   // }, [])
 
-  console.log(sessionUser)
-  // console.log(sessionUser.id)
-  // console.log('sessionUser^^^^^^^^^^^^^^^^^^^^')
-  // console.log(user)
-  // console.log('from backend User^^^^^^^^^^^^^^^^^^^^')
 
 
   // const [cart, setCart] = useState([])
@@ -39,10 +36,7 @@ const CartPage = () => {
 
   }, [dispatch, sessionUser.id])
 
-  const cart = listings.slice(4, 8)
-  console.log('cart here god i am so fucking tired')
-  console.log(cart)
-  console.log('end cart and life pls')
+  const trueTrueCart = listings.slice(4, 8)
 
   const subtotal = (cart) => {
     let val = 0
@@ -52,7 +46,14 @@ const CartPage = () => {
     return val;
   }
 
-  const userSubtotal = subtotal(cart)
+  const userSubtotal = subtotal(trueTrueCart)
+  // const userSubtotal = 0
+
+  if (!sessionUser) {
+    return (
+      <h1>Whoops! Looks like you gotta login there, partner.</h1>
+    )
+  } 
 
 
   // if (!sessionUser) {
@@ -71,7 +72,7 @@ const CartPage = () => {
 
   return (
     <ul className="listing-grid" display="grid">
-      {cart.map((cartItem) => <CartTile listing={cartItem} />)}
+      {trueTrueCart.map((cartItem) => <CartTile listing={cartItem} />)}
       <div className="hl" id="cart-hl"/>
       <li className="cart-end-ind-tile">
           <div className="cart-end-tile-container">

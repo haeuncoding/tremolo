@@ -39,7 +39,7 @@ function Navigation() {
 
   return (
     <div id="main-nav-container">
-      <ul id="main-nav">
+      <ul id="logo-nav">
         <li>
           <NavLink to="/">
             <img id="tremolo_logo" 
@@ -49,11 +49,14 @@ function Navigation() {
               />
           </NavLink>
         </li>
-        <li className="search-container">
-          <input type="text" className="search-bar" placeholder="Look for used and new gear here..." />
-          <div className="vl" id="search-vl" />
-          <SearchButton className="search-bar"/>
-        </li>
+      </ul>
+
+      <ul id="main-nav">
+        {/* <li className="search-container"> */}
+          {/* <input type="text" className="search-bar" placeholder="Look for used and new gear here..." /> */}
+          {/* <div className="vl" id="search-vl" /> */}
+          {/* <SearchButton className="search-bar"/> */}
+        {/* </li> */}
         <li>
           <NavLink to="/new_listing">
             <button id="new-listing-button">
@@ -61,18 +64,18 @@ function Navigation() {
             </button>
           </NavLink>
         </li>
-        <li className="button-container">
-          <WatchListButton />
-        </li>
-        <li className="button-container">
-          <FeedGridButton />
-        </li>
+        {/* <li className="button-container"> */}
+          {/* <WatchListButton /> */}
+        {/* </li> */}
+        {/* <li className="button-container"> */}
+          {/* <FeedGridButton /> */}
+        {/* </li> */}
         <li className="button-container">
           <CartButton />
         </li>
-        <li className="button-container">
-          <NotifBellButton />
-        </li>
+        {/* <li className="button-container"> */}
+          {/* <NotifBellButton /> */}
+        {/* </li> */}
           {sessionLinks}
       </ul>
     </div>

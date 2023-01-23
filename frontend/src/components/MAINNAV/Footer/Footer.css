@@ -1,0 +1,54 @@
+#footer-space {
+  height: 15vh;
+  width: 100%;
+}
+
+#footer-div {
+  background: solid;
+  background-color: #0F749A;
+  width: 100%;
+  height: 15vh;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: center;
+  justify-content: center;
+  vertical-align: center;
+  display: flex;
+  padding: -4vw;
+  position: absolute;
+  left: 0;
+}
+
+#github-icon, #linkedin-icon {
+  text-align: center;
+  background-color: none;
+  max-width: 2vw;
+  max-height: 2vw;
+}
+
+button#github-button, button#linkedin-button {
+  margin-top: 3.2vh;
+  margin-left: 1.5vw;
+  margin-right: 1.5vw;
+  text-align: center;
+  padding: 10px;
+  max-width: 5vw;
+  max-height: 5vw;
+  background: none;
+  background-color: none;
+  border-radius: 2vw;
+  border: none;
+  cursor: pointer;
+}
+
+button#github-button:hover, button#linkedin-button:hover {
+  transition: .5s;
+  background: #09455b;
+  cursor: pointer;
+}
+
+.outer-link {
+  text-align: center;
+  background: none;
+  cursor: pointer;
+}

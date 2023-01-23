@@ -7,7 +7,6 @@ import sessionReducer from './session';
 import categoriesReducer from './categories'
 import modelReviewsReducer from './modelReviews';
 import modelsReducer from './models'
-import shopReviewsReducer from './shopReviews'
 import shopsReducer from './shops'
 import session from './session'
 import usersReducer from './users';
@@ -17,7 +16,6 @@ export const rootReducer = combineReducers({
   listings: listingsReducer,
   makes: makesReducer,
   modelReviews: modelReviewsReducer,
-  shopReviews: shopReviewsReducer,
   categories: categoriesReducer,
   models: modelsReducer,
   shops: shopsReducer,

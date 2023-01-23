@@ -16,7 +16,7 @@ function ProfileDropdown({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
-    return (Redirect("root/"))
+    window.location.href =`/`
   };
 
   return (
@@ -37,10 +37,10 @@ function ProfileDropdown({ user }) {
         </label>
       </button>
       <div className="logged-in-dropdown-content" id="logged-in-dropdown-content">
-          <p className="dropdown-link">
+          <p className="dropdown-link" id="greeting-dropdown">
             Welcome back, {user.username}
           </p>
-        <a className="dropdown-link" onClick={logout}>Log Out</a>
+        <a className="dropdown-link" onClick={logout} id="log-out-button">Log Out</a>
       </div>
     </div>
   )

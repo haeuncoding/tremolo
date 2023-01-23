@@ -114,10 +114,15 @@ div.user-options#div2 {
   margin-bottom: 1vw;
 }
 
-button#edit-button {
+#edit-link-user-options {
+  text-decoration: none;
+}
+
+button#edit-button.user-options {
   color: #efefef;
   text-decoration: none;
   background-color: #0F749A;
+  margin-left: -.3vw;
   min-width: max-content;
   width: 30vw;
   border: #0F749A;

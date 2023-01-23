@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 import LoginFormPage from './components/SESSIONS/LoginFormPage';
 import SignupFormPage from './components/SESSIONS/SignupFormPage';
@@ -23,7 +24,12 @@ import SecondaryNavigation from './components/MAINNAV/SecondaryNavigation';
 import './App.css'
 import CategoryListingIndex from './components/LISTINGS/CategoryListingIndex';
 import GeneralListingIndex from './components/LISTINGS/GeneralListingIndex';
+import Footer from './components/MAINNAV/Footer';
+
 function App() {
+
+
+
   return (
     <>
         <div id="nav-container">
@@ -43,6 +49,7 @@ function App() {
           <Switch>
             <Route exact path="/">
               <div id="home-feed-grid">
+                
                   <SplashScreen />                
                 <h1 className="grid-title">Your Daily Picks</h1>
                 <br />
@@ -56,34 +63,19 @@ function App() {
                 <ListingGrid ListingGrid  />
               </div>
             </Route>
-            <Route path="/login">
-              <LoginFormPage />
-            </Route>
-            <Route path="/signup">
-              <SignupFormPage />
-            </Route>
-            <Route path="/cart">
-              <CartPage />
-            </Route>
-            <Route exact path="/my_feed">
-              <GeneralListingIndex />
-            </Route>
-            <Route exact path="/categories/:categoryId">
-              <CategoryListingIndex />
-            </Route>
-            <Route exact path="/listings/:listingId">
-              <ListingComponent />
-            </Route>
-            <Route path="/new_listing">
-              <ListingFormPage />
-            </Route>
-            <Route path="/edit/:listing_id">
-              <ListingFormPage />
-            </Route>
-            <Route path="/listings/submission_success">
-              <PostSubmitListingComp />
-            </Route>
+            <Route path="/login" component={LoginFormPage} />
+            <Route path="/signup" component={SignupFormPage} />
+
+            <Route path="/cart" component={CartPage} />
+
+            <Route exact path="/my_feed" component={GeneralListingIndex} />
+
+            <Route exact path="/categories/:categoryId" component={CategoryListingIndex} />
+            <Route exact path="/listings/:listingId" component={ListingComponent} />
+            <Route path="/new_listing" component={ListingFormPage} />
+            <Route path="/listings/:listing_id/edit/" component={ListingFormPage} />
           </Switch>
+        <Footer />
     </>
   );
 }

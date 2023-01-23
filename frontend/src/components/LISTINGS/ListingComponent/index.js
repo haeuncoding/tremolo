@@ -6,7 +6,6 @@ import * as modelActions from "../../../store/models"
 import * as shopActions from "../../../store/shops"
 import { useSelector, useDispatch } from "react-redux"
 import { Link, Redirect, useParams } from "react-router-dom"
-import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
 import './ListingComponent.css'
 import ModelReviewForm from "../../REVIEWS/ModelReviewForm"
 import EditListingModalForm from '../ListingFormPage/EditListingFormModal/EditListingModalForm';
@@ -15,33 +14,43 @@ import ReviewTile from '../../REVIEWS/ReviewTile';
 import UpdateUserWatchlist from '../../../util/UpdateUserWatchlist';
 import UpdateUserCart from '../../../util/UpdateUserCart';
 import { deleteListing } from '../../../store/listings';
+import RandomCategoryImage from './RandomCategoryImage';
+
+
 const ListingComponent = () => {
-  const sessionUser = useSelector(state => state.session.user)
-  const [showModal, setShowModal] = useState(false);
+  let sessionUser = useSelector(state => state.session.user)
+
   const [isLister, setIsLister] = useState(false)
+
+
   const [isWatched, setIsWatched] = useState(false)
   const [isAddedToCart, setIsAddedToCart] = useState(false)
+
   const { listingId } = useParams()
   const listing = useSelector(listingActions.getListing(listingId))
   const dispatch = useDispatch()
   const modelReviews = useSelector(state => Object.values(state.modelReviews))
-  
   useEffect(() => {
     dispatch(listingActions.fetchListing(listingId))
-    if (listingId && sessionUser) {
-      if (listing.listerId === sessionUser.id) {
-        setIsLister(true)
-      }
-    }
-  }, [dispatch, listingId])
+    // .then(() => {
+    //   if (listing.listerId === sessionUser.id) {
+    //   setIsLister(true)
+    //   }}
+    // )
+    // if (listingId && sessionUser) {
+      // console.log('listing loaded :)')
+      // if (listing && listing.listerId === sessionUser.id){
+        // console.log('user owns listing')
+        // if (listing.listerId === sessionUser.id) {
+        // setIsLister(true)
+      // }
+      // }
+    // }
+  }, [dispatch, listingId, sessionUser])
 
 
 
   const DisplayCurrentModelReviews = () => {
-    modelReviews.forEach(review => {
-      console.log(review.modelReviewed)
-      console.log(review.modelReviewedId)
-    })
     const filtered = modelReviews.filter(review => review.modelReviewedId === listing.modelId)
     return (filtered.map(review => <ReviewTile review={review} /> )
   )}
@@ -71,21 +80,18 @@ const ListingComponent = () => {
     )
     }
   
-    // TODO - not registering listing id when redirected to edit -- also it fails if i don't manually uncomment it out then back in
   const ListerActions = () => {
+      const { listingId }= useParams()
       return (
       <>
-      <Link to={`/edit/${listingId}`}>
+      <Link to={`/listings/${listingId}/edit`} id="edit-link-user-options">
       <div className="user-options" id="div1">
-        <button className="user-options"
-          id="edit-button"
-          onClick={() => setShowModal(true)}>Edit Listing</button>
-          {showModal && (
-            <EditListingModal onClose={() => setShowModal(false)}>
-              {console.log('hi this is when the modal form opens')}
-              <EditListingModalForm id={listingId} />
-            </EditListingModal>
-          )}
+        
+          <button className="user-options"
+            id="edit-button"
+            >
+            Edit Listing
+          </button>
       </div>
       </Link>
         <br className="user-options" />
@@ -145,9 +151,6 @@ const ListingComponent = () => {
     }
   }
 
-  if (!listing || !listing.listerId) {
-    return (null)
-  }
 
   const handleDelete = (e) => {
     e.preventDefault()
@@ -155,12 +158,29 @@ const ListingComponent = () => {
   }
 
 
+  console.log(listing)
+  if (!listing || !sessionUser) {
+    //  || !sessionUser
+    return (
+      <>
+        <h1>You gotta log in first pal!</h1>
+        <h2> Or the listing doesn't exist. :( </h2>
+      </>
+    )
+  }
+
+  // if (!sessionUser) {
+  //   return (
+  //     sessionUser = 'xyz'
+  //   )
+  // }
+  const image = RandomCategoryImage(listing.categoryId)
 
   return (
     <>
     <div className="listing-container">
         <div className="listing-img">
-            <img src={lolPhoto} alt="" />
+            <img src={image} alt="" />
             <br />
         </div>
         <div className="listing-info">
@@ -172,7 +192,7 @@ const ListingComponent = () => {
               <h1 id="listing-component-title">{listing.listingTitle}</h1>
                 <h5 id="component-condition">Condition - {listing.condition}</h5>
               <h3 id="component-price">${listing.price.toFixed(2)}</h3>
-              {isLister ? <ListerActions /> : <NonListerActions />}
+              {(listing.listerId === sessionUser.id) ? <ListerActions /> : <NonListerActions />}
             <div className="hl" />
               <p>
                 {listing.description}
