@@ -6,7 +6,7 @@ import '.././ListingComponent/ListingComponent.css'
 
 const PostSubmitListingComp = () => {
   // const sessionUser = useSelector(state => state.session.user)
-  const listingImage = lolPhoto
+  // const listingImage = lolPhoto
 
   const quirkySayingBank = [
     "Look at you Kings, Queens, and other Rulers! Spreading the gear love.",
