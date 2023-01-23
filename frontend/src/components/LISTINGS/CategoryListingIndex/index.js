@@ -11,7 +11,6 @@ import { fetchCategory, getCategory } from "../../../store/categories";
 
 function CategoryListingIndex () {
   const { categoryId } = useParams()
-  console.log(categoryId)
 
   const category = useSelector(state => state.categories[categoryId - 1])
   const listings = useSelector(listingActions.getListings)
@@ -37,7 +36,6 @@ function CategoryListingIndex () {
       <h1>Whoopsie, looks like you'll have to wait a bit. Or refresh.</h1>
     )
   }
-  console.log(listings) 
   
 
 

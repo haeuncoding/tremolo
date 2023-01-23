@@ -13,19 +13,11 @@ function GeneralListingIndex () {
 
   const listings = useSelector(listingActions.getListings)
   // const categories = useSelector(state => state.categories)
-  // console.log(categories)
   const dispatch = useDispatch()
 
   useEffect(() => {
     dispatch(listingActions.fetchListings())
   }, [dispatch])
-
-  console.log(listings)
-
-  console.log('filtered listings here')
-  // console.log(filteredListings())
-  
-
 
   return (
     <>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import * as ListingActions from "../../../store/listings"
 import { Link, Redirect } from "react-router-dom"
-import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
 import RandomImage from "../ListingComponent/RandomCategoryImage.js"
 import './ListingTile.css'
 

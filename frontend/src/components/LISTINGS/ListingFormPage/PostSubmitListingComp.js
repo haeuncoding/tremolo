@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import * as listingActions from "../../../store/listings"
 import { useSelector, useDispatch } from "react-redux"
 import { Link, Redirect, useParams } from "react-router-dom"
-import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
 import '.././ListingComponent/ListingComponent.css'
 
 const PostSubmitListingComp = () => {

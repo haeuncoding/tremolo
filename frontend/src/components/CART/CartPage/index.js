@@ -1,6 +1,4 @@
 import * as listingActions from "../../../store/listings"
-import lolPhoto from '../../../assets/temp_assets/dumb_photo_5.JPG'
-import lolPhoto2 from '../../../assets/temp_assets/dumb_photo_4.JPG'
 import { useSelector, useDispatch } from "react-redux";
 import { getUser, fetchUser, updateUser } from "../../../store/users";
 import CartTile from "./CartTile";
@@ -21,11 +19,6 @@ const CartPage = () => {
   // // const cart = user.cart
   // }, [])
 
-  console.log(sessionUser)
-  console.log(sessionUser.id)
-  console.log('sessionUser^^^^^^^^^^^^^^^^^^^^')
-  console.log(user)
-  console.log('from backend User^^^^^^^^^^^^^^^^^^^^')
 
 
   // const [cart, setCart] = useState([])
