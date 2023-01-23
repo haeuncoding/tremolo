@@ -6,7 +6,6 @@ import * as ListingUtility from "../../../util/listing_util"
 import { getCategories, fetchCategories } from "../../../store/categories";
 import { getMakes, fetchMakes } from "../../../store/makes";
 import { getModels, fetchModels } from "../../../store/models"
-import PostSubmitListingComponent from "../ListingFormPage/PostSubmitListingComp";
 import './ListingFormPage.css';
 import { render } from "react-dom";
 
