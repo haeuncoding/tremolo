@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Redirect, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import * as listingActions from "../../../store/listings"
-import * as ListingUtility from "../../../util/listing_util"
 import { getCategories, fetchCategories } from "../../../store/categories";
 import { getMakes, fetchMakes } from "../../../store/makes";
 import { getModels, fetchModels } from "../../../store/models"
+
 import './ListingFormPage.css';
-import { render } from "react-dom";
+
+// import { render } from "react-dom";
 
 function ListingFormPage() {
   const sessionUser = useSelector(state => state.session.user)
@@ -48,23 +50,22 @@ function ListingFormPage() {
     }
   }, [dispatch, listing_id])
 
-    console.log('hello - its cheese')
-    useEffect(() => {
-      if (listing) {
-        console.log('I was wondering if after all these years you would like some meat')
-        setListingTitle(listing.listingTitle);
-        setListerId(sessionUser.id)
-        setMakeId(listing.makeId);
-        setModelId(listing.modelId)
-        setCategoryId(listing.categoryId);
-        setCondition(listing.condition)
-        setPrice(listing.price)
-        setLocation(listing.location)
-        setColor(listing.color)
-        setYearMade(listing.yearMade)
-        setDescription(listing.description)
-      }
-    }, [listing])
+  useEffect(() => {
+    if (listing) {
+      console.log('I was wondering if after all these years you would like some meat')
+      setListingTitle(listing.listingTitle);
+      setListerId(sessionUser.id)
+      setMakeId(listing.makeId);
+      setModelId(listing.modelId)
+      setCategoryId(listing.categoryId);
+      setCondition(listing.condition)
+      setPrice(listing.price)
+      setLocation(listing.location)
+      setColor(listing.color)
+      setYearMade(listing.yearMade)
+      setDescription(listing.description)
+    }
+  }, [listing])
 
   console.log(sessionUser)
   const handleSubmit = async e => {
@@ -180,9 +181,9 @@ function ListingFormPage() {
 
 
   // if (!categories) return null;
-  if (!listing) {
-    return null
-  } else {
+  // if (!listing) {
+  //   return null
+  // } else {
   return (
     <>
       <div id="form-container">
@@ -302,5 +303,5 @@ function ListingFormPage() {
       </div>
     </>
   );
-}}
+}
 export default ListingFormPage;
