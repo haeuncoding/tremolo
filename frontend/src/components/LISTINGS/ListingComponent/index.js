@@ -10,6 +10,7 @@ import UpdateUserCart from '../../../util/UpdateUserCart';
 import { deleteListing } from '../../../store/listings';
 import RandomCategoryImage from './RandomCategoryImage';
 import SessionUserCheck from '../../SessionUserCheck/SessionUserCheck';
+import Loader from '../../LOADER/Loader';
 
 const ListingComponent = () => {
   const sessionUser = SessionUserCheck
@@ -18,80 +19,20 @@ const ListingComponent = () => {
   const listing = useSelector(listingActions.getListing(listingId))
   const dispatch = useDispatch()
   const modelReviews = useSelector(state => Object.values(state.modelReviews))
+  const [loaded, setLoaded] = useState(false)
   useEffect(() => {
-    dispatch(listingActions.fetchListing(listingId))
-  }, [dispatch, listingId, sessionUser])
+    Promise.all([
+      dispatch(listingActions.fetchListing(listingId))
+    ]).then(()=>{
+      setLoaded(true);
+    })
+  },[dispatch, listingId, sessionUser]);
   const [isWatched, setIsWatched] = useState(false)
   console.log(isWatched, "it's me, hi, i'm the problem, it's me")
   const [isAddedToCart, setIsAddedToCart] = useState(false)
   console.log(isAddedToCart, "it's me, hi, i'm the problem, it's me")
 
-  const image = RandomCategoryImage(listing.categoryId)
-  console.log(listing)
-  if (!listing) {
-    //  || !sessionUser
-    return (
-      <>
-        <h2> It looks like this listing doesn't exist. :( </h2>
-      </>
-    )
-  } else {
-    const DisplayCurrentModelReviews = () => {
-    const filtered = modelReviews.filter(review => review.modelReviewedId === listing.modelId)
-    return (filtered.reverse().map(review => <ReviewTile review={review} /> )
-  )}
-
-  const NonListerActions = () => {
-    return (
-      <>
-      <div className="user-options" id="div1">
-        <button className={isAddedToCart ? "added-cart" : "not-added-cart"}
-        // "user-options" 
-          id="cart-button"
-          onClick={handleCartClick}>
-          {isAddedToCart ? "Added to Cart!" : "Add to Cart"}
-        </button>
-      </div>
-        <br className="user-options" />
-        <div className="user-options" id="div2">
-          <button className="user-options" id="offer-button">Make an Offer</button>
-          <button className={isWatched ? "watch-button-on" : "watch-button-off"}
-            id="watch-button" 
-            onClick={handleWatchClick}
-            >
-            {isWatched ? "Watching" : "Watch"}
-          </button>
-      </div>
-      </>
-    )
-    }
   
-  const ListerActions = () => {
-      const { listingId }= useParams()
-      return (
-      <>
-      <Link to={`/listings/${listingId}/edit`} id="edit-link-user-options">
-      <div className="user-options" id="div1">
-        
-          <button className="user-options"
-            id="edit-button"
-            >
-            Edit Listing
-          </button>
-      </div>
-      </Link>
-        <br className="user-options" />
-        <div className="user-options" id="div2">
-        <button className="user-options"
-        // "user-options" 
-          id="delete-button"
-          onClick={handleDelete}>
-          Delete Listing
-        </button>
-      </div>
-      </>
-    )
-  }
 
 
 
@@ -140,6 +81,86 @@ const ListingComponent = () => {
     e.preventDefault()
     dispatch(deleteListing(listingId))
   }
+  if (!loaded) {
+    return <Loader />
+  } else {
+
+    const image = RandomCategoryImage(listing.categoryId)
+  console.log(listing)
+  if (!listing) {
+    return (
+      <>
+        <h2> It looks like this listing doesn't exist. :( </h2>
+      </>
+    )
+  } else {
+
+  const DisplayCurrentModelReviews = () => {
+    const filtered = modelReviews.filter(review => review.modelReviewedId === listing.modelId)
+    return (filtered.reverse().map(review => <ReviewTile review={review} /> )
+  )}
+
+  const NonListerActions = () => {
+    return (
+      <>
+      <div className="user-options" id="div1">
+        <button className={isAddedToCart ? "added-cart" : "not-added-cart"}
+        // "user-options" 
+          id="cart-button"
+          onClick={handleCartClick}>
+          {isAddedToCart ? "Added to Cart!" : "Add to Cart"}
+        </button>
+      </div>
+        <br className="user-options" />
+        <div className="user-options" id="div2">
+          <button className="user-options" id="offer-button">Make an Offer</button>
+          <button className={isWatched ? "watch-button-on" : "watch-button-off"}
+            id="watch-button" 
+            onClick={handleWatchClick}
+            >
+            {isWatched ? "Watching" : "Watch"}
+          </button>
+      </div>
+      </>
+    )
+    }
+  
+  
+
+    const ListerActions = () => {
+      const { listingId }= useParams()
+      return (
+      <>
+      <Link to={`/listings/${listingId}/edit`} id="edit-link-user-options">
+      <div className="user-options" id="div1">
+        
+          <button className="user-options"
+            id="edit-button"
+            >
+            Edit Listing
+          </button>
+      </div>
+      </Link>
+        <br className="user-options" />
+        <div className="user-options" id="div2">
+        <button className="user-options"
+        // "user-options" 
+          id="delete-button"
+          onClick={handleDelete}>
+          Delete Listing
+        </button>
+      </div>
+      </>
+    )
+  }
+
+
+
+
+
+
+
+
 
   return (
     <>
@@ -171,6 +192,7 @@ const ListingComponent = () => {
       </div>
     </>
   )
+}
 }
 }
 

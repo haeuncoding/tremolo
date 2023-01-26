@@ -8,7 +8,7 @@ import App from './App';
 import configureStore from './store';
 import csrfFetch, { restoreCSRF } from './store/csrf';
 import * as sessionActions from './store/session';
-
+import Loader from './components/LOADER/Loader';
 
 const store = configureStore();
 
@@ -40,9 +40,9 @@ function Root() {
   return (
     <ModalProvider>
       <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
       </Provider>
     </ModalProvider>
   );

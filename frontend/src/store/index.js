@@ -10,6 +10,9 @@ import modelsReducer from './models'
 import shopsReducer from './shops'
 import session from './session'
 import usersReducer from './users';
+// import { persistStore, persistReducer } from 'redux-persist';
+// import storage from 'redux-persist/lib/storage';
+// import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 export const rootReducer = combineReducers({
   session: sessionReducer,

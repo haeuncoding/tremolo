@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
 import ResetScroll from './context/ResetScroll';
+import { useHistory } from 'react-router-dom';
 
 import LoginFormPage from './components/SESSIONS/LoginFormPage';
 import SignupFormPage from './components/SESSIONS/SignupFormPage';
@@ -31,7 +32,7 @@ import GeneralListingIndex from './components/LISTINGS/GeneralListingIndex';
 import Footer from './components/MAINNAV/Footer';
 
 function App() {
-
+  const history = useHistory()
 
 
   return (
@@ -45,7 +46,7 @@ function App() {
             className="nav"
             id="sec-nav"
             />
-        <ResetScroll />
+        <ResetScroll history={history} />
         </div>
           <Switch>
             <Route exact path="/">
