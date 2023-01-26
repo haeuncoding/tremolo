@@ -26,31 +26,31 @@ function ModelReviewForm() {
 
   // TODO add error render for not logged in
 
-const StarRating = () => {
-  const [hover, setHover] = useState(null)
-  return (
-    <div>
-      {[...Array(5)].map((star, i) => {
-        const ratingValue = i + 1
-        return (
-        <label>
-          <input 
-            type="radio" 
-            name="rating" 
-            value={ratingValue} 
-            onClick={() => setStars(ratingValue)}
-            class="star-value-button" 
-            id={`rating-value-${ratingValue}`}/>
-          <FaStar 
-            className='star-container' 
-            onMouseEnter={() => setHover(ratingValue)}
-            onMouseLeave={() => setHover(null)}
-            color={ratingValue <= (hover || stars) ? "#0f749a" : "#bcbcbc"} />
-        </label>
-      )})}
-    </div>
-  )
-}
+  const StarRating = () => {
+    const [hover, setHover] = useState(null)
+    return (
+      <div required>
+        {[...Array(5)].map((star, i) => {
+          const ratingValue = i + 1
+          return (
+          <label>
+            <input 
+              type="radio" 
+              name="rating" 
+              value={ratingValue} 
+              onClick={() => setStars(ratingValue)}
+              class="star-value-button" 
+              id={`rating-value-${ratingValue}`}/>
+            <FaStar 
+              className='star-container' 
+              onMouseEnter={() => setHover(ratingValue)}
+              onMouseLeave={() => setHover(null)}
+              color={ratingValue <= (hover || stars) ? "#0f749a" : "#bcbcbc"} />
+          </label>
+        )})}
+      </div>
+    )
+  }
 
 
 
