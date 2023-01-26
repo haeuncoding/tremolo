@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
+import ResetScroll from './context/ResetScroll';
 
 import LoginFormPage from './components/SESSIONS/LoginFormPage';
 import SignupFormPage from './components/SESSIONS/SignupFormPage';
@@ -44,13 +45,13 @@ function App() {
             className="nav"
             id="sec-nav"
             />
-
+        <ResetScroll />
         </div>
           <Switch>
             <Route exact path="/">
               <div id="home-feed-grid">
                 
-                  <SplashScreen />                
+                <SplashScreen />                
                 <h1 className="grid-title">Your Daily Picks</h1>
                 <br />
                 <ListingGrid />

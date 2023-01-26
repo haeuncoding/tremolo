@@ -129,10 +129,6 @@ function ListingFormPage() {
     dispatch(fetchModels())
   }, [dispatch])
 
-  if (!listing) {return (
-    <h1>`Hold your horses pard'ner!`</h1>
-  )}
-
 
   const CategoryMap = () => {
     return (
@@ -184,7 +180,9 @@ function ListingFormPage() {
 
 
   // if (!categories) return null;
-  if (!listing) {return null};
+  if (!listing) {
+    return null
+  } else {
   return (
     <>
       <div id="form-container">
@@ -304,5 +302,5 @@ function ListingFormPage() {
       </div>
     </>
   );
-}
+}}
 export default ListingFormPage;

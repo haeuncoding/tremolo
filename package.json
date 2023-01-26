@@ -17,6 +17,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "react-burger-menu": "^2.7.1"
+    "react-burger-menu": "^2.7.1",
+    "redux-persist": "^6.0.0"
   }
 }

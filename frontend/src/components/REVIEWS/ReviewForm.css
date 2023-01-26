@@ -1,19 +1,50 @@
-form, body, h1, h2, h3, p {
+form, body, h1, h2, h3, p, a {
   font-family: 'Roboto', sans-serif;
 }
 
-div.non-logged-in-review-form-container {
+.non-logged-in-review-form-container {
     text-align: center;
-    height: 22vw;
+    height: 7.5vw;
     margin-left: auto;
     margin-right: auto;
-    background-color: #a5a5a5;
+    background-color: #efefef;
     width: 80vw;
-    padding: 2vw;
-    padding-top: .5vw;
+    vertical-align: baseline;
+    align-items: center;
+    align-content: center;
+    padding: 2vh;
     /* padding-left: 4vw; */
-    margin-top: 2vw;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
     border-radius: 15px;
+    font-size: 2vw;
+    vertical-align: middle;
+    font-weight: 800;
+    transition: .5s;
+}
+
+.non-logged-in-review-form-container > h3 {
+  margin-top: 3vh;
+  margin-bottom: auto;
+  text-decoration: none;
+  background: none;
+  font-weight: 500;
+  transition: .5s;
+}
+
+.non-logged-in-review-form-container > h3:hover {
+  margin-top: 3vh;
+  margin-bottom: auto;
+  text-decoration: none;
+  background: none;
+  font-weight: 500;
+  color: #0F749A;
+  transition: .5s;
+}
+
+.non-logged-in-review-form-container:hover {
+  background-color: #FCFCFC;
+  transition: .5s;
 }
 
 .review-form-container {

@@ -11,6 +11,7 @@ import './ReviewForm.css';
 import { FaStar } from 'react-icons/fa'
 
 import './ReviewTile.css'
+import SessionUserCheck from "../SessionUserCheck/SessionUserCheck";
 
 
 function ModelReviewModalForm(modelReviewId) {
@@ -18,7 +19,7 @@ function ModelReviewModalForm(modelReviewId) {
   const [showModal, setShowModal] = useState(false);
 
   
-  const sessionUser = useSelector(state => state.session.user)
+  const sessionUser = SessionUserCheck()
 
   const { listingId } = useParams()
 
@@ -26,7 +27,6 @@ function ModelReviewModalForm(modelReviewId) {
   const [stars, setStars] = useState(null)
   const [description, setDescription] = useState("")
   const listing = useSelector(getListing(listingId))
-  const modelId = listing.modelId
 
   const review = useSelector(getModelReview(modelReviewId.id))
 
@@ -35,6 +35,27 @@ function ModelReviewModalForm(modelReviewId) {
       setDescription(review.description)
       dispatch(fetchModelReview(modelReviewId.id))
   }, [dispatch])
+
+
+  const handleDescription = async (e) => {
+    e.preventDefault()
+    setDescription("")
+    setDescription(e.target.value)
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = {
+      id: modelReviewId.id,
+      model_reviewer_id: review.modelReviewerId,
+      model_reviewed_id: review.modelReviewedId,
+      rating: stars,
+      description: description
+    }
+      console.log(data)
+      dispatch(updateModelReview(data)) //.then(() => {window.location.href =`/listings/${listingId}`});
+    };
 
   const StarRating = () => {
     return (
@@ -61,30 +82,6 @@ function ModelReviewModalForm(modelReviewId) {
       )
     }
 
-    
-
-
-  const handleDescription = async (e) => {
-    e.preventDefault()
-    setDescription("")
-    setDescription(e.target.value)
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(review.modelReviewerId)
-    console.log(review.modelReviewedId)
-
-    const data = {
-      id: modelReviewId.id,
-      model_reviewer_id: review.modelReviewerId,
-      model_reviewed_id: review.modelReviewedId,
-      rating: parseInt(stars),
-      description: description
-    }
-      console.log(data)
-      dispatch(updateModelReview(data)).then(() => {window.location.href =`/listings/${listingId}`});
-    };
   if (!modelReviewId) {
     return null
   }
@@ -130,9 +127,6 @@ const ReviewTile = ({review}) => {
   if (sessionUser && review.modelReviewerId === sessionUser.id) {
     setIsUser(true)
   } 
-  // else {
-  //   setIsUser(false)
-  // }
 }, [])
 
 
@@ -160,18 +154,8 @@ const ReviewTile = ({review}) => {
       )
     }
 
-    // switch (review.rating) {
-    //       default:
-    //         <p> hello there it's me</p>
-    //         break;
-    //     }
-  
-  
-
   const UserReviewActions = () => {
     const reviewId = review.id
-    console.log('look here you dumbass')
-    console.log(reviewId)
     return (
       <div id="user-review-actions">
         <div class="user-review-action-singular">
@@ -179,16 +163,14 @@ const ReviewTile = ({review}) => {
             onClick={() => setShowModal(true)}>Edit Review</button>
             {showModal && (
               <Modal onClose={() => setShowModal(false)}>
-
                 <ModelReviewModalForm class="model-edit" id={reviewId} />
-
               </Modal>
             )}
         </div>
       <div className="vl" id="user-review-vertical-line"/>
         <div class="user-review-action-singular">
           <button id="delete-review"
-            onClick={handleDelete}>
+            onClick={(e) => handleDelete(e)}>
               Delete Review
           </button>        
         </div>
@@ -204,7 +186,8 @@ const ReviewTile = ({review}) => {
     )      
   }
 
-  const handleDelete = () => {
+  const handleDelete = (e) => {
+    e.preventDefault()
     const reviewId = review.id
     dispatch(deleteModelReview(reviewId))
   }

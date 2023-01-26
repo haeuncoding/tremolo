@@ -10,6 +10,7 @@ form, body, h1, h2, h3, p {
   margin-top: auto;
   vertical-align: middle;
   padding: 0vw;
+  margin-top: -2vh;
   /* justify-content: space-between; */
   /* align-self: flex-start; */
   /* text-align: justify; */
@@ -162,7 +163,7 @@ button#search-button:hover > #search-icon {
 #tremolo_logo {
   width: 12vw;
   height: auto;
-  margin-top: 1.75vh;
+  margin-top: .5vh;
 }
 
 #tremolo_logo:hover {

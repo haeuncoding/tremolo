@@ -9,42 +9,34 @@ import UpdateUserWatchlist from '../../../util/UpdateUserWatchlist';
 import UpdateUserCart from '../../../util/UpdateUserCart';
 import { deleteListing } from '../../../store/listings';
 import RandomCategoryImage from './RandomCategoryImage';
-
+import SessionUserCheck from '../../SessionUserCheck/SessionUserCheck';
 
 const ListingComponent = () => {
-  let sessionUser = useSelector(state => state.session.user)
-
-  const [isLister, setIsLister] = useState(false)
-
-
-  const [isWatched, setIsWatched] = useState(false)
-  const [isAddedToCart, setIsAddedToCart] = useState(false)
-
+  const sessionUser = SessionUserCheck
+  // debugger
   const { listingId } = useParams()
   const listing = useSelector(listingActions.getListing(listingId))
   const dispatch = useDispatch()
   const modelReviews = useSelector(state => Object.values(state.modelReviews))
   useEffect(() => {
     dispatch(listingActions.fetchListing(listingId))
-    // .then(() => {
-    //   if (listing.listerId === sessionUser.id) {
-    //   setIsLister(true)
-    //   }}
-    // )
-    // if (listingId && sessionUser) {
-      // console.log('listing loaded :)')
-      // if (listing && listing.listerId === sessionUser.id){
-        // console.log('user owns listing')
-        // if (listing.listerId === sessionUser.id) {
-        // setIsLister(true)
-      // }
-      // }
-    // }
   }, [dispatch, listingId, sessionUser])
+  const [isWatched, setIsWatched] = useState(false)
+  console.log(isWatched, "it's me, hi, i'm the problem, it's me")
+  const [isAddedToCart, setIsAddedToCart] = useState(false)
+  console.log(isAddedToCart, "it's me, hi, i'm the problem, it's me")
 
-
-
-  const DisplayCurrentModelReviews = () => {
+  const image = RandomCategoryImage(listing.categoryId)
+  console.log(listing)
+  if (!listing) {
+    //  || !sessionUser
+    return (
+      <>
+        <h2> It looks like this listing doesn't exist. :( </h2>
+      </>
+    )
+  } else {
+    const DisplayCurrentModelReviews = () => {
     const filtered = modelReviews.filter(review => review.modelReviewedId === listing.modelId)
     return (filtered.reverse().map(review => <ReviewTile review={review} /> )
   )}
@@ -105,43 +97,39 @@ const ListingComponent = () => {
 
   const handleWatchClick = (e) => {
     e.preventDefault();
-    if (sessionUser) {
-      if (isWatched) {
-        setIsWatched(false)
-        UpdateUserWatchlist(listingId)
-        e.target.className = "watch-button-off"
-        console.log('after')
-        console.log(e.target.className)
-      } else {
-        setIsWatched(true)
-        console.log(isWatched)
-        UpdateUserWatchlist(listingId)
-        e.target.className = "watch-button-on"
-        console.log('after')
-        console.log(e.target.className)
-      }
+    if (isWatched) {
+      setIsWatched(false)
+      UpdateUserWatchlist(listingId)
+      e.target.className = "watch-button-off"
+      console.log('after')
+      console.log(e.target.className)
+    } else {
+      setIsWatched(true)
+      console.log(isWatched)
+      UpdateUserWatchlist(listingId)
+      e.target.className = "watch-button-on"
+      console.log('after')
+      console.log(e.target.className)
     }
   }
 
   const handleCartClick = (e) => {
     e.preventDefault();
-    if (sessionUser) {
-      if (isAddedToCart) {
-        setIsAddedToCart(false)
-        UpdateUserCart(listingId, dispatch)
-        console.log(e.target.className)
-        e.target.className = "in-cart"
-        console.log('after')
-        console.log(e.target.className)
-      } else {
-        setIsAddedToCart(true)
-        console.log(isAddedToCart)
-        UpdateUserCart(listingId)
-        console.log(e.target.className)
-        e.target.className = "not-in-cart"
-        console.log('after')
-        console.log(e.target.className)
-      }
+    if (isAddedToCart) {
+      setIsAddedToCart(false)
+      UpdateUserCart(listingId, dispatch)
+      console.log(e.target.className)
+      e.target.className = "in-cart"
+      console.log('after')
+      console.log(e.target.className)
+    } else {
+      setIsAddedToCart(true)
+      console.log(isAddedToCart)
+      UpdateUserCart(listingId)
+      console.log(e.target.className)
+      e.target.className = "not-in-cart"
+      console.log('after')
+      console.log(e.target.className)
     }
   }
 
@@ -152,25 +140,6 @@ const ListingComponent = () => {
     e.preventDefault()
     dispatch(deleteListing(listingId))
   }
-
-
-  console.log(listing)
-  if (!listing || !sessionUser) {
-    //  || !sessionUser
-    return (
-      <>
-        <h1>You gotta log in first pal!</h1>
-        <h2> Or the listing doesn't exist. :( </h2>
-      </>
-    )
-  }
-
-  // if (!sessionUser) {
-  //   return (
-  //     sessionUser = 'xyz'
-  //   )
-  // }
-  const image = RandomCategoryImage(listing.categoryId)
 
   return (
     <>
@@ -202,6 +171,7 @@ const ListingComponent = () => {
       </div>
     </>
   )
+}
 }
 
 export default ListingComponent

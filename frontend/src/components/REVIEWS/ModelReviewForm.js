@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import { getModelReview, fetchModelReview, createModelReview, updateModelReview } from "../../store/modelReviews"
 import { getListing, fetchListing } from "../../store/listings";
+import SessionUserCheck from "../SessionUserCheck/SessionUserCheck";
 import './ReviewForm.css';
 
 import { FaStar } from 'react-icons/fa'
@@ -10,11 +12,10 @@ import { FaStar } from 'react-icons/fa'
 import * as hooks from "../../hooks/index"
 
 function ModelReviewForm() {
-  const dispatch = useDispatch()
-  const [loggedIn, setLoggedIn] = useState(false)
-  
-  const sessionUser = useSelector(state => state.session.user)
+
+  const sessionUser = SessionUserCheck()
   console.log(sessionUser)
+  const dispatch = useDispatch()
   const { listingId } = useParams()
   const [stars, setStars] = useState(null)
     
@@ -52,8 +53,6 @@ function ModelReviewForm() {
     )
   }
 
-
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     {
@@ -65,19 +64,28 @@ function ModelReviewForm() {
       }
       console.log(data)
       dispatch(createModelReview(data))
-      setStars(0)
+      setStars(null)
       setDescription("")
       ;
     }
   }
 
-  if (!sessionUser) {
+  
+
+
+  if (sessionUser.id === "") {
+    const nonSessionUser = () => {
     return (
-      nonSessionUser()
+        <Link to="/login" className="non-logged-in-review-form-container">
+        <h3>Hold on! Log in first to leave a review.</h3>
+        </Link>
     )
   }
-
-  const ifSessionUser = () => {
+  return (
+      nonSessionUser()
+    )
+  } else {
+    const ifSessionUser = () => {
     return (
       <div className="review-form-container">
         <h2 id="label-star">Leave a Review</h2>
@@ -100,20 +108,10 @@ function ModelReviewForm() {
       </div>
     )
   }
-
-  const nonSessionUser = () => {
     return (
-      <div className="non-logged-in-review-form-container">
-        <h1>Hold on! Log in first to leave a review.</h1>
-      </div>
-    )
+      ifSessionUser()
+      )
   }
-
-  return (
-    <>
-     {(sessionUser) ? ifSessionUser() : nonSessionUser() }
-    </>
-  );
 }
 
 export default ModelReviewForm;
