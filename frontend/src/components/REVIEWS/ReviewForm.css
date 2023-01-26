@@ -55,6 +55,10 @@ div.non-logged-in-review-form-container {
   scale: 80%;
 }
 
+.star-value-button {
+  display: none;
+}
+
 div.stars {
   margin-left: -1vw;
   margin-bottom: -2vw;
