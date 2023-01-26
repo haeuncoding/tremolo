@@ -46,7 +46,7 @@ const ListingComponent = () => {
 
   const DisplayCurrentModelReviews = () => {
     const filtered = modelReviews.filter(review => review.modelReviewedId === listing.modelId)
-    return (filtered.map(review => <ReviewTile review={review} /> )
+    return (filtered.reverse().map(review => <ReviewTile review={review} /> )
   )}
 
   const NonListerActions = () => {
