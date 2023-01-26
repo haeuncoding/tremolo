@@ -4,16 +4,21 @@ form, body, h1, h2, h3, p {
 }
 
 #main-nav-container {
-  width: auto;
-  align-items: left;
-  justify-content: space-between;
-  align-self: flex-start;
-  text-align: justify;
+  width: 86vw;
+  align-items: center;
+  align-content: center;
+  margin-top: auto;
+  vertical-align: middle;
+  padding: 0vw;
+  /* justify-content: space-between; */
+  /* align-self: flex-start; */
+  /* text-align: justify; */
 
   /* margin-bottom: -1vw; */
 }
 
 div.nav-icon-container ~ label {
+  margin-top: 2vh;
   text-align: center;
 }
 
@@ -37,6 +42,7 @@ ul#main-nav {
   margin-right: 0;
   margin-left: auto;
   float: right;
+  vertical-align: middle;
 }
 
 li.button-container {
@@ -154,8 +160,9 @@ button#search-button:hover > #search-icon {
 }
 
 #tremolo_logo {
-  width: 10vw;
+  width: 12vw;
   height: auto;
+  margin-top: 1.75vh;
 }
 
 #tremolo_logo:hover {

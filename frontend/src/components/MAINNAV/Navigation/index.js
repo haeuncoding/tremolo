@@ -39,45 +39,49 @@ function Navigation() {
 
   return (
     <div id="main-nav-container">
-      <ul id="logo-nav">
-        <li>
-          <NavLink to="/">
-            <img id="tremolo_logo" 
-              src={logo}
-              onMouseOver={e => (e.currentTarget.src = logoColor)} 
-              onMouseOut={e => (e.currentTarget.src = logo)} 
-              />
-          </NavLink>
-        </li>
-      </ul>
-
-      <ul id="main-nav">
-        {/* <li className="search-container"> */}
-          {/* <input type="text" className="search-bar" placeholder="Look for used and new gear here..." /> */}
-          {/* <div className="vl" id="search-vl" /> */}
-          {/* <SearchButton className="search-bar"/> */}
-        {/* </li> */}
-        <li>
-          <NavLink to="/new_listing">
-            <button id="new-listing-button">
-              Create a Listing
-            </button>
-          </NavLink>
-        </li>
-        {/* <li className="button-container"> */}
-          {/* <WatchListButton /> */}
-        {/* </li> */}
-        {/* <li className="button-container"> */}
-          {/* <FeedGridButton /> */}
-        {/* </li> */}
-        <li className="button-container">
-          <CartButton />
-        </li>
-        {/* <li className="button-container"> */}
-          {/* <NotifBellButton /> */}
-        {/* </li> */}
-          {sessionLinks}
-      </ul>
+      <div id="logo-nav-container">
+        <ul id="logo-nav">
+          <li>
+            <NavLink to="/">
+              <img id="tremolo_logo" 
+                src={logo}
+                onMouseOver={e => (e.currentTarget.src = logoColor)} 
+                onMouseOut={e => (e.currentTarget.src = logo)} 
+                />
+            </NavLink>
+          </li>
+        </ul>
+      </div>
+      
+      <div id="other-nav-container">
+        <ul id="main-nav">
+          {/* <li className="search-container"> */}
+            {/* <input type="text" className="search-bar" placeholder="Look for used and new gear here..." /> */}
+            {/* <div className="vl" id="search-vl" /> */}
+            {/* <SearchButton className="search-bar"/> */}
+          {/* </li> */}
+          <li>
+            <NavLink to="/new_listing">
+              <button id="new-listing-button">
+                Create a Listing
+              </button>
+            </NavLink>
+          </li>
+          {/* <li className="button-container"> */}
+            {/* <WatchListButton /> */}
+          {/* </li> */}
+          {/* <li className="button-container"> */}
+            {/* <FeedGridButton /> */}
+          {/* </li> */}
+          <li className="button-container">
+            <CartButton />
+          </li>
+          {/* <li className="button-container"> */}
+            {/* <NotifBellButton /> */}
+          {/* </li> */}
+            {sessionLinks}
+        </ul>
+      </div>
     </div>
   );
 }

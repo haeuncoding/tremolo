@@ -21,6 +21,7 @@ ul#sec-nav-container {
   text-decoration: none;
   margin-left: auto;
   margin-right: auto;
+  margin-top: -1.5vh;
 }
 
 div.vl {

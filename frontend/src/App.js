@@ -36,18 +36,15 @@ function App() {
   return (
     <>
         <div id="nav-container">
-          <div>
             <Navigation 
               className="nav"
               id="main-nav"
               />
-          </div>  
-          <div>
           <SecondaryNavigation 
             className="nav"
             id="sec-nav"
             />
-          </div>  
+
         </div>
           <Switch>
             <Route exact path="/">
