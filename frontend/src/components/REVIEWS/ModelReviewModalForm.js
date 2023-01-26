@@ -13,18 +13,16 @@ function ModelReviewModalForm(modelReviewId) {
   console.log("this is when it's inside the modal form")
   console.log(modelReviewId)
   const dispatch = useDispatch()
-  
-  const sessionUser = useSelector(state => state.session.user)
 
-    const { listingId } = useParams()
+  const { listingId } = useParams()
 
-    const [stars, setStars] = useState(review.rating)
-    const [hover, setHover] = useState(null)
-    const [description, setDescription] = useState("")
-    const [isEdit, setIsEdit] = useState(false)
-    const [errors, setErrors] = useState(false)
-    const listing = useSelector(getListing(listingId))
-    const modelId = listing.modelId
+  const [stars, setStars] = useState(review.rating)
+  const [hover, setHover] = useState(null)
+  const [description, setDescription] = useState("")
+  const [isEdit, setIsEdit] = useState(false)
+  const [errors, setErrors] = useState(false)
+  const listing = useSelector(getListing(listingId))
+  const modelId = listing.modelId
 
   const review = useSelector(getModelReview(modelReviewId.id))
   console.log('throwing up screaming and crying')
