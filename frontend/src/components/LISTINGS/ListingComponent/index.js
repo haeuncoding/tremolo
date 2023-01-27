@@ -13,7 +13,7 @@ import SessionUserCheck from '../../SessionUserCheck/SessionUserCheck';
 import Loader from '../../LOADER/Loader';
 
 const ListingComponent = () => {
-  const sessionUser = SessionUserCheck
+  const sessionUser = SessionUserCheck()
   // debugger
   const { listingId } = useParams()
   const listing = useSelector(listingActions.getListing(listingId))
@@ -84,8 +84,6 @@ const ListingComponent = () => {
   if (!loaded) {
     return <Loader />
   } else {
-
-    const image = RandomCategoryImage(listing.categoryId)
   console.log(listing)
   if (!listing) {
     return (
@@ -94,7 +92,10 @@ const ListingComponent = () => {
       </>
     )
   } else {
-
+  console.log('is lister', listing.listerId === sessionUser.id)
+  console.log(listing.listerId)
+  console.log(sessionUser.id)
+  const image = RandomCategoryImage(listing.categoryId)
   const DisplayCurrentModelReviews = () => {
     const filtered = modelReviews.filter(review => review.modelReviewedId === listing.modelId)
     return (filtered.reverse().map(review => <ReviewTile review={review} /> )
@@ -173,7 +174,7 @@ const ListingComponent = () => {
           <div className="listing-top">
               <h5 id="category-make-model">{listing.category} // {listing.make} // {listing.model}</h5>
             <div className="hl" />
-              <h4 id="shop-name">{listing.shopName}</h4>
+              <h4 id="shop-name">{listing.lister}</h4>
               <h5 id="location">{listing.location}</h5>
               <h1 id="listing-component-title">{listing.listingTitle}</h1>
                 <h5 id="component-condition">Condition - {listing.condition}</h5>

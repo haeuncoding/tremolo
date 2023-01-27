@@ -17,7 +17,7 @@ const CategoryListingGrid = ({categoryId}) => {
     // })
     const filtered = listings.filter(listing => listing.categoryId === categoryId)
     return (
-      filtered?.map((listing) => <ListingTile listing={listing} class="home-ind-tile"/>)
+      filtered?.reverse().map((listing) => <ListingTile listing={listing} class="home-ind-tile"/>)
     )}
 
 
