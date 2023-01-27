@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Redirect, useParams, useNavigate } from "react-router-dom";
+import { Redirect, useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import * as listingActions from "../../../store/listings"
 import { getCategories, fetchCategories } from "../../../store/categories";
 import { getMakes, fetchMakes } from "../../../store/makes";
 import { getModels, fetchModels } from "../../../store/models"
-
 import './ListingFormPage.css';
+import SessionUserCheck from "../../SessionUserCheck/SessionUserCheck";
 
 // import { render } from "react-dom";
 
 function ListingFormPage() {
-  const sessionUser = useSelector(state => state.session.user)
-  console.log('god is a lie and man is a failure')
+  const sessionUser = SessionUserCheck()
   const { listing_id } = useParams();
   const dispatch = useDispatch();
+  const history = useHistory()
   const [listerId, setListerId] = useState()
   const [listingTitle, setListingTitle] = useState("");
   const [makeId, setMakeId] = useState("")
@@ -29,8 +29,6 @@ function ListingFormPage() {
   const [description, setDescription] = useState("")
   const [isEdit, setIsEdit] = useState(false)
   const listing = useSelector(listingActions.getListing(listing_id));
-
-  console.log(listing)
 
   const conditions = [
     "Non-Functioning", 
@@ -67,7 +65,6 @@ function ListingFormPage() {
     }
   }, [listing])
 
-  console.log(sessionUser)
   const handleSubmit = async e => {
     e.preventDefault();
     if (listing_id) {
@@ -87,10 +84,12 @@ function ListingFormPage() {
       }
       console.log('data for update listing')
       console.log(data)
-      dispatch(listingActions.updateListing(data));
-      return (
-       <Redirect to={`/listings/:${listing_id}`} />
-      )
+      dispatch(listingActions.updateListing(data))
+      .then((response) => {
+        console.log(response)
+        history.push(`/listings/${response.listing.id}`)
+      })
+
     } else {
       const data = {
         listing_title: listingTitle,
@@ -106,8 +105,10 @@ function ListingFormPage() {
         description: description
       }
       dispatch(listingActions.createListing(data))
-      // window.location.href =`/listings/submission_success`
-    }
+      .then((response) => {
+        console.log(response)
+        history.push(`/listings/${response.listing.id}`)
+      })}
   };
 
   
@@ -295,6 +296,7 @@ function ListingFormPage() {
             <br/>
           <textarea name="description" 
             className="input-box"
+            value={description}
             onChange={e => setDescription(e.target.value)}
           />
             <br/>

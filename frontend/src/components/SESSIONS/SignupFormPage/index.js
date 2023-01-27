@@ -11,6 +11,9 @@ function SignupFormPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [location, setLocation] = useState("");
+  const [shopName, setShopName] = useState(username)
+
   const [errors, setErrors] = useState([]);
 
   if (sessionUser) return <Redirect to="/" />;
@@ -19,7 +22,7 @@ function SignupFormPage() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(sessionActions.signup({ email, username, password }))
+      return dispatch(sessionActions.signup({ email, username, password, location }))
         .catch(async (res) => {
         let data;
         try {
@@ -71,6 +74,37 @@ function SignupFormPage() {
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+          <br />
+        <label className="input-field"
+          htmlFor="shop-name">
+          Shop Name:
+        </label>
+        <br />
+          <input
+            type="text"
+            className="input-box"
+            name="shop-name"
+            id="shop-name"
+            value={shopName}
+            onChange={(e) => setShopName(e.target.value)}
+            required
+          />
+        <br />
+        <br />
+        <label className="input-field"
+          htmlFor="location">
+          Location:
+        </label>
+        <br />
+          <input
+            type="text"
+            className="input-box"
+            name="location"
+            id="location"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
             required
           />
         <br />

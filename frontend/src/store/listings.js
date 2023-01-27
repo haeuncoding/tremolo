@@ -80,7 +80,7 @@ export const createListing = (listingData) => async (dispatch) => {
   if (response.ok) {
     const newListing = await response.json();
     dispatch(receiveListing(newListing))
-    window.location.href =`/`
+    return newListing;
   }
 }
 
@@ -95,13 +95,12 @@ export const updateListing = (listing) => async (dispatch) => {
       "Accept": "application/json"
     }
   })
-  console.log('OMG RESPONSE !!!!!!!')
   console.log(response)
   if (response.ok) {
-    console.log('big mood RESPONSE ARE YOU OKAY????')
       // console.log(response.json())
     const updatedListing = await response.json();
     dispatch(receiveListing(updatedListing))
+    return updatedListing;
   }
 }
 

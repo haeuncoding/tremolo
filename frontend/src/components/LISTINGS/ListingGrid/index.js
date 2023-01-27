@@ -27,7 +27,7 @@ const ListingGrid = () => {
   return (
     <div id='home-category-grid-container'>
       <ul className="home-listing-grid" id="category-grid">
-        {listings?.map((listing) => <ListingTile listing={listing} class="home-ind-tile"/>)}
+        {listings?.reverse().map((listing) => <ListingTile listing={listing} class="home-ind-tile"/>)}
       </ul>      
     </div>
   )

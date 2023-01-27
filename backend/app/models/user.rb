@@ -31,7 +31,6 @@ class User < ApplicationRecord
     format: { with: URI::MailTo::EMAIL_REGEXP }
 
   validates :password, length: { in: 6..255 }, allow_nil: true
-  validates :location, presence: true
 # relations
   # has_many :shop_reviews,
 
