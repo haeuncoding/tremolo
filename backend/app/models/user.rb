@@ -45,10 +45,15 @@ class User < ApplicationRecord
     class_name: :Listing,
     dependent: :destroy
     
-  has_many :watched_listings,
-    primary_key: :id,
-    foreign_key: :user_id,
-    class_name: :Listing
+  # has_many :watched_listings,
+  #   primary_key: :id,
+  #   foreign_key: :user_id,
+  #   class_name: :Listing
+  
+  # has_many :cart_items,
+  #   primary_key: :id,
+  #   foreign_key: :user_id,
+  #   class_name: :Listing
   
 
 
@@ -83,15 +88,23 @@ class User < ApplicationRecord
   end
 
   def add_to_watchlist(listing_id)
-    self.watched_listings << listing_id
+    self.watchlist << listing_id
     watched = Listing.find_by_id(:listing_id)
     watched.add_watcher_count
   end
 
   def remove_from_watchlist(listing_id)
     watched = Listing.find_by_id(:listing_id)
-    self.watched_listings.delete(listing_id)
+    self.watchlist.delete(listing_id)
     watched.subtract_watcher_count
+  end
+
+  def add_to_cart(listing_id)
+    self.cart << listing_id
+  end
+
+  def remove_from_cart(listing_id)
+    self.cart.delete(listing_id)
   end
 
   private

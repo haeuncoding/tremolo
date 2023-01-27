@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import SessionUserCheck from "../components/SessionUserCheck/SessionUserCheck"
 import * as userActions from "../store/users"
 
 export const UpdateUserWatchlist = (listingId) => {
   const dispatch = useDispatch()
   const [watchlist, setWatchlist] = useState(false)
-  const user = useSelector(state => state.session.user)
+  const user = SessionUserCheck()
 
   useEffect(() => {
-
+  dispatch(userActions.fetchUser(user.id))
   if (user.watchlist.includes(listingId)) {
-    dispatch(userActions.fetchUser(user.id))
     const index = user.watchlist.indexOf(listingId)
     user.watchlist.splice(index, 1)
     setWatchlist(false)

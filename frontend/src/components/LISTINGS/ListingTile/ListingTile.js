@@ -5,8 +5,8 @@ import RandomImage from "../ListingComponent/RandomCategoryImage.js"
 import './ListingTile.css'
 
 function ListingTile({ listing }) {
-  console.log(listing)
-  console.log(listing.categoryId)
+  // console.log(listing)
+  // console.log(listing.categoryId)
   const categoryId = listing.categoryId
   const image = RandomImage(categoryId)
   return (

@@ -17,9 +17,10 @@ function WatchlistIndex () {
   const dispatch = useDispatch()
   const listings = useSelector(listingActions.getListings)
   const [loaded, setLoaded] = useState(false)
-  // const sessionUser = SessionUserCheck()
+  const sessionUser = SessionUserCheck()
   // console.log(sessionUser.id)
-  const user = useSelector(getUser(33))
+  const user = useSelector(getUser(sessionUser.id))
+
   // const categories = useSelector(state => state.categories)
 
   // useEffect(() => {
@@ -29,7 +30,8 @@ function WatchlistIndex () {
 
   useEffect(() => {
     Promise.all([
-      dispatch(listingActions.fetchListings())
+      dispatch(listingActions.fetchListings()),
+      dispatch(fetchUser(sessionUser.id))
     ]).then(()=>{
       setLoaded(true);
     })
@@ -39,12 +41,14 @@ function WatchlistIndex () {
   if (!loaded) {
     return <Loader />
   } else {
+
+      console.log(user)
   return (
     <>
       <div className="general-display-container">
           <ul className="general-listing-index" >
             <li>i'm an empty boi</li>
-            {/* {listings?.map((listing) => <CategoryListingTile listing={listing} />)} */}
+            {listings?.map((listing) => <CategoryListingTile listing={listing} />)}
           </ul>
       </div>
     </>

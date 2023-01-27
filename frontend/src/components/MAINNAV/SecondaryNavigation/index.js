@@ -9,7 +9,6 @@ function SecondaryNavigation() {
   const dispatch = useDispatch();
   const categoriesArr = useSelector(categoryActions.getCategories)
   const categories = categoriesArr
-  console.log(categories)
   
   useEffect(() => {
     dispatch(categoryActions.fetchCategories())

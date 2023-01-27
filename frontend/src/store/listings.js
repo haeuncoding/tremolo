@@ -33,9 +33,6 @@ export const getListings = (store) => {
 
 export const getListing = (listingId) => (store) => {
   if (store.listings && store.listings[listingId]) {
-    console.log("listing from the getListing action")
-    console.log(store.listings[listingId])
-    console.log("====================")
     return store.listings[listingId]
   } else {
     return null;
@@ -62,8 +59,6 @@ export const fetchListing = (listingId) => async (dispatch) => {
   const response = await fetch(`/api/listings/${listingId}`)
   if (response.ok) {
     const listing = await response.json()
-    console.log('listing in fetchListing')
-    console.log(listing)
     dispatch(receiveListing(listing))
   }
 }
@@ -85,8 +80,6 @@ export const createListing = (listingData) => async (dispatch) => {
 }
 
 export const updateListing = (listing) => async (dispatch) => {
-  console.log('update listing lalalalalalalalalalla')
-  console.log(listing)
   const response = await csrfFetch(`/api/listings/${listing.id}`, {
     method: "PATCH",
     body: JSON.stringify(listing),
@@ -95,9 +88,7 @@ export const updateListing = (listing) => async (dispatch) => {
       "Accept": "application/json"
     }
   })
-  console.log(response)
   if (response.ok) {
-      // console.log(response.json())
     const updatedListing = await response.json();
     dispatch(receiveListing(updatedListing))
     return updatedListing;
@@ -121,7 +112,6 @@ const listingsReducer = (state = {}, action) => {
       return { ...newState, ...action.listings };
     case RECEIVE_LISTING:
       return { ...newState, [action.listingPayload.listing.id]: action.listingPayload.listing };
-      // console.log("receive listing ", action.listingPayload)
     case REMOVE_LISTING:
       delete newState[action.listingId];
       return newState;

@@ -18,18 +18,15 @@ export const receiveUser = (userPayload) => ({
 export const getUsers = (store) => {
   if (store.users) {
     console.log(store.users)
-    return Object.values(store.makes)
+    return Object.values(store.users)
   } else {
     return []
   }
 }
 
 export const getUser = (userId) => (store) => {
-  console.log("haha! got your eyes!!!")
-  console.log(store.users)
   if (store.users && store.users[userId]) {
-    console.log("store.users[userId]")
-    console.log(store.users[userId])
+    console.log("store.users[userId]", (store.users[userId]))
     console.log("======================")
     return store.users[userId]
   } else {
@@ -52,9 +49,10 @@ export const fetchUser = (userId) => async (dispatch) => {
   const response = await csrfFetch(`/api/users/${userId}`)
   if (response.ok) {
     console.log("HELLO!! HELLO!!???")
-    console.log(response.json())
     const user = await response.json()
+    console.log('user', user)
     dispatch(receiveUser(user))
+    return user
   }
 }
 export const updateUser = (user) => async (dispatch) => {
@@ -71,6 +69,29 @@ export const updateUser = (user) => async (dispatch) => {
     dispatch(receiveUser(updatedUser))
   }
 }
+
+export const updateUserCart = (user) => async (dispatch) => {
+  console.log(user)
+  const response = await csrfFetch(`/api/users/${user.id}/updatecart`, {
+    method: "PATCH",
+    body: JSON.stringify(user),
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }
+  })
+  if (response.ok) {
+    const updatedUserCart = await response.json()
+    dispatch(receiveUser(updatedUserCart))
+    console.log(updatedUserCart)
+    return updatedUserCart
+  } else {
+    console.log(response.json())
+  }
+}
+
+// await csrfFetch('api/users/1/updatecart', {method: "PATCH", body: 
+// JSON.stringify({user: {listingId: 1}})}).then((data) => data.json())
 
 // export const addWatchlist = (user) => async dispatch => {
 //   const response = await
