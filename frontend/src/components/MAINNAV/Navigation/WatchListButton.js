@@ -1,5 +1,6 @@
 import WatchList from '../../../assets/ViewIconFin.png';
 import WatchListColor from '../../../assets/ViewIconFinColor.png';
+import { Link } from 'react-router-dom';
 import React, { useState } from "react";
 import './Button.css'
 
@@ -9,6 +10,7 @@ const WatchListButton = () => {
 
   return (
     <div className="nav-icon-container">
+      <Link to="/watchlist/">
       <button
         className="nav-icon"
         onMouseOver={e => (setIsHover(true))} 
@@ -24,6 +26,7 @@ const WatchListButton = () => {
           </label>
         </div>
       </button>
+      </Link>
     </div>
   )
 }
