@@ -24,6 +24,7 @@ class Api::UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    render :show
   end
 
   def update
@@ -38,12 +39,18 @@ class Api::UsersController < ApplicationController
 
   def update_cart
     @user = User.find_by(id: user_params[:id])
-    puts @user
     if current_user.id === @user.id
-      if (!@user.cart.include?(user_params[:listing_id]))
-        @user.add_to_cart(user_params[:listing_id])
+      puts 'update cart action here hello!'
+      p @user.cart
+      p (user_params[:listing_id])
+      puts (@user.cart.include?(user_params[:listing_id].to_i))
+      if (!@user.cart.include?(user_params[:listing_id].to_i))
+        p @user.cart
+        @user.add_to_cart(user_params[:listing_id].to_i)
+        # @user.update(user_params)
       else 
-        @user.remove_from_cart(user_params[:listing_id])
+        @user.remove_from_cart(user_params[:listing_id].to_i)
+        # @user.update(user_params)
       end
       render :show
     else
@@ -52,7 +59,7 @@ class Api::UsersController < ApplicationController
   end
 
   def update_watchlist
-    @user = User.find_by(id: params[:user_id])
+    @user = User.find_by(id: params[:id])
     if current_user.id === @user.id
       if (!@user.watchlist.include?(user_params[:listing_id]))
         @user.add_to_watchlist(user_params[:listing_id])
