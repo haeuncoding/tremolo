@@ -7,15 +7,16 @@
 #  email           :string           not null
 #  password_digest :string           not null
 #  session_token   :string           not null
-#  location        :string
+#  location        :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  watchlist       :bigint           default([]), is an Array
 #  cart            :bigint           default([]), is an Array
 #  shop_name       :string
+#  listingId       :string
 #
 class User < ApplicationRecord
-
+attr_reader :password, :listing_id
 # validations
   has_secure_password
   before_validation :ensure_session_token
@@ -31,6 +32,7 @@ class User < ApplicationRecord
     format: { with: URI::MailTo::EMAIL_REGEXP }
 
   validates :password, length: { in: 6..255 }, allow_nil: true
+  # validates :listing_id, allow_nil: true
 # relations
   # has_many :shop_reviews,
 
@@ -55,6 +57,9 @@ class User < ApplicationRecord
   #   foreign_key: :user_id,
   #   class_name: :Listing
   
+  def listing_id(listing_id)
+    @listing_id = listing_id
+  end
 
 
 # authorization methods 
@@ -100,11 +105,19 @@ class User < ApplicationRecord
   end
 
   def add_to_cart(listing_id)
-    self.cart << listing_id
+    self.cart << listing_id.to_i
+    puts 'ADD TO CART SELF.CART HERE'
+    p self.cart
+    self.save!
   end
 
   def remove_from_cart(listing_id)
-    self.cart.delete(listing_id)
+    puts 'REMOVE FROM CART SELF.CART HERE'
+
+    p self.cart
+    self.cart.delete(listing_id.to_i)
+    p self.cart
+    self.save!
   end
 
   private

@@ -7,7 +7,7 @@
 #  model       :string           not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  category_id :bigint
+#  category_id :bigint           not null
 #
     # t.string "model", null: false
     # t.datetime "created_at", null: false
