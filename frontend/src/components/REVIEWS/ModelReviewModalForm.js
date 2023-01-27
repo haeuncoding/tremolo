@@ -9,7 +9,7 @@ import { FaStar } from 'react-icons/fa'
 import * as hooks from "../../hooks/index"
 import { fetchModel } from "../../store/models";
 
-function ModelReviewModalForm(modelReviewId) {
+function ModelReviewModalForm(modelReviewId, setShowModal) {
   console.log("this is when it's inside the modal form")
   console.log(modelReviewId)
   const dispatch = useDispatch()
@@ -83,6 +83,9 @@ function ModelReviewModalForm(modelReviewId) {
     }
       console.log(data)
       dispatch(updateModelReview(data));
+      return(
+        setShowModal(false)
+      )
     };
   if (!modelReviewId) {
     return null

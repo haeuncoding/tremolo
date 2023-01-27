@@ -2,12 +2,27 @@
 import csrfFetch from "./csrf"
 import { RECEIVE_LISTINGS } from "./listings"
 
+export const RECEIVE_USERS = "users/RECEIVE_USERS"
 export const RECEIVE_USER = "users/RECEIVE_USER"
+
+export const receiveUsers = (users) => ({
+  type: RECEIVE_USERS,
+  users: users
+})
 
 export const receiveUser = (userPayload) => ({
   type: RECEIVE_USER,
   userPayload
 })
+
+export const getUsers = (store) => {
+  if (store.users) {
+    console.log(store.users)
+    return Object.values(store.makes)
+  } else {
+    return []
+  }
+}
 
 export const getUser = (userId) => (store) => {
   console.log("haha! got your eyes!!!")
@@ -24,6 +39,14 @@ export const getUser = (userId) => (store) => {
 
 
 // thunk action creators
+export const fetchUsers = () => async (dispatch) => {
+  const response = await fetch(`/api/users`)
+  if (response.ok) {
+    const users = await response.json()
+    dispatch(receiveUsers(users))
+  }
+}
+
 export const fetchUser = (userId) => async (dispatch) => {
   console.log('hello????????????????')
   const response = await csrfFetch(`/api/users/${userId}`)
@@ -57,6 +80,8 @@ export const updateUser = (user) => async (dispatch) => {
 const usersReducer = (state = {}, action) => {
     let newState = { ...state };
   switch (action.type) {
+    case RECEIVE_USERS:
+      return { ...newState, ...action.users }
     case RECEIVE_USER:
       console.log('user payload')
       console.log(action.userPayload)

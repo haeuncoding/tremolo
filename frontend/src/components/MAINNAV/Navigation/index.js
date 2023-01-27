@@ -67,12 +67,12 @@ function Navigation() {
               </button>
             </NavLink>
           </li>
-          {/* <li className="button-container"> */}
-            {/* <WatchListButton /> */}
-          {/* </li> */}
-          {/* <li className="button-container"> */}
-            {/* <FeedGridButton /> */}
-          {/* </li> */}
+          <li className="button-container">
+            <WatchListButton />
+          </li>
+          <li className="button-container">
+            <FeedGridButton />
+          </li>
           <li className="button-container">
             <CartButton />
           </li>

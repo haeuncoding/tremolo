@@ -13,11 +13,12 @@ import { FaStar } from 'react-icons/fa'
 import './ReviewTile.css'
 import SessionUserCheck from "../SessionUserCheck/SessionUserCheck";
 
+const shouldShow = (stat) => {
+  return stat;
+}
 
-function ModelReviewModalForm(modelReviewId) {
+function ModelReviewModalForm(modelReviewId, setShowModal) {
   const dispatch = useDispatch()
-  const [showModal, setShowModal] = useState(false);
-
   
   const sessionUser = SessionUserCheck()
 
@@ -31,7 +32,7 @@ function ModelReviewModalForm(modelReviewId) {
   const review = useSelector(getModelReview(modelReviewId.id))
 
   useEffect(() => {
-      setStars(review.stars)
+      setStars(review.ratings)
       setDescription(review.description)
       dispatch(fetchModelReview(modelReviewId.id))
   }, [dispatch])
@@ -55,6 +56,7 @@ function ModelReviewModalForm(modelReviewId) {
     }
       console.log(data)
       dispatch(updateModelReview(data)) //.then(() => {window.location.href =`/listings/${listingId}`});
+      shouldShow(false)
     };
 
   const StarRating = () => {
@@ -102,7 +104,7 @@ function ModelReviewModalForm(modelReviewId) {
             value={description}
           />
         <br />
-        <button type="submit" id="submit-review" onClick={handleSubmit}>{"Save Your Changes"}</button>
+        <button type="submit" id="submit-review">{"Save Your Changes"}</button>
       </form>
     </div>
   );
@@ -127,7 +129,7 @@ const ReviewTile = ({review}) => {
   if (sessionUser && review.modelReviewerId === sessionUser.id) {
     setIsUser(true)
   } 
-}, [])
+  }, [])
 
 
 
@@ -163,7 +165,7 @@ const ReviewTile = ({review}) => {
             onClick={() => setShowModal(true)}>Edit Review</button>
             {showModal && (
               <Modal onClose={() => setShowModal(false)}>
-                <ModelReviewModalForm class="model-edit" id={reviewId} />
+                <ModelReviewModalForm class="model-edit" id={reviewId} modalReviewId={reviewId} setShowModal={setShowModal}/>
               </Modal>
             )}
         </div>
