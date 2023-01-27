@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import * as listingActions from "../../../store/listings"
 import { useSelector, useDispatch } from "react-redux"
 import { Link, Redirect, useParams } from "react-router-dom"
+import { fetchUser, updateUser, updateUserCart } from "../../../store/users"
 import './ListingComponent.css'
 import ModelReviewForm from '../../REVIEWS/ModelReviewForm';
 import ReviewTile from '../../REVIEWS/ReviewTile';
-import UpdateUserWatchlist from '../../../util/UpdateUserWatchlist';
-import UpdateUserCart from '../../../util/UpdateUserCart';
 import { deleteListing } from '../../../store/listings';
 import RandomCategoryImage from './RandomCategoryImage';
 import SessionUserCheck from '../../SessionUserCheck/SessionUserCheck';
@@ -20,60 +19,54 @@ const ListingComponent = () => {
   const dispatch = useDispatch()
   const modelReviews = useSelector(state => Object.values(state.modelReviews))
   const [loaded, setLoaded] = useState(false)
+  const [cartUpdated, setCartUpdated] = useState(false)
   useEffect(() => {
     Promise.all([
-      dispatch(listingActions.fetchListing(listingId))
+      dispatch(listingActions.fetchListing(listingId)),
+      dispatch(() => fetchUser(sessionUser.id))
+
     ]).then(()=>{
       setLoaded(true);
     })
   },[dispatch, listingId, sessionUser]);
   const [isWatched, setIsWatched] = useState(false)
-  console.log(isWatched, "it's me, hi, i'm the problem, it's me")
   const [isAddedToCart, setIsAddedToCart] = useState(false)
-  console.log(isAddedToCart, "it's me, hi, i'm the problem, it's me")
-
-  
 
 
-
-  const handleWatchClick = (e) => {
-    e.preventDefault();
-    if (isWatched) {
-      setIsWatched(false)
-      UpdateUserWatchlist(listingId)
-      e.target.className = "watch-button-off"
-      console.log('after')
-      console.log(e.target.className)
-    } else {
-      setIsWatched(true)
-      console.log(isWatched)
-      UpdateUserWatchlist(listingId)
-      e.target.className = "watch-button-on"
-      console.log('after')
-      console.log(e.target.className)
-    }
-  }
+  // const handleWatchClick = (e) => {
+  //   e.preventDefault();
+  //   if (isWatched) {
+  //     setIsWatched(false)
+  //     UpdateUserWatchlist(listingId)
+  //     e.target.className = "watch-button-off"
+  //     console.log('after')
+  //     console.log(e.target.className)
+  //   } else {
+  //     setIsWatched(true)
+  //     console.log(isWatched)
+  //     UpdateUserWatchlist(listingId)
+  //     e.target.className = "watch-button-on"
+  //     console.log('after')
+  //     console.log(e.target.className)
+  //   }
+  // }
 
   const handleCartClick = (e) => {
     e.preventDefault();
-    if (isAddedToCart) {
-      setIsAddedToCart(false)
-      UpdateUserCart(listingId, dispatch)
-      console.log(e.target.className)
-      e.target.className = "in-cart"
-      console.log('after')
-      console.log(e.target.className)
-    } else {
-      setIsAddedToCart(true)
-      console.log(isAddedToCart)
-      UpdateUserCart(listingId)
-      console.log(e.target.className)
-      e.target.className = "not-in-cart"
-      console.log('after')
-      console.log(e.target.className)
+    console.log('cart click!')
+    
+    const data = {
+      user: {
+      id: sessionUser.id,
+      username: sessionUser.username,
+      cart: sessionUser.cart,
+      listingId: listingId
+      }
     }
-  }
-
+    console.log(data)
+      dispatch(updateUserCart(data))
+    }
+    
 
 
 
@@ -84,7 +77,6 @@ const ListingComponent = () => {
   if (!loaded) {
     return <Loader />
   } else {
-  console.log(listing)
   if (!listing) {
     return (
       <>
@@ -92,9 +84,6 @@ const ListingComponent = () => {
       </>
     )
   } else {
-  console.log('is lister', listing.listerId === sessionUser.id)
-  console.log(listing.listerId)
-  console.log(sessionUser.id)
   const image = RandomCategoryImage(listing.categoryId)
   const DisplayCurrentModelReviews = () => {
     const filtered = modelReviews.filter(review => review.modelReviewedId === listing.modelId)
@@ -117,7 +106,7 @@ const ListingComponent = () => {
           <button className="user-options" id="offer-button">Make an Offer</button>
           <button className={isWatched ? "watch-button-on" : "watch-button-off"}
             id="watch-button" 
-            onClick={handleWatchClick}
+            // onClick={handleWatchClick}
             >
             {isWatched ? "Watching" : "Watch"}
           </button>

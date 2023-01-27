@@ -14,7 +14,6 @@ import * as hooks from "../../hooks/index"
 function ModelReviewForm() {
 
   const sessionUser = SessionUserCheck()
-  console.log(sessionUser)
   const dispatch = useDispatch()
   const { listingId } = useParams()
   const [stars, setStars] = useState(null)
@@ -62,7 +61,6 @@ function ModelReviewForm() {
         rating: stars,
         description: description
       }
-      console.log(data)
       dispatch(createModelReview(data))
       setStars(null)
       setDescription("")
