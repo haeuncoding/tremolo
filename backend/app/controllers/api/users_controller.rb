@@ -38,9 +38,7 @@ class Api::UsersController < ApplicationController
   end
 
   def update_cart
-
     listing_id = params[:listing_id].to_i
-
     @user = User.find_by(id: user_params[:id])
     if current_user.id === @user.id
       if (!@user.cart.include?(listing_id))
@@ -63,7 +61,6 @@ class Api::UsersController < ApplicationController
       p (@user)
       puts (@user.watchlist.include?(listing_id))
       if (!@user.watchlist.include?(listing_id))
-
         @user.add_to_watchlist(listing_id)
         # @user.update(user_params)
       else 
