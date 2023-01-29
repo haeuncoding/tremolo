@@ -16,7 +16,7 @@
 #  listingId       :string
 #
 class User < ApplicationRecord
-attr_reader :password, :listing_id
+attr_accessor :password, :listing_id
 # validations
   has_secure_password
   before_validation :ensure_session_token
@@ -57,8 +57,12 @@ attr_reader :password, :listing_id
   #   foreign_key: :user_id,
   #   class_name: :Listing
   
-  def listing_id(listing_id)
+  def reset_listing_id(listing_id)
     @listing_id = listing_id
+  end
+
+  def reset_listing_id
+    @listing_id = ""
   end
 
 
@@ -94,21 +98,26 @@ attr_reader :password, :listing_id
 
   def add_to_watchlist(listing_id)
     self.watchlist << listing_id
-    watched = Listing.find_by_id(:listing_id)
-    watched.add_watcher_count
+    self.save!
+    reset_listing_id
+    # watched = Listing.find_by_id(:listing_id)
+    # watched.add_watcher_count
   end
 
   def remove_from_watchlist(listing_id)
-    watched = Listing.find_by_id(:listing_id)
     self.watchlist.delete(listing_id)
-    watched.subtract_watcher_count
+    self.save!
+    # reset_listing_id
+    # watched.subtract_watcher_count
   end
 
   def add_to_cart(listing_id)
     self.cart << listing_id.to_i
     puts 'ADD TO CART SELF.CART HERE'
-    p self.cart
+    p 'LISTING ID HERE'
+    p listing_id
     self.save!
+    # reset_listing_id
   end
 
   def remove_from_cart(listing_id)
@@ -118,6 +127,7 @@ attr_reader :password, :listing_id
     self.cart.delete(listing_id.to_i)
     p self.cart
     self.save!
+    # reset_listing_id
   end
 
   private

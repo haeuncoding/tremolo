@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
 
-  wrap_parameters include: User.attribute_names + ['password']
+  wrap_parameters include: User.attribute_names + ['password'] + ['listing_id']
   before_action :require_logged_in, only: [:update, :update_cart, :update_watchlist]
 
   def index
@@ -38,19 +38,15 @@ class Api::UsersController < ApplicationController
   end
 
   def update_cart
+
+    listing_id = params[:listing_id].to_i
+
     @user = User.find_by(id: user_params[:id])
     if current_user.id === @user.id
-      puts 'update cart action here hello!'
-      p @user.cart
-      p (user_params[:listing_id])
-      puts (@user.cart.include?(user_params[:listing_id].to_i))
-      if (!@user.cart.include?(user_params[:listing_id].to_i))
-        p @user.cart
-        @user.add_to_cart(user_params[:listing_id].to_i)
-        # @user.update(user_params)
+      if (!@user.cart.include?(listing_id))
+        @user.add_to_cart(listing_id)
       else 
-        @user.remove_from_cart(user_params[:listing_id].to_i)
-        # @user.update(user_params)
+        @user.remove_from_cart(listing_id)
       end
       render :show
     else
@@ -59,12 +55,20 @@ class Api::UsersController < ApplicationController
   end
 
   def update_watchlist
-    @user = User.find_by(id: params[:id])
+    listing_id = params[:listing_id].to_i
+    @user = User.find_by(id: user_params[:id])
     if current_user.id === @user.id
-      if (!@user.watchlist.include?(user_params[:listing_id]))
-        @user.add_to_watchlist(user_params[:listing_id])
+      puts 'update watchlist action here hello!'
+      p @user.watchlist
+      p (@user)
+      puts (@user.watchlist.include?(listing_id))
+      if (!@user.watchlist.include?(listing_id))
+
+        @user.add_to_watchlist(listing_id)
+        # @user.update(user_params)
       else 
-        @user.remove_from_watchlist(user_params[:listing_id])
+        @user.remove_from_watchlist(listing_id)
+        # @user.update(user_params)
       end
       render :show
     else
@@ -74,11 +78,11 @@ class Api::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:id, :email, :username, :shop_name, :location, :password, :listing_id, watchlist: [], cart: [])
+    params.require(:user).permit(:id, :email, :username, :shop_name, :location, :password, :listing_id, :listingId, watchlist: [], cart: [])
   end
 
-  def get_listing
-    @listing = Listing.find(params[:listing_id])
-  end
+  # def get_listing
+  #   @listing = Listing.find(params[:listing_id])
+  # end
 
 end

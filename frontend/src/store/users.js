@@ -71,7 +71,7 @@ export const updateUser = (user) => async (dispatch) => {
 }
 
 export const updateUserCart = (user) => async (dispatch) => {
-  console.log(user)
+  console.log('user', user)
   const response = await csrfFetch(`/api/users/${user.id}/updatecart`, {
     method: "PATCH",
     body: JSON.stringify(user),
@@ -82,21 +82,34 @@ export const updateUserCart = (user) => async (dispatch) => {
   })
   if (response.ok) {
     const updatedUserCart = await response.json()
-    dispatch(receiveUser(updatedUserCart))
-    console.log(updatedUserCart)
-    return updatedUserCart
+    // dispatch(receiveUser(updatedUserCart))
+    console.log('updated user cart', updatedUserCart)
+
   } else {
     console.log(response.json())
   }
 }
 
-// await csrfFetch('api/users/1/updatecart', {method: "PATCH", body: 
-// JSON.stringify({user: {listingId: 1}})}).then((data) => data.json())
+export const updateUserWatchlist = (user) => async (dispatch) => {
+  console.log(user)
+  const response = await csrfFetch(`/api/users/${user.id}/updatewatchlist`, {
+    method: "PATCH",
+    body: JSON.stringify(user),
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    }
+  })
+  if (response.ok) {
+    const updatedUserWatchlist = await response.json()
+    dispatch(receiveUser(updatedUserWatchlist))
+    console.log('UPDATED USER WATCHLIST', updatedUserWatchlist)
+    return updatedUserWatchlist
+  } else {
+    console.log(response.json())
+  }
+}
 
-// export const addWatchlist = (user) => async dispatch => {
-//   const response = await
-// }
- 
 
 const usersReducer = (state = {}, action) => {
     let newState = { ...state };
@@ -104,8 +117,6 @@ const usersReducer = (state = {}, action) => {
     case RECEIVE_USERS:
       return { ...newState, ...action.users }
     case RECEIVE_USER:
-      console.log('user payload')
-      console.log(action.userPayload)
       return { ...newState, [action.userPayload]: action.userPayload };
     case RECEIVE_LISTINGS:
       return { ...newState, ...action.listings.user}

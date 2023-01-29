@@ -17,7 +17,7 @@ const CategoryListingGrid = ({categoryId}) => {
     // })
     const filtered = listings.filter(listing => listing.categoryId === categoryId)
     return (
-      filtered?.reverse().map((listing) => <ListingTile listing={listing} class="home-ind-tile"/>)
+      filtered?.reverse().map((listing) => <ListingTile listing={listing} className="home-ind-tile"/>)
     )}
 
 
@@ -34,7 +34,7 @@ const CategoryListingGrid = ({categoryId}) => {
     <div id='home-category-grid-container'>
       <ul className="home-listing-grid" id="category-grid">
         <DisplayFilteredListings />
-        {/* {listings?.map((listing) => <ListingTile listing={listing} class="home-ind-tile"/>)} */}
+        {/* {listings?.map((listing) => <ListingTile listing={listing} className="home-ind-tile"/>)} */}
       </ul>      
     </div>
   )

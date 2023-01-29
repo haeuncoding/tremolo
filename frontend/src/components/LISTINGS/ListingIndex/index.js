@@ -20,7 +20,7 @@ function ListingIndex (filters) {
 
   return (
     <ul className="listing-index-home" id="listing-index-home">
-      {listings?.map((listing) => <ListingTile listing={listing} class="ind-tile"/>)}
+      {listings?.map((listing) => <ListingTile listing={listing} className="ind-tile"/>)}
     </ul>
   )
 }

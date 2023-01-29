@@ -71,7 +71,7 @@ function ModelReviewModalForm(modelReviewId, setShowModal) {
               name="rating" 
               value={ratingValue} 
               onClick={() => setStars(ratingValue)}
-              class="star-value-button" 
+              className="star-value-button" 
               id={`rating-value-${ratingValue}`}/>
             <FaStar 
               className='star-container' 
@@ -165,12 +165,12 @@ const ReviewTile = ({review}) => {
             onClick={() => setShowModal(true)}>Edit Review</button>
             {showModal && (
               <Modal onClose={() => setShowModal(false)}>
-                <ModelReviewModalForm class="model-edit" id={reviewId} modalReviewId={reviewId} setShowModal={setShowModal}/>
+                <ModelReviewModalForm className="model-edit" id={reviewId} modalReviewId={reviewId} setShowModal={setShowModal}/>
               </Modal>
             )}
         </div>
       <div className="vl" id="user-review-vertical-line"/>
-        <div class="user-review-action-singular">
+        <div className="user-review-action-singular">
           <button id="delete-review"
             onClick={(e) => handleDelete(e)}>
               Delete Review
