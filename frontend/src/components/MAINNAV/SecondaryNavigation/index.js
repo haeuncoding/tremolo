@@ -23,7 +23,7 @@ function SecondaryNavigation() {
     <ul id="sec-nav-container">
       {categories.map(category => <CategoryLink category={category} />)}
       <li className="sec-nav-link-container">
-        <NavLink to="/my_feed"
+        <NavLink to="/listings"
           className="sec-nav-link">
             View All
         </NavLink>

@@ -17,6 +17,10 @@ ul.home-listing-grid {
   padding-left: 0;
 }
 
+h1.grid-title {
+  margin-bottom: -4vh;
+}
+
 li.ind-tile {
   /* /* margin-left: -5vw; */
   margin-right: -12vw; 

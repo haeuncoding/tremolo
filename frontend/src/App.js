@@ -29,6 +29,7 @@ import SecondaryNavigation from './components/MAINNAV/SecondaryNavigation';
 import './App.css'
 import CategoryListingIndex from './components/LISTINGS/CategoryListingIndex';
 import GeneralListingIndex from './components/LISTINGS/GeneralListingIndex';
+import FeedIndex from './components/LISTINGS/FeedIndex';
 import Footer from './components/MAINNAV/Footer';
 import WatchlistIndex from './components/LISTINGS/WatchlistIndex';
 
@@ -71,7 +72,8 @@ function App() {
 
             <Route path="/cart" component={CartPage} />
 
-            <Route exact path="/my_feed" component={GeneralListingIndex} />
+            <Route exact path="/listings" component={GeneralListingIndex} />
+            <Route exact path="/my_feed" component={FeedIndex} />
 
             <Route exact path="/categories/:categoryId" component={CategoryListingIndex} />
             <Route exact path="/listings/:listingId" component={ListingComponent} />
