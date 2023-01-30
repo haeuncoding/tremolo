@@ -31,14 +31,12 @@ const ListingComponent = () => {
       setLoaded(true);
       
       console.log('cart', sessionUser.cart)
-
       console.log('watchlist', sessionUser.watchlist)
 
       if (sessionUser.cart.includes(listingId)) {setIsAddedToCart(true)}
-
       if (sessionUser.watchlist.includes(listingId)) {setIsWatched(true)}
       })
-    }, [dispatch, sessionUser, listingId]);
+    }, [dispatch, listingId]);
 
 
   
