@@ -4,31 +4,28 @@ import { getUser, fetchUser, updateUser } from "../../../store/users";
 import CartTile from "./CartTile";
 import './CartPage.css'
 import { useState, useEffect } from "react";
+import SessionUserCheck from "../../SessionUserCheck/SessionUserCheck"
+import { useHistory } from "react-router-dom";
+
 
 const CartPage = () => {
   const dispatch = useDispatch()
-  const sessionUser = useSelector(state => state.session.user)
-  const user = useSelector(getUser(sessionUser.id))
-  
-  useEffect(() => {
-    dispatch(fetchUser(sessionUser.id))
-  }, [])
-  // const cart = user.cart
-  // useEffect(() => {
-  //   dispatch(fetchUser(sessionUser.id))
-  // // const cart = user.cart
-  // }, [])
+  const history = useHistory()
+  const sessionUser = SessionUserCheck()
+  // const user = useSelector(getUser(sessionUser.id))
 
-
-
-  // const [cart, setCart] = useState([])
-
-
+  if (sessionUser.id === "") {
+    history.push(
+      `/login`,
+      { from: `/cart` }
+    )
+  }
 
   const listings = useSelector(listingActions.getListings)
 
   useEffect(() => {
-      dispatch(listingActions.fetchListings())
+      // dispatch(fetchUser(sessionUser.id))
+    dispatch(listingActions.fetchListings())
     // dispatch(updateUser(sessionUser.id))}
   }, [dispatch])
 
@@ -48,23 +45,6 @@ const CartPage = () => {
   const userSubtotal = subtotal(trueTrueCart)
   // const userSubtotal = 0
 
-  if (!sessionUser) {
-    return (
-      <h1>Whoops! Looks like you gotta login there, partner.</h1>
-    )
-  } 
-
-
-  
-  // else {
-  //   listings.forEach(listing => {
-  //     if (sessionUser.cart.includes(listing.id)) {
-  //       cart.push(listing.id)
-  //     }
-  //   })  
-  // }
-
-
 
   return (
     <ul className="listing-grid" display="grid">
@@ -78,7 +58,6 @@ const CartPage = () => {
           </div>
       </li>
     </ul>
-    // <h1>this is the listing grid</h1>
   )
 }
 

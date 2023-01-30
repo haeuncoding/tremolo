@@ -3,6 +3,8 @@ import * as sessionActions from '../../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import './LoginForm.css';
+import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -10,8 +12,18 @@ function LoginFormPage() {
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
+  const [loginFirst, setLoginFirst] = useState(false)
+  const history = useHistory()
+
+  useEffect(() => {
+    if ((history.location.state.from === '/my_feed') || (history.location.state.from === '/new_listing') || (history.location.state.from === '/watchlist') || (history.location.state.from === '/cart')) {
+    setLoginFirst(true)
+   }
+  }, [history.location.state.form])
+
 
   if (sessionUser) return <Redirect to="/" />;
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -81,9 +93,12 @@ function LoginFormPage() {
       });
   }
 
+  console.log(loginFirst)
+
   return (
     <div id="login-screen">
-      <h1 className="login-screen" id="title"> Welcome Back. </h1>
+      
+      {!loginFirst ? <h1 className="login-screen" id="title"> Welcome Back. </h1> : <h1 className="login-screen" id="title">Please Log In First.</h1>}
       <form onSubmit={handleSubmit}>
         <ul>
           {errors.map(error => <li key={error}>{error}</li>)}

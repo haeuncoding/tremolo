@@ -30,6 +30,13 @@ function ListingFormPage() {
   const [isEdit, setIsEdit] = useState(false)
   const listing = useSelector(listingActions.getListing(listing_id));
 
+  if (sessionUser.id === "") {
+    history.push(
+      `/login`,
+      { from: `/new_listing` }
+    )
+  }
+
   const conditions = [
     "Non-Functioning", 
     "Poor", 
