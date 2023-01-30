@@ -1,6 +1,9 @@
 /* TODO Add site wide styles */
+
 body {
-  padding: 1vw;
+  /* padding: 1vw; */
+  margin: none;
+  padding: none;
   align-items: center;
   align-content: center;
 }
@@ -13,3 +16,5 @@ h1, h2, h3, p {
   --primary-color: #198a80;
   --height: 100px
 }
+
+

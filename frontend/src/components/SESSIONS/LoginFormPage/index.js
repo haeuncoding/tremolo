@@ -15,11 +15,14 @@ function LoginFormPage() {
   const [loginFirst, setLoginFirst] = useState(false)
   const history = useHistory()
 
+  console.log(history)
   useEffect(() => {
-    if ((history.location.state.from === '/my_feed') || (history.location.state.from === '/new_listing') || (history.location.state.from === '/watchlist') || (history.location.state.from === '/cart')) {
+    if (!history.location.state) {
+      setLoginFirst(false)
+    } else if (history.location.state.from && ((history.location.state.from === '/my_feed') || (history.location.state.from === '/new_listing') || (history.location.state.from === '/watchlist') || (history.location.state.from === '/cart'))) {
     setLoginFirst(true)
-   }
-  }, [history.location.state.form])
+    } 
+  }, [history.location.state])
 
 
   if (sessionUser) return <Redirect to="/" />;

@@ -10,11 +10,18 @@ li.category-ind-tile {
 
 #filter-title {
   font-size: 1.5vw;
+
 }
 
-div#category-tile-label-container {
-  text-align: center;
+h3#category-title-label {
+  margin-top: -2vh;
+}
+
+div#category-title-label-container {
+  text-align: left;
   align-items: center;
+  padding-left: 2vw;
+  padding-right: 2vw;
 }
 
 #category-tile-link {

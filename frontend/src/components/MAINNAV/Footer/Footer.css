@@ -1,13 +1,25 @@
 #footer-space {
-  height: 15vh;
+  height: 2vh;
   width: 100%;
+}
+
+div#footer-div {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
 #footer-div {
   background: solid;
   background-color: #0F749A;
   width: 100%;
-  height: 10vh;
+  /* height: 10vh; */
   margin-left: 0;
   margin-right: 0;
   text-align: center;
@@ -16,7 +28,7 @@
   display: flex;
   padding: -4vw;
   position: absolute;
-  left: 0;
+  /* left: 0vw; */
 }
 
 #github-icon, #linkedin-icon {
