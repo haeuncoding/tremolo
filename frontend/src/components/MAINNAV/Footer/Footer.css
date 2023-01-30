@@ -1,5 +1,5 @@
 #footer-space {
-  height: 2vh;
+  height: 5vh;
   width: 100%;
 }
 
@@ -15,11 +15,16 @@ div#footer-div {
   vertical-align: baseline;
 }
 
+footer#footer {
+  margin-top: 2vh;
+}
+
 #footer-div {
   background: solid;
   background-color: #0F749A;
   width: 100%;
   /* height: 10vh; */
+  margin-top: 2vh;
   margin-left: 0;
   margin-right: 0;
   text-align: center;
