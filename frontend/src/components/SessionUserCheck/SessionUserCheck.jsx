@@ -7,7 +7,9 @@ const SessionUserCheck = () => {
   const BlankUser = {
     email: "",
     username: "", 
-    id: ""
+    id: "",
+    cart: [],
+    watchlist: []
   }
   
   let user
