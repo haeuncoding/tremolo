@@ -7,7 +7,7 @@
   background: solid;
   background-color: #0F749A;
   width: 100%;
-  height: 15vh;
+  height: 10vh;
   margin-left: 0;
   margin-right: 0;
   text-align: center;
@@ -27,13 +27,13 @@
 }
 
 button#github-button, button#linkedin-button {
-  margin-top: 3.2vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
   margin-left: 1.5vw;
   margin-right: 1.5vw;
   text-align: center;
   padding: 10px;
-  max-width: 5vw;
-  max-height: 5vw;
+  /* max-height: 5vw; */
   background: none;
   background-color: none;
   border-radius: 2vw;
