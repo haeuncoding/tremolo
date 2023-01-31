@@ -7,17 +7,16 @@ export const RECEIVE_USER = "users/RECEIVE_USER"
 
 export const receiveUsers = (users) => ({
   type: RECEIVE_USERS,
-  users: users
+  users
 })
 
-export const receiveUser = (userPayload) => ({
+export const receiveUser = (user) => ({
   type: RECEIVE_USER,
-  userPayload
+  user: user
 })
 
 export const getUsers = (store) => {
   if (store.users) {
-    console.log(store.users)
     return Object.values(store.users)
   } else {
     return []
@@ -25,9 +24,8 @@ export const getUsers = (store) => {
 }
 
 export const getUser = (userId) => (store) => {
+  console.log(userId)
   if (store.users && store.users[userId]) {
-    console.log("store.users[userId]", (store.users[userId]))
-    console.log("======================")
     return store.users[userId]
   } else {
     return null;
@@ -41,6 +39,7 @@ export const fetchUsers = () => async (dispatch) => {
   if (response.ok) {
     const users = await response.json()
     dispatch(receiveUsers(users))
+    return users
   }
 }
 
@@ -49,10 +48,10 @@ export const fetchUser = (userId) => async (dispatch) => {
   const response = await csrfFetch(`/api/users/${userId}`)
   if (response.ok) {
     console.log("HELLO!! HELLO!!???")
-    const user = await response.json()
-    console.log('user', user)
-    dispatch(receiveUser(user))
-    return user
+    const userPayload = await response.json()
+    console.log('user', userPayload)
+    dispatch(receiveUser(userPayload))
+    return userPayload
   }
 }
 export const updateUser = (user) => async (dispatch) => {
@@ -82,7 +81,6 @@ export const updateUserCart = (user) => async (dispatch) => {
   })
   if (response.ok) {
     const updatedUserCart = await response.json()
-    // dispatch(receiveUser(updatedUserCart))
     console.log('updated user cart', updatedUserCart)
 
   } else {
@@ -117,7 +115,8 @@ const usersReducer = (state = {}, action) => {
     case RECEIVE_USERS:
       return { ...newState, ...action.users }
     case RECEIVE_USER:
-      return { ...newState, [action.userPayload]: action.userPayload };
+      console.log(action.userPayload)
+      return { ...newState, [action.user]: action.user };
     case RECEIVE_LISTINGS:
       return { ...newState, ...action.listings.user}
     default:

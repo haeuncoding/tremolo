@@ -8,13 +8,13 @@ import categoriesReducer from './categories'
 import modelReviewsReducer from './modelReviews';
 import modelsReducer from './models'
 import shopsReducer from './shops'
-import session from './session'
 import usersReducer from './users';
 // import { persistStore, persistReducer } from 'redux-persist';
 // import storage from 'redux-persist/lib/storage';
 // import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 export const rootReducer = combineReducers({
+  users: usersReducer,
   session: sessionReducer,
   listings: listingsReducer,
   makes: makesReducer,
@@ -22,7 +22,6 @@ export const rootReducer = combineReducers({
   categories: categoriesReducer,
   models: modelsReducer,
   shops: shopsReducer,
-  users: usersReducer
 })
 
 let enhancer;
@@ -40,4 +39,4 @@ const configureStore = (preloadedState) => {
   return createStore(rootReducer, preloadedState, enhancer);
 };
 
-export default configureStore
+export default configureStore;

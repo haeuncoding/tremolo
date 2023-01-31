@@ -1,18 +1,23 @@
 import * as listingActions from "../../../store/listings"
 import { useSelector, useDispatch } from "react-redux";
-import { getUser, fetchUser, updateUser } from "../../../store/users";
+import { getUser, getUsers, fetchUser, updateUser } from "../../../store/users";
 import CartTile from "./CartTile";
 import './CartPage.css'
 import { useState, useEffect } from "react";
 import SessionUserCheck from "../../SessionUserCheck/SessionUserCheck"
 import { useHistory } from "react-router-dom";
-
+import Loader from "../../LOADER/Loader";
 
 const CartPage = () => {
+  const [loaded, setLoaded] = useState(false)
   const dispatch = useDispatch()
   const history = useHistory()
   const sessionUser = SessionUserCheck()
-  // const user = useSelector(getUser(sessionUser.id))
+  // const userId = () =>  {
+  //   if (sessionUser.id !== "") {
+  //   useSelector(getUser(sessionUser.id))
+  //   }
+  // }
 
   if (sessionUser.id === "") {
     history.push(
@@ -21,30 +26,51 @@ const CartPage = () => {
     )
   }
 
+  const user = useSelector(getUser(sessionUser.id))
   const listings = useSelector(listingActions.getListings)
+ 
+  const cartOfId = []
 
   useEffect(() => {
-      // dispatch(fetchUser(sessionUser.id))
-    dispatch(listingActions.fetchListings())
-    // dispatch(updateUser(sessionUser.id))}
-  }, [dispatch])
+    Promise.all([
+      dispatch(fetchUser(sessionUser.id)),
+      dispatch(listingActions.fetchListings())
+      ]).then(()=>{
+      setLoaded(true);
+        // console.log(sessionUser.cart)
+        sessionUser.cart.forEach(itemId => {
+          cartOfId.push(itemId)
+        })
+        console.log(cartOfId)
+        // console.log('cart', user.cart)
+        // console.log('watchlist', user.watchlist)
+    })}, [dispatch, sessionUser]
+  );
 
 
+  console.log(cartOfId)
   const trueTrueCart = listings.slice(4, 8)
 
-  const subtotal = (cart) => {
-    let val = 0
-    if (cart.length) {
-      cart.forEach((item => {
-        val += item.price
-      }))
-    }
-    return val.toFixed(2);
-  }
 
-  const userSubtotal = subtotal(trueTrueCart)
+
+
   // const userSubtotal = 0
 
+  if (!loaded) {
+    return <Loader />
+  } else {
+    console.log(sessionUser.cart)
+    const subtotal = (cart) => {
+      let val = 0
+      if (cart.length) {
+        cart.forEach((item => {
+          val += item.price
+        }))
+      }
+      return val.toFixed(2);
+    }
+
+    const userSubtotal = subtotal(trueTrueCart)
 
   return (
     <ul className="listing-grid" display="grid">
@@ -59,6 +85,6 @@ const CartPage = () => {
       </li>
     </ul>
   )
-}
+}}
 
 export default CartPage;

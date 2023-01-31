@@ -33,6 +33,8 @@ import FeedIndex from './components/LISTINGS/FeedIndex';
 import Footer from './components/MAINNAV/Footer';
 import WatchlistIndex from './components/LISTINGS/WatchlistIndex';
 
+import UsersIndex from './components/USERS/UsersIndex';
+
 function App() {
   const history = useHistory()
 
@@ -80,6 +82,7 @@ function App() {
             <Route path="/new_listing" component={ListingFormPage} />
             <Route path="/listings/:listing_id/edit/" component={ListingFormPage} />
             <Route path="/watchlist" component={WatchlistIndex} />
+            <Route path="/users" component={UsersIndex} />
           </Switch>
         <Footer />
     </>
