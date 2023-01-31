@@ -26,10 +26,7 @@ const CartPage = () => {
     )
   }
 
-  const user = useSelector(getUser(sessionUser.id))
   const listings = useSelector(listingActions.getListings)
- 
-  const cartOfId = []
 
   useEffect(() => {
     Promise.all([
@@ -37,18 +34,11 @@ const CartPage = () => {
       dispatch(listingActions.fetchListings())
       ]).then(()=>{
       setLoaded(true);
-        // console.log(sessionUser.cart)
-        sessionUser.cart.forEach(itemId => {
-          cartOfId.push(itemId)
-        })
-        console.log(cartOfId)
-        // console.log('cart', user.cart)
-        // console.log('watchlist', user.watchlist)
     })}, [dispatch, sessionUser]
   );
 
 
-  console.log(cartOfId)
+
   const trueTrueCart = listings.slice(4, 8)
 
 
@@ -59,7 +49,8 @@ const CartPage = () => {
   if (!loaded) {
     return <Loader />
   } else {
-    console.log(sessionUser.cart)
+    const cartOfId = sessionUser.cart
+    const trueCart = listings.filter(listing => cartOfId.includes(listing.id))
     const subtotal = (cart) => {
       let val = 0
       if (cart.length) {
@@ -70,11 +61,11 @@ const CartPage = () => {
       return val.toFixed(2);
     }
 
-    const userSubtotal = subtotal(trueTrueCart)
+    const userSubtotal = subtotal(trueCart)
 
   return (
     <ul className="listing-grid" display="grid">
-      {trueTrueCart.map((cartItem) => <CartTile listing={cartItem} />)}
+      {trueCart.map((cartItem) => <CartTile listing={cartItem} />)}
       <div className="hl" id="cart-hl"/>
       <li className="cart-end-ind-tile">
           <div className="cart-end-tile-container">
