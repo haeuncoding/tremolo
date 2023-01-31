@@ -11,7 +11,7 @@ function CartTile({ listing, sessionUser }) {
   const image = RandomImage(listing.categoryId)
 
   const handleCartItemDelete = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     console.log('cart click!')
 
     const data = {
@@ -20,33 +20,36 @@ function CartTile({ listing, sessionUser }) {
       cart: [...sessionUser.cart],
       listingId: listing.id
     }
+
     console.log('data.cart', data.cart)
     console.log('data', data)
     dispatch(updateUserCart(data))
   }
 
+
+
   return (
     <>
       <li className="cart-ind-tile" id={`${listing.id}`}>
-        <Link id="cart-tile-link" to={`/listings/${listing.id}`}>
           <div className="cart-tile-container">
+
             <div id="cart-image-container">
               <img src={image} className="child-ele listing-image" id="cart-preview-image"/>      
             </div>
             <br />
+            <Link id="cart-tile-link" to={`/listings/${listing.id}`}>
             <div id="cart-title-div">
               <h1 className="child-ele" id="cart-listing-title">{listing.listingTitle}</h1>
-              
             </div>
+            </Link>
             <br />
             <div className='price-delete-container'>
               <h3 className="child-ele" id="cart-price">${listing.price.toFixed(2)}</h3>
-              <button className="cart-item-delete-button" onClick={handleCartItemDelete}>
+              <button className="cart-item-delete-button" onClick={() => handleCartItemDelete()}>
                   <i className="fa-solid fa-xmark" id='x-mark'></i>
               </button>
             </div>
           </div>
-        </Link>
       </li>
     </>
   )

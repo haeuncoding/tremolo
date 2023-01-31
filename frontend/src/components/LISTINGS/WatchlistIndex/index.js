@@ -15,10 +15,13 @@ import SessionUserCheck from "../../SessionUserCheck/SessionUserCheck";
 import { useHistory } from "react-router-dom";
 
 function WatchlistIndex () {
+  const [loaded, setLoaded] = useState(false)
   const dispatch = useDispatch()
-
   const history = useHistory()
   const sessionUser = SessionUserCheck()
+  const [watchlistOfId, setWatchlistOfId] = useState([])
+  const [watchlist, setWatchlist] = useState([])
+
   if (sessionUser.id === "") {
     history.push(
       `/login`,
@@ -27,39 +30,33 @@ function WatchlistIndex () {
   }
 
   const listings = useSelector(listingActions.getListings)
-  const [loaded, setLoaded] = useState(false)
-  // const sessionUser = SessionUserCheck()
-  // console.log(sessionUser.id)
-  const user = useSelector(getUser(sessionUser.id))
-
-  // const categories = useSelector(state => state.categories)
-
-  // useEffect(() => {
-  //   dispatch(fetchUser(33))
-  //   dispatch(listingActions.fetchListings())
-  // }, [dispatch])
 
   useEffect(() => {
     Promise.all([
-      dispatch(listingActions.fetchListings()),
-      dispatch(fetchUser(sessionUser.id))
+      dispatch(listingActions.fetchListings),
+      dispatch(fetchUser(sessionUser.id)),
+      console.log(sessionUser),
+      setWatchlistOfId(sessionUser.watchlist),
+      setWatchlist(listings.filter(listing => watchlistOfId.includes(listing.id)))
     ]).then(()=>{
       setLoaded(true);
     })
   }, [dispatch]);
 
 
+
   if (!loaded) {
     return <Loader />
   } else {
-
-      console.log(user)
+  console.log(watchlist)
   return (
     <>
-      <div className="general-display-container">
-          <ul className="general-listing-index" >
-            <li>i'm an empty boi</li>
-            {listings?.map((listing) => <CategoryListingTile listing={listing} />)}
+      <div id="watchlist-title-label-container">
+        <h3 id="watchlist-title-label">Watchlist</h3>
+      </div>
+      <div className="watchlist-display-container">
+          <ul className="watchlist-listing-index" >
+            {watchlist?.map((listing) => <CategoryListingTile listing={listing} />)}
           </ul>
       </div>
     </>

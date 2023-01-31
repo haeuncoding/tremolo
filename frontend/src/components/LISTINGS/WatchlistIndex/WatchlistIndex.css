@@ -8,6 +8,20 @@ li.category-ind-tile {
   /* margin-bottom: 5vw; */
 }
 
+h3#watchlist-title-label {
+  margin-top: 2vh;
+  text-align: center;
+  font-size: 3vw;
+}
+
+div#watchlist-title-label-container {
+  text-align: left;
+  align-items: center;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  margin-bottom: 1vh;
+}
+
 
 #category-tile-link {
   background: none;
@@ -20,7 +34,7 @@ li.category-ind-tile {
   margin-bottom: 1.5vw;
 }
 
-.general-display-container {
+.watchlist-display-container {
   display: flexbox;
   justify-content:space-evenly;
 }
@@ -30,22 +44,22 @@ a#tile-link {
   width: 0;
 }
 
-ul.general-listing-index {
+ul.watchlist-listing-index {
   background-color: #efefef;
-  margin-left: 0;
-  margin-right: 0;
+  margin-top: 5vh;
   margin-bottom: 0;
   text-align: left;
-  width: 95vw;
+  width: 70vw;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   justify-items: flex-start;
   row-gap: 18vw;
   /* grid-auto-rows: 80vw; */
   overflow-y: auto;
   border-radius: 12px;
   padding: 0;
-  margin-left: 0vw;
+  margin-left: auto;
+  margin-right: auto;
   /* padding-top: -5vw; */
   margin-top: 1vh;
   /* margin-bottom: -1vw; */
@@ -53,7 +67,7 @@ ul.general-listing-index {
   height: 65vh;
 }
 
-.general-listing-index li {
+.watchlist-listing-index li {
   display: inline-block;
 }
 

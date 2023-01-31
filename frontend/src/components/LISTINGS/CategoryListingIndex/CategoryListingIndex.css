@@ -14,14 +14,17 @@ li.category-ind-tile {
 }
 
 h3#category-title-label {
-  margin-top: -2vh;
+  margin-top: 2vh;
+  text-align: center;
+  font-size: 3vw;
 }
 
 div#category-title-label-container {
   text-align: left;
-  align-items: center;
-  padding-left: 2vw;
-  padding-right: 2vw;
+    align-items: center;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    margin-bottom: 4vh;
 }
 
 #category-tile-link {

@@ -43,7 +43,6 @@ function CategoryListingIndex () {
     <>
       <div id="category-title-label-container">
         <h3 id="category-title-label">{category.category}</h3>
-        <div class="hl" />
       </div>
       <div className="category-display-container">
         
