@@ -33,22 +33,24 @@ function WatchlistIndex () {
 
   useEffect(() => {
     Promise.all([
-      dispatch(listingActions.fetchListings),
+      dispatch(listingActions.fetchListings()),
       dispatch(fetchUser(sessionUser.id)),
       console.log(sessionUser),
       setWatchlistOfId(sessionUser.watchlist),
       setWatchlist(listings.filter(listing => watchlistOfId.includes(listing.id)))
     ]).then(()=>{
+      setWatchlistOfId(sessionUser.watchlist)
+      setWatchlist(listings.filter(listing => watchlistOfId.includes(listing.id)))
+
       setLoaded(true);
     })
-  }, [dispatch]);
+  }, [sessionUser.watchlist, sessionUser, listings]);
 
 
 
   if (!loaded) {
     return <Loader />
   } else {
-  console.log(watchlist)
   return (
     <>
       <div id="watchlist-title-label-container">
@@ -61,6 +63,7 @@ function WatchlistIndex () {
       </div>
     </>
   )
-}}
+}
+}
 
 export default WatchlistIndex;
