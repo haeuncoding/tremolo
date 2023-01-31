@@ -96,3 +96,41 @@ h3#cart-price, h3#cart-subtotal-price {
   /* margin-bottom: -7.75vw; */
   text-decoration: none;
 }
+
+div.price-delete-container {
+  display: flex;
+  flex-direction: row;
+}
+
+button.cart-item-delete-button {
+  border: none;
+  background: none;
+  width: 4vw;
+  height: 4vw;
+  border-radius: 25%;
+  margin-right: 2vw;
+  margin-top: auto;
+  margin-bottom: auto;
+  transition: 0.5s;
+}
+
+button.cart-item-delete-button:hover {
+  background-color: #0b536d;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+button.cart-item-delete-button:hover > i#x-mark {
+  filter: brightness(500%);
+  transition: 0.5s;
+}
+
+i#x-mark {
+  scale: 150%;
+  transition: 0.5s;
+  cursor: pointer;
+}
+
+/* i#x-mark:hover {
+  filter: invert(100%);
+} */

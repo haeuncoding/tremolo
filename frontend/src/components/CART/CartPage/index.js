@@ -34,7 +34,7 @@ const CartPage = () => {
       dispatch(listingActions.fetchListings())
       ]).then(()=>{
       setLoaded(true);
-    })}, [dispatch, sessionUser]
+    })}, [dispatch, sessionUser.cart]
   );
 
 
@@ -65,7 +65,7 @@ const CartPage = () => {
 
   return (
     <ul className="listing-grid" display="grid">
-      {trueCart.map((cartItem) => <CartTile listing={cartItem} />)}
+      {trueCart.map((cartItem) => <CartTile listing={cartItem} sessionUser={sessionUser} />)}
       <div className="hl" id="cart-hl"/>
       <li className="cart-end-ind-tile">
           <div className="cart-end-tile-container">

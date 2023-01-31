@@ -2,12 +2,28 @@ import React, { useState } from 'react';
 import * as ListingActions from "../../../store/listings"
 import { Link, Redirect } from "react-router-dom"
 import RandomImage from "../../LISTINGS/ListingComponent/RandomCategoryImage.js"
-
+import { useDispatch } from 'react-redux';
+import { updateUserCart } from '../../../store/users';
 import './CartTile.css'
 
-function CartTile({ listing }) {
-
+function CartTile({ listing, sessionUser }) {
+  const dispatch = useDispatch()
   const image = RandomImage(listing.categoryId)
+
+  const handleCartItemDelete = (e) => {
+    e.preventDefault();
+    console.log('cart click!')
+
+    const data = {
+      id: sessionUser.id,
+      username: sessionUser.username,
+      cart: [...sessionUser.cart],
+      listingId: listing.id
+    }
+    console.log('data.cart', data.cart)
+    console.log('data', data)
+    dispatch(updateUserCart(data))
+  }
 
   return (
     <>
@@ -23,7 +39,12 @@ function CartTile({ listing }) {
               
             </div>
             <br />
-            <h3 className="child-ele" id="cart-price">${listing.price.toFixed(2)}</h3>
+            <div className='price-delete-container'>
+              <h3 className="child-ele" id="cart-price">${listing.price.toFixed(2)}</h3>
+              <button className="cart-item-delete-button" onClick={handleCartItemDelete}>
+                  <i className="fa-solid fa-xmark" id='x-mark'></i>
+              </button>
+            </div>
           </div>
         </Link>
       </li>
