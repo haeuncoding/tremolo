@@ -10,11 +10,6 @@ const CategoryListingGrid = ({categoryId}) => {
   const listings = useSelector(listingActions.getListings)
 
     const DisplayFilteredListings = () => {
-    // listings.forEach(listing => {
-    //   console.log("CATEGORY CHECKING")
-    //   console.log(listing.categoryId)
-    //   console.log(listing.category)
-    // })
     const filtered = listings.filter(listing => listing.categoryId === categoryId)
     return (
       filtered?.reverse().map((listing) => <ListingTile listing={listing} className="home-ind-tile"/>)
@@ -23,7 +18,6 @@ const CategoryListingGrid = ({categoryId}) => {
 
   const dispatch = useDispatch()
 
-  console.log(listings)
   useEffect(() => {
     dispatch(listingActions.fetchListings())
   }, [dispatch])

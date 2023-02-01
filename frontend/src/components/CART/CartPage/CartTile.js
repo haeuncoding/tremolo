@@ -17,7 +17,7 @@ function CartTile({ listing, sessionUser }) {
     const data = {
       id: sessionUser.id,
       username: sessionUser.username,
-      cart: [...sessionUser.cart],
+      cart: sessionUser.cart,
       listingId: listing.id
     }
 
@@ -45,7 +45,7 @@ function CartTile({ listing, sessionUser }) {
             <br />
             <div className='price-delete-container'>
               <h3 className="child-ele" id="cart-price">${listing.price.toFixed(2)}</h3>
-              <button className="cart-item-delete-button" onClick={() => handleCartItemDelete()}>
+              <button className="cart-item-delete-button" onClick={(e) => handleCartItemDelete(e)}>
                   <i className="fa-solid fa-xmark" id='x-mark'></i>
               </button>
             </div>

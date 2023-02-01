@@ -13,6 +13,7 @@ const CartPage = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const sessionUser = SessionUserCheck()
+  const user = useSelector(getUser(sessionUser.id))
   const [cartOfId, setCartOfId] = useState([])
   const [cart, setCart] = useState([])
   // const userId = () =>  {
@@ -33,19 +34,19 @@ const CartPage = () => {
   useEffect(() => {
     Promise.all([
       dispatch(fetchUser(sessionUser.id)),
-      dispatch(listingActions.fetchListings),
-      setCartOfId(sessionUser.cart),
-      setCart(listings.filter(listing => cartOfId.includes(listing.id)))
+      dispatch(listingActions.fetchListings()),
+      // setCartOfId(sessionUser.cart),
+      setCart(listings.filter(listing => user.cart.includes(listing.id)))
       ]).then(()=>{
-      setLoaded(true)
-    })}, [dispatch, cart]
+        console.log(cart);
+        setLoaded(true)
+    })}, [dispatch]
   );
-
-
 
   if (!loaded) {
     return <Loader />
   } else {
+    // console.log(listings)
     const subtotal = (cart) => {
       let val = 0
       if (cart.length) {
@@ -60,7 +61,7 @@ const CartPage = () => {
 
   return (
     <ul className="listing-grid" display="grid">
-      {cart.map((cartItem) => <CartTile listing={cartItem} sessionUser={sessionUser} />)}
+      {cart.map((cartItem) => <CartTile listing={cartItem} sessionUser={user} />)}
       <div className="hl" id="cart-hl"/>
       <li className="cart-end-ind-tile">
           <div className="cart-end-tile-container">

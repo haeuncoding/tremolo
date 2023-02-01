@@ -145,7 +145,7 @@ const ReviewTile = ({review}) => {
               type="radio" 
               name="rating" 
               value={ratingValue} 
-              class="star-value-button" 
+              className="star-value-button" 
               id={`rating-value-${ratingValue}`}/>
             <FaStar 
               className='star-container' 
@@ -160,7 +160,7 @@ const ReviewTile = ({review}) => {
     const reviewId = review.id
     return (
       <div id="user-review-actions">
-        <div class="user-review-action-singular">
+        <div className="user-review-action-singular">
           <button id="edit-review"
             onClick={() => setShowModal(true)}>Edit Review</button>
             {showModal && (

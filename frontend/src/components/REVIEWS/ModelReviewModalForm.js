@@ -48,7 +48,7 @@ function ModelReviewModalForm(modelReviewId, setShowModal) {
               name="rating" 
               value={ratingValue} 
               onClick={() => setStars(ratingValue)}
-              class="star-value-button" 
+              className="star-value-button" 
               id={`rating-value-${ratingValue}`}/>
             <FaStar 
               className='star-container' 

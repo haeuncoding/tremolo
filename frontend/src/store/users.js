@@ -26,7 +26,7 @@ export const getUsers = (store) => {
 export const getUser = (userId) => (store) => {
   console.log(userId)
   if (store.users && store.users[userId]) {
-    return store.users[userId]
+    return store.users[userId].user
   } else {
     return null;
   }
@@ -82,7 +82,7 @@ export const updateUserCart = (user) => async (dispatch) => {
   if (response.ok) {
     const updatedUserCart = await response.json()
     console.log('updated user cart', updatedUserCart)
-
+    dispatch(receiveUser(updatedUserCart))
   } else {
     console.log(response.json())
   }
@@ -116,7 +116,7 @@ const usersReducer = (state = {}, action) => {
       return { ...newState, ...action.users }
     case RECEIVE_USER:
       console.log(action.userPayload)
-      return { ...newState, [action.user]: action.user };
+      return { ...newState, [action.user.user.id]: action.user };
     case RECEIVE_LISTINGS:
       return { ...newState, ...action.listings.user}
     default:

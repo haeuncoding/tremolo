@@ -9,6 +9,8 @@ import modelReviewsReducer from './modelReviews';
 import modelsReducer from './models'
 import shopsReducer from './shops'
 import usersReducer from './users';
+import cartReducer from './cart';
+import watchlistReducer from './watchlist';
 // import { persistStore, persistReducer } from 'redux-persist';
 // import storage from 'redux-persist/lib/storage';
 // import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
@@ -22,6 +24,8 @@ export const rootReducer = combineReducers({
   categories: categoriesReducer,
   models: modelsReducer,
   shops: shopsReducer,
+  cart: cartReducer,
+  watchlist: watchlistReducer,
 })
 
 let enhancer;

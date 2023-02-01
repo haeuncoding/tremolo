@@ -9,6 +9,8 @@ import ReviewTile from '../../REVIEWS/ReviewTile';
 import { deleteListing } from '../../../store/listings';
 import RandomCategoryImage from './RandomCategoryImage';
 import SessionUserCheck from '../../SessionUserCheck/SessionUserCheck';
+import { getCart, addToCart, removeFromCart, cartCheck } from '../../../store/cart';
+import { getWatchlist, addToWatchlist, removeFromWatchlist, watchlistCheck } from '../../../store/watchlist';
 import Loader from '../../LOADER/Loader';
 
 const ListingComponent = () => {
@@ -21,20 +23,26 @@ const ListingComponent = () => {
   const [loaded, setLoaded] = useState(false)
   const [isAddedToCart, setIsAddedToCart] = useState(false)
   const [isWatched, setIsWatched] = useState(false)
-
-  
+  const userCart = getCart()
+  const userWatchlist = getWatchlist()
+  console.log(userCart)
   useEffect(() => {
     Promise.all([
       dispatch(listingActions.fetchListing(listingId)),
       dispatch(() => fetchUser(sessionUser.id)),
     ]).then(()=>{
+      if (cartCheck(listingId) === true) {
+        setIsAddedToCart(true)
+      } else {
+        setIsAddedToCart(false)
+      }
       setLoaded(true);
-      
-      console.log('cart', sessionUser.cart)
-      console.log('watchlist', sessionUser.watchlist)
 
-      if (sessionUser.cart.includes(listingId)) {setIsAddedToCart(true)}
-      if (sessionUser.watchlist.includes(listingId)) {setIsWatched(true)}
+      if (watchlistCheck(listingId) === true) {
+        setIsWatched(true)
+      } else {
+        setIsWatched(false)
+      }
       })
     }, [dispatch, listingId]);
 
@@ -87,18 +95,20 @@ const ListingComponent = () => {
     console.log('cart click!')
     if (isAddedToCart) {
       setIsAddedToCart(false)
+      dispatch(removeFromCart(listingId))
     } else {
       setIsAddedToCart(true)
+      dispatch(addToCart(listingId))
     }
-    const data = {
-      id: sessionUser.id,
-      username: sessionUser.username,
-      cart: [...sessionUser.cart],
-      listingId: listingId
-    }
-    console.log('data.cart', data.cart)
-    console.log('data', data)
-    dispatch(updateUserCart(data))
+    // const data = {
+    //   id: sessionUser.id,
+    //   username: sessionUser.username,
+    //   cart: [...sessionUser.cart],
+    //   listingId: listingId
+    // }
+    // console.log('data.cart', data.cart)
+    // console.log('data', data)
+    // dispatch(updateUserCart(data))
   }
 
   const DisplayCurrentModelReviews = () => {

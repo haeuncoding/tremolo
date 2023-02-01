@@ -107,12 +107,16 @@ attr_accessor :password, :listing_id
   end
 
   def add_to_cart(listing_id)
-    self.cart << listing_id.to_i
+    @listing = Listing.find_by(id: listing_id.to_i)
+    puts @listing
+    self.cart << @listing
     self.save!
   end
 
   def remove_from_cart(listing_id)
-    self.cart.delete(listing_id.to_i)
+    self.cart.delete(Listing.find_by(id: listing_id.to_i))
+    puts self.cart 
+    puts 'please dear god'
     self.save!
   end
 

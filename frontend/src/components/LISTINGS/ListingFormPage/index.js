@@ -57,7 +57,6 @@ function ListingFormPage() {
 
   useEffect(() => {
     if (listing) {
-      console.log('I was wondering if after all these years you would like some meat')
       setListingTitle(listing.listingTitle);
       setListerId(sessionUser.id)
       setMakeId(listing.makeId);
@@ -89,8 +88,6 @@ function ListingFormPage() {
         year_made: yearMade,
         description: description
       }
-      console.log('data for update listing')
-      console.log(data)
       dispatch(listingActions.updateListing(data))
       .then((response) => {
         console.log(response)

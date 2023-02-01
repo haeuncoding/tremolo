@@ -19,7 +19,7 @@ function WatchlistIndex () {
   const dispatch = useDispatch()
   const history = useHistory()
   const sessionUser = SessionUserCheck()
-  const [watchlistOfId, setWatchlistOfId] = useState([])
+  // const [watchlistOfId, setWatchlistOfId] = useState([])
   const [watchlist, setWatchlist] = useState([])
 
   if (sessionUser.id === "") {
@@ -28,23 +28,25 @@ function WatchlistIndex () {
       { from: `/watchlist`}
     )
   }
-
+  console.log(sessionUser.watchlist)
   const listings = useSelector(listingActions.getListings)
 
   useEffect(() => {
     Promise.all([
       dispatch(listingActions.fetchListings()),
-      dispatch(fetchUser(sessionUser.id)),
-      console.log(sessionUser),
-      setWatchlistOfId(sessionUser.watchlist),
-      setWatchlist(listings.filter(listing => watchlistOfId.includes(listing.id)))
+      // dispatch(fetchUser(sessionUser.id)),
+      // console.log(sessionUser)
+      // setWatchlistOfId(sessionUser.watchlist),
+      // setWatchlist(listings.filter(listing => watchlistOfId.includes(listing.id)))
     ]).then(()=>{
-      setWatchlistOfId(sessionUser.watchlist)
-      setWatchlist(listings.filter(listing => watchlistOfId.includes(listing.id)))
-
-      setLoaded(true);
+      // setWatchlistOfId(sessionUser.watchlist)
+      // setWatchlist(listings.filter(listing => watchlistOfId.includes(listing.id)))
+      setWatchlist(listings.filter(listing => sessionUser.watchlist.includes(listing.id)))
+      // console.log(sessionUser)
+    }).then(() => {
+      setLoaded(true)
     })
-  }, [sessionUser.watchlist, sessionUser, listings]);
+  }, [dispatch, sessionUser]);
 
 
 

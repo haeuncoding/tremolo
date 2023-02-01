@@ -17,7 +17,6 @@ const ListingGrid = () => {
 
   const dispatch = useDispatch()
 
-  console.log(listings)
   useEffect(() => {
     dispatch(listingActions.fetchListings())
   }, [dispatch])
