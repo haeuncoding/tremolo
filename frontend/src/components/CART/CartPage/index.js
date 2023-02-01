@@ -138,6 +138,19 @@ const CartTile = ({ listing }) => {
           </div>
         </li>
       </div>
+      <div id="cart-checkout">
+          <div className="cart-checkout-filler-container">
+            <br />
+            <br />
+          </div>
+        <li className="cart-end-ind-tile">
+          <div className="cart-checkout-container">
+            <button className="child-ele" id="checkout-button">
+              CHECKOUT
+            </button>
+          </div>
+        </li>
+      </div>
     </div>
   )
 }}

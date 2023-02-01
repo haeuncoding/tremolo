@@ -15,7 +15,7 @@
   margin-right: 2vw;
 }
 
-div.cart-tile-container, div.cart-end-tile-container {
+div.cart-tile-container, div.cart-end-tile-container, div.cart-checkout-filler-container {
   transition: .1s;
   background-color: #efefef;
   border-radius: 20px;
@@ -33,6 +33,10 @@ div.cart-tile-container, div.cart-end-tile-container {
   /* padding-bottom: 0; */
   /* padding-left: .25vw;
   padding-right: .25vw; */
+}
+
+div.cart-checkout-filler-container {
+  background: none;
 }
 
 div.cart-end-subtotal-container {
