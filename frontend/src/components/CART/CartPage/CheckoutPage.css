@@ -1,0 +1,115 @@
+.checkout-container {
+  text-align: center;
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80vw;
+}
+
+.checkout-link-div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.checkout-link {
+  font-size: 2.25vw;
+  padding: 2vw;
+  border-radius: 25px;
+  transition: .5s;
+}
+
+.checkout-link:hover {
+  background-color: #0F749A;
+  color: white;
+  transition: .5s;
+}
+
+div#congrats-container {
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+div#quirky-container {
+  width: 40vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+div.socials-div {
+  display: flex;
+  justify-content: space-evenly;
+  margin-left: auto;
+  margin-right: auto;
+  flex-direction: row;
+  text-align: center;
+  align-content: center;
+}
+
+hr#socials-div-hr {
+  margin-bottom: 7.5vh;
+}
+
+#post-submit-button {
+  background-color: rgb(252, 252, 252);
+  font-family: 'Open Sans', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-decoration: none;
+  font-size: 1.5vw;
+  height: max-content;
+  font-weight: 700;
+  text-emphasis-style: bold;
+  width: 31vw;
+  margin-top: 2vw;
+  border: #000000;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 30px;
+  padding: 10px;
+  text-decoration: none;
+}
+
+#post-submit-button:hover {
+  transition: .25s;
+  cursor: pointer;
+  background-color: #0F749A;
+  color: rgb(252, 252, 252);
+  border: #0F749A;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 30px;
+}
+
+
+#github-icon-checkout, #linkedin-icon-checkout {
+  transition: .5s;
+  filter: invert(50%);
+  
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  margin-left: 2.5vw;
+  margin-right: 2.5vw;
+  text-align: center;
+  width: 5vw;
+  height: 5vw;
+  padding: 3vw;
+  margin-left: -8vw;
+  margin-right: -8vw;
+  /* max-height: 5vw; */
+  background: none;
+  background-color: none;
+  border-radius: 2vw;
+  border: none;
+  cursor: pointer;
+}
+
+#github-icon-checkout:hover, #linkedin-icon-checkout:hover {
+  filter: invert(0%);
+  transition: .5s;
+  background: #0F749A;
+  cursor: pointer;
+}
+
+.outer-link {
+  text-align: center;
+  background: none;
+  cursor: pointer;
+}

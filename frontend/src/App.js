@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom';
 import LoginFormPage from './components/SESSIONS/LoginFormPage';
 import SignupFormPage from './components/SESSIONS/SignupFormPage';
 import CartPage from './components/CART/CartPage';
+import CheckoutPage from './components/CART/CartPage/CheckoutPage';
 
 import ListingFormPage from './components/LISTINGS/ListingFormPage';
 import CategoryListingGrid from './components/LISTINGS/ListingGrid/CategoryListingGrid';
@@ -73,6 +74,7 @@ function App() {
             <Route path="/signup" component={SignupFormPage} />
 
             <Route path="/cart" component={CartPage} />
+            <Route path="/checkout" component={CheckoutPage} />
 
             <Route exact path="/listings" component={GeneralListingIndex} />
             <Route exact path="/my_feed" component={FeedIndex} />
