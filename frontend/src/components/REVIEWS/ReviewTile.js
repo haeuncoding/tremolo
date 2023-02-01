@@ -35,7 +35,7 @@ function ModelReviewModalForm(modelReviewId, setShowModal) {
       setStars(review.ratings)
       setDescription(review.description)
       dispatch(fetchModelReview(modelReviewId.id))
-  }, [dispatch])
+  }, [])
 
 
   const handleDescription = async (e) => {
@@ -57,9 +57,10 @@ function ModelReviewModalForm(modelReviewId, setShowModal) {
       console.log(data)
       dispatch(updateModelReview(data)) //.then(() => {window.location.href =`/listings/${listingId}`});
       shouldShow(false)
-    };
+  };
 
-  const StarRating = () => {
+  const StarRating = (value) => {
+    console.log(value)
     return (
       <div required>
         {[...Array(5)].map((star, i) => {
@@ -77,6 +78,7 @@ function ModelReviewModalForm(modelReviewId, setShowModal) {
               className='star-container' 
               onMouseEnter={() => setHover(ratingValue)}
               onMouseLeave={() => setHover(null)}
+              onLoad={setStars(review.rating)}
               color={ratingValue <= (hover || stars) ? "#0f749a" : "#bcbcbc"} />
           </label>
         )})}
@@ -92,7 +94,7 @@ function ModelReviewModalForm(modelReviewId, setShowModal) {
     <div className="edit-review-form-container">
       <h2 id="label-star">Edit Your Review</h2>
       <form onSubmit={handleSubmit}>
-        <StarRating />
+        <StarRating value={review.rating} />
         <br />
           <input
             type="textarea"

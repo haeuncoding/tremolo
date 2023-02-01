@@ -36,7 +36,13 @@ function ModelReviewModalForm(modelReviewId, setShowModal) {
   }, [dispatch])
 
 
-  const StarRating = () => {
+  const StarRating = (value) => {
+    if (!value) {
+      setStars(0)
+      console.log(stars)
+    } else {
+      setStars(value)
+    }
     return (
       <div>
         {[...Array(5)].map((star, i) => {
@@ -95,7 +101,7 @@ function ModelReviewModalForm(modelReviewId, setShowModal) {
     <div className="review-form-container">
       <h2 id="label-star">Edit Your Review</h2>
       <form onSubmit={handleSubmit}>
-        <StarRating />
+        {StarRating(stars)}
         <br />
           <input
             type="textarea"
