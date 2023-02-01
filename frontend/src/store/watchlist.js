@@ -21,15 +21,15 @@ export const removeWatchlistItem = (listingItem) => ({
 
 const storeWatchlist = watchlist => {
   if (watchlist) localStorage.setItem("watchlist", JSON.stringify(watchlist));
-  else localStorage.setItem("watchlist", JSON.stringify([]))
+  else localStorage.setItem("watchlist", JSON.stringify({}))
 }
 
 export const getWatchlist = () => {
   const watchlist = JSON.parse(localStorage.getItem("watchlist"))
   if (watchlist) {
-    return watchlist
+    return Object.values(watchlist)
   } else {
-    localStorage.setItem("watchlist", JSON.stringify([]))
+    localStorage.setItem("watchlist", JSON.stringify({}))
     return JSON.parse(localStorage.getItem("watchlist"))
   }
 }
@@ -43,10 +43,11 @@ export const addToWatchlist = (watchlistItemId) => async dispatch => {
   const response = await csrfFetch (`/api/listings/${watchlistItemId}`)
   if (response.ok) {
     const watchlist = getWatchlist()
+    let newWatchlist = { ...watchlist }
     const watchlistItem = await response.json()
     console.log(watchlistItem.listing)
-    watchlist.push(watchlistItem.listing)
-    storeWatchlist(watchlist)
+
+    storeWatchlist({...newWatchlist, [watchlistItem.listing.id]: watchlistItem.listing})
     dispatch(addWatchlistItem(watchlistItem))
   }
 }
@@ -56,25 +57,18 @@ export const removeFromWatchlist = (watchlistItemId) => async dispatch => {
   if (response.ok) {
     const watchlist = getWatchlist()
     const watchlistItem = await response.json()
-    const index = watchlist.indexOf(watchlistItem.listing)
-    if (index > -1) {
-      watchlist.splice(index, 1)
-    }
+    delete watchlist[watchlistItemId]
     storeWatchlist(watchlist)
     dispatch(removeWatchlistItem(watchlistItem))
   }
 }
 
-export const watchlistCheck = (watchlistItemId) => async dispatch => {
-  const response = await csrfFetch (`/api/listings/${watchlistItemId}`)
-  if (response.ok) {
-    const watchlist = getWatchlist()
-    const watchlistItem = await response.json()
-    if (watchlist.includes(watchlistItem)) {
-      return true
-    } else {
-      return false
-    }
+export const watchlistCheck = (watchlistItemId) => {
+  const watchlist = getWatchlist()
+  if (watchlist[watchlistItemId]) {
+    return true
+  } else {
+    return false
   }
 }
 

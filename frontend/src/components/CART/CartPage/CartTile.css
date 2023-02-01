@@ -57,6 +57,7 @@ div.cart-tile-container:hover {
 
 #cart-tile-link {
   text-decoration: none;
+  background: none;
 }
 
 #cart-title-div {

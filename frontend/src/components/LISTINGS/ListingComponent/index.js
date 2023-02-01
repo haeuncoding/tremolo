@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import * as listingActions from "../../../store/listings"
 import { useSelector, useDispatch } from "react-redux"
 import { Link, useParams } from "react-router-dom"
-import { fetchUser, updateUserCart, updateUserWatchlist } from "../../../store/users"
+import { fetchUser } from "../../../store/users"
 import './ListingComponent.css'
 import ModelReviewForm from '../../REVIEWS/ModelReviewForm';
 import ReviewTile from '../../REVIEWS/ReviewTile';
@@ -23,9 +23,7 @@ const ListingComponent = () => {
   const [loaded, setLoaded] = useState(false)
   const [isAddedToCart, setIsAddedToCart] = useState(false)
   const [isWatched, setIsWatched] = useState(false)
-  const userCart = getCart()
-  const userWatchlist = getWatchlist()
-  console.log(userCart)
+
   useEffect(() => {
     Promise.all([
       dispatch(listingActions.fetchListing(listingId)),
@@ -45,9 +43,6 @@ const ListingComponent = () => {
       }
       })
     }, [dispatch, listingId]);
-
-
-  
 
   const handleDelete = (e) => {
     e.preventDefault()
@@ -71,23 +66,11 @@ const ListingComponent = () => {
     console.log('click')
     if (isWatched) {
       setIsWatched(false)
-      console.log('after')
-      console.log(e.target.className)
+      dispatch(removeFromWatchlist(listingId))
     } else {
       setIsWatched(true)
-      console.log(isWatched)
-      console.log('after')
-      console.log(e.target.className)
+      dispatch(addToWatchlist(listingId))
     }
-      const data = {
-      id: sessionUser.id,
-      username: sessionUser.username,
-      watchlist: [...sessionUser.watchlist],
-      listingId: listingId
-    }
-    console.log(data.watchlist)
-    console.log(data)
-    dispatch(updateUserWatchlist(data))
   }
 
   const handleCartClick = (e) => {
@@ -100,15 +83,6 @@ const ListingComponent = () => {
       setIsAddedToCart(true)
       dispatch(addToCart(listingId))
     }
-    // const data = {
-    //   id: sessionUser.id,
-    //   username: sessionUser.username,
-    //   cart: [...sessionUser.cart],
-    //   listingId: listingId
-    // }
-    // console.log('data.cart', data.cart)
-    // console.log('data', data)
-    // dispatch(updateUserCart(data))
   }
 
   const DisplayCurrentModelReviews = () => {

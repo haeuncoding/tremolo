@@ -13,6 +13,7 @@ import { fetchCategory, getCategory } from "../../../store/categories";
 import { fetchUser, getUser } from "../../../store/users"
 import SessionUserCheck from "../../SessionUserCheck/SessionUserCheck";
 import { useHistory } from "react-router-dom";
+import { getWatchlist } from "../../../store/watchlist";
 
 function WatchlistIndex () {
   const [loaded, setLoaded] = useState(false)
@@ -20,7 +21,7 @@ function WatchlistIndex () {
   const history = useHistory()
   const sessionUser = SessionUserCheck()
   // const [watchlistOfId, setWatchlistOfId] = useState([])
-  const [watchlist, setWatchlist] = useState([])
+  const watchlist = getWatchlist()
 
   if (sessionUser.id === "") {
     history.push(
@@ -28,20 +29,16 @@ function WatchlistIndex () {
       { from: `/watchlist`}
     )
   }
-  console.log(sessionUser.watchlist)
+
   const listings = useSelector(listingActions.getListings)
 
   useEffect(() => {
     Promise.all([
       dispatch(listingActions.fetchListings()),
-      // dispatch(fetchUser(sessionUser.id)),
-      // console.log(sessionUser)
-      // setWatchlistOfId(sessionUser.watchlist),
-      // setWatchlist(listings.filter(listing => watchlistOfId.includes(listing.id)))
     ]).then(()=>{
       // setWatchlistOfId(sessionUser.watchlist)
       // setWatchlist(listings.filter(listing => watchlistOfId.includes(listing.id)))
-      setWatchlist(listings.filter(listing => sessionUser.watchlist.includes(listing.id)))
+      // setWatchlist(listings.filter(listing => sessionUser.watchlist.includes(listing.id)))
       // console.log(sessionUser)
     }).then(() => {
       setLoaded(true)

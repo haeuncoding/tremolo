@@ -27,7 +27,7 @@ const storeCart = cart => {
 export const getCart = () => {
   const cart = JSON.parse(localStorage.getItem("cart"))
   if (cart) {
-    return cart
+    return Object.values(cart)
   } else {
     localStorage.setItem("cart", JSON.stringify({}))
     return JSON.parse(localStorage.getItem("cart"))
@@ -43,7 +43,7 @@ export const addToCart = (cartItemId) => async dispatch => {
   const response = await csrfFetch (`/api/listings/${cartItemId}`)
   if (response.ok) {
     const cart = getCart()
-    let newCart = { ...cart }
+    const newCart = { ...cart }
     const cartItem = await response.json()
     console.log(cartItem.listing)
     storeCart({...newCart, [cartItem.listing.id]: cartItem.listing})
@@ -54,6 +54,7 @@ export const addToCart = (cartItemId) => async dispatch => {
 export const removeFromCart = (cartItemId) => async dispatch => {
   const response = await csrfFetch (`/api/listings/${cartItemId}`)
   if (response.ok) {
+    console.log(response)
     const cart = getCart()
     const cartItem = await response.json()
     delete cart[cartItemId]
