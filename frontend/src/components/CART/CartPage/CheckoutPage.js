@@ -8,10 +8,11 @@ const CheckoutPage = () => {
   // const listingImage = lolPhoto
 
   const quirkySayingBank = [
-    "Look at you Kings, Queens, and other Rulers! Spreading the gear love.",
-    "We applaud you 👏 Another listing done, more cash to make.",
-    "You hear that? 🧏🧏 That's the sound of a listing well made.",
-    "Congrats on giving old gear to a happy new owner 😎😎"
+    "Look at you Kings, Queens, and other Rulers!  👑👑👑 Spreading the gear love.",
+    "We applaud you 👏👏👏 Another listing purchased, more cash to spend!",
+    "You hear that? 🧏🧏 That's the sound of a purchase well made.",
+    "Congrats on giving old gear to a happy new owner: you! 😎😎",
+    "Woop woop! More gear! Huzzah! 💃💃💃"
   ]
 
   const quirkySaying = () => {
@@ -28,9 +29,9 @@ const CheckoutPage = () => {
         <h1>{quirkySaying()}</h1>      
       </div>
       <div className='checkout-link-div'>
-        <Link className="checkout-link" to="/">
+        <a className="checkout-link" href="https://venmo.com/u/nathankwon818" target="_blank">
           Continue to Purchase
-        </Link>
+        </a>
         <Link className="checkout-link" to="/new_listing">
             Create a Another Listing
         </Link>
@@ -38,7 +39,7 @@ const CheckoutPage = () => {
             Return Home
         </Link>
       </div>
-      <hr />
+      <hr id="top-socials-div-hr" />
         <div className='socials-div'>
 
               <a href="https://github.com/haeuncreative" className='outer-link'>

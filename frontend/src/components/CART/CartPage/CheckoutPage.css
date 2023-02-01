@@ -45,8 +45,12 @@ div.socials-div {
   align-content: center;
 }
 
+hr#top-socials-div-hr {
+  margin-top: 4vh;
+}
+
 hr#socials-div-hr {
-  margin-bottom: 7.5vh;
+  margin-bottom: 9.5vh;
 }
 
 #post-submit-button {
@@ -90,13 +94,13 @@ hr#socials-div-hr {
   text-align: center;
   width: 5vw;
   height: 5vw;
-  padding: 3vw;
+  padding: 2vw;
   margin-left: -8vw;
   margin-right: -8vw;
   /* max-height: 5vw; */
   background: none;
   background-color: none;
-  border-radius: 2vw;
+  border-radius: 25%;
   border: none;
   cursor: pointer;
 }

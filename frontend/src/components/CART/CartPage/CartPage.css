@@ -39,13 +39,18 @@ div#cart-right {
   width: 27vw;
 }
 
-button#checkout-button {
+#checkout-button {
+  display: flex;
+  margin-right: -15vw;
   background-color: #FCFCFC;
   border: solid #0F749A;
   border-width: 1px;
   color: #0F749A;
-  width: 25vw;
+  width: 27vw;
   height: 8vh;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
   border-radius: 20px;
   font-size: 2vw;
   font-weight: 500;
@@ -53,17 +58,17 @@ button#checkout-button {
   transition: 0.75s;
 }
 
-button#checkout-button:hover {
-  width: 25vw;
+/* #link-checkout {
+  color: #0F749A;
+  transition: 0.75s;
+  background: none;
+} */
+
+#checkout-button:hover  {
+  cursor: pointer;
   background-color: #0F749A;
   color: white;
   transition: 0.75s;
-  height: 8vh;
-  border-radius: 20px;
-  border: none;
-  font-size: 2vw;
-  font-weight: 500;
-  font-family: 'Roboto', sans-serif;
 }
 
 .cart-ind-tile, .cart-end-ind-tile {
