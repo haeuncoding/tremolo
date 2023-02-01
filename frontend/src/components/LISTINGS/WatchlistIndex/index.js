@@ -21,7 +21,8 @@ function WatchlistIndex () {
   const history = useHistory()
   const sessionUser = SessionUserCheck()
   // const [watchlistOfId, setWatchlistOfId] = useState([])
-  const watchlist = getWatchlist()
+  const watchlistObj = getWatchlist()
+  const watchlist = Object.values(watchlistObj)
 
   if (sessionUser.id === "") {
     history.push(

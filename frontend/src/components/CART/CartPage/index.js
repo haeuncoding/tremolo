@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { getUser, fetchUser } from "../../../store/users";
-import { getCart, removeFromCart } from "../../../store/cart"
+import { fetchCart, getCart, removeFromCart } from "../../../store/cart"
 // import CartTile from "./CartTile";
 import { Link } from "react-router-dom"
 import RandomImage from "../../LISTINGS/ListingComponent/RandomCategoryImage.js"
@@ -16,8 +16,10 @@ const CartPage = () => {
   const dispatch = useDispatch()
   const history = useHistory()
   const sessionUser = SessionUserCheck()
-  const cart = getCart()
-
+  const cartObj = getCart()
+  const cart = useSelector(state => Object.values(state.cart))
+  console.log(cartObj)
+  console.log(cart)
   if (sessionUser.id === "") {
     history.push(
       `/login`,
@@ -27,6 +29,7 @@ const CartPage = () => {
 
   useEffect(() => {
     Promise.all([
+    dispatch(fetchCart())
     ]).then(()=>{
       setLoaded(true)
     })}, [dispatch]
@@ -37,7 +40,7 @@ const CartPage = () => {
   } else {
   
   function handleDelete (e, listingId) {
-    e.preventDefault();
+    e.preventDefault()
     dispatch(removeFromCart(listingId))
   }
 
@@ -70,7 +73,7 @@ const CartTile = ({ listing }) => {
             <br />
             <div className='price-delete-container'>
               <h3 className="child-ele" id="cart-price">${listing.price.toFixed(2)}</h3>
-              <button className="cart-item-delete-button" onClick={(e) => handleDelete(e, listing.id)}>
+              <button className="cart-item-delete-button" onClick={(e) => {handleDelete(e, listing.id)}}>
                   <i className="fa-solid fa-xmark" id='x-mark'></i>
               </button>
             </div>

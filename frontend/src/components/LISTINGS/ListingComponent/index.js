@@ -23,7 +23,8 @@ const ListingComponent = () => {
   const [loaded, setLoaded] = useState(false)
   const [isAddedToCart, setIsAddedToCart] = useState(false)
   const [isWatched, setIsWatched] = useState(false)
-
+  const cart = getCart()
+  console.log(cart)
   useEffect(() => {
     Promise.all([
       dispatch(listingActions.fetchListing(listingId)),
@@ -134,14 +135,6 @@ const ListingComponent = () => {
       </>
     )
   }
-
-
-
-
-
-
-
-
 
   return (
     <>

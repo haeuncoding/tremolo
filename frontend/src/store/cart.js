@@ -27,7 +27,10 @@ const storeCart = cart => {
 export const getCart = () => {
   const cart = JSON.parse(localStorage.getItem("cart"))
   if (cart) {
-    return Object.values(cart)
+    const array = Object.values(cart)
+    const trueCart = array.filter(listing => listing)
+    
+    return cart
   } else {
     localStorage.setItem("cart", JSON.stringify({}))
     return JSON.parse(localStorage.getItem("cart"))
@@ -54,12 +57,15 @@ export const addToCart = (cartItemId) => async dispatch => {
 export const removeFromCart = (cartItemId) => async dispatch => {
   const response = await csrfFetch (`/api/listings/${cartItemId}`)
   if (response.ok) {
-    console.log(response)
     const cart = getCart()
-    const cartItem = await response.json()
-    delete cart[cartItemId]
-    storeCart(cart)
-    dispatch(removeCartItem(cartItem))
+    if (cart[cartItemId]){
+      const cartItem = await response.json()
+      delete cart[cartItemId]
+      storeCart(cart)
+      dispatch(removeCartItem(cartItem))
+    } else {
+      storeCart(cart)
+    }
   }
 }
 
@@ -84,6 +90,7 @@ const cartReducer = (state = {}, action) => {
     case RECEIVE_CART:
       return { ...newState, ...action.cart };
     case ADD_CART_ITEM:
+      console.log(action.listingItem.listing.id)
       return { ...newState, [action.listingItem.listing.id]: action.listingItem.listing };
     case REMOVE_CART_ITEM:
       delete newState[action.listingItem.listing.id];

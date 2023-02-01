@@ -27,7 +27,8 @@ const storeWatchlist = watchlist => {
 export const getWatchlist = () => {
   const watchlist = JSON.parse(localStorage.getItem("watchlist"))
   if (watchlist) {
-    return Object.values(watchlist)
+    const array = Object.values(watchlist)
+    return watchlist
   } else {
     localStorage.setItem("watchlist", JSON.stringify({}))
     return JSON.parse(localStorage.getItem("watchlist"))
