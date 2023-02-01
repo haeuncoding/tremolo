@@ -18,8 +18,8 @@ const CartPage = () => {
   const sessionUser = SessionUserCheck()
   const cartObj = getCart()
   const cart = useSelector(state => Object.values(state.cart))
-  console.log(cartObj)
-  console.log(cart)
+  const salesTax = 0.0775
+
   if (sessionUser.id === "") {
     history.push(
       `/login`,
@@ -51,7 +51,21 @@ const CartPage = () => {
         val += item.price
       }))
     }
-    return val.toFixed(2);
+    return val;
+  }
+
+  const taxAmount = (subtotal) => {
+    const tax = subtotal * (salesTax)
+    const finalTax = tax
+    return (finalTax)
+  }
+
+  const total = (subtotal, taxAmount) => {
+    const val = (subtotal + taxAmount)
+    const finalVal = val
+    console.log(finalVal)
+    return (finalVal.toFixed(2))
+    
   }
 
 const CartTile = ({ listing }) => {
@@ -66,9 +80,7 @@ const CartTile = ({ listing }) => {
             </div>
             <br />
             <Link id="cart-tile-link" to={`/listings/${listing.id}`}>
-              <div id="cart-title-div">
-                <h1 className="child-ele" id="cart-listing-title">{listing.listingTitle}</h1>
-              </div>
+              <h1 className="child-ele" id="cart-listing-title">{listing.listingTitle}</h1>
             </Link>
             <br />
             <div className='price-delete-container'>
@@ -84,19 +96,49 @@ const CartTile = ({ listing }) => {
 }
 
   const userSubtotal = subtotal(cart)
-
+  const userTaxAmount = taxAmount(userSubtotal)
+  const userTotal = total(userSubtotal, userTaxAmount)
+  console.log(userTotal)
   return (
-    <ul className="listing-grid" display="grid">
-      {cart.map((cartItem) => <CartTile listing={cartItem} />)}
-      <div className="hl" id="cart-hl"/>
-      <li className="cart-end-ind-tile">
-          <div className="cart-end-tile-container">
-            <br />
-            <br />
-            <h3 className="child-ele" id="cart-subtotal-price">Subtotal: ${userSubtotal}</h3>
+    <div id="cart-page">
+      <div id="cart-top">
+        <div id="cart-left">
+          <ul className="cart-listing-grid" display="grid">
+            {cart.map((cartItem) => <CartTile listing={cartItem} />)}
+            {/* <div className="hl" id="cart-hl"/> */}
+          </ul>
+        </div>
+        <div id="cart-right">
+          <div className="cart-tax-tile-container">
+            <li className="tax-spacer-tile">
+              <div className="cart-tax-spacer-container">
+              </div>
+            </li>
+            <li className="cart-tax-tile">
+              <div className="cart-tax-container">
+                <h3 className="child-ele" id="cart-tax-price">Sales Tax: ${userTaxAmount.toFixed(2)}</h3>
+              </div>
+            </li>
           </div>
-      </li>
-    </ul>
+        </div>
+      </div>
+      <br />
+      <div className="hl" id="cart-hl"/>
+      <div id="cart-bottom">
+        <li className="cart-end-ind-tile">
+          <div className="cart-end-subtotal-container">
+            <br />
+            <br />
+            <h3 className="child-ele" id="cart-subtotal-price">Subtotal: ${userSubtotal.toFixed(2)}</h3>
+          </div>
+        </li>
+        <li className="cart-end-ind-tile">
+          <div className="cart-end-total-container">
+            <h3 className="child-ele" id="cart-subtotal-price">Total: ${userTotal}</h3>
+          </div>
+        </li>
+      </div>
+    </div>
   )
 }}
 
