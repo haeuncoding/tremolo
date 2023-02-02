@@ -29,7 +29,7 @@ const CheckoutPage = () => {
         <h1>{quirkySaying()}</h1>      
       </div>
       <div className='checkout-link-div'>
-        <a className="checkout-link" href="https://venmo.com/u/nathankwon818" target="_blank">
+        <a className="checkout-link" href="https://venmo.com/u/nathankwon818">
           Continue to Purchase
         </a>
         <Link className="checkout-link" to="/new_listing">
@@ -42,11 +42,11 @@ const CheckoutPage = () => {
       <hr id="top-socials-div-hr" />
         <div className='socials-div'>
 
-              <a href="https://github.com/haeuncreative" className='outer-link'>
+              <a href="https://github.com/haeuncreative" className='outer-link' target="_blank">
             <img src={GithubIcon} id="github-icon-checkout" />
               </a>
 
-            <a href="https://www.linkedin.com/in/nathankwon818/" className='outer-link'>
+            <a href="https://www.linkedin.com/in/nathankwon818/" className='outer-link' target="_blank">
               <img src={LinkedInIcon} id="linkedin-icon-checkout" />
             </a>
         </div>
