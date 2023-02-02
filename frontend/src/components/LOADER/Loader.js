@@ -1,8 +1,13 @@
-
+import TremoloIcon from '../../assets/TremoloIconColor.png'
+import "./Loader.css"
 const Loader = () => {
 
   return(
-    <h1>i be loadin</h1>
+
+    <div className='LoadingDiv'>
+      <img src={TremoloIcon} id="tremolo-icon"/>
+      <p className='loadingText'>Loading ...</p>
+    </div>
   )
 
 }

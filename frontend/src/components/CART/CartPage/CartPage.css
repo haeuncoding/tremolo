@@ -46,7 +46,8 @@ div#cart-right {
   border: solid #0F749A;
   border-width: 1px;
   color: #0F749A;
-  width: 27vw;
+  padding: 2vw;
+  width: 23vw;
   height: 8vh;
   text-align: center;
   justify-content: center;

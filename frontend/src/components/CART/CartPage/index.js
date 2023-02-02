@@ -144,12 +144,10 @@ const CartTile = ({ listing }) => {
             <br />
           </div>
         <li className="cart-end-ind-tile">
-          <div className="cart-checkout-container">
-            
-                <Link to="/checkout" id="checkout-button" >
-                  CHECKOUT
-                </Link>
-            
+          <div className="cart-checkout-container">         
+            <Link to="/checkout" id="checkout-button" >
+              CHECKOUT
+            </Link>
           </div>
         </li>
       </div>

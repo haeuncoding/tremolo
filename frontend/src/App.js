@@ -85,6 +85,7 @@ function App() {
             <Route path="/listings/:listing_id/edit/" component={ListingFormPage} />
             <Route path="/watchlist" component={WatchlistIndex} />
             <Route path="/users" component={UsersIndex} />
+
           </Switch>
         <Footer />
     </>
