@@ -214,8 +214,8 @@ button.user-options, .added-cart#cart-button, .not-added-cart#cart-button, butto
 
 #watch-button {
   /* background-color: rgb(252, 252, 252); */
-  min-width: 14vw;
-  margin-left: 1vw;
+  width: 50vw;
+  /* margin-left: 1vw; */
   /* border: #000000; */
   border-style: solid;
   border-width: 2px;
@@ -225,9 +225,7 @@ button.user-options, .added-cart#cart-button, .not-added-cart#cart-button, butto
 
 #watch-button.watch-button-off {
   background-color: rgb(252, 252, 252);
-  min-width: 14vw;
-  max-width: 14vw;
-  margin-left: 1vw;
+  /* margin-left: 1vw; */
   /* border: #000000; */
   border-style: solid;
   border-width: 2px;

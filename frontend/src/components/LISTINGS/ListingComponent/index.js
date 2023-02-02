@@ -104,7 +104,7 @@ const ListingComponent = () => {
       </div>
         <br className="user-options" />
         <div className="user-options" id="div2">
-          <button className="user-options" id="offer-button">Make an Offer</button>
+          {/* <button className="user-options" id="offer-button">Make an Offer</button> */}
           <button className={isWatched ? "watch-button-on" : "watch-button-off"}
             id="watch-button" 
             onClick={handleWatchClick}>
