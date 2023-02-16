@@ -34,5 +34,6 @@ class Model < ApplicationRecord
     foreign_key: :make_id,
     class_name: :Make
 
+  
 
 end
