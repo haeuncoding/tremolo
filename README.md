@@ -10,9 +10,10 @@ Tremolo is a web app that allows users to upload their listings and also peruse 
 ---
 ## Technology Used
 ---
-*Ruby
-*Rails
-*React
+
+* Ruby
+* Rails
+* React
 
 ## Technical Features
 ---
