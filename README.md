@@ -1,5 +1,5 @@
 
-![Tremolo Logo](frontend/src/assets/TremoloLogo_Color.png)
+![Tremolo Splash](frontend/src/assets/Tremolo_Splash.png)
 
 [Live Link](https://tremolo.onrender.com)
 
